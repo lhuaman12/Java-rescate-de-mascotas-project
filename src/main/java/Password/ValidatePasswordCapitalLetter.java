@@ -11,3 +11,4 @@ public class ValidatePasswordCapitalLetter implements PasswordCriteria {
 
     }
 }
+
