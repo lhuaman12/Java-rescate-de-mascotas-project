@@ -2,7 +2,7 @@ package Password;
 
 import java.util.regex.Pattern;
 
-public class ValidatePasswordCapitalLetter implements PasswordCriteria {
+public class ValidatePasswordUppercaseCharacter implements PasswordCriteria {
 
     @Override
     public Boolean validatePassword(String password) {
