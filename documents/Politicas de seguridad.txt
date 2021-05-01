@@ -12,8 +12,9 @@ y “5.1.1.2 Memorized Secret Verifiers”.
 
     • Longitud mínima: 8 caracteres; máxima, 64.
 	
-    • Regla de composición: deberán incluir al menos una letra mayúscula [A-Z], al menos 
-	un número [0-9] y al menos uno de los siguientes caracteres especiales: [@#$%!_*?¿-]
+    • Regla de composición: deberán incluir al menos una letra minúscula [a-z], al menos 
+	una letra mayúscula [A-Z], al menos un número [0-9] y al menos uno de los siguientes 
+	caracteres especiales: [@#$%!_*?¿-]
 	
     • Siguiendo las consideraciones del marco NIST, la password no expirará en forma arbitraria. 
 	Entendemos que una práctica de rotación induce a los usuarios a escoger passwords menos seguras y, 
