@@ -12,7 +12,7 @@ public class PasswordMain {
         ValidatePasswordNumber validatePasswordNumber = new ValidatePasswordNumber();
         ValidatePasswordCapitalLetter validatePasswordCapitalLetter = new ValidatePasswordCapitalLetter();
         ValidatePasswordSpecialCharacter validatePasswordSpecialCharacter = new ValidatePasswordSpecialCharacter();
-        //ValidatePasswordDictionary validatePasswordDictionary = new ValidatePasswordDictionary();
+        ValidatePasswordDictionary validatePasswordDictionary = new ValidatePasswordDictionary();
 
         ArrayList<PasswordCriteria> passwordCriteria = new ArrayList<>();
 
@@ -20,7 +20,7 @@ public class PasswordMain {
         passwordCriteria.add(validatePasswordNumber);
         passwordCriteria.add(validatePasswordCapitalLetter);
         passwordCriteria.add(validatePasswordSpecialCharacter);
-        //passwordCriteria.add(validatePasswordDictionary);
+        passwordCriteria.add(validatePasswordDictionary);
 
         validatePassword.setPasswordCriteria(passwordCriteria);
         String password = "P4ssw0rd?";
@@ -55,12 +55,11 @@ public class PasswordMain {
         else
             System.out.println("Password special character NOT OK");
 
-        /*
         // Test dictionary
         if ( validatePasswordDictionary.validatePassword(password) )
             System.out.println("Password dictionary OK");
         else
             System.out.println("Password dictionary NOT OK");
-        */
+
     }
 }
