@@ -10,7 +10,8 @@ public class PasswordMain {
         ValidatePassword validatePassword = new ValidatePassword();
         ValidatePasswordLength validatePasswordLength = new ValidatePasswordLength();
         ValidatePasswordNumber validatePasswordNumber = new ValidatePasswordNumber();
-        ValidatePasswordCapitalLetter validatePasswordCapitalLetter = new ValidatePasswordCapitalLetter();
+        ValidatePasswordLowercaseCharacter validatePasswordLowercaseCharacter = new ValidatePasswordLowercaseCharacter();
+        ValidatePasswordUppercaseCharacter validatePasswordUppercaseCharacter = new ValidatePasswordUppercaseCharacter();
         ValidatePasswordSpecialCharacter validatePasswordSpecialCharacter = new ValidatePasswordSpecialCharacter();
         ValidatePasswordDictionary validatePasswordDictionary = new ValidatePasswordDictionary();
 
@@ -18,7 +19,8 @@ public class PasswordMain {
 
         passwordCriteria.add(validatePasswordLength);
         passwordCriteria.add(validatePasswordNumber);
-        passwordCriteria.add(validatePasswordCapitalLetter);
+        passwordCriteria.add(validatePasswordLowercaseCharacter);
+        passwordCriteria.add(validatePasswordUppercaseCharacter);
         passwordCriteria.add(validatePasswordSpecialCharacter);
         passwordCriteria.add(validatePasswordDictionary);
 
@@ -43,11 +45,17 @@ public class PasswordMain {
         else
             System.out.println("Password number NOT OK");
 
-        // Test password capital letter
-        if ( validatePasswordCapitalLetter.validatePassword(password) )
-            System.out.println("Password capital letter OK");
+        // Test password lowercase character
+        if ( validatePasswordLowercaseCharacter.validatePassword(password))
+            System.out.println("Password lowercase character OK");
         else
-            System.out.println("Password capital letter NOT OK");
+            System.out.println("Password lowercase character NOT OK");
+
+        // Test password uppercase character
+        if ( validatePasswordUppercaseCharacter.validatePassword(password) )
+            System.out.println("Password uppercase character OK");
+        else
+            System.out.println("Password uppercase character NOT OK");
 
         // Test password special character
         if (validatePasswordSpecialCharacter.validatePassword(password))
