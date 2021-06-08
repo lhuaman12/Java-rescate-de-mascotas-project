@@ -1,4 +1,4 @@
-package Parametros;
+package normalizador.Parametros;
 
 public enum CalidadImagen {
     BAJA,

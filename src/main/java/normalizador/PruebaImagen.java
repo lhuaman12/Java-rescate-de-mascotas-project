@@ -1,8 +1,10 @@
-import Adapter.Adaptees.Adapter1;
-import NormalizadorDeImagen.NormalizarImagen;
-import Parametros.CalidadImagen;
-import Parametros.Imagen;
-import Parametros.TamanioImagen;
+package normalizador;
+
+import normalizador.Adapter.Adaptees.Adapter1;
+import normalizador.NormalizadorDeImagen.NormalizarImagen;
+import normalizador.Parametros.CalidadImagen;
+import normalizador.Parametros.Imagen;
+import normalizador.Parametros.TamanioImagen;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -11,7 +13,7 @@ import java.io.*;
 public class PruebaImagen {
 
     public static void main(String[] args) throws IOException {
-        BufferedImage foto = ImageIO.read(new File("C:\\Users\\Usuario\\Desktop\\gatoprueba.jpg"));
+        BufferedImage foto = ImageIO.read(new File("src/main/resources/Normalizador/Test-01.jpg"));
 
         // convertir BufferedImage a byte[]
         ByteArrayOutputStream fotoBytesBuffer = new ByteArrayOutputStream();
@@ -28,7 +30,7 @@ public class PruebaImagen {
         InputStream is = new ByteArrayInputStream(imagenRespuesta.getDatosImagen());
         BufferedImage newBi = ImageIO.read(is);
         // guardando imagen
-        ImageIO.write(newBi, "jpg", new File("C:\\Users\\Usuario\\Desktop\\gatoprueba2.jpg"));
+        ImageIO.write(newBi, "jpg", new File("src/main/resources/Normalizador/Post-Normalizador-01.jpg"));
 
     }
 

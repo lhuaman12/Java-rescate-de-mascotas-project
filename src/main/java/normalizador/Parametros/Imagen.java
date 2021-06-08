@@ -1,4 +1,4 @@
-package Parametros;
+package normalizador.Parametros;
 
 public class Imagen {
     public byte[] datosImagen;

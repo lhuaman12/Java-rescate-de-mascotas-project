@@ -1,9 +1,9 @@
-package NormalizadorDeImagen;
+package normalizador.NormalizadorDeImagen;
 
-import Adapter.AdapterNormalizador;
-import Parametros.CalidadImagen;
-import Parametros.Imagen;
-import Parametros.TamanioImagen;
+import normalizador.Adapter.AdapterNormalizador;
+import normalizador.Parametros.CalidadImagen;
+import normalizador.Parametros.Imagen;
+import normalizador.Parametros.TamanioImagen;
 
 public class NormalizarImagen {
     private AdapterNormalizador normalizador;

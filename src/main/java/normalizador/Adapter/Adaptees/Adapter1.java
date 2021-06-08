@@ -1,9 +1,9 @@
-package Adapter.Adaptees;
+package normalizador.Adapter.Adaptees;
 
-import Adapter.AdapterNormalizador;
-import Parametros.CalidadImagen;
-import Parametros.Imagen;
-import Parametros.TamanioImagen;
+import normalizador.Parametros.CalidadImagen;
+import normalizador.Parametros.Imagen;
+import normalizador.Parametros.TamanioImagen;
+import normalizador.Adapter.AdapterNormalizador;
 
 import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
