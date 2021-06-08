@@ -1,4 +1,4 @@
-package Password;
+package password;
 
 import java.io.IOException;
 import java.util.ArrayList;

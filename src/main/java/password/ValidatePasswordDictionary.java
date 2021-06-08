@@ -1,4 +1,4 @@
-package Password;
+package password;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
