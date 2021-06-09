@@ -34,10 +34,21 @@ public class ServicioRefugioDdS {
 
 
     public ListadoDeHogares listadoDeHogares(int offset) throws IOException {
-        RefugioDdSService refugioDdSService = this.retrofit.create(RefugioDdSService.class);
-        Call<ListadoDeHogares> requestListadoDeHogares = refugioDdSService.hogares(offset);
-        Response<ListadoDeHogares> responseListadoDeHogares = requestListadoDeHogares.execute();
+
+        String authorization = "Bearer " +
+                System.getenv("DDS_REFUGIODDS_TOKEN");
+
+        RefugioDdSService refugioDdSService = this.retrofit
+                .create(RefugioDdSService.class);
+
+        Call<ListadoDeHogares> requestListadoDeHogares =
+                refugioDdSService.hogares(authorization, offset);
+
+        Response<ListadoDeHogares> responseListadoDeHogares =
+                requestListadoDeHogares.execute();
+
         return responseListadoDeHogares.body();
+
     }
 
 }

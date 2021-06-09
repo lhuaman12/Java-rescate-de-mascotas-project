@@ -8,10 +8,27 @@ public class Ubicacion {
     public double lat;
 
     @SerializedName("long")
-    private double Long;
+    public double Long;
 
-    public double getLong () {
-        return Long;
+
+    public double getLong() { return Long; }
+
+    public double getLat() { return lat; }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public void setLong(double aLong) {
+        Long = aLong;
     }
 
     public void setNew (double aLong) {

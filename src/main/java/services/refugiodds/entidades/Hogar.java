@@ -1,4 +1,6 @@
 package services.refugiodds.entidades;
+import domain.TipoMascota;
+
 import java.util.List;
 
 public class Hogar {
@@ -13,10 +15,23 @@ public class Hogar {
     public boolean patio;
     public List<String> caracteristicas;
 
-    public class Admision {
+    private class Admision {
 
         public boolean perros;
         public boolean gatos;
+
+    }
+
+    public boolean admiteTipoMascota(TipoMascota tipoMascota) {
+
+        switch (tipoMascota) {
+            case PERRO:
+                return admisiones.perros;
+            case GATO:
+                return admisiones.gatos;
+            default:
+                return false;
+        }
 
     }
 
