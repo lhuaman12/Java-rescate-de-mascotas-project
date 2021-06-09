@@ -10,13 +10,14 @@ public class Ubicacion {
     @SerializedName("long")
     public double Long;
 
-
     public double getLong() { return Long; }
 
-    public double getLat() { return lat; }
+    public void setLong(double aLong) {
+        Long = aLong;
+    }
 
-    public String getDireccion() {
-        return direccion;
+    public void setNew (double aLong) {
+        Long = aLong;
     }
 
     public void setDireccion(String direccion) {
@@ -27,12 +28,11 @@ public class Ubicacion {
         this.lat = lat;
     }
 
-    public void setLong(double aLong) {
-        Long = aLong;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setNew (double aLong) {
-        Long = aLong;
+    public double getLat() {
+        return lat;
     }
-
 }

@@ -23,7 +23,6 @@ public class RefugioDDSTest {
         Hogar hogarMasCercano = buscarHogar.buscarHogarMasCercano(tipoMascota, ubicacion);
         Assert.assertEquals("Ayudacan", hogarMasCercano.nombre);
 
-
     }
 
     @Test
