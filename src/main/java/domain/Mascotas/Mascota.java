@@ -12,6 +12,7 @@ public class Mascota {
     private String apodo;
     private Integer edadAprox;
     private String descripcion;
+    private TamanioMascota tamanio;
     private Sexo sexo;
     private List<Foto> fotos;
     private List<Caracterisitica> caracterisicas;

@@ -1,5 +1,6 @@
 package distancia;
 
+import domain.Mascotas.TipoMascota;
 import services.refugiodds.ServicioRefugioDdS;
 import services.refugiodds.entidades.Hogar;
 import services.refugiodds.entidades.ListadoDeHogares;
@@ -34,6 +35,8 @@ public class BuscarHogar {
             if (!hogar.admiteTipoMascota(tipoMascota)) {
                 continue;
             }
+
+
 
             double lat2 = hogar.ubicacion.getLat();
             double lon2 = hogar.ubicacion.getLong();

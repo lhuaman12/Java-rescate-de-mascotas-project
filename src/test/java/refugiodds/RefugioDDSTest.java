@@ -1,6 +1,6 @@
 package refugiodds;
 
-import distancia.TipoMascota;
+import domain.Mascotas.TipoMascota;
 import org.junit.Assert;
 import org.junit.Test;
 import distancia.BuscarHogar;
@@ -10,6 +10,8 @@ import services.refugiodds.entidades.ListadoDeHogares;
 import services.refugiodds.entidades.Ubicacion;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class RefugioDDSTest {
@@ -45,7 +47,12 @@ public class RefugioDDSTest {
     public void listarHogares() throws IOException {
 
         ServicioRefugioDdS servicioRefugioDdS = ServicioRefugioDdS.getInstancia();
-
+        List<Hogar> listado = new ArrayList<Hogar>();
+        int offset = 0;
+        while(offset < 4) {
+            offset++;
+            listado.addAll(this.listadoDeHogares(offset).hogares);
+        }
         ListadoDeHogares listadoDeHogares1 = servicioRefugioDdS.listadoDeHogares(1);
         ListadoDeHogares listadoDeHogares2 = servicioRefugioDdS.listadoDeHogares(2);
         ListadoDeHogares listadoDeHogares3 = servicioRefugioDdS.listadoDeHogares(3);

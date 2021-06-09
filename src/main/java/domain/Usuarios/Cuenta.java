@@ -1,7 +1,5 @@
 package domain.Usuarios;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 public class Cuenta {
     private String user;
     private String password;
