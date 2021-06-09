@@ -1,0 +1,161 @@
+{
+	"info": {
+		"_postman_id": "24e6629e-8e39-456f-af04-9f126a9a88fc",
+		"name": "Twilio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SMS API Authentication",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{TWILIO_AUTH_TOKEN}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{TWILIO_ACCOUNT_SID}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.twilio.com/2010-04-01/Accounts",
+					"protocol": "https",
+					"host": [
+						"api",
+						"twilio",
+						"com"
+					],
+					"path": [
+						"2010-04-01",
+						"Accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send an SMS",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{TWILIO_AUTH_TOKEN}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{TWILIO_ACCOUNT_SID}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Body",
+							"value": "RescateDePatitas - 2021-mi-no-grupo-09 - Mensaje de prueba",
+							"type": "text"
+						},
+						{
+							"key": "From",
+							"value": "{{TWILIO_SMS_FROM}}",
+							"type": "text"
+						},
+						{
+							"key": "To",
+							"value": "{{TWILIO_SMS_TO}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.twilio.com/2010-04-01/Accounts/{{TWILIO_ACCOUNT_SID}}/Messages.json",
+					"protocol": "https",
+					"host": [
+						"api",
+						"twilio",
+						"com"
+					],
+					"path": [
+						"2010-04-01",
+						"Accounts",
+						"{{TWILIO_ACCOUNT_SID}}",
+						"Messages.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send a Whatsapp",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{TWILIO_AUTH_TOKEN}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{TWILIO_ACCOUNT_SID}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Body",
+							"value": "RescateDePatitas\n2021-mi-no-grupo-09\nMensaje de prueba",
+							"type": "text"
+						},
+						{
+							"key": "From",
+							"value": "{{TWILIO_WS_FROM}}",
+							"type": "text"
+						},
+						{
+							"key": "To",
+							"value": "{{TWILIO_WS_TO}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.twilio.com/2010-04-01/Accounts/{{TWILIO_ACCOUNT_SID}}/Messages.json",
+					"protocol": "https",
+					"host": [
+						"api",
+						"twilio",
+						"com"
+					],
+					"path": [
+						"2010-04-01",
+						"Accounts",
+						"{{TWILIO_ACCOUNT_SID}}",
+						"Messages.json"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

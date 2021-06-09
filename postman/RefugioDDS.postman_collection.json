@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "30ac02d8-f99d-44f4-8e1e-5eab6bb8fc25",
+		"name": "RefugioDDS",
+		"description": "RefugioDDS es una API REST que permite conocer los Hogares de Tránsito para mascotas en Argentina. Esta API está desarrollada por la Cátedra de Diseño de Sistemas con fines educativos, motivo por el cual parte de los datos que brinda son reales.\n\nSwaggerHub:\thttps://app.swaggerhub.com/apis-docs/ezequieloscarescobar/hogares-transito-mascotas/1.0-oas3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST usuarios",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.refugiosdds.com.ar/api/usuarios",
+					"protocol": "https",
+					"host": [
+						"api",
+						"refugiosdds",
+						"com",
+						"ar"
+					],
+					"path": [
+						"api",
+						"usuarios"
+					]
+				},
+				"description": "Crear un nuevo usuario para poder usar la API"
+			},
+			"response": []
+		},
+		{
+			"name": "GET hogares",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{tk}}P2sL4ODQ2KQUlBglBqXYSkRrGiyjrQ1heJHYHXu0w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "offset",
+						"value": "1",
+						"description": "Número de página",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://api.refugiosdds.com.ar/api/hogares?offset=1",
+					"protocol": "https",
+					"host": [
+						"api",
+						"refugiosdds",
+						"com",
+						"ar"
+					],
+					"path": [
+						"api",
+						"hogares"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": "1"
+						}
+					]
+				},
+				"description": "Devuelve el listado de hogares de tránsito"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "tk",
+			"value": "DQKbjt4N3dIOECBF0Ok"
+		}
+	]
+}
