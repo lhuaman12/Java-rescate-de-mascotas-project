@@ -1,5 +1,8 @@
 package refugiodds;
 
+import domain.Mascotas.Mascota;
+import domain.Mascotas.Sexo;
+import domain.Mascotas.TamanioMascota;
 import domain.Mascotas.TipoMascota;
 import org.junit.Assert;
 import org.junit.Test;
@@ -18,15 +21,16 @@ public class RefugioDDSTest {
 
 
     @Test
-    public void buscarHogarPerro() throws IOException {
+    public void buscarHogarPerroGrande() throws IOException {
         Ubicacion ubicacion = new Ubicacion();
         ubicacion.setDireccion("Parque Centenario");
         ubicacion.setLat(-34.605704841853054);
         ubicacion.setLong(-58.43567671534143);
-        TipoMascota tipoMascota = TipoMascota.PERRO;
+        Mascota m1 = new Mascota(TipoMascota.PERRO,"Copito","Copi",5,"Perro Yokshire, chiquito amable y ladrador", Sexo.MACHO);
+        m1.setTamanio(TamanioMascota.GRANDE);
         BuscarHogar buscarHogar = new BuscarHogar();
-        Hogar hogarMasCercano = buscarHogar.buscarHogarMasCercano(tipoMascota, ubicacion);
-        Assert.assertEquals("Ayudacan", hogarMasCercano.nombre);
+        Hogar hogarMasCercano = buscarHogar.buscarHogarMasCercano(m1, ubicacion);
+        Assert.assertEquals("Naricitas Frias Capital Federal", hogarMasCercano.nombre);
 
     }
 
@@ -36,10 +40,25 @@ public class RefugioDDSTest {
         ubicacion.setDireccion("Parque Centenario");
         ubicacion.setLat(-34.605704841853054);
         ubicacion.setLong(-58.43567671534143);
-        TipoMascota tipoMascota = TipoMascota.GATO;
+        Mascota m2 = new Mascota(TipoMascota.GATO,"David","Chuchi",2,"Gatito siames, con los ojos como bowie", Sexo.MACHO);
+        m2.setTamanio(TamanioMascota.MEDIANA);
         BuscarHogar buscarHogar = new BuscarHogar();
-        Hogar hogarMasCercano = buscarHogar.buscarHogarMasCercano(tipoMascota, ubicacion);
-        Assert.assertNotEquals("Ayudacan", hogarMasCercano.nombre);
+        Hogar hogarMasCercano = buscarHogar.buscarHogarMasCercano(m2, ubicacion);
+        Assert.assertEquals("Naricitas Frias Capital Federal", hogarMasCercano.nombre);
+
+    }
+
+    @Test
+    public void buscarHogarGatoMediano() throws IOException {
+        Ubicacion ubicacion = new Ubicacion();
+        ubicacion.setDireccion("20 de Septiembre y 9 de Julio - Mar del Plata");
+        ubicacion.setLat(-37.991829156521206);
+        ubicacion.setLong(-57.55504484109265);
+        Mascota m3 = new Mascota(TipoMascota.GATO,"Dolores","Lola",12,"Labrador negra mayor, tiene la cola con manchas",Sexo.HEMBRA);
+        m3.setTamanio(TamanioMascota.MEDIANA);
+        BuscarHogar buscarHogar = new BuscarHogar();
+        Hogar hogarMasCercano = buscarHogar.buscarHogarMasCercano(m3, ubicacion);
+        Assert.assertEquals("Buena Pata", hogarMasCercano.nombre);
 
     }
 
@@ -47,28 +66,15 @@ public class RefugioDDSTest {
     public void listarHogares() throws IOException {
 
         ServicioRefugioDdS servicioRefugioDdS = ServicioRefugioDdS.getInstancia();
-        List<Hogar> listado = new ArrayList<Hogar>();
-        int offset = 0;
-        while(offset < 4) {
-            offset++;
-            listado.addAll(this.listadoDeHogares(offset).hogares);
-        }
-        ListadoDeHogares listadoDeHogares1 = servicioRefugioDdS.listadoDeHogares(1);
-        ListadoDeHogares listadoDeHogares2 = servicioRefugioDdS.listadoDeHogares(2);
-        ListadoDeHogares listadoDeHogares3 = servicioRefugioDdS.listadoDeHogares(3);
-        ListadoDeHogares listadoDeHogares4 = servicioRefugioDdS.listadoDeHogares(4);
 
-        listadoDeHogares1.hogares.addAll(listadoDeHogares2.hogares);
-        listadoDeHogares1.hogares.addAll(listadoDeHogares3.hogares);
-        listadoDeHogares1.hogares.addAll(listadoDeHogares4.hogares);
-
+        List<Hogar> listadoDeHogares = servicioRefugioDdS.hogares();
         int i = 1;
-        for (Hogar hogar : listadoDeHogares1.hogares) {
+        for (Hogar hogar : listadoDeHogares) {
             System.out.println(i + "\t" + hogar.nombre);
             i++;
         }
 
-        System.out.println("\n\nCantidad total de hogares de tránsito: " + listadoDeHogares1.hogares.size());
+        System.out.println("\n\nCantidad total de hogares de tránsito: " + listadoDeHogares.size());
 
     }
 

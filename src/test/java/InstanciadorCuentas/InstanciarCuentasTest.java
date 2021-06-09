@@ -40,7 +40,7 @@ public class InstanciarCuentasTest {
     private InstanciadorMascotas instanciadorMascotas = InstanciadorMascotas.getInstanciadorMascotas().setConfiguraciones(plataforma,normalizadorFotos,generadorQR);
 
     //defino personas
-    private Dueño d1,d2,d3,d4;
+    //private Dueño d1,d2,d3,d4;
 
     //defino contactos de personas
     private Contacto con1,con2,con3,con4,con5,con6;
@@ -49,10 +49,10 @@ public class InstanciarCuentasTest {
     private Cuenta c1,c2;
 
     //instanciar fotos y coleccion de fotos de mascotas
-    private Foto foto1_m1,foto1_m2,foto2_m1,foto2_m2,foto2_m3,foto3_m1,foto4_m1,foto4_m2;
+    //private Foto foto1_m1,foto1_m2,foto2_m1,foto2_m2,foto2_m3,foto3_m1,foto4_m1,foto4_m2;
 
     //instancio arrray de fotos de mascota
-    private List<Foto> fotosMascota_m1,fotosMascota_m2,fotosMascota_m3,fotosMascota_m4= new ArrayList<>();
+    //
 
     //defino mascotas
     private Mascota m1,m2,m3,m4;
@@ -68,7 +68,7 @@ public class InstanciarCuentasTest {
     private TipoCadena color_ojos,personalidad;
     private TipoNumero peso;
     private TipoBool castrada;
-
+    private Dueño d1,d2,d3,d4;
 
 
     @Before
@@ -100,16 +100,22 @@ public class InstanciarCuentasTest {
         c2 = new Cuenta("user2","paspas2");
 
         //instanciar fotos de mascotas
-        foto1_m1=new Foto(20, Calidad.MEDIA);
-        foto1_m2=new Foto(50,Calidad.ALTA);
-        foto2_m1=new Foto(20, Calidad.BAJA);
-        foto2_m2=new Foto(70,Calidad.STANDARD);
-        foto2_m3=new Foto(45, Calidad.BAJA);
-        foto3_m1=new Foto(100,Calidad.ALTA);
-        foto4_m1=new Foto(10, Calidad.MEDIA);
-        foto4_m2=new Foto(35,Calidad.ALTA);
+        Foto foto1_m1=new Foto(20, Calidad.MEDIA);
+        Foto foto1_m2=new Foto(50,Calidad.ALTA);
+        Foto foto2_m1=new Foto(20, Calidad.BAJA);
+        Foto foto2_m2=new Foto(70,Calidad.STANDARD);
+        Foto foto2_m3=new Foto(45, Calidad.BAJA);
+        Foto foto3_m1=new Foto(100,Calidad.ALTA);
+        Foto foto4_m1=new Foto(10, Calidad.MEDIA);
+        Foto foto4_m2=new Foto(35,Calidad.ALTA);
 
         //agregar fotos a coleccion de fotos de mascota
+
+        List<Foto> fotosMascota_m1 = new ArrayList<>();
+        List<Foto> fotosMascota_m2 = new ArrayList<>();
+        List<Foto> fotosMascota_m3 = new ArrayList<>();
+        List<Foto> fotosMascota_m4= new ArrayList<>();
+
         fotosMascota_m1.add(foto1_m1);
         fotosMascota_m1.add(foto1_m2);
         fotosMascota_m2.add(foto2_m1);
@@ -176,12 +182,11 @@ public class InstanciarCuentasTest {
         org3.agregarCaracteristica(color_ojos);
         org3.agregarCaracteristica(peso);
 
-
     }
 
     @Test
-    public void validarContenidoPlataforma(){
-        Assert.assertEquals(0,this.plataforma.getCuentas().size());
+    public void validarContenidoPlataforma() {
+        Assert.assertEquals(0,plataforma.getCuentas().size());
     }
 
     @Test
@@ -204,8 +209,8 @@ public class InstanciarCuentasTest {
 
     @Test
     public void validarONGSeleccionadaEnRegistroMascota(){
-        this.instanciadorCuenta.crearCuenta("pepito","spiderman123",d2);
-        Assert.assertEquals("pepito",this.d2.getCuenta().getUser());
+        this.instanciadorCuenta.crearCuenta("pepito2","spiderman123",d2);
+        Assert.assertEquals("pepito2",this.d2.getCuenta().getUser());
     }
 
 

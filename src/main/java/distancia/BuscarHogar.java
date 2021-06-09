@@ -1,5 +1,6 @@
 package distancia;
 
+import domain.Mascotas.Mascota;
 import domain.Mascotas.TipoMascota;
 import services.refugiodds.ServicioRefugioDdS;
 import services.refugiodds.entidades.Hogar;
@@ -7,17 +8,20 @@ import services.refugiodds.entidades.ListadoDeHogares;
 import services.refugiodds.entidades.Ubicacion;
 
 import java.io.IOException;
+import java.util.List;
 
 
 import static distancia.Distancia.calcularDistancia;
 
 public class BuscarHogar {
 
-    public Hogar buscarHogarMasCercano(TipoMascota tipoMascota, Ubicacion ubicacion) throws IOException {
+    public Hogar buscarHogarMasCercano(Mascota unaMascota, Ubicacion ubicacion) throws IOException {
 
         ServicioRefugioDdS servicioRefugioDdS = ServicioRefugioDdS.getInstancia();
 
-        ListadoDeHogares listadoDeHogares = servicioRefugioDdS.listadoDeHogares(1);
+        List<Hogar> listadoDeHogares = servicioRefugioDdS.hogares();
+
+        //ListadoDeHogares listadoDeHogares = servicioRefugioDdS.listadoDeHogares(1);
 
         Hogar hogarMasCercano = new Hogar();
 
@@ -26,17 +30,19 @@ public class BuscarHogar {
 
         double minDistancia = -1;
 
-        for (Hogar hogar : listadoDeHogares.hogares) {
+        for (Hogar hogar : listadoDeHogares) {
 
             if (hogar.lugares_disponibles < 1) {
                 continue;
             }
 
-            if (!hogar.admiteTipoMascota(tipoMascota)) {
+            if (!hogar.admiteTipoMascota(unaMascota.getTipo())) {
                 continue;
             }
 
-
+            if (!hogar.admiteTamanioMascota(unaMascota.getTamanio())) {
+                continue;
+            }
 
             double lat2 = hogar.ubicacion.getLat();
             double lon2 = hogar.ubicacion.getLong();

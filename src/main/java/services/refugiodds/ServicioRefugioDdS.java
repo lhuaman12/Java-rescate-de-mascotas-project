@@ -1,13 +1,16 @@
 package services.refugiodds;
 
 
+import domain.Mascotas.Mascota;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import services.refugiodds.entidades.Hogar;
 import services.refugiodds.entidades.ListadoDeHogares;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -51,6 +54,16 @@ public class ServicioRefugioDdS {
 
         return responseListadoDeHogares.body();
 
+    }
+
+    public List<Hogar> hogares() throws IOException{
+        List<Hogar> listado = new ArrayList<Hogar>();
+        int offset = 0;
+        while(offset < 4) {
+            offset++;
+            listado.addAll(this.listadoDeHogares(offset).hogares);
+        }
+        return listado;
     }
 
 }

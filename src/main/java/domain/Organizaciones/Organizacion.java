@@ -4,6 +4,7 @@ import domain.Mascotas.Mascota;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class Organizacion {
         this.nombre = nombre;
         this.direccion = direccion;
         this.coordenadas = coordenadas;
+        this.caracteristicas = new ArrayList<Caracterisitica>();
     }
 
     public String getNombre() {

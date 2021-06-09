@@ -1,5 +1,7 @@
 package services.refugiodds.entidades;
 
+import domain.Mascotas.Mascota;
+import domain.Mascotas.TamanioMascota;
 import domain.Mascotas.TipoMascota;
 
 import java.util.List;
@@ -34,6 +36,16 @@ public class Hogar {
                 return false;
         }
 
+    }
+
+    public boolean admiteTamanioMascota(TamanioMascota tamanioMascota) {
+        Boolean resultado;
+        if (tamanioMascota.equals(TamanioMascota.GRANDE) || tamanioMascota.equals(TamanioMascota.MEDIANA)) {
+            resultado = this.patio;
+        } else {
+            resultado = true;
+        }
+        return resultado;
     }
 
 }

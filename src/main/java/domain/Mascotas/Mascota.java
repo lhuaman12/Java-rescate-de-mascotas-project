@@ -18,8 +18,19 @@ public class Mascota {
     private List<Caracterisitica> caracterisicas;
     private TipoQR codigo;
 
+    public TipoMascota getTipo() {
+        return tipo;
+    }
 
-    public Mascota(TipoMascota tipo, String nombre, String apodo, Integer edadAprox, String descripcion,Sexo sexo) {
+    public TamanioMascota getTamanio() {
+        return tamanio;
+    }
+
+    public void setTamanio(TamanioMascota tamanio) {
+        this.tamanio = tamanio;
+    }
+
+    public Mascota(TipoMascota tipo, String nombre, String apodo, Integer edadAprox, String descripcion, Sexo sexo) {
         this.tipo = tipo;
         this.nombre = nombre;
         this.apodo = apodo;
