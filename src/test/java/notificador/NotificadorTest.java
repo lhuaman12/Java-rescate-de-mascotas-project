@@ -18,7 +18,7 @@ public class NotificadorTest {
     public void init(){
 
         this.notificador = new Notificador(new NotificarEmail());
-        Mensaje mensaje = new Mensaje(Config.text, "EMAIL", System.getenv("DDS_TWILIO_SMS_TO"));
+        Mensaje mensaje = new Mensaje(Config.text, "EMAIL", System.getenv("DDS_EMAIL_TO"));
         this.mensaje = mensaje;
 
     }
