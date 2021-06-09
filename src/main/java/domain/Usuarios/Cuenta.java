@@ -1,4 +1,4 @@
-package Usuarios;
+package domain.Usuarios;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
 

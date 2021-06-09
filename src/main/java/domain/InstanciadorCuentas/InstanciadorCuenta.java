@@ -1,8 +1,8 @@
-package InstanciadorCuentas;
+package domain.InstanciadorCuentas;
 
-import Plataforma.Plataforma;
-import Usuarios.Cuenta;
-import Usuarios.ImplementacionUser;
+import domain.Plataforma.Plataforma;
+import domain.Usuarios.Cuenta;
+import domain.Usuarios.ImplementacionUser;
 
 public class InstanciadorCuenta {
     private static InstanciadorCuenta instanciadorCuenta;

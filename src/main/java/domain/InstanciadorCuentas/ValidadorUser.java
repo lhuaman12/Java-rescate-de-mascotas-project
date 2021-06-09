@@ -1,6 +1,6 @@
-package InstanciadorCuentas;
+package domain.InstanciadorCuentas;
 
-import Plataforma.Plataforma;
+import domain.Plataforma.Plataforma;
 
 public class ValidadorUser {
     private static ValidadorUser validadorUser;

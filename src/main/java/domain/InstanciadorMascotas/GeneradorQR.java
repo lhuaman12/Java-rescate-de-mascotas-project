@@ -1,8 +1,8 @@
-package InstanciadorMascotas;
+package domain.InstanciadorMascotas;
 
-import InstanciadorCuentas.InstanciadorCuenta;
-import Mascotas.Mascota;
-import Mascotas.TipoQR;
+import domain.InstanciadorCuentas.InstanciadorCuenta;
+import domain.Mascotas.Mascota;
+import domain.Mascotas.TipoQR;
 
 public class GeneradorQR implements InterfazGeneracionQR{
     private static GeneradorQR generadorQR;

@@ -1,6 +1,6 @@
-package Usuarios;
+package domain.Usuarios;
 
-import Mascotas.Mascota;
+import domain.Mascotas.Mascota;
 
 import java.awt.*;
 import java.util.ArrayList;

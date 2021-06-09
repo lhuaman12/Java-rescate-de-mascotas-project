@@ -1,4 +1,4 @@
-package Mascotas;
+package domain.Mascotas;
 
 public enum TipoMascota {
     GATO,

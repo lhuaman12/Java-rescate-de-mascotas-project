@@ -1,7 +1,7 @@
-package Usuarios;
+package domain.Usuarios;
 
-import Organizaciones.Caracterisitica;
-import Organizaciones.Organizacion;
+import domain.Organizaciones.Caracterisitica;
+import domain.Organizaciones.Organizacion;
 
 import java.util.Collections;
 import java.util.Date;

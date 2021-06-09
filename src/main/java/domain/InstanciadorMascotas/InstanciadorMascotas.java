@@ -1,12 +1,12 @@
-package InstanciadorMascotas;
+package domain.InstanciadorMascotas;
 
-import InstanciadorCuentas.InstanciadorCuenta;
-import Mascotas.Foto;
-import Mascotas.Mascota;
-import Mascotas.TipoQR;
-import Organizaciones.Organizacion;
-import Plataforma.Plataforma;
-import Usuarios.ImplementacionMascota;
+import domain.InstanciadorCuentas.InstanciadorCuenta;
+import domain.Mascotas.Foto;
+import domain.Mascotas.Mascota;
+import domain.Mascotas.TipoQR;
+import domain.Organizaciones.Organizacion;
+import domain.Plataforma.Plataforma;
+import domain.Usuarios.ImplementacionMascota;
 
 import java.util.List;
 

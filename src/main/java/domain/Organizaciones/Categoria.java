@@ -1,4 +1,4 @@
-package Organizaciones;
+package domain.Organizaciones;
 
 public enum Categoria {
     IMAGEN,

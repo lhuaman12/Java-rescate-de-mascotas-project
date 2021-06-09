@@ -1,6 +1,6 @@
-package InstanciadorCuentas;
+package domain.InstanciadorCuentas;
 
-import Usuarios.Cuenta;
+import domain.Usuarios.Cuenta;
 
 public class ValidadorCuenta implements InterfazValidacion{
    // InterfazValidacion interfaz;

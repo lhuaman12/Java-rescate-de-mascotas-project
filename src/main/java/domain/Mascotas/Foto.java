@@ -1,4 +1,4 @@
-package Mascotas;
+package domain.Mascotas;
 
 public class Foto {
     private Integer tamaño;

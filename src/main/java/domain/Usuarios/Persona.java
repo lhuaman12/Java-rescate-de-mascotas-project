@@ -1,6 +1,6 @@
-package Usuarios;
+package domain.Usuarios;
 
-import InstanciadorCuentas.InterfazValidacion;
+import domain.InstanciadorCuentas.InterfazValidacion;
 
 import java.util.Date;
 import java.util.Map;

@@ -1,7 +1,7 @@
-package Plataforma;
+package domain.Plataforma;
 
-import Organizaciones.Organizacion;
-import Usuarios.Cuenta;
+import domain.Organizaciones.Organizacion;
+import domain.Usuarios.Cuenta;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;

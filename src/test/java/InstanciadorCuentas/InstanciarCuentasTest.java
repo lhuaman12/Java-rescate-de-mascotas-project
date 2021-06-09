@@ -1,13 +1,16 @@
 package InstanciadorCuentas;
 
-import InstanciadorMascotas.GeneradorQR;
-import InstanciadorMascotas.InstanciadorMascotas;
-import InstanciadorMascotas.NormalizadorFotos;
-import Mascotas.*;
-import Organizaciones.*;
-import Plataforma.*;
-import Usuarios.*;
-import InstanciadorCuentas.ValidadorCuenta;
+import domain.InstanciadorCuentas.InstanciadorCuenta;
+import domain.InstanciadorCuentas.ValidadorPass;
+import domain.InstanciadorCuentas.ValidadorUser;
+import domain.InstanciadorMascotas.GeneradorQR;
+import domain.InstanciadorMascotas.InstanciadorMascotas;
+import domain.InstanciadorMascotas.NormalizadorFotos;
+import domain.Mascotas.*;
+import domain.Organizaciones.*;
+import domain.Plataforma.*;
+import domain.Usuarios.*;
+import domain.InstanciadorCuentas.ValidadorCuenta;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,9 +20,10 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class InstanciarCuentasTest {
 
- //defino e instancio entidades generales
+    //defino e instancio entidades generales
     private ValidadorUser validadorUser = ValidadorUser.getValidadorUser();
     private ValidadorPass validadorPass= ValidadorPass.getValidadorPass();
     private Plataforma plataforma =  Plataforma.getPlataforma();
@@ -69,7 +73,7 @@ public class InstanciarCuentasTest {
 
     @Before
     public void init(){
-       //instanciar dueños
+        //instanciar dueños
         d1= new Dueño("Nico","Gonza",Documento.DNI,35429785,12011991, Genero.HOMBRE);
         d2 = new Dueño("Pepito","Cibrian",Documento.DNI,5432983,11011942,Genero.HOMBRE);
         d3 = new Dueño("Pamela","Anderson",Documento.PASAPORTE,11123234,4071956,Genero.MUJER);

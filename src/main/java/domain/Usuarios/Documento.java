@@ -1,4 +1,4 @@
-package Usuarios;
+package domain.Usuarios;
 
 public enum Documento {
     DNI,

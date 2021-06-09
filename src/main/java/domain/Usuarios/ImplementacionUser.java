@@ -1,4 +1,4 @@
-package Usuarios;
+package domain.Usuarios;
 
 public interface ImplementacionUser{
     Persona getPersona();

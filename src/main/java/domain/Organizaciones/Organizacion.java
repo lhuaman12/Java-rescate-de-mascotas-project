@@ -1,6 +1,6 @@
-package Organizaciones;
+package domain.Organizaciones;
 
-import Mascotas.Mascota;
+import domain.Mascotas.Mascota;
 
 import java.awt.*;
 import java.awt.geom.Point2D;

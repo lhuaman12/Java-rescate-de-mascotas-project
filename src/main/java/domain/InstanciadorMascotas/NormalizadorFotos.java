@@ -1,8 +1,8 @@
-package InstanciadorMascotas;
+package domain.InstanciadorMascotas;
 
-import Mascotas.Foto;
-import Mascotas.Mascota;
-import Organizaciones.Organizacion;
+import domain.Mascotas.Foto;
+import domain.Mascotas.Mascota;
+import domain.Organizaciones.Organizacion;
 
 import java.util.List;
 

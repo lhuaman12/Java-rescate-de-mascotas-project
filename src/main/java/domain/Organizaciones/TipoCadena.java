@@ -1,4 +1,4 @@
-package Organizaciones;
+package domain.Organizaciones;
 
 public class TipoCadena extends Caracterisitica{
     private String valor;

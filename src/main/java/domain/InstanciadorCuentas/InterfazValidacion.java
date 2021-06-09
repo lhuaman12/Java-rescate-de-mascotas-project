@@ -1,6 +1,6 @@
-package InstanciadorCuentas;
+package domain.InstanciadorCuentas;
 
-import Usuarios.Cuenta;
+import domain.Usuarios.Cuenta;
 
 public interface InterfazValidacion {
     Boolean validarDatosCuenta(String user, String pass);

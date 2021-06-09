@@ -1,9 +1,9 @@
-package Usuarios;
+package domain.Usuarios;
 
-import Mascotas.Foto;
-import Mascotas.Mascota;
-import Mascotas.TipoQR;
-import Organizaciones.Organizacion;
+import domain.Mascotas.Foto;
+import domain.Mascotas.Mascota;
+import domain.Mascotas.TipoQR;
+import domain.Organizaciones.Organizacion;
 
 import java.util.List;
 

@@ -1,11 +1,11 @@
-package Usuarios;
+package domain.Usuarios;
 
-import Mascotas.Foto;
-import Mascotas.Mascota;
-import Mascotas.TipoQR;
-import Organizaciones.Caracterisitica;
-import Organizaciones.Organizacion;
-import Plataforma.Plataforma;
+import domain.Mascotas.Foto;
+import domain.Mascotas.Mascota;
+import domain.Mascotas.TipoQR;
+import domain.Organizaciones.Caracterisitica;
+import domain.Organizaciones.Organizacion;
+import domain.Plataforma.Plataforma;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;

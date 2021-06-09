@@ -1,4 +1,4 @@
-package InstanciadorCuentas;
+package domain.InstanciadorCuentas;
 
 public class ValidadorPass {
     private static ValidadorPass validadorPass;

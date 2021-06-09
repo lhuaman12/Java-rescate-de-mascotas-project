@@ -1,6 +1,6 @@
-package Mascotas;
+package domain.Mascotas;
 
-import Organizaciones.Caracterisitica;
+import domain.Organizaciones.Caracterisitica;
 
 import java.util.ArrayList;
 import java.util.Collections;

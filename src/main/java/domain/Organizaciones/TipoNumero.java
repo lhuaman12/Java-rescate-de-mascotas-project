@@ -1,4 +1,4 @@
-package Organizaciones;
+package domain.Organizaciones;
 
 public class TipoNumero extends Caracterisitica{
     private Integer valor;
