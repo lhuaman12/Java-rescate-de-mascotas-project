@@ -1,6 +1,5 @@
 package distancia;
 
-import domain.TipoMascota;
 import services.refugiodds.ServicioRefugioDdS;
 import services.refugiodds.entidades.Hogar;
 import services.refugiodds.entidades.ListadoDeHogares;

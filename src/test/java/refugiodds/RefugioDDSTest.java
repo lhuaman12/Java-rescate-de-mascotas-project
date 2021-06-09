@@ -1,6 +1,6 @@
 package refugiodds;
 
-import domain.TipoMascota;
+import distancia.TipoMascota;
 import org.junit.Assert;
 import org.junit.Test;
 import distancia.BuscarHogar;

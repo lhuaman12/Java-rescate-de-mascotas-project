@@ -1,4 +1,4 @@
-package domain;
+package distancia;
 
 public enum TipoMascota {
     PERRO,

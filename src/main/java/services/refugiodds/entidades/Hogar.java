@@ -1,5 +1,5 @@
 package services.refugiodds.entidades;
-import domain.TipoMascota;
+import distancia.TipoMascota;
 
 import java.util.List;
 
