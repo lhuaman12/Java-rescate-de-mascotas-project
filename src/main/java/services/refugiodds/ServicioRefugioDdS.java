@@ -8,6 +8,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import services.refugiodds.entidades.ListadoDeHogares;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 public class ServicioRefugioDdS {
 
