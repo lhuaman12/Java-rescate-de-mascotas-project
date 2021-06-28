@@ -2,6 +2,8 @@ package domain.InstanciadorCuentas;
 
 import domain.Usuarios.Cuenta;
 
+import java.io.IOException;
+
 public class ValidadorCuenta implements InterfazValidacion{
    // InterfazValidacion interfaz;
     private static ValidadorCuenta validadorCuenta;
@@ -22,14 +24,8 @@ public class ValidadorCuenta implements InterfazValidacion{
         return validadorCuenta;
     }
 
-    /* public ValidadorCuenta(InterfazValidacion interfaz, ValidadorUser v_user, ValidadorPass v_pass) {
-        this.interfaz = interfaz;
-        this.v_user = v_user;
-        this.v_pass = v_pass;
-    }*/
-
     @Override
-    public Boolean validarDatosCuenta(String user, String pass) {
+    public Boolean validarDatosCuenta(String user, String pass) throws IOException {
         Boolean validUser,validPass;
 
         validUser=v_user.validarUsuario(user);

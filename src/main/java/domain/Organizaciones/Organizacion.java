@@ -1,11 +1,10 @@
 package domain.Organizaciones;
 
 import domain.Mascotas.Mascota;
+import domain.Organizaciones.Configuraciones.ConfiguracionImagen;
 
-import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Organizacion {
@@ -14,12 +13,26 @@ public class Organizacion {
     public Point2D.Double coordenadas;
     public List<Caracterisitica> caracteristicas;
     public List<Mascota> mascotasRegistradas;
+    public ConfiguracionImagen configuracionImagen;
 
     public Organizacion(String nombre, String direccion, Point2D.Double coordenadas) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.coordenadas = coordenadas;
         this.caracteristicas = new ArrayList<Caracterisitica>();
+        this.mascotasRegistradas=new ArrayList<>();
+    }
+
+    public Caracterisitica getCaracterisiticaSegun(Categoria cat, TipoCaract tipo){
+        return this.caracteristicas.stream().filter(c -> c.existenAtributos(cat,tipo)).findFirst().get();
+    }
+
+    public ConfiguracionImagen getConfiguracionImagen() {
+        return configuracionImagen;
+    }
+
+    public void setConfiguracionImagen(ConfiguracionImagen configuracionImagen) {
+        this.configuracionImagen = configuracionImagen;
     }
 
     public String getNombre() {
@@ -63,4 +76,7 @@ public class Organizacion {
         this.mascotasRegistradas.add(mascota);
     }
 
+    public List<Mascota> getMascotasRegistradas() {
+        return mascotasRegistradas;
+    }
 }

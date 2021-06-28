@@ -14,7 +14,7 @@ public class Mascota {
     private String descripcion;
     private TamanioMascota tamanio;
     private Sexo sexo;
-    private List<Foto> fotos;
+    private List<Imagen> fotos;
     private List<Caracterisitica> caracterisicas;
     private TipoQR codigo;
 
@@ -42,7 +42,7 @@ public class Mascota {
         this.codigo=null;
     }
 
-    public void setFotos(List<Foto> fotos) {
+    public void setFotos(List<Imagen> fotos) {
         this.fotos = fotos;
     }
 
@@ -50,7 +50,7 @@ public class Mascota {
         this.caracterisicas = caracterisicas;
     }
 
-    public List<Foto> getFotos() {
+    public List<Imagen> getFotos() {
         return fotos;
     }
 

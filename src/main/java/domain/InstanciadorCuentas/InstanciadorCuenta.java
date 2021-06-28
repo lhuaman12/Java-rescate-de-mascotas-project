@@ -4,6 +4,8 @@ import domain.Plataforma.Plataforma;
 import domain.Usuarios.Cuenta;
 import domain.Usuarios.ImplementacionUser;
 
+import java.io.IOException;
+
 public class InstanciadorCuenta {
     private static InstanciadorCuenta instanciadorCuenta;
     private InterfazValidacion interfazValidacion;
@@ -24,11 +26,11 @@ public class InstanciadorCuenta {
         return instanciadorCuenta;
     }
     
-    public Boolean validarCreacionCuenta(String user, String pass){
+    public Boolean validarCreacionCuenta(String user, String pass) throws IOException {
         return this.interfazValidacion.validarDatosCuenta(user,pass);
     }
 
-    public void crearCuenta(String user,String pass,ImplementacionUser usuario){
+    public void crearCuenta(String user,String pass,ImplementacionUser usuario) throws IOException {
         Boolean validCuenta = this.validarCreacionCuenta(user,pass);
         if(validCuenta==true){
             Cuenta cuentaPreliminar = new Cuenta(user,pass);

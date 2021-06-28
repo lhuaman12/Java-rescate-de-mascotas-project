@@ -1,9 +1,8 @@
 package domain.Usuarios;
 
-import domain.Mascotas.Foto;
+import domain.Mascotas.Imagen;
 import domain.Mascotas.Mascota;
 import domain.Mascotas.TipoQR;
-import domain.Organizaciones.Caracterisitica;
 import domain.Organizaciones.Organizacion;
 import domain.Plataforma.Plataforma;
 
@@ -59,8 +58,9 @@ public class Dueño extends PersonaComun implements ImplementacionMascota {
         org.agregarMascota(mascota);
     }
 
+
     @Override
-    public void reemplazarFotos(Mascota mascota, List<Foto> fotosNormalizadas) {
+    public void reemplazarFotos(Mascota mascota, List<Imagen> fotosNormalizadas) {
         mascota.setFotos(fotosNormalizadas);
     }
 
@@ -69,4 +69,7 @@ public class Dueño extends PersonaComun implements ImplementacionMascota {
         mascota.setCodigo(codigoMascota);
     }
 
+    public List<Mascota> getMascotas() {
+        return mascotas;
+    }
 }

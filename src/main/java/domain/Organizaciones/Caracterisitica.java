@@ -9,6 +9,16 @@ public abstract class Caracterisitica {
         this.tipoCaract=tipoCaract;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
 
+    public TipoCaract getTipoCaract() {
+        return tipoCaract;
+    }
+
+    public boolean existenAtributos(Categoria cat, TipoCaract tipo){
+       return (this.getCategoria()==cat) && (this.getTipoCaract()==tipo);
+    }
 }
 

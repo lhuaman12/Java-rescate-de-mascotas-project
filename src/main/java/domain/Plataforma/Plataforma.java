@@ -14,7 +14,7 @@ public class Plataforma {
 
     private static Plataforma plataforma;
     private List<Cuenta> cuentas;
-    private List<Organizacion> organizaciones;
+    private List<Organizacion> organizaciones = new ArrayList<>();
 
     private Plataforma() {
         this.cuentas = new ArrayList<>();
@@ -51,5 +51,9 @@ public class Plataforma {
         Integer posicionMenorDistancia= distancias.indexOf(Collections.min(distancias));
         return organizaciones.get(posicionMenorDistancia);
 
+    }
+
+    public void agregarOrganizacion(Organizacion org1) {
+        this.organizaciones.add(org1);
     }
 }

@@ -1,34 +1,53 @@
 package InstanciadorCuentas;
 
-import domain.InstanciadorCuentas.InstanciadorCuenta;
-import domain.InstanciadorCuentas.ValidadorPass;
-import domain.InstanciadorCuentas.ValidadorUser;
+import QR.QR.FabricadorQR;
+import domain.InstanciadorCuentas.*;
 import domain.InstanciadorMascotas.GeneradorQR;
+import domain.InstanciadorMascotas.ImagenABytes;
 import domain.InstanciadorMascotas.InstanciadorMascotas;
 import domain.InstanciadorMascotas.NormalizadorFotos;
 import domain.Mascotas.*;
 import domain.Organizaciones.*;
+import domain.Organizaciones.Configuraciones.TamanioImagen;
 import domain.Plataforma.*;
 import domain.Usuarios.*;
-import domain.InstanciadorCuentas.ValidadorCuenta;
+
+import normalizador.Adapter.Adaptees.Adapter1;
+import normalizador.NormalizadorDeImagen.NormalizarImagen;
+import normalizador.Parametros.CalidadImagen;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import password.*;
 
-import java.awt.*;
+import javax.imageio.ImageIO;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class InstanciarCuentasTest {
 
+    //defino para validacion password
+    ValidatePassword validatePassword = new ValidatePassword();
+    ValidatePasswordLength validatePasswordLength = new ValidatePasswordLength();
+    ValidatePasswordNumber validatePasswordNumber = new ValidatePasswordNumber();
+    ValidatePasswordLowercaseCharacter validatePasswordLowercaseCharacter = new ValidatePasswordLowercaseCharacter();
+    ValidatePasswordUppercaseCharacter validatePasswordUppercaseCharacter = new ValidatePasswordUppercaseCharacter();
+    ValidatePasswordSpecialCharacter validatePasswordSpecialCharacter = new ValidatePasswordSpecialCharacter();
+    ValidatePasswordDictionary validatePasswordDictionary = new ValidatePasswordDictionary();
+
+    ArrayList<PasswordCriteria> passwordCriteria = new ArrayList<>();
+
     //defino e instancio entidades generales
     private ValidadorUser validadorUser = ValidadorUser.getValidadorUser();
     private ValidadorPass validadorPass= ValidadorPass.getValidadorPass();
     private Plataforma plataforma =  Plataforma.getPlataforma();
     private GeneradorQR generadorQR = GeneradorQR.getGeneradorQR();
-    private NormalizadorFotos normalizadorFotos = NormalizadorFotos.normalizadorFotos();
+    private NormalizadorFotos normalizadorFotos = NormalizadorFotos.getNormalizadorFotos();
+
 
     //instancio validador de cuentas
     private ValidadorCuenta validadorCuenta = ValidadorCuenta.getValidadorCuenta().setValidadores(validadorUser,validadorPass);
@@ -40,7 +59,7 @@ public class InstanciarCuentasTest {
     private InstanciadorMascotas instanciadorMascotas = InstanciadorMascotas.getInstanciadorMascotas().setConfiguraciones(plataforma,normalizadorFotos,generadorQR);
 
     //defino personas
-    //private Dueño d1,d2,d3,d4;
+    private Dueño d1,d2,d3,d4;
 
     //defino contactos de personas
     private Contacto con1,con2,con3,con4,con5,con6;
@@ -49,7 +68,7 @@ public class InstanciarCuentasTest {
     private Cuenta c1,c2;
 
     //instanciar fotos y coleccion de fotos de mascotas
-    //private Foto foto1_m1,foto1_m2,foto2_m1,foto2_m2,foto2_m3,foto3_m1,foto4_m1,foto4_m2;
+    private Imagen img1_m1,img1_m2,img2_m1,img2_m2,img3_m1,img4_m1,img4_m2;
 
     //instancio arrray de fotos de mascota
     //
@@ -68,11 +87,26 @@ public class InstanciarCuentasTest {
     private TipoCadena color_ojos,personalidad;
     private TipoNumero peso;
     private TipoBool castrada;
-    private Dueño d1,d2,d3,d4;
+   
 
 
     @Before
     public void init(){
+
+        //Aagrego criterios para validar passwords
+        passwordCriteria.add(validatePasswordLength);
+        passwordCriteria.add(validatePasswordNumber);
+        passwordCriteria.add(validatePasswordLowercaseCharacter);
+        passwordCriteria.add(validatePasswordUppercaseCharacter);
+        passwordCriteria.add(validatePasswordSpecialCharacter);
+        passwordCriteria.add(validatePasswordDictionary);
+
+        //seteo criterios de password al validador de passwords
+        validatePassword.setPasswordCriteria(passwordCriteria);
+
+        //seteo validador externo a mi validador
+        validadorPass.setValidador(validatePassword);
+
         //instanciar dueños
         d1= new Dueño("Nico","Gonza",Documento.DNI,35429785,12011991, Genero.HOMBRE);
         d2 = new Dueño("Pepito","Cibrian",Documento.DNI,5432983,11011942,Genero.HOMBRE);
@@ -87,6 +121,24 @@ public class InstanciarCuentasTest {
         con5=new Contacto("Pamela","Anderson",1577422322,"pamanderson01@gmail.com");
         con6=new Contacto("Sophia","Xeon",1544342223,"sophiemsmsmsms@gmail.com");
 
+        //determino listas de metodos de notificacion disponibles
+        List<MetodoNotificacion> metodosDisponibles1= new ArrayList<>();
+        metodosDisponibles1.add(MetodoNotificacion.EMAIL);
+        metodosDisponibles1.add(MetodoNotificacion.SMS);
+        metodosDisponibles1.add(MetodoNotificacion.WHATSAPP);
+
+        List<MetodoNotificacion> metodosDisponibles2= new ArrayList<>();
+        metodosDisponibles1.add(MetodoNotificacion.EMAIL);
+        metodosDisponibles1.add(MetodoNotificacion.WHATSAPP);
+
+        //agrego metodos de notificacion disponibles
+        con1.setFormasNotificacion(metodosDisponibles1);
+        con1.setFormasNotificacion(metodosDisponibles1);
+        con3.setFormasNotificacion(metodosDisponibles1);
+        con4.setFormasNotificacion(metodosDisponibles2);
+        con5.setFormasNotificacion(metodosDisponibles1); 
+        con6.setFormasNotificacion(metodosDisponibles2);
+
         //seteo contactos a los dueños que ya existen
         d1.agregarContacto(con1);
         d1.agregarContacto(con2);
@@ -96,34 +148,37 @@ public class InstanciarCuentasTest {
         d4.agregarContacto(con6);
 
         //seteo cuentas en la plataforma de usuarios existentes
-        c1 = new Cuenta("user1","paspas");
-        c2 = new Cuenta("user2","paspas2");
+        c1 = new Cuenta("user1","NinoRlz145!!!");
+        c2 = new Cuenta("user2","Passw$4!=");
 
         //instanciar fotos de mascotas
-        Foto foto1_m1=new Foto(20, Calidad.MEDIA);
-        Foto foto1_m2=new Foto(50,Calidad.ALTA);
-        Foto foto2_m1=new Foto(20, Calidad.BAJA);
-        Foto foto2_m2=new Foto(70,Calidad.STANDARD);
-        Foto foto2_m3=new Foto(45, Calidad.BAJA);
-        Foto foto3_m1=new Foto(100,Calidad.ALTA);
-        Foto foto4_m1=new Foto(10, Calidad.MEDIA);
-        Foto foto4_m2=new Foto(35,Calidad.ALTA);
+
+        ImagenABytes imagenABytes = new ImagenABytes();
+
+        Imagen img1_m1= new Imagen(imagenABytes.setPathAndReturn("src/main/resources/Normalizador/Test-02.jpg").traerBytes(),new TamanioImagen(300,200));
+        Imagen img1_m2= new Imagen(imagenABytes.setPathAndReturn("src/main/resources/Normalizador/Test-02.jpg").traerBytes(),new TamanioImagen(300,200));
+        Imagen img2_m1= new Imagen(imagenABytes.setPathAndReturn("src/main/resources/Normalizador/Test-02.jpg").traerBytes(),new TamanioImagen(300,200));
+        Imagen img2_m2= new Imagen(imagenABytes.setPathAndReturn("src/main/resources/Normalizador/Test-02.jpg").traerBytes(),new TamanioImagen(300,200));
+        Imagen img3_m1= new Imagen(imagenABytes.setPathAndReturn("src/main/resources/Normalizador/Test-02.jpg").traerBytes(),new TamanioImagen(300,200));
+        Imagen img4_m1= new Imagen(imagenABytes.setPathAndReturn("src/main/resources/Normalizador/Test-02.jpg").traerBytes(),new TamanioImagen(300,200));
+        Imagen img4_m2= new Imagen(imagenABytes.setPathAndReturn("src/main/resources/Normalizador/Test-02.jpg").traerBytes(),new TamanioImagen(300,200));
+
 
         //agregar fotos a coleccion de fotos de mascota
 
-        List<Foto> fotosMascota_m1 = new ArrayList<>();
-        List<Foto> fotosMascota_m2 = new ArrayList<>();
-        List<Foto> fotosMascota_m3 = new ArrayList<>();
-        List<Foto> fotosMascota_m4= new ArrayList<>();
+        List<Imagen> imagenesMascota_m1=new ArrayList<>();
+        List<Imagen> imagenesMascota_m2=new ArrayList<>();
+        List<Imagen> imagenesMascota_m3=new ArrayList<>();
+        List<Imagen> imagenesMascota_m4=new ArrayList<>();
 
-        fotosMascota_m1.add(foto1_m1);
-        fotosMascota_m1.add(foto1_m2);
-        fotosMascota_m2.add(foto2_m1);
-        fotosMascota_m2.add(foto2_m2);
-        fotosMascota_m2.add(foto2_m3);
-        fotosMascota_m3.add(foto3_m1);
-        fotosMascota_m4.add(foto4_m1);
-        fotosMascota_m4.add(foto4_m2);
+
+        imagenesMascota_m1.add(img1_m1);
+        imagenesMascota_m1.add(img1_m2);
+        imagenesMascota_m2.add(img2_m1);
+        imagenesMascota_m2.add(img2_m2);
+        imagenesMascota_m3.add(img3_m1);
+        imagenesMascota_m4.add(img4_m1);
+        imagenesMascota_m4.add(img4_m2);
 
         //instanciar mascotas
         m1 = new Mascota(TipoMascota.PERRO,"Copito","Copi",5,"Perro Yokshire, chiquito amable y ladrador", Sexo.MACHO);
@@ -132,10 +187,10 @@ public class InstanciarCuentasTest {
         m4 = new Mascota(TipoMascota.PERRO,"Pakistan","Paki",1,"Cachorro buldog francés, muy juguetón",Sexo.MACHO);
 
         //agregar fotos a colección de mascotas
-        m1.setFotos(fotosMascota_m1);
-        m2.setFotos(fotosMascota_m2);
-        m3.setFotos(fotosMascota_m3);
-        m4.setFotos(fotosMascota_m4);
+        m1.setFotos(imagenesMascota_m1);
+        m2.setFotos(imagenesMascota_m2);
+        m3.setFotos(imagenesMascota_m3);
+        m4.setFotos(imagenesMascota_m4);
 
         //instanciar caracteristicas mascotas
         calidad_img = new TipoCadena();
@@ -182,36 +237,73 @@ public class InstanciarCuentasTest {
         org3.agregarCaracteristica(color_ojos);
         org3.agregarCaracteristica(peso);
 
+        //agrego organizaciones a plataforma
+           plataforma.agregarOrganizacion(org1);
+           plataforma.agregarOrganizacion(org2);
+           plataforma.agregarOrganizacion(org3);
     }
 
     @Test
     public void validarContenidoPlataforma() {
-        Assert.assertEquals(0,plataforma.getCuentas().size());
+        plataforma.addCuenta(c2);
+        Assert.assertEquals(1,plataforma.getCuentas().size());
     }
 
     @Test
-    public void validarQueUserYPassSeanValidos(){
-        Assert.assertEquals(true,this.instanciadorCuenta.validarCreacionCuenta("ninorules","1234"));
-        Assert.assertEquals(false,this.instanciadorCuenta.validarCreacionCuenta("ninorules2","1234X"));
+    public void validarQueUserYPassSeanValidos() throws IOException {
+        Assert.assertEquals(false,this.instanciadorCuenta.validarCreacionCuenta("ninorules","12345"));
+        Assert.assertEquals(true,this.instanciadorCuenta.validarCreacionCuenta("ninorules2","NinoRlz13%"));
     }
     @Test
-    public void validarUsuariosExistentesEnPlataforma(){
+    public void validarUsuariosExistentesEnPlataforma() throws IOException {
         this.plataforma.addCuenta(c1);
-        Assert.assertEquals(false,this.instanciadorCuenta.validarCreacionCuenta("user1","1234"));
-        Assert.assertEquals(true,this.instanciadorCuenta.validarCreacionCuenta("user5","1234"));
-        Assert.assertEquals(true,this.instanciadorCuenta.validarCreacionCuenta("ninorules","1234"));
+        Assert.assertEquals(false,this.instanciadorCuenta.validarCreacionCuenta("user1","NinoRlz145!!!"));
+        Assert.assertEquals(false,this.instanciadorCuenta.validarCreacionCuenta("user5","1234"));
+        Assert.assertEquals(true,this.instanciadorCuenta.validarCreacionCuenta("ninorules","NinoRlz144!!!"));
     }
     @Test
-    public void validarCrearCuentaEnPlataformaOK(){
-        this.instanciadorCuenta.crearCuenta("pepito","spiderman123",d2);
+    public void validarCrearCuentaEnPlataformaOK() throws IOException {
+        this.instanciadorCuenta.crearCuenta("pepito","Pepito12!$",d2);
         Assert.assertEquals("pepito",this.d2.getCuenta().getUser());
     }
 
     @Test
     public void validarONGSeleccionadaEnRegistroMascota(){
-        this.instanciadorCuenta.crearCuenta("pepito2","spiderman123",d2);
-        Assert.assertEquals("pepito2",this.d2.getCuenta().getUser());
+
+        Point2D.Double ubicacion = new Point2D.Double(-0.123123,-11.3455);
+        Assert.assertEquals(org3,this.plataforma.getOrganizacionMasCercana(ubicacion));
+    }
+    @Test
+    public void validarRegistroDeMascotasOK(){
+        //seteo coleccion de mascotas para dueño 1
+        List<Mascota> mascotasNino =  new ArrayList<>();
+        mascotasNino.add(m1);
+        mascotasNino.add(m2);
+        d1.registrarMascotas(mascotasNino,org1);
+
+        //seteo coleccion de mascotas para dueño 2
+        List<Mascota> mascotasPepito =  new ArrayList<>();
+        mascotasPepito.add(m3);
+        d2.registrarMascotas(mascotasPepito,org2);
+
+        //seteo coleccion de mascotas para dueño 2
+        List<Mascota> mascotasPamela =  new ArrayList<>();
+        mascotasPamela.add(m4);
+        d3.registrarMascotas(mascotasPamela,org3);
+
+        Assert.assertEquals(2,d1.getMascotas().size());
+        Assert.assertEquals(1,d2.getMascotas().size());
+        Assert.assertEquals(1,d3.getMascotas().size());
+
     }
 
+    @Test
+    public void validarGeneracionQRMascotaOK() throws Exception {
+        TipoQR nuevoQr;
+        generadorQR.setAtributosGeneradorQR(new Adapter.AdapterQR.ZXing.ZXingAdapter(), "https://patitas.com.ar/mascotaperdida=55@YHASD","src/main/resources/QR/QR.jpg");
+        generadorQR.crear();
+        nuevoQr= generadorQR.generarQR(m1);
+        Assert.assertEquals("https://patitas.com.ar/mascotaperdida=55@YHASD",nuevoQr.getPath());
+    }
 
 }

@@ -1,7 +1,6 @@
 package domain.InstanciadorMascotas;
 
-import domain.InstanciadorCuentas.InstanciadorCuenta;
-import domain.Mascotas.Foto;
+import domain.Mascotas.Imagen;
 import domain.Mascotas.Mascota;
 import domain.Mascotas.TipoQR;
 import domain.Organizaciones.Organizacion;
@@ -26,22 +25,19 @@ public class InstanciadorMascotas {
         return instanciadorMascotas;
     }
 
-    public Boolean validarRegistroMascota(Mascota mascota){
-        Boolean r1= this.interfazNormalizadorFotos.validarRegistroMascota(mascota);
-        Boolean r2=this.interfazGeneracionQR.validarRegistroMascota(mascota);
-        return r1 && r2;
+    public void setImplementacionMascota(ImplementacionMascota implementacionMascota) {
+        this.implementacionMascota = implementacionMascota;
     }
 
     public void registrarMascota(Mascota mascota,ImplementacionMascota usuario,Organizacion org){
-        List<Foto> fotosNormalizadas = this.interfazNormalizadorFotos.normalizarFotos(mascota.getFotos(),org);
+        List<Imagen> fotosNormalizadas = this.interfazNormalizadorFotos.normalizarFotos(mascota.getFotos(),org);
         TipoQR codigoMascota = this.interfazGeneracionQR.generarQR(mascota);
-        Boolean validRegistro= this.validarRegistroMascota(mascota);
-        if(validRegistro==true){
+        if(fotosNormalizadas!=null && codigoMascota!=null){
                 implementacionMascota.registrarMascota(mascota,org);
                 implementacionMascota.reemplazarFotos(mascota,fotosNormalizadas);
                 implementacionMascota.agregarQR(mascota,codigoMascota);
         }else{
-            System.out.println("Error en la creacion de usuario. Intente más tarde");
+            System.out.println("Error en la instanciación de la mascota. Intente más tarde");
         }
     }
 

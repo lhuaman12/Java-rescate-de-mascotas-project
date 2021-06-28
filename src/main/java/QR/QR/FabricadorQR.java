@@ -10,7 +10,11 @@ public class FabricadorQR {
         adapterQR.crear(mensaje,pathFile);
     }
 
-    public FabricadorQR(AdapterFabricadorQR adapterQR,String mensaje, String pathFile) {
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public FabricadorQR(AdapterFabricadorQR adapterQR, String mensaje, String pathFile) {
         this.mensaje = mensaje;
         this.adapterQR = adapterQR;
         this.pathFile = pathFile;

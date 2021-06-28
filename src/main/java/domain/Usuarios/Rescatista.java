@@ -3,11 +3,12 @@ package domain.Usuarios;
 import domain.Mascotas.Mascota;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 public class Rescatista extends PersonaComun{
     private String direccion;
-    private Polygon coordenadas;
+    private Point2D.Double coordenadas;
     private Mascota mascotaPerdida;
 
     public Rescatista(String nombre, String apellido, Documento tipoDoc,Integer nroDoc, Integer fechaNacimiento,Genero genero) {
@@ -31,11 +32,11 @@ public class Rescatista extends PersonaComun{
         this.direccion = direccion;
     }
 
-    public Polygon getCoordenadas() {
+    public Point2D.Double getCoordenadas() {
         return coordenadas;
     }
 
-    public void setCoordenadas(Polygon coordenadas) {
+    public void setCoordenadas(Point2D.Double coordenadas) {
         this.coordenadas = coordenadas;
     }
 
