@@ -1,12 +1,13 @@
 package domain.Usuarios;
 
 import domain.Mascotas.Mascota;
+import domain.Mascotas.TipoQR;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-public class Rescatista extends PersonaComun{
+public class Rescatista extends PersonaComun implements ImplementacionMascotaPerdida{
     private String direccion;
     private Point2D.Double coordenadas;
     private Mascota mascotaPerdida;
@@ -46,5 +47,10 @@ public class Rescatista extends PersonaComun{
 
     public void setMascotaPerdida(Mascota mascotaPerdida) {
         this.mascotaPerdida = mascotaPerdida;
+    }
+
+    @Override
+    public Boolean tieneQRAsociado(TipoQR codigoQR) {
+        return null;
     }
 }

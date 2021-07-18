@@ -1,28 +1,31 @@
 package domain.Usuarios;
 
+import domain.Mascotas.Mascota;
+import domain.Mascotas.TipoQR;
+
 public class Cuenta {
-    private String user;
+    private String username;
     private String password;
 
     public Cuenta(String user, String password){
-        this.user=user;
+        this.username=user;
         this.password=password;
     }
 
     public Boolean esIgual(String user) {
-        if (this.user == user) {
+        if (this.username == user) {
             return true;
         }else{
             return false;
         }
     }
 
-    public String getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsername(String user) {
+        this.username = user;
     }
 
     public String getPassword() {
@@ -32,4 +35,6 @@ public class Cuenta {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }

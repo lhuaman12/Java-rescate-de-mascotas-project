@@ -1,5 +1,6 @@
 package domain.Usuarios;
 
+import domain.Mascotas.TipoQR;
 import domain.Organizaciones.Caracterisitica;
 import domain.Organizaciones.Organizacion;
 
@@ -12,6 +13,11 @@ public class Administrador extends Persona{
     @Override
     public void crearPerfil(Cuenta cuenta) {
         this.cuenta=cuenta;
+    }
+
+    @Override
+    public Boolean tieneQRAsociado(TipoQR codigoQR) {
+        return null;
     }
 
     public void agregarCaracteristicas(Caracterisitica...caracterisiticas){

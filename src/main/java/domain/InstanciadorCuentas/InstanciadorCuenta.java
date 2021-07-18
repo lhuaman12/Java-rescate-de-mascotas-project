@@ -39,6 +39,17 @@ public class InstanciadorCuenta {
         }else{
             System.out.println("Error en la creacion de usuario. Intente más tarde");
         }
-        
+
+    }
+    public void crearCuenta(String user,String pass) throws IOException {
+        Boolean validCuenta = this.validarCreacionCuenta(user,pass);
+        if(validCuenta==true){
+            Cuenta cuentaPreliminar = new Cuenta(user,pass);
+            usuario.crearPerfil(cuentaPreliminar);
+            this.plataforma.addCuenta(cuentaPreliminar);
+        }else{
+            System.out.println("Error en la creacion de usuario. Intente más tarde");
+        }
+
     }
 }

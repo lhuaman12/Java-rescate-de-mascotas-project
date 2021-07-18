@@ -1,11 +1,13 @@
 package domain.Organizaciones;
 
 import domain.Mascotas.Mascota;
+import domain.Mascotas.TipoQR;
 import domain.Organizaciones.Configuraciones.ConfiguracionImagen;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Organizacion {
     public String nombre;
@@ -33,6 +35,10 @@ public class Organizacion {
 
     public void setConfiguracionImagen(ConfiguracionImagen configuracionImagen) {
         this.configuracionImagen = configuracionImagen;
+    }
+
+    public Mascota getMascotaByQR(TipoQR codigoQR){
+        return this.mascotasRegistradas.stream().filter(m -> m.getCodigo()==codigoQR).findFirst().get();
     }
 
     public String getNombre() {

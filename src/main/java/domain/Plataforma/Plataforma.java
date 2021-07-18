@@ -1,7 +1,10 @@
 package domain.Plataforma;
 
+import domain.Mascotas.Mascota;
+import domain.Mascotas.TipoQR;
 import domain.Organizaciones.Organizacion;
 import domain.Usuarios.Cuenta;
+import domain.Usuarios.Dueño;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
@@ -55,5 +58,11 @@ public class Plataforma {
 
     public void agregarOrganizacion(Organizacion org1) {
         this.organizaciones.add(org1);
+    }
+
+
+    public Dueño buscarDueñoPorQR(TipoQR codigoQR) {
+        //Mascota dueñoMascota=this.organizaciones.stream().map(o->o.getMascotaByQR(codigoQR)).findFirst().get();
+        return null;
     }
 }

@@ -13,4 +13,8 @@ public interface ImplementacionMascota {
     void reemplazarFotos(Mascota mascota, List<Imagen> fotosNormalizadas);
 
     void agregarQR(Mascota mascota, TipoQR codigoMascota);
+
+    void agregarToken(Mascota mascota, String token_mascota);
+
+    void asociarDuenio(Mascota mascota);
 }

@@ -264,7 +264,7 @@ public class InstanciarCuentasTest {
     @Test
     public void validarCrearCuentaEnPlataformaOK() throws IOException {
         this.instanciadorCuenta.crearCuenta("pepito","Pepito12!$",d2);
-        Assert.assertEquals("pepito",this.d2.getCuenta().getUser());
+        Assert.assertEquals("pepito",this.d2.getCuenta().getUsername());
     }
 
     @Test

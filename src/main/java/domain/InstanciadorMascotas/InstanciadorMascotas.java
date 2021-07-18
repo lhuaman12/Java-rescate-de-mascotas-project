@@ -36,6 +36,8 @@ public class InstanciadorMascotas {
                 implementacionMascota.registrarMascota(mascota,org);
                 implementacionMascota.reemplazarFotos(mascota,fotosNormalizadas);
                 implementacionMascota.agregarQR(mascota,codigoMascota);
+                implementacionMascota.agregarToken(mascota,null);
+                implementacionMascota.asociarDuenio(mascota);
         }else{
             System.out.println("Error en la instanciación de la mascota. Intente más tarde");
         }

@@ -44,6 +44,11 @@ public class Dueño extends PersonaComun implements ImplementacionMascota {
         this.cuenta=cuenta;
     }
 
+    @Override
+    public Boolean tieneQRAsociado(TipoQR codigoQR) {
+        return this.mascotas.stream().anyMatch(m -> m.getCodigo()==codigoQR);
+    }
+
     public Organizacion getOrganizacionMasCercana(Plataforma plataforma, Point2D.Double ubicacion) {
         return plataforma.getOrganizacionMasCercana(ubicacion);
     }
@@ -67,6 +72,16 @@ public class Dueño extends PersonaComun implements ImplementacionMascota {
     @Override
     public void agregarQR(Mascota mascota, TipoQR codigoMascota) {
         mascota.setCodigo(codigoMascota);
+    }
+
+    @Override
+    public void agregarToken(Mascota mascota, String token_mascota) {
+        mascota.setToken(token_mascota);
+    }
+
+    @Override
+    public void asociarDuenio(Mascota mascota) {
+        mascota.setDuenio(this);
     }
 
     public List<Mascota> getMascotas() {
