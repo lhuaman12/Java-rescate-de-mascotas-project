@@ -65,4 +65,16 @@ public class Plataforma {
         //Mascota dueñoMascota=this.organizaciones.stream().map(o->o.getMascotaByQR(codigoQR)).findFirst().get();
         return null;
     }
+
+    public Dueño getDuenioByToken(String token) {
+       return this.organizaciones
+                .stream()
+                .flatMap(org -> org.getMascotasRegistradas().stream())
+                .filter(m -> m.getToken()==token)
+                .findFirst()
+                .get()
+                .getDuenio();
+    }
+
+
 }

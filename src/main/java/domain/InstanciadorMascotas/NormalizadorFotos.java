@@ -28,8 +28,8 @@ public class NormalizadorFotos implements InterfazNormalizadorFotos{
 
     @Override
     public List<Imagen> normalizarFotos(List<Imagen> fotos, Organizacion org) {
-        TamanioImagen tamanioImagen= org.configuracionImagen.getTamanioImagen();
-        CalidadImagen calidadImagen = org.configuracionImagen.getCalidadImagen();
+        TamanioImagen tamanioImagen= org.getConfiguracionImagen().getTamanioImagen();
+        CalidadImagen calidadImagen = org.getConfiguracionImagen().getCalidadImagen();
         return fotos.stream().map(foto -> this.adapterNormalizadorImagen.normalizarImagen(foto,tamanioImagen,calidadImagen)).collect(Collectors.toList());
 
     }

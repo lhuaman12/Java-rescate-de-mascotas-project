@@ -1,4 +1,4 @@
-package domain.Organizaciones;
+package domain.Organizaciones.Caracterisiticas;
 
 public enum TipoCaract {
     CALIDAD,

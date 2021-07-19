@@ -7,6 +7,7 @@ import domain.Organizaciones.Organizacion;
 import domain.Plataforma.Plataforma;
 
 import java.awt.geom.Point2D;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,8 +16,9 @@ public class Dueño extends PersonaComun implements ImplementacionMascota {
 
     private List<Mascota> mascotas;
 
-
-    public Dueño(String nombre, String apellido, Documento tipoDoc,Integer nroDoc, Integer fechaNacimiento,Genero genero) {
+//constructor principal sin builder
+//-----------------------------------------------------------------
+    public Dueño(String nombre, String apellido, Documento tipoDoc, Integer nroDoc, LocalDate fechaNacimiento, Genero genero) {
         super.nombre=nombre;
         super.apellido=apellido;
         super.tipoDoc=tipoDoc;
@@ -26,33 +28,23 @@ public class Dueño extends PersonaComun implements ImplementacionMascota {
         super.contactos = new ArrayList<>();
         this.mascotas = new ArrayList<>();
     }
-    public void agregarMascota(Mascota mascota){
-        this.mascotas.add(mascota);
-    }
-    public void agregarMascotas(Mascota...mascotas){
-        Collections.addAll(this.mascotas,mascotas);
-    }
-    public void agregarContacto(Contacto contacto){
-        this.contactos.add(contacto);
-    }
-    public void agregarMascotas(Contacto...contactos){Collections.addAll(this.contactos,contactos);
+//constructor aplicando builder
+//-----------------------------------------------------------------
+    public Dueño(){
+        super.contactos = new ArrayList<>();
+        this.mascotas = new ArrayList<>();
     }
 
-
+//métodos para instanciar cuenta
+//-----------------------------------------------------------------
     @Override
     public void crearPerfil(Cuenta cuenta) {
-        this.cuenta=cuenta;
-    }
+    this.cuenta=cuenta;
+}
 
-    @Override
-    public Boolean tieneQRAsociado(TipoQR codigoQR) {
-        return this.mascotas.stream().anyMatch(m -> m.getCodigo()==codigoQR);
-    }
 
-    public Organizacion getOrganizacionMasCercana(Plataforma plataforma, Point2D.Double ubicacion) {
-        return plataforma.getOrganizacionMasCercana(ubicacion);
-    }
-
+    //métodos de registro de mascotas
+//-----------------------------------------------------------------
     public void registrarMascotas(List<Mascota> mascotas, Organizacion org) {
         mascotas.stream().forEach(m -> this.registrarMascota(m,org));
     }
@@ -62,7 +54,6 @@ public class Dueño extends PersonaComun implements ImplementacionMascota {
         this.agregarMascota(mascota);
         org.agregarMascota(mascota);
     }
-
 
     @Override
     public void reemplazarFotos(Mascota mascota, List<Imagen> fotosNormalizadas) {
@@ -84,7 +75,33 @@ public class Dueño extends PersonaComun implements ImplementacionMascota {
         mascota.setDuenio(this);
     }
 
+//métodos de obtención de dueño de mascota - organizacion más cercana
+//-----------------------------------------------------------------
+
+    @Override
+    public Boolean tieneQRAsociado(TipoQR codigoQR) {
+        return this.mascotas.stream().anyMatch(m -> m.getCodigo()==codigoQR);
+    }
+
+    public Organizacion getOrganizacionMasCercana(Plataforma plataforma, Point2D.Double ubicacion) {
+        return plataforma.getOrganizacionMasCercana(ubicacion);
+    }
+
+//otros métodos
+//-----------------------------------------------------------------
     public List<Mascota> getMascotas() {
         return mascotas;
     }
+
+    public void agregarMascota(Mascota mascota){
+        this.mascotas.add(mascota);
+    }
+    public void agregarMascotas(Mascota...mascotas){
+        Collections.addAll(this.mascotas,mascotas);
+    }
+
+    public void agregarMascotas(Contacto...contactos){Collections.addAll(this.contactos,contactos);
+    }
+
+
 }

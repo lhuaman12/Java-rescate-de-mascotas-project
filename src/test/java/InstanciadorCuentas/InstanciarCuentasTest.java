@@ -1,6 +1,5 @@
 package InstanciadorCuentas;
 
-import QR.QR.FabricadorQR;
 import domain.InstanciadorCuentas.*;
 import domain.InstanciadorMascotas.GeneradorQR;
 import domain.InstanciadorMascotas.ImagenABytes;
@@ -8,22 +7,21 @@ import domain.InstanciadorMascotas.InstanciadorMascotas;
 import domain.InstanciadorMascotas.NormalizadorFotos;
 import domain.Mascotas.*;
 import domain.Organizaciones.*;
+import domain.Organizaciones.Caracterisiticas.*;
+import domain.Organizaciones.Configuraciones.CalidadImagen;
+import domain.Organizaciones.Configuraciones.ConfiguracionImagen;
 import domain.Organizaciones.Configuraciones.TamanioImagen;
 import domain.Plataforma.*;
 import domain.Usuarios.*;
 
-import normalizador.Adapter.Adaptees.Adapter1;
-import normalizador.NormalizadorDeImagen.NormalizarImagen;
-import normalizador.Parametros.CalidadImagen;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import password.*;
 
-import javax.imageio.ImageIO;
 import java.awt.geom.Point2D;
-import java.awt.image.BufferedImage;
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,7 +69,6 @@ public class InstanciarCuentasTest {
     private Imagen img1_m1,img1_m2,img2_m1,img2_m2,img3_m1,img4_m1,img4_m2;
 
     //instancio arrray de fotos de mascota
-    //
 
     //defino mascotas
     private Mascota m1,m2,m3,m4;
@@ -79,16 +76,9 @@ public class InstanciarCuentasTest {
     //defino organizaciones existente
     private Organizacion org1,org2,org3;
 
-    //defino caracteristicas de organizaciones y/o plataforma
-    //caracteristicas imagen
-    private TipoCadena calidad_img;
-    private TipoNumero tamaño_img;
     //caracteristicas mascotas
-    private TipoCadena color_ojos,personalidad;
-    private TipoNumero peso;
-    private TipoBool castrada;
-   
-
+    private Caracterisitica color_ojos,personalidad,color_primario,color_secundario,
+        peso, castrada,vacuna_rabia,color_terciario;
 
     @Before
     public void init(){
@@ -107,51 +97,61 @@ public class InstanciarCuentasTest {
         //seteo validador externo a mi validador
         validadorPass.setValidador(validatePassword);
 
-        //instanciar dueños
-        d1= new Dueño("Nico","Gonza",Documento.DNI,35429785,12011991, Genero.HOMBRE);
-        d2 = new Dueño("Pepito","Cibrian",Documento.DNI,5432983,11011942,Genero.HOMBRE);
-        d3 = new Dueño("Pamela","Anderson",Documento.PASAPORTE,11123234,4071956,Genero.MUJER);
-        d4 = new Dueño("Sophie","Xeon",Documento.PASAPORTE,123823112,11009990, Genero.OTRO);
 
         //instanciar contactos
-        con1=new Contacto("Nicolás","González",1134084444,"nicolas.gonzalez15@gmail.com");
-        con2=new Contacto("Tito","González",1544342232,"tito.gonzalez15@gmail.com");
-        con3=new Contacto("Francisco","Cibrian",1164322323,"pepecibrian15@gmail.com");
-        con4=new Contacto("Ana ","Campoy",1125345355,"anamariacampoy@gmail.com");
-        con5=new Contacto("Pamela","Anderson",1577422322,"pamanderson01@gmail.com");
-        con6=new Contacto("Sophia","Xeon",1544342223,"sophiemsmsmsms@gmail.com");
+        con1=new Contacto().nombre("Nicolás").apellido("González").telefono(1134084444).mail("nicolas.gonzalez15@gmail.com")
+                .agregarFormaNotificacion(MetodoNotificacion.EMAIL)
+                .agregarFormaNotificacion(MetodoNotificacion.WHATSAPP)
+                .agregarFormaNotificacion(MetodoNotificacion.SMS);
 
-        //determino listas de metodos de notificacion disponibles
-        List<MetodoNotificacion> metodosDisponibles1= new ArrayList<>();
-        metodosDisponibles1.add(MetodoNotificacion.EMAIL);
-        metodosDisponibles1.add(MetodoNotificacion.SMS);
-        metodosDisponibles1.add(MetodoNotificacion.WHATSAPP);
+        con2=new Contacto().nombre("Tito").apellido("González").telefono(1544342232).mail("tito.gonzalez15@gmail.com")
+                .agregarFormaNotificacion(MetodoNotificacion.EMAIL)
+                .agregarFormaNotificacion(MetodoNotificacion.WHATSAPP);
+        con3=new Contacto().nombre("Francisco").apellido("Cibrian").telefono(1164322323).mail("pepecibrian15@gmail.com")
+                .agregarFormaNotificacion(MetodoNotificacion.EMAIL)
+                .agregarFormaNotificacion(MetodoNotificacion.WHATSAPP);
 
-        List<MetodoNotificacion> metodosDisponibles2= new ArrayList<>();
-        metodosDisponibles1.add(MetodoNotificacion.EMAIL);
-        metodosDisponibles1.add(MetodoNotificacion.WHATSAPP);
+        con4=new Contacto().nombre("Ana").apellido("Campoy").mail("anamariacampoy@gmail.com")
+                .agregarFormaNotificacion(MetodoNotificacion.EMAIL);
 
-        //agrego metodos de notificacion disponibles
-        con1.setFormasNotificacion(metodosDisponibles1);
-        con1.setFormasNotificacion(metodosDisponibles1);
-        con3.setFormasNotificacion(metodosDisponibles1);
-        con4.setFormasNotificacion(metodosDisponibles2);
-        con5.setFormasNotificacion(metodosDisponibles1); 
-        con6.setFormasNotificacion(metodosDisponibles2);
+        con5=new Contacto().nombre("Pamela").apellido("Anderson").telefono(1577422322)
+                .agregarFormaNotificacion(MetodoNotificacion.WHATSAPP)
+                .agregarFormaNotificacion(MetodoNotificacion.SMS);
 
-        //seteo contactos a los dueños que ya existen
-        d1.agregarContacto(con1);
-        d1.agregarContacto(con2);
-        d2.agregarContacto(con3);
-        d2.agregarContacto(con4);
-        d3.agregarContacto(con5);
-        d4.agregarContacto(con6);
+        con6=new Contacto().nombre("Sophia").apellido("Xeon").telefono(1544342223).mail("sophiemsmsmsms@gmail.com")
+                .agregarFormaNotificacion(MetodoNotificacion.EMAIL)
+                .agregarFormaNotificacion(MetodoNotificacion.SMS);
+
+        //instanciar dueños
+        d1= (Dueño) new Dueño().nombre("Nicolás").apellido("González").tipoDoc(Documento.DNI).nroDoc(35429785)
+                .fechaNacimiento(LocalDate.of(1991,01,12))
+                .genero(Genero.HOMBRE)
+                .agregarContacto(con1)
+                .agregarContacto(con2);
+
+        d2 = (Dueño) new Dueño().nombre("Pepito").apellido("Cibrian").tipoDoc(Documento.DNI).nroDoc(5432765)
+                .fechaNacimiento(LocalDate.of(1945,04,06))
+                .genero(Genero.HOMBRE)
+                .agregarContacto(con3)
+                .agregarContacto(con4);
+
+        d3 = (Dueño) new Dueño().nombre("Pamela").apellido("Anderson").tipoDoc(Documento.PASAPORTE).nroDoc(111121313)
+                .fechaNacimiento(LocalDate.of(1970,05,21))
+                .genero(Genero.MUJER)
+                .agregarContacto(con5);
+
+
+        d4 = (Dueño) new Dueño().nombre("Sophie").apellido("Xeon").tipoDoc(Documento.PASAPORTE).nroDoc(123823112)
+                .fechaNacimiento(LocalDate.of(1985,02,29))
+                .genero(Genero.OTRO)
+                .agregarContacto(con6);
+
 
         //seteo cuentas en la plataforma de usuarios existentes
         c1 = new Cuenta("user1","NinoRlz145!!!");
         c2 = new Cuenta("user2","Passw$4!=");
 
-        //instanciar fotos de mascotas
+        //instanciar imágenes de mascotas
 
         ImagenABytes imagenABytes = new ImagenABytes();
 
@@ -164,78 +164,68 @@ public class InstanciarCuentasTest {
         Imagen img4_m2= new Imagen(imagenABytes.setPathAndReturn("src/main/resources/Normalizador/Test-02.jpg").traerBytes(),new TamanioImagen(300,200));
 
 
-        //agregar fotos a coleccion de fotos de mascota
-
-        List<Imagen> imagenesMascota_m1=new ArrayList<>();
-        List<Imagen> imagenesMascota_m2=new ArrayList<>();
-        List<Imagen> imagenesMascota_m3=new ArrayList<>();
-        List<Imagen> imagenesMascota_m4=new ArrayList<>();
-
-
-        imagenesMascota_m1.add(img1_m1);
-        imagenesMascota_m1.add(img1_m2);
-        imagenesMascota_m2.add(img2_m1);
-        imagenesMascota_m2.add(img2_m2);
-        imagenesMascota_m3.add(img3_m1);
-        imagenesMascota_m4.add(img4_m1);
-        imagenesMascota_m4.add(img4_m2);
-
         //instanciar mascotas
-        m1 = new Mascota(TipoMascota.PERRO,"Copito","Copi",5,"Perro Yokshire, chiquito amable y ladrador", Sexo.MACHO);
-        m2 = new Mascota(TipoMascota.GATO,"David","Chuchi",2,"Gatito siames, con los ojos como bowie", Sexo.MACHO);
-        m3 = new Mascota(TipoMascota.PERRO,"Dolores","Lola",12,"Labrador negra mayor, tiene la cola con manchas",Sexo.HEMBRA);
-        m4 = new Mascota(TipoMascota.PERRO,"Pakistan","Paki",1,"Cachorro buldog francés, muy juguetón",Sexo.MACHO);
+        m1 = new Mascota().tipoMascota(TipoMascota.PERRO).nombre("Copito").apodo("Copi").edadAprox(5).sexo(Sexo.MACHO)
+                .tamanioMascota(TamanioMascota.CHICA)
+                .descripcion("Perro Yokshire, chiquito amable y ladrador")
+                .agregarImagen(img1_m1)
+                .agregarImagen(img1_m2);
 
-        //agregar fotos a colección de mascotas
-        m1.setFotos(imagenesMascota_m1);
-        m2.setFotos(imagenesMascota_m2);
-        m3.setFotos(imagenesMascota_m3);
-        m4.setFotos(imagenesMascota_m4);
+        m2 = new Mascota().tipoMascota(TipoMascota.GATO).nombre("David").apodo("Chuchi").edadAprox(2).sexo(Sexo.MACHO)
+                .tamanioMascota(TamanioMascota.CHICA)
+                .descripcion("Gatito siames, con los ojos como bowie")
+                .agregarImagen(img2_m1)
+                .agregarImagen(img2_m2);
 
-        //instanciar caracteristicas mascotas
-        calidad_img = new TipoCadena();
-        calidad_img.agregarDatosCaracteristica(Categoria.IMAGEN,TipoCaract.CALIDAD);
-        calidad_img.setearValor("HD");
+        m3 = new Mascota().tipoMascota(TipoMascota.PERRO).nombre("Dolores").apodo("Lola").edadAprox(12).sexo(Sexo.HEMBRA)
+                .tamanioMascota(TamanioMascota.GRANDE)
+                .descripcion("Labrador negra mayor, tiene la cola con manchas")
+                .agregarImagen(img3_m1);
 
-        tamaño_img=new TipoNumero();
-        tamaño_img.agregarDatosCaracteristica(Categoria.IMAGEN,TipoCaract.TAMAÑO);
-        tamaño_img.setearValor(200);
+        m4 = new Mascota().tipoMascota(TipoMascota.PERRO).nombre("Pakistan").apodo("Paki").edadAprox(1).sexo(Sexo.MACHO)
+                .tamanioMascota(TamanioMascota.MEDIANA)
+                .descripcion("Cachorro buldog francés, muy juguetón")
+                .agregarImagen(img4_m1)
+                .agregarImagen(img4_m2);
 
-        color_ojos=new TipoCadena();
-        color_ojos.agregarDatosCaracteristica(Categoria.MASCOTAS,TipoCaract.COLOR_OJOS);
-        color_ojos.setearValor("AZUL");
 
-        personalidad= new TipoCadena();
-        personalidad.agregarDatosCaracteristica(Categoria.MASCOTAS,TipoCaract.PERSONALIDAD);
-        personalidad.setearValor("Mansa");
+        //instanciar caracteristicas de mascotas para una organización
 
-        peso=new TipoNumero();
-        peso.agregarDatosCaracteristica(Categoria.MASCOTAS,TipoCaract.PESO);
-        peso.setearValor(15);
+        color_ojos=new Caracterisitica().descripcion("Color Ojos").valor(new TipoCadena("Azules"));
+        personalidad= new Caracterisitica().descripcion("Personalidad").valor(new TipoCadena("Amigable"));
+        peso= new Caracterisitica().descripcion("Peso").valor(new TipoDouble(5.80));
+        castrada= new Caracterisitica().descripcion("Está Castrada").valor(new TipoBool(true));
+        vacuna_rabia=new Caracterisitica().descripcion("Vacuna antirrábica").valor(new TipoBool(false));
+        color_primario=new Caracterisitica().descripcion("Color primario").valor(new TipoColor(Color.BLANCO));
+        color_secundario=new Caracterisitica().descripcion("Color secundario").valor(new TipoColor(Color.NEGRO));
+        color_terciario=new Caracterisitica().descripcion("Color terciario").valor(new TipoColor(Color.MANCHADO));
 
-        castrada=new TipoBool();
-        castrada.agregarDatosCaracteristica(Categoria.MASCOTAS,TipoCaract.CASTRADA);
-        castrada.setearValor(true);
 
         //instanciar organizaciones
-        org1= new Organizacion("Felices Los Bichos","La Pampa 1512, Villa Urquiza, CABA",new Point2D.Double(-86.123123,-11.123123123));
-        org2= new Organizacion("Save Pets","Araoz 1514, Palermo, CABA",new Point2D.Double(-86.234234,-0.123123123));
-        org3= new Organizacion("Bichejos","Raffo 1514, Florencio Varela, BS.AS",new Point2D.Double(-0.123123,-11.3455));
+        org1= new Organizacion().nombre("Felices Los Bichos")
+                .direccion("La Pampa 1512, Villa Urquiza, CABA")
+                .coordenadas(new Point2D.Double(-86.123123,-11.123123123))
+                .agregarCaracteristica(color_ojos)
+                .agregarCaracteristica(personalidad)
+                .setConfiguracionImagen(new ConfiguracionImagen(CalidadImagen.ALTA,new TamanioImagen(500,1250)));
 
-        //agregar caracteristicas a organizaciones
-        org1.agregarCaracteristica(calidad_img);
-        org1.agregarCaracteristica(tamaño_img);
-        org1.agregarCaracteristica(color_ojos);
-        org1.agregarCaracteristica(castrada);
+        org2= new Organizacion().nombre("Save Pets")
+                .direccion("Araoz 1514, Palermo, CABA")
+                .coordenadas(new Point2D.Double(-86.234234,-0.123123123))
+                .agregarCaracteristica(personalidad)
+                .agregarCaracteristica(peso)
+                .agregarCaracteristica(castrada)
+                .setConfiguracionImagen(new ConfiguracionImagen(CalidadImagen.BAJA,new TamanioImagen(200,350)));
 
-        org2.agregarCaracteristica(calidad_img);
-        org2.agregarCaracteristica(tamaño_img);
-        org2.agregarCaracteristica(personalidad);
 
-        org3.agregarCaracteristica(calidad_img);
-        org3.agregarCaracteristica(tamaño_img);
-        org3.agregarCaracteristica(color_ojos);
-        org3.agregarCaracteristica(peso);
+        org3= new Organizacion().nombre("Bichejos")
+                .direccion("Raffo 1514, Florencio Varela, BS.AS")
+                .coordenadas(new Point2D.Double(-0.123123,-11.3455))
+                .agregarCaracteristica(color_primario)
+                .agregarCaracteristica(peso)
+                .agregarCaracteristica(vacuna_rabia)
+                .setConfiguracionImagen(new ConfiguracionImagen(CalidadImagen.MEDIA,new TamanioImagen(400,1000)));
+
 
         //agrego organizaciones a plataforma
            plataforma.agregarOrganizacion(org1);
@@ -305,5 +295,7 @@ public class InstanciarCuentasTest {
         nuevoQr= generadorQR.generarQR(m1);
         Assert.assertEquals("https://patitas.com.ar/mascotaperdida=55@YHASD",nuevoQr.getPath());
     }
+
+
 
 }

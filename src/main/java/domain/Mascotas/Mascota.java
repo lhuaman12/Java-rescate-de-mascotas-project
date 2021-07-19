@@ -1,10 +1,9 @@
 package domain.Mascotas;
 
-import domain.Organizaciones.Caracterisitica;
+import domain.Organizaciones.Caracterisiticas.Caracterisitica;
 import domain.Usuarios.Dueño;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Mascota {
@@ -34,7 +33,8 @@ public class Mascota {
     }
 
 
-
+    //constructor principal sin builder
+//-----------------------------------------------------------------
     public Mascota(TipoMascota tipo, String nombre, String apodo, Integer edadAprox, String descripcion, Sexo sexo) {
         this.tipo = tipo;
         this.nombre = nombre;
@@ -48,6 +48,80 @@ public class Mascota {
         this.duenio=null;
         this.token=null;
     }
+
+    //constructor aplicando builder
+//-----------------------------------------------------------------
+
+    public Mascota(){
+        this.fotos= new ArrayList<>();
+        this.caracterisicas = new ArrayList<>();
+        this.codigo=null;
+        this.duenio=null;
+        this.token=null;
+    }
+
+    public Mascota tipoMascota(TipoMascota tipo){
+        this.tipo=tipo;
+        return this;
+    }
+    public Mascota nombre(String nombre){
+        this.nombre=nombre;
+        return this;
+    }
+    public Mascota apodo(String apodo){
+        this.apodo=apodo;
+        return this;
+    }
+    public Mascota edadAprox(Integer edadAprox){
+        this.edadAprox=edadAprox;
+        return this;
+    }
+    public Mascota descripcion(String descripcion){
+        this.descripcion=descripcion;
+        return this;
+    }
+    public Mascota sexo(Sexo sexo){
+        this.sexo=sexo;
+        return this;
+    }
+    public Mascota tamanioMascota(TamanioMascota tamanio){
+        this.tamanio=tamanio;
+        return this;
+
+    }
+    public Mascota agregarDuenio(Dueño duenio){
+        this.duenio=duenio;
+        return this;
+    }
+    public Mascota agregarToken(String token){
+        this.token=token;
+        return this;
+    }
+    public Mascota agregarQR(TipoQR codigo){
+        this.codigo=codigo;
+        return this;
+    }
+
+    public Mascota agregarImagen(Imagen imagen){
+        this.fotos.add(imagen);
+        return this;
+    }
+    public Mascota agregarImagenes(List<Imagen> imagenes){
+        this.fotos=imagenes;
+        return this;
+    }
+
+    public Mascota agregarCaracteristica(Caracterisitica caracterisitica){
+        this.caracterisicas.add(caracterisitica);
+        return this;
+    }
+    public Mascota agregarCaracteristicas(List<Caracterisitica> caracterisiticas){
+        this.caracterisicas=caracterisiticas;
+        return this;
+    }
+
+    //otros metodos
+//-----------------------------------------------------------------
 
     public void setFotos(List<Imagen> fotos) {
         this.fotos = fotos;
