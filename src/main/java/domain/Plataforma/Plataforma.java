@@ -1,10 +1,9 @@
 package domain.Plataforma;
 
-import domain.Mascotas.Mascota;
 import domain.Mascotas.TipoQR;
 import domain.Organizaciones.Organizacion;
 import domain.Usuarios.Cuenta;
-import domain.Usuarios.Dueño;
+import domain.Usuarios.Duenio;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
@@ -61,12 +60,12 @@ public class Plataforma {
     }
 
 
-    public Dueño buscarDueñoPorQR(TipoQR codigoQR) {
+    public Duenio buscarDueñoPorQR(TipoQR codigoQR) {
         //Mascota dueñoMascota=this.organizaciones.stream().map(o->o.getMascotaByQR(codigoQR)).findFirst().get();
         return null;
     }
 
-    public Dueño getDuenioByToken(String token) {
+    public Duenio getDuenioByToken(String token) {
        return this.organizaciones
                 .stream()
                 .flatMap(org -> org.getMascotasRegistradas().stream())

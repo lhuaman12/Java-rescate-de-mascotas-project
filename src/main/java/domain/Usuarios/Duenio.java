@@ -12,13 +12,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Dueño extends PersonaComun implements ImplementacionMascota {
+public class Duenio extends PersonaComun implements ImplementacionMascota {
 
     private List<Mascota> mascotas;
 
 //constructor principal sin builder
 //-----------------------------------------------------------------
-    public Dueño(String nombre, String apellido, Documento tipoDoc, Integer nroDoc, LocalDate fechaNacimiento, Genero genero) {
+    public Duenio(String nombre, String apellido, Documento tipoDoc, Integer nroDoc, LocalDate fechaNacimiento, Genero genero) {
         super.nombre=nombre;
         super.apellido=apellido;
         super.tipoDoc=tipoDoc;
@@ -30,7 +30,7 @@ public class Dueño extends PersonaComun implements ImplementacionMascota {
     }
 //constructor aplicando builder
 //-----------------------------------------------------------------
-    public Dueño(){
+    public Duenio(){
         super.contactos = new ArrayList<>();
         this.mascotas = new ArrayList<>();
     }

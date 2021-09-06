@@ -57,7 +57,7 @@ public class InstanciarCuentasTest {
     private InstanciadorMascotas instanciadorMascotas = InstanciadorMascotas.getInstanciadorMascotas().setConfiguraciones(plataforma,normalizadorFotos,generadorQR);
 
     //defino personas
-    private Dueño d1,d2,d3,d4;
+    private Duenio d1,d2,d3,d4;
 
     //defino contactos de personas
     private Contacto con1,con2,con3,con4,con5,con6;
@@ -123,25 +123,25 @@ public class InstanciarCuentasTest {
                 .agregarFormaNotificacion(MetodoNotificacion.SMS);
 
         //instanciar dueños
-        d1= (Dueño) new Dueño().nombre("Nicolás").apellido("González").tipoDoc(Documento.DNI).nroDoc(35429785)
+        d1= (Duenio) new Duenio().nombre("Nicolás").apellido("González").tipoDoc(Documento.DNI).nroDoc(35429785)
                 .fechaNacimiento(LocalDate.of(1991,01,12))
                 .genero(Genero.HOMBRE)
                 .agregarContacto(con1)
                 .agregarContacto(con2);
 
-        d2 = (Dueño) new Dueño().nombre("Pepito").apellido("Cibrian").tipoDoc(Documento.DNI).nroDoc(5432765)
+        d2 = (Duenio) new Duenio().nombre("Pepito").apellido("Cibrian").tipoDoc(Documento.DNI).nroDoc(5432765)
                 .fechaNacimiento(LocalDate.of(1945,04,06))
                 .genero(Genero.HOMBRE)
                 .agregarContacto(con3)
                 .agregarContacto(con4);
 
-        d3 = (Dueño) new Dueño().nombre("Pamela").apellido("Anderson").tipoDoc(Documento.PASAPORTE).nroDoc(111121313)
+        d3 = (Duenio) new Duenio().nombre("Pamela").apellido("Anderson").tipoDoc(Documento.PASAPORTE).nroDoc(111121313)
                 .fechaNacimiento(LocalDate.of(1970,05,21))
                 .genero(Genero.MUJER)
                 .agregarContacto(con5);
 
 
-        d4 = (Dueño) new Dueño().nombre("Sophie").apellido("Xeon").tipoDoc(Documento.PASAPORTE).nroDoc(123823112)
+        d4 = (Duenio) new Duenio().nombre("Sophie").apellido("Xeon").tipoDoc(Documento.PASAPORTE).nroDoc(123823112)
                 .fechaNacimiento(LocalDate.of(1985,02,29))
                 .genero(Genero.OTRO)
                 .agregarContacto(con6);

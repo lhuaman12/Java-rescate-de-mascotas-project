@@ -1,12 +1,9 @@
 package domain.GestorMascotasPerdidas;
 
-import com.twilio.twiml.voice.Prompt;
 import domain.Plataforma.Plataforma;
 import domain.Usuarios.Contacto;
-import domain.Usuarios.Dueño;
+import domain.Usuarios.Duenio;
 import notificador.notificables.Mensaje;
-
-import java.util.List;
 
 public class NotificadorMascotaPerdida implements RescatistaServices{
 
@@ -28,15 +25,15 @@ public class NotificadorMascotaPerdida implements RescatistaServices{
     //TODO
     @Override
     public void notificarMascotaPerdida(FormularioMascotaPerdida formularioMascotaPerdida, String token) {
-        Dueño dueñoMascota= this.getDuenioMascotaPerdida(token);
-        dueñoMascota
+        Duenio duenioMascota = this.getDuenioMascotaPerdida(token);
+        duenioMascota
                 .getContactos()
                 .stream()
                 .forEach(c -> notificarContacto(c,getMensajeFormulario(formularioMascotaPerdida)));
 
 
     }
-    public Dueño getDuenioMascotaPerdida(String token){
+    public Duenio getDuenioMascotaPerdida(String token){
         return this.plataforma.getDuenioByToken(token);
     }
 

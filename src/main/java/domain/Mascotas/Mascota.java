@@ -1,7 +1,7 @@
 package domain.Mascotas;
 
 import domain.Organizaciones.Caracterisiticas.Caracterisitica;
-import domain.Usuarios.Dueño;
+import domain.Usuarios.Duenio;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class Mascota {
     private List<Imagen> fotos;
     private List<Caracterisitica> caracterisicas;
     private TipoQR codigo;
-    private Dueño duenio;
+    private Duenio duenio;
     private String token;
 
     public TipoMascota getTipo() {
@@ -89,7 +89,7 @@ public class Mascota {
         return this;
 
     }
-    public Mascota agregarDuenio(Dueño duenio){
+    public Mascota agregarDuenio(Duenio duenio){
         this.duenio=duenio;
         return this;
     }
@@ -154,11 +154,11 @@ public class Mascota {
         return token;
     }
 
-    public void setDuenio(Dueño dueño) {
-        this.duenio=dueño;
+    public void setDuenio(Duenio duenio) {
+        this.duenio= duenio;
     }
 
-    public Dueño getDuenio() {
+    public Duenio getDuenio() {
         return duenio;
     }
 }
