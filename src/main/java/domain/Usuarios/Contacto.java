@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Contacto {
+
     protected String nombre;
     protected String apellido;
-    private Integer telefono;
+    private String telefono;
     private String mail;
     private List<MetodoNotificacion> formasNotificacion;
 
 //constructor completo
 //-----------------------------------------------------------------
-    public Contacto(String nombre, String apellido, Integer telefono, String mail) {
+    public Contacto(String nombre, String apellido, String telefono, String mail) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
@@ -35,7 +36,7 @@ public class Contacto {
         this.apellido=apellido;
         return this;
     }
-    public Contacto telefono(Integer telefono){
+    public Contacto telefono(String telefono){
         this.telefono=telefono;
         return this;
     }
@@ -69,11 +70,11 @@ public class Contacto {
 //otros metodos
 //-----------------------------------------------------------------
 
-    public Integer getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(Integer telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

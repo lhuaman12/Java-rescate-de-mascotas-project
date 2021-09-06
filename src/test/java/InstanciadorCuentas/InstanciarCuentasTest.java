@@ -99,26 +99,26 @@ public class InstanciarCuentasTest {
 
 
         //instanciar contactos
-        con1=new Contacto().nombre("Nicolás").apellido("González").telefono(1134084444).mail("nicolas.gonzalez15@gmail.com")
+        con1=new Contacto().nombre("Nicolás").apellido("González").telefono("1134084444").mail("nicolas.gonzalez15@gmail.com")
                 .agregarFormaNotificacion(MetodoNotificacion.EMAIL)
                 .agregarFormaNotificacion(MetodoNotificacion.WHATSAPP)
                 .agregarFormaNotificacion(MetodoNotificacion.SMS);
 
-        con2=new Contacto().nombre("Tito").apellido("González").telefono(1544342232).mail("tito.gonzalez15@gmail.com")
+        con2=new Contacto().nombre("Tito").apellido("González").telefono("1544342232").mail("tito.gonzalez15@gmail.com")
                 .agregarFormaNotificacion(MetodoNotificacion.EMAIL)
                 .agregarFormaNotificacion(MetodoNotificacion.WHATSAPP);
-        con3=new Contacto().nombre("Francisco").apellido("Cibrian").telefono(1164322323).mail("pepecibrian15@gmail.com")
+        con3=new Contacto().nombre("Francisco").apellido("Cibrian").telefono("1164322323").mail("pepecibrian15@gmail.com")
                 .agregarFormaNotificacion(MetodoNotificacion.EMAIL)
                 .agregarFormaNotificacion(MetodoNotificacion.WHATSAPP);
 
         con4=new Contacto().nombre("Ana").apellido("Campoy").mail("anamariacampoy@gmail.com")
                 .agregarFormaNotificacion(MetodoNotificacion.EMAIL);
 
-        con5=new Contacto().nombre("Pamela").apellido("Anderson").telefono(1577422322)
+        con5=new Contacto().nombre("Pamela").apellido("Anderson").telefono("1577422322")
                 .agregarFormaNotificacion(MetodoNotificacion.WHATSAPP)
                 .agregarFormaNotificacion(MetodoNotificacion.SMS);
 
-        con6=new Contacto().nombre("Sophia").apellido("Xeon").telefono(1544342223).mail("sophiemsmsmsms@gmail.com")
+        con6=new Contacto().nombre("Sophia").apellido("Xeon").telefono("1544342223").mail("sophiemsmsmsms@gmail.com")
                 .agregarFormaNotificacion(MetodoNotificacion.EMAIL)
                 .agregarFormaNotificacion(MetodoNotificacion.SMS);
 
