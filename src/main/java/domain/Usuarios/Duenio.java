@@ -18,13 +18,12 @@ public class Duenio extends PersonaComun implements ImplementacionMascota {
 
 //constructor principal sin builder
 //-----------------------------------------------------------------
-    public Duenio(String nombre, String apellido, Documento tipoDoc, Integer nroDoc, LocalDate fechaNacimiento, Genero genero) {
+    public Duenio(String nombre, String apellido, Documento tipoDoc, Integer nroDoc, LocalDate fechaNacimiento) {
         super.nombre=nombre;
         super.apellido=apellido;
         super.tipoDoc=tipoDoc;
         super.nroDoc=nroDoc;
         super.fechaNacimiento=fechaNacimiento;
-        super.genero=genero;
         super.contactos = new ArrayList<>();
         this.mascotas = new ArrayList<>();
     }

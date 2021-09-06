@@ -17,13 +17,12 @@ public class Rescatista extends PersonaComun implements ImplementacionMascotaPer
 
 //constructor principal sin builder
 //-----------------------------------------------------------------
-    public Rescatista(String nombre, String apellido, Documento tipoDoc, Integer nroDoc, LocalDate fechaNacimiento, Genero genero) {
+    public Rescatista(String nombre, String apellido, Documento tipoDoc, Integer nroDoc, LocalDate fechaNacimiento) {
         super.nombre=nombre;
         super.apellido=apellido;
         super.tipoDoc=tipoDoc;
         super.nroDoc=nroDoc;
         super.fechaNacimiento=fechaNacimiento;
-        super.genero=genero;
         super.contactos = new ArrayList<>();
         this.direccion = null;
         this.formularioMascotaPerdida=null;

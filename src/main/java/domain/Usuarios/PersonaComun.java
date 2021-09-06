@@ -10,7 +10,6 @@ public abstract class PersonaComun extends Persona{
     protected Documento tipoDoc;
     protected Integer nroDoc;
     protected LocalDate fechaNacimiento;
-    protected Genero genero;
     protected List<Contacto> contactos;
 
     public PersonaComun nombre(String nombre){
@@ -33,10 +32,7 @@ public abstract class PersonaComun extends Persona{
         this.fechaNacimiento=fechaNac;
         return this;
     }
-    public PersonaComun genero(Genero genero){
-        this.genero=genero;
-        return this;
-    }
+
     public PersonaComun contactos(List<Contacto> contactos){
         this.contactos=contactos;
         return this;
