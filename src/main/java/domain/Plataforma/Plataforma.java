@@ -60,8 +60,8 @@ public class Plataforma {
     }
 
 
-    public Duenio buscarDueñoPorQR(TipoQR codigoQR) {
-        //Mascota dueñoMascota=this.organizaciones.stream().map(o->o.getMascotaByQR(codigoQR)).findFirst().get();
+    public Duenio buscarDuenioPorQR(TipoQR codigoQR) {
+        //Mascota duenioMascota=this.organizaciones.stream().map(o->o.getMascotaByQR(codigoQR)).findFirst().get();
         return null;
     }
 
