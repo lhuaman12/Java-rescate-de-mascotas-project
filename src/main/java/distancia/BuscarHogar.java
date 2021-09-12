@@ -1,10 +1,8 @@
 package distancia;
 
 import domain.Mascotas.Mascota;
-import domain.Mascotas.TipoMascota;
 import services.refugiodds.ServicioRefugioDdS;
 import services.refugiodds.entidades.Hogar;
-import services.refugiodds.entidades.ListadoDeHogares;
 import services.refugiodds.entidades.Ubicacion;
 
 import java.io.IOException;
@@ -36,7 +34,7 @@ public class BuscarHogar {
                 continue;
             }
 
-            if (!hogar.admiteTipoMascota(unaMascota.getTipo())) {
+            if (!hogar.admiteTipoMascota(unaMascota.getTipoMascota())) {
                 continue;
             }
 

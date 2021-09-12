@@ -1,13 +1,10 @@
 package domain.Mascotas;
 
-import domain.Organizaciones.Caracterisiticas.Caracterisitica;
-
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Mascota {
@@ -20,9 +17,9 @@ public class Mascota {
     @Column
     private String apodo;
     @Transient
-    private TipoMascota tipo;
+    private TipoMascota tipoMascota;
     @Column
-    private Integer edadAprox;
+    private EdadAproximada edadAprox;
     @Column
     private String descripcion;
     @Transient
@@ -43,15 +40,15 @@ public class Mascota {
     public Mascota(
             String nombre,
             String apodo,
-            TipoMascota tipo,
-            Integer edadAprox,
+            TipoMascota tipoMascota,
+            EdadAproximada edadAprox,
             String descripcion,
             TamanioMascota tamanio,
             Sexo sexo) {
 
         this.nombre = nombre;
         this.apodo = apodo;
-        this.tipo = tipo;
+        this.tipoMascota = tipoMascota;
         this.edadAprox = edadAprox;
         this.descripcion = descripcion;
         this.tamanio = tamanio;
@@ -72,11 +69,11 @@ public class Mascota {
         return apodo;
     }
 
-    public TipoMascota getTipo() {
-        return tipo;
+    public TipoMascota getTipoMascota() {
+        return tipoMascota;
     }
 
-    public Integer getEdadAprox() {
+    public EdadAproximada getEdadAprox() {
         return edadAprox;
     }
 
@@ -117,11 +114,11 @@ public class Mascota {
         this.apodo = apodo;
     }
 
-    public void setTipo(TipoMascota tipo) {
-        this.tipo = tipo;
+    public void setTipoMascota(TipoMascota tipoMascota) {
+        this.tipoMascota = tipoMascota;
     }
 
-    public void setEdadAprox(Integer edadAprox) {
+    public void setEdadAprox(EdadAproximada edadAprox) {
         this.edadAprox = edadAprox;
     }
 
