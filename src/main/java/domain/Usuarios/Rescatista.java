@@ -1,8 +1,5 @@
 package domain.Usuarios;
 
-import domain.GestorMascotasPerdidas.FormularioMascotaPerdida;
-import domain.GestorMascotasPerdidas.HandlerMascotaPerdida;
-import domain.GestorMascotasPerdidas.MascotaPerdida;
 import domain.Mascotas.Mascota;
 import domain.Mascotas.TipoQR;
 
@@ -13,7 +10,6 @@ import java.util.ArrayList;
 
 public class Rescatista extends PersonaComun implements ImplementacionMascotaPerdida{
     private String direccion;
-    private FormularioMascotaPerdida formularioMascotaPerdida;
 
 //constructor principal sin builder
 //-----------------------------------------------------------------
@@ -25,7 +21,6 @@ public class Rescatista extends PersonaComun implements ImplementacionMascotaPer
         super.fechaNacimiento=fechaNacimiento;
         super.contactos = new ArrayList<>();
         this.direccion = null;
-        this.formularioMascotaPerdida=null;
 
     }
 
@@ -34,7 +29,6 @@ public class Rescatista extends PersonaComun implements ImplementacionMascotaPer
 
     public Rescatista(){
         super.contactos = new ArrayList<>();
-        this.formularioMascotaPerdida=null;
     }
 
     public Rescatista direccion(String direccion){
@@ -42,16 +36,6 @@ public class Rescatista extends PersonaComun implements ImplementacionMascotaPer
         return this;
     }
 
-    public void rellenarFormulario(MascotaPerdida mascotaPerdida, HandlerMascotaPerdida handler){
-        this.formularioMascotaPerdida= new FormularioMascotaPerdida(this,mascotaPerdida,handler);
-    }
-
-
-//metodos para simular rescate
-
-    public void accionMascotaEncontrada(){
-        this.formularioMascotaPerdida.gestionarRescate();
-    }
 
 
 

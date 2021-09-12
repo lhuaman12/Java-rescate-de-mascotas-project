@@ -1,6 +1,8 @@
 package domain.Mascotas;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "mascota_registrada")
@@ -25,6 +27,10 @@ public class MascotaRegistrada {
     private String qr;
     @Transient
     private Sexo sexo;
+    @Column
+    private LocalDate fecha_alta;
+    @Transient
+    private List<FotoMascota> fotos;
     //private List<Foto> fotos;
     //private List<Caracterisitica> caracterisicas;
 

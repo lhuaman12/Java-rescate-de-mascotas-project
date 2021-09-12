@@ -31,16 +31,5 @@ public class Administrador extends Persona{
         return this;
     }
 
-    private void altaVoluntario(Voluntario voluntario,Organizacion organizacion){
-        organizacion.agregarVoluntario(voluntario);
-    }
-    private void altaAdministrador(Administrador administrador,Organizacion organizacion){
-        organizacion.agregarAdministrador(administrador);
-    }
-    private void bajaVoluntario(Voluntario voluntario,Organizacion organizacion){
-        organizacion.quitarVoluntario(voluntario);
-    }
-    private void bajaAdministrador(Administrador administrador,Organizacion organizacion){
-        organizacion.quitarAdministrador(administrador);
-    }
+
 }

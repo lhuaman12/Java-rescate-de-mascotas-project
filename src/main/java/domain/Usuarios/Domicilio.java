@@ -1,13 +1,14 @@
 package domain.Usuarios;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "domicilio")
 public class Domicilio {
 
+    @Id
+    @GeneratedValue
+    private int id;
     @Column
     private String calle;
     @Column
@@ -38,6 +39,8 @@ public class Domicilio {
         this.codPostal = codPostal;
     }
 
+
+    // Getters and Setters
 
     public String getCalle() {
         return calle;
@@ -86,4 +89,7 @@ public class Domicilio {
     public void setCodPostal(String codPostal) {
         this.codPostal = codPostal;
     }
+
+    //
+
 }

@@ -41,12 +41,12 @@
 
           <div class="grid-item">
             <label for="">Nombre*</label>
-            <input type="text" name="" value=""  class="text-input">
+            <input type="text" name="" value=""  class="text-input" required>
           </div>
 
           <div class="grid-item">
             <label for="">Apellido*</label>
-            <input type="text" name="" value=""  class="text-input">
+            <input type="text" name="" value="" class="text-input" required>
           </div>
 
           <div class="grid-item">
@@ -55,13 +55,13 @@
           </div>
 
           <div class="grid-item">
-            <label for="">Teléfono*</label>
-            <input type="text" name="" value="" class="text-input">
+            <label for="phone">Teléfono</label>
+            <input type="tel" id="phone" name="phone" class="text-input" placeholder="1234567890" pattern="[0-9]{10}" required>
           </div>
 
           <div class="grid-item">
-            <label for="">E-Mail*</label>
-            <input type="text" name="" value="" class="text-input">
+            <label for="email">E-Mail</label>
+            <input type="email" name="email" value="" placeholder="email@example.com" class="text-input" required>
           </div>
 
           <div class="grid-item">
@@ -69,17 +69,17 @@
             <div class="radio-buttons">
 
               <div class="radio-item">
-                <input type="radio" name="tipo-mascota" value="">
+                <input type="checkbox" name="tipo-mascota" value="">
                 <label for="">WhatsApp</label>
               </div>
 
               <div class="radio-item">
-                <input type="radio" name="tipo-mascota" value="">
+                <input type="checkbox" name="tipo-mascota" value="">
                 <label for="">SMS</label>
               </div>
 
               <div class="radio-item">
-                <input type="radio" name="tipo-mascota" value="">
+                <input type="checkbox" name="tipo-mascota" value="">
                 <label for="">E-Mail</label>
               </div>
 

@@ -1,7 +1,5 @@
 package domain.Organizaciones;
 
-import domain.Mascotas.Calidad;
-
 import javax.persistence.*;
 
 @Entity
@@ -12,37 +10,40 @@ public class EstandarFotos {
     @GeneratedValue
     private int id;
     @Column
-    private int pixelesHorizontal;
+    private int ancho;      // Pixels
     @Column
-    private int pixelesVertical;
+    private int alto;       // Pixels
     @Transient
     private Calidad calidad;
 
 
     // Constructor
-    public EstandarFotos(int pixelesHorizontal,
-                         int pixelesVertical,
+    public EstandarFotos(int ancho,
+                         int alto,
                          Calidad calidad) {
 
-        this.pixelesHorizontal = pixelesHorizontal;
-        this.pixelesVertical = pixelesVertical;
+        this.ancho = ancho;
+        this.alto = alto;
         this.calidad = calidad;
     }
 
-    public int getPixelesHorizontal() {
-        return pixelesHorizontal;
+
+    // Getters and Setters
+
+    public int getAncho() {
+        return ancho;
     }
 
-    public void setPixelesHorizontal(int pixelesHorizontal) {
-        this.pixelesHorizontal = pixelesHorizontal;
+    public void setAncho(int ancho) {
+        this.ancho = ancho;
     }
 
-    public int getPixelesVertical() {
-        return pixelesVertical;
+    public int getAlto() {
+        return alto;
     }
 
-    public void setPixelesVertical(int pixelesVertical) {
-        this.pixelesVertical = pixelesVertical;
+    public void setAlto(int alto) {
+        this.alto = alto;
     }
 
     public Calidad getCalidad() {
@@ -52,4 +53,6 @@ public class EstandarFotos {
     public void setCalidad(Calidad calidad) {
         this.calidad = calidad;
     }
+
+    //
 }

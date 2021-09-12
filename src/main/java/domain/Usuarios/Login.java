@@ -1,30 +1,36 @@
 package domain.Usuarios;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "login")
 public class Login {
 
+    @Id
+    @GeneratedValue
+    private int id;
     @Column
     private String username;
     @Column
     private String password;
-    @Column
+    @Column(columnDefinition = "DATE")
     private Date lastSuccessLogin;
     @Column
     private int loginFailCounter;
-    @Column
+    @Column(columnDefinition = "DATE")
     private Date passwordLastSet;
-    @Column
+    @Column(columnDefinition = "DATE")
     private Date dateCreated;
     @Column
     private char status;
+    @Transient
+    private List<String> passwords;
 
 
+    // Constructor
     public Login(String username,
                  String password,
                  Date lastSuccessLogin,
@@ -40,7 +46,12 @@ public class Login {
         this.passwordLastSet = passwordLastSet;
         this.dateCreated = dateCreated;
         this.status = status;
+
+        this.passwords = new ArrayList<>();
     }
+
+
+    // Getters and Setters
 
     public String getUsername() {
         return username;
@@ -56,6 +67,11 @@ public class Login {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    // ToDo
+    public void setPasswords(List<String> passwords) {
+        this.passwords = passwords;
     }
 
     public Date getLastSuccessLogin() {
@@ -97,4 +113,11 @@ public class Login {
     public void setStatus(char status) {
         this.status = status;
     }
+
+    public List<String> getPasswords() {
+        return passwords;
+    }
+
+    //
+
 }

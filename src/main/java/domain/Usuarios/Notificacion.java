@@ -33,6 +33,9 @@ public class Notificacion {
         this.mensaje = mensaje;
     }
 
+
+    // Getters and Setters
+
     public String getMedioDeNotificacion() {
         return medioDeNotificacion;
     }
@@ -64,4 +67,8 @@ public class Notificacion {
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
+
+    //
+
+
 }

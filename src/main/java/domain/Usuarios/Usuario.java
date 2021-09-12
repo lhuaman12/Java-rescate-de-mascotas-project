@@ -78,6 +78,10 @@ public class Usuario {
     public void setNroDocumento(int nroDocumento) {
         this.nroDocumento = nroDocumento;
     }
+
+    //
+
+
 }
 
 

@@ -4,7 +4,7 @@ import domain.Mascotas.Imagen;
 import domain.Mascotas.Mascota;
 import domain.Mascotas.TipoQR;
 import domain.Organizaciones.Organizacion;
-import domain.Plataforma.Plataforma;
+
 
 import java.awt.geom.Point2D;
 import java.time.LocalDate;
@@ -82,9 +82,6 @@ public class Duenio extends PersonaComun implements ImplementacionMascota {
         return this.mascotas.stream().anyMatch(m -> m.getCodigo()==codigoQR);
     }
 
-    public Organizacion getOrganizacionMasCercana(Plataforma plataforma, Point2D.Double ubicacion) {
-        return plataforma.getOrganizacionMasCercana(ubicacion);
-    }
 
 //otros métodos
 //-----------------------------------------------------------------

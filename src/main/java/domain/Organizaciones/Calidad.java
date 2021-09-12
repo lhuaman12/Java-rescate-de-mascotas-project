@@ -1,4 +1,4 @@
-package domain.Mascotas;
+package domain.Organizaciones;
 
 public enum Calidad {
     BAJA,

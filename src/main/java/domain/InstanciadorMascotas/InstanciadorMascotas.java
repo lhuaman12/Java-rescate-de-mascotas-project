@@ -4,14 +4,12 @@ import domain.Mascotas.Imagen;
 import domain.Mascotas.Mascota;
 import domain.Mascotas.TipoQR;
 import domain.Organizaciones.Organizacion;
-import domain.Plataforma.Plataforma;
 import domain.Usuarios.ImplementacionMascota;
 
 import java.util.List;
 
 public class InstanciadorMascotas {
     private static InstanciadorMascotas instanciadorMascotas;
-    private Plataforma plataforma;
     private InterfazNormalizadorFotos interfazNormalizadorFotos;
     private InterfazGeneracionQR interfazGeneracionQR;
     private ImplementacionMascota implementacionMascota;
@@ -43,8 +41,7 @@ public class InstanciadorMascotas {
         }
     }
 
-    public InstanciadorMascotas setConfiguraciones(Plataforma plataforma, NormalizadorFotos normalizadorFotos, GeneradorQR generadorQR){
-        this.plataforma=plataforma;
+    public InstanciadorMascotas setConfiguraciones(NormalizadorFotos normalizadorFotos, GeneradorQR generadorQR){
         this.interfazNormalizadorFotos=normalizadorFotos;
         this.interfazGeneracionQR=generadorQR;
         return instanciadorMascotas;

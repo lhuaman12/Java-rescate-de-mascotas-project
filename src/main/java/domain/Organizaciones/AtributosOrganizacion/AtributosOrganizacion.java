@@ -43,4 +43,5 @@ public class AtributosOrganizacion {
     public List<Caracterisitica> getCaracteristicas() {
         return caracteristicas;
     }
+
 }

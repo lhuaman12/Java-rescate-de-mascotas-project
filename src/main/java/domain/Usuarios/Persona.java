@@ -1,6 +1,5 @@
 package domain.Usuarios;
 
-import domain.InstanciadorCuentas.InterfazValidacion;
 import domain.Mascotas.TipoQR;
 
 import java.util.Date;

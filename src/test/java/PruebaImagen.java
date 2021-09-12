@@ -1,5 +1,3 @@
-package InstanciadorCuentas;
-
 import normalizador.Adapter.Adaptees.Adapter1;
 import normalizador.NormalizadorDeImagen.NormalizarImagen;
 import normalizador.Parametros.CalidadImagen;

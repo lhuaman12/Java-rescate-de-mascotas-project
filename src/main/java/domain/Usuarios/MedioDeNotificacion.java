@@ -1,6 +1,6 @@
 package domain.Usuarios;
 
-public enum MedioNotificacion {
+public enum MedioDeNotificacion {
     EMAIL,
     WHATSAPP,
     SMS
