@@ -1,7 +1,6 @@
 package domain.Mascotas;
 
 import domain.Organizaciones.Caracterisiticas.Caracterisitica;
-import domain.Usuarios.Duenio;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +15,6 @@ public class Mascota {
     private Sexo sexo;
     private List<Imagen> fotos;
     private List<Caracterisitica> caracterisicas;
-    private TipoQR codigo;
-    private Duenio duenio;
     private String token;
 
     public TipoMascota getTipo() {
@@ -44,8 +41,6 @@ public class Mascota {
         this.sexo=sexo;
         this.fotos= new ArrayList<>();
         this.caracterisicas = new ArrayList<>();
-        this.codigo=null;
-        this.duenio=null;
         this.token=null;
     }
 
@@ -54,9 +49,6 @@ public class Mascota {
 
     public Mascota(){
         this.fotos= new ArrayList<>();
-        this.caracterisicas = new ArrayList<>();
-        this.codigo=null;
-        this.duenio=null;
         this.token=null;
     }
 
@@ -89,18 +81,12 @@ public class Mascota {
         return this;
 
     }
-    public Mascota agregarDuenio(Duenio duenio){
-        this.duenio=duenio;
-        return this;
-    }
+
     public Mascota agregarToken(String token){
         this.token=token;
         return this;
     }
-    public Mascota agregarQR(TipoQR codigo){
-        this.codigo=codigo;
-        return this;
-    }
+
 
     public Mascota agregarImagen(Imagen imagen){
         this.fotos.add(imagen);
@@ -139,14 +125,6 @@ public class Mascota {
         return caracterisicas;
     }
 
-    public TipoQR getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(TipoQR codigo) {
-        this.codigo = codigo;
-    }
-
     public void setToken(String token_mascota) {
         this.token=token_mascota;
     }
@@ -154,11 +132,4 @@ public class Mascota {
         return token;
     }
 
-    public void setDuenio(Duenio duenio) {
-        this.duenio= duenio;
-    }
-
-    public Duenio getDuenio() {
-        return duenio;
-    }
 }

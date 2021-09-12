@@ -91,10 +91,6 @@ public class Organizacion {
     }
 
 
-    public Mascota getMascotaByQR(TipoQR codigoQR){
-        return this.mascotasRegistradas.stream().filter(m -> m.getCodigo()==codigoQR).findFirst().get();
-    }
-
     public String getNombre() {
         return nombre;
     }
