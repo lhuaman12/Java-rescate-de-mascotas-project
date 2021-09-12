@@ -19,7 +19,7 @@ import java.util.List;
 
 public class RefugioDDSTest {
 
-
+/*
     @Test
     public void buscarHogarPerroGrande() throws IOException {
         Ubicacion ubicacion = new Ubicacion();
@@ -32,8 +32,9 @@ public class RefugioDDSTest {
         Hogar hogarMasCercano = buscarHogar.buscarHogarMasCercano(m1, ubicacion);
         Assert.assertEquals("Naricitas Frias Capital Federal", hogarMasCercano.nombre);
 
-    }
+    }*/
 
+/*
     @Test
     public void buscarHogarGato() throws IOException {
         Ubicacion ubicacion = new Ubicacion();
@@ -47,7 +48,9 @@ public class RefugioDDSTest {
         Assert.assertEquals("Naricitas Frias Capital Federal", hogarMasCercano.nombre);
 
     }
+*/
 
+/*
     @Test
     public void buscarHogarGatoMediano() throws IOException {
         Ubicacion ubicacion = new Ubicacion();
@@ -61,6 +64,7 @@ public class RefugioDDSTest {
         Assert.assertEquals("Buena Pata", hogarMasCercano.nombre);
 
     }
+*/
 
     @Test
     public void listarHogares() throws IOException {

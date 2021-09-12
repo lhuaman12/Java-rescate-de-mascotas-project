@@ -1,94 +1,106 @@
 package domain.Usuarios;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Contacto {
-    protected String nombre;
-    protected String apellido;
-    private Integer telefono;
-    private String mail;
-    private List<MetodoNotificacion> formasNotificacion;
 
-//constructor completo
-//-----------------------------------------------------------------
-    public Contacto(String nombre, String apellido, Integer telefono, String mail) {
+@Entity
+@Table(name = "contacto")
+public class Contacto {
+
+    @Id
+    @GeneratedValue
+    private int id;
+    @Column
+    private String nombre;
+    @Column
+    private String apellido;
+    @Column
+    private String telefono;
+    @Column
+    private String email;
+    @Transient
+    private List<MedioDeNotificacion> mediosDeNotificacion;
+    @Transient
+    private List<Notificacion> notificaciones;
+
+
+    // Constructor
+    public Contacto(String nombre,
+                    String apellido,
+                    String telefono,
+                    String email) {
+
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
-        this.mail = mail;
-        this.formasNotificacion = new ArrayList<>();
+        this.email = email;
+        this.mediosDeNotificacion = new ArrayList<>();
+        this.notificaciones = new ArrayList<>();
     }
 
-//constructor aplicando builder
-//-----------------------------------------------------------------
-    public Contacto(){
-        this.formasNotificacion = new ArrayList<>();
+    // Getters and Setters
+
+    public int getId() {
+        return id;
     }
 
-    public Contacto nombre(String nombre){
-    this.nombre=nombre;
-    return this;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Contacto apellido(String apellido){
-        this.apellido=apellido;
-        return this;
-    }
-    public Contacto telefono(Integer telefono){
-        this.telefono=telefono;
-        return this;
-    }
-    public Contacto mail(String mail){
-        this.mail=mail;
-        return this;
-    }
-    public Contacto agregarFormaNotificacion(MetodoNotificacion metodo){
-        this.agregarMetodoNotificacion(metodo);
-        return this;
+    public String getNombre() {
+        return nombre;
     }
 
-    public Contacto agregarFormasDeNotificacion(List<MetodoNotificacion> formasNotificacion) {
-        this.formasNotificacion = formasNotificacion;
-        return this;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-//set y agregar formas notificacion
-//-----------------------------------------------------------------
-
-    public void setFormasNotificacion(List<MetodoNotificacion> formasNotificacion) {
-        this.formasNotificacion = formasNotificacion;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void agregarMetodoNotificacion(MetodoNotificacion metodo){
-        if(!this.formasNotificacion.contains(metodo)){
-            this.formasNotificacion.add(metodo);
-        }
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
-//otros metodos
-//-----------------------------------------------------------------
-
-    public Integer getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(Integer telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public List<MetodoNotificacion> getFormasNotificacion() {
-        return formasNotificacion;
+    public List<MedioDeNotificacion> getMediosDeNotificacion() {
+        return mediosDeNotificacion;
     }
 
+    public List<Notificacion> getNotificaciones() {
+        return notificaciones;
+    }
+
+    // ToDo
+    public void setMediosDeNotificacion(List<MedioDeNotificacion> mediosDeNotificacion) {
+        this.mediosDeNotificacion = mediosDeNotificacion;
+    }
+
+    // ToDo
+    public void setNotificaciones(List<Notificacion> notificaciones) {
+        this.notificaciones = notificaciones;
+    }
+
+    //
 
 
 }

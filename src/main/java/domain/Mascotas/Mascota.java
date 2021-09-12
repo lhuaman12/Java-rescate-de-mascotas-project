@@ -1,164 +1,149 @@
 package domain.Mascotas;
 
-import domain.Organizaciones.Caracterisiticas.Caracterisitica;
-import domain.Usuarios.Dueño;
-
-import java.util.ArrayList;
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Mascota {
-    private TipoMascota tipo;
-    private String nombre;
-    private String apodo;
-    private Integer edadAprox;
-    private String descripcion;
-    private TamanioMascota tamanio;
-    private Sexo sexo;
-    private List<Imagen> fotos;
-    private List<Caracterisitica> caracterisicas;
-    private TipoQR codigo;
-    private Dueño duenio;
-    private String token;
 
-    public TipoMascota getTipo() {
-        return tipo;
+    @Id
+    @GeneratedValue
+    private int id;
+    @Column
+    private String nombre;
+    @Column
+    private String apodo;
+    @Transient
+    private TipoMascota tipoMascota;
+    @Enumerated
+    private EdadAproximada edadAprox;
+    @Column
+    private String descripcion;
+    @Transient
+    private TamanioMascota tamanio;
+    @Column
+    private String qr;
+    @Enumerated
+    private Sexo sexo;
+    @Column(columnDefinition = "DATE")
+    private LocalDate fechaAlta;
+    @Transient
+    private List<FotoMascota> fotos;
+    //private List<Foto> fotos;
+    //private List<Caracterisitica> caracterisicas;
+
+
+    // Constructor
+    public Mascota(
+            String nombre,
+            String apodo,
+            TipoMascota tipoMascota,
+            EdadAproximada edadAprox,
+            String descripcion,
+            TamanioMascota tamanio,
+            Sexo sexo) {
+
+        this.nombre = nombre;
+        this.apodo = apodo;
+        this.tipoMascota = tipoMascota;
+        this.edadAprox = edadAprox;
+        this.descripcion = descripcion;
+        this.tamanio = tamanio;
+        this.sexo = sexo;
+
+//        this.fotos = new ArrayList<>();
+//        this.caracterisicas = new ArrayList<>();
+
+    }
+
+    // Getters
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApodo() {
+        return apodo;
+    }
+
+    public TipoMascota getTipoMascota() {
+        return tipoMascota;
+    }
+
+    public EdadAproximada getEdadAprox() {
+        return edadAprox;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
     }
 
     public TamanioMascota getTamanio() {
         return tamanio;
     }
 
-    public void setTamanio(TamanioMascota tamanio) {
-        this.tamanio = tamanio;
+    public String getQr() {
+        return qr;
     }
 
-
-    //constructor principal sin builder
-//-----------------------------------------------------------------
-    public Mascota(TipoMascota tipo, String nombre, String apodo, Integer edadAprox, String descripcion, Sexo sexo) {
-        this.tipo = tipo;
-        this.nombre = nombre;
-        this.apodo = apodo;
-        this.edadAprox = edadAprox;
-        this.descripcion = descripcion;
-        this.sexo=sexo;
-        this.fotos= new ArrayList<>();
-        this.caracterisicas = new ArrayList<>();
-        this.codigo=null;
-        this.duenio=null;
-        this.token=null;
+    public Sexo getSexo() {
+        return sexo;
     }
 
-    //constructor aplicando builder
-//-----------------------------------------------------------------
-
-    public Mascota(){
-        this.fotos= new ArrayList<>();
-        this.caracterisicas = new ArrayList<>();
-        this.codigo=null;
-        this.duenio=null;
-        this.token=null;
-    }
-
-    public Mascota tipoMascota(TipoMascota tipo){
-        this.tipo=tipo;
-        return this;
-    }
-    public Mascota nombre(String nombre){
-        this.nombre=nombre;
-        return this;
-    }
-    public Mascota apodo(String apodo){
-        this.apodo=apodo;
-        return this;
-    }
-    public Mascota edadAprox(Integer edadAprox){
-        this.edadAprox=edadAprox;
-        return this;
-    }
-    public Mascota descripcion(String descripcion){
-        this.descripcion=descripcion;
-        return this;
-    }
-    public Mascota sexo(Sexo sexo){
-        this.sexo=sexo;
-        return this;
-    }
-    public Mascota tamanioMascota(TamanioMascota tamanio){
-        this.tamanio=tamanio;
-        return this;
-
-    }
-    public Mascota agregarDuenio(Dueño duenio){
-        this.duenio=duenio;
-        return this;
-    }
-    public Mascota agregarToken(String token){
-        this.token=token;
-        return this;
-    }
-    public Mascota agregarQR(TipoQR codigo){
-        this.codigo=codigo;
-        return this;
-    }
-
-    public Mascota agregarImagen(Imagen imagen){
-        this.fotos.add(imagen);
-        return this;
-    }
-    public Mascota agregarImagenes(List<Imagen> imagenes){
-        this.fotos=imagenes;
-        return this;
-    }
-
-    public Mascota agregarCaracteristica(Caracterisitica caracterisitica){
-        this.caracterisicas.add(caracterisitica);
-        return this;
-    }
-    public Mascota agregarCaracteristicas(List<Caracterisitica> caracterisiticas){
-        this.caracterisicas=caracterisiticas;
-        return this;
-    }
-
-    //otros metodos
-//-----------------------------------------------------------------
-
-    public void setFotos(List<Imagen> fotos) {
-        this.fotos = fotos;
-    }
-
-    public void setCaracterisicas(List<Caracterisitica> caracterisicas) {
-        this.caracterisicas = caracterisicas;
-    }
-
-    public List<Imagen> getFotos() {
+/*
+    public List<Foto> getFotos() {
         return fotos;
     }
 
     public List<Caracterisitica> getCaracterisicas() {
         return caracterisicas;
     }
+*/
 
-    public TipoQR getCodigo() {
-        return codigo;
-    }
 
-    public void setCodigo(TipoQR codigo) {
-        this.codigo = codigo;
-    }
+    // Setters
 
-    public void setToken(String token_mascota) {
-        this.token=token_mascota;
-    }
-    public String getToken() {
-        return token;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public void setDuenio(Dueño dueño) {
-        this.duenio=dueño;
+    public void setApodo(String apodo) {
+        this.apodo = apodo;
     }
 
-    public Dueño getDuenio() {
-        return duenio;
+    public void setTipoMascota(TipoMascota tipoMascota) {
+        this.tipoMascota = tipoMascota;
     }
+
+    public void setEdadAprox(EdadAproximada edadAprox) {
+        this.edadAprox = edadAprox;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setTamanio(TamanioMascota tamanio) {
+        this.tamanio = tamanio;
+    }
+
+    public void setQr(String qr) {
+        this.qr = qr;
+    }
+
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
+    }
+
+/*
+    public void addFoto(Foto foto) {
+        this.fotos.add(foto);
+    }
+
+    public void addCaracterisica(Caracterisitica caracterisica) {
+        this.caracterisicas.add(caracterisica);
+    }
+*/
+
+
 }
