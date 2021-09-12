@@ -1,9 +1,6 @@
 package domain.Mascotas;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -18,7 +15,7 @@ public class Mascota {
     private String apodo;
     @Transient
     private TipoMascota tipoMascota;
-    @Column
+    @Enumerated
     private EdadAproximada edadAprox;
     @Column
     private String descripcion;
@@ -26,7 +23,7 @@ public class Mascota {
     private TamanioMascota tamanio;
     @Column
     private String qr;
-    @Transient
+    @Enumerated
     private Sexo sexo;
     @Column(columnDefinition = "DATE")
     private LocalDate fechaAlta;

@@ -1,7 +1,6 @@
 package domain.Organizaciones;
 
 import domain.Mascotas.Mascota;
-import domain.Mascotas.TipoQR;
 import domain.Organizaciones.AtributosOrganizacion.AtributosOrganizacion;
 import domain.Organizaciones.Caracterisiticas.Caracterisitica;
 import domain.Organizaciones.Configuraciones.ConfiguracionImagen;
@@ -35,6 +34,8 @@ public class Organizacion {
     private List<Mascota> mascotasRegistradas;
     @Transient
     private AtributosOrganizacion atributosOrganizacion;
+    @Transient
+    private List<String> preguntasAdopcion;
 
     //constructor sin builder
 //-----------------------------------------------------------------
@@ -43,6 +44,7 @@ public class Organizacion {
         //this.direccion = direccion;
         this.coordenadas = coordenadas;
         this.mascotasRegistradas=new ArrayList<>();
+        preguntasAdopcion = new ArrayList<>();
     }
 
     //constructor aplicando builder
