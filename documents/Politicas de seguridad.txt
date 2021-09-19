@@ -16,11 +16,11 @@ y “5.1.1.2 Memorized Secret Verifiers”.
 	una letra mayúscula [A-Z], al menos un número [0-9] y al menos uno de los siguientes 
 	caracteres especiales: [@#$%!_*?¿-]
 	
-    • Siguiendo las consideraciones del marco NIST, la password no expirará en forma arbitraria. 
+    • Siguiendo las consideraciones del marco NIST, la domain.entities.utils.password no expirará en forma arbitraria.
 	Entendemos que una práctica de rotación induce a los usuarios a escoger passwords menos seguras y, 
 	en definitiva, la rotación se basa en patrones simples y predecibles.
 	
-    • Toda nueva password será comparada contra un diccionario con las “10.000” passwords más 
+    • Toda nueva domain.entities.utils.password será comparada contra un diccionario con las “10.000” passwords más
 	comúnmente utilizadas, no permitiéndose el uso de aquellas passwords allí listadas.
 
 

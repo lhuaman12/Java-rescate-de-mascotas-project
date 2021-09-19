@@ -1,3 +1,5 @@
+package domain.entities.utils.normalizador;
+
 import domain.entities.utils.normalizador.Adapter.Adaptees.Adapter1;
 import domain.entities.utils.normalizador.NormalizadorDeImagen.NormalizarImagen;
 import domain.entities.utils.normalizador.Parametros.CalidadImagen;

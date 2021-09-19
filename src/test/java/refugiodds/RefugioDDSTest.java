@@ -1,19 +1,10 @@
 package refugiodds;
 
-import domain.Mascotas.Mascota;
-import domain.Mascotas.Sexo;
-import domain.Mascotas.TamanioMascota;
-import domain.Mascotas.TipoMascota;
-import org.junit.Assert;
 import org.junit.Test;
-import distancia.BuscarHogar;
-import services.refugiodds.ServicioRefugioDdS;
-import services.refugiodds.entidades.Hogar;
-import services.refugiodds.entidades.ListadoDeHogares;
-import services.refugiodds.entidades.Ubicacion;
+import domain.entities.utils.refugiodds.ServicioRefugioDdS;
+import domain.entities.utils.refugiodds.entidades.Hogar;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 
