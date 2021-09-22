@@ -1,19 +1,19 @@
-package domain.entities.Organizaciones.AtributosOrganizacion;
+package domain.entities.organizaciones.AtributosOrganizacion;
 
-import domain.entities.Organizaciones.Caracterisiticas.Caracterisitica;
-import domain.entities.Organizaciones.Caracterisiticas.Pregunta;
-import domain.entities.Organizaciones.Configuraciones.ConfiguracionImagen;
+import domain.entities.organizaciones.AtributosOrganizacion.Parametros.CaracteristicaParaRegistro;
+import domain.entities.organizaciones.PreguntasDeAdopcion;
+import domain.entities.organizaciones.Configuraciones.ConfiguracionImagen;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AtributosOrganizacion {
-    private List<Caracterisitica> caracteristicas;
-    private List<Pregunta> preguntas;
+    private List<CaracteristicaParaRegistro> caracteristicaParaRegistros;
+    private PreguntasDeAdopcion preguntasDeAdopcion;
     private ConfiguracionImagen configuracionImagen;
 
     public AtributosOrganizacion() {
-        this.caracteristicas= new ArrayList<>();
+        this.caracteristicaParaRegistros = new ArrayList<>();
         this.preguntas = new ArrayList<>();
         this.configuracionImagen=null;
     }
@@ -29,19 +29,19 @@ public class AtributosOrganizacion {
     }
 
 
-    public void agregarCaracteristica(Caracterisitica caracterisitica) {
-        this.caracteristicas.add(caracterisitica);
+    public void agregarCaracteristica(CaracteristicaParaRegistro caracteristicaParaRegistro) {
+        this.caracteristicaParaRegistros.add(caracteristicaParaRegistro);
     }
-    public void quitarCaracteristica(Caracterisitica caracterisitica) {
-        this.caracteristicas.remove(caracterisitica);
-    }
-
-    public void agregarCaracteristicas(List<Caracterisitica> caracterisiticas) {
-        this.caracteristicas.addAll(caracterisiticas);
+    public void quitarCaracteristica(CaracteristicaParaRegistro caracteristicaParaRegistro) {
+        this.caracteristicaParaRegistros.remove(caracteristicaParaRegistro);
     }
 
-    public List<Caracterisitica> getCaracteristicas() {
-        return caracteristicas;
+    public void agregarCaracteristicas(List<CaracteristicaParaRegistro> caracteristicaParaRegistros) {
+        this.caracteristicaParaRegistros.addAll(caracteristicaParaRegistros);
+    }
+
+    public List<CaracteristicaParaRegistro> getCaracteristicas() {
+        return caracteristicaParaRegistros;
     }
 
 }

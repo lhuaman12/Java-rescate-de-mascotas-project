@@ -1,10 +1,11 @@
-package domain.entities.Organizaciones;
+package domain.entities.organizaciones;
 
-import domain.entities.Mascotas.Mascota;
-import domain.entities.Organizaciones.AtributosOrganizacion.AtributosOrganizacion;
-import domain.entities.Organizaciones.Caracterisiticas.Caracterisitica;
-import domain.entities.Organizaciones.Configuraciones.ConfiguracionImagen;
-import domain.entities.Usuarios.Domicilio;
+import domain.entities.mascotas.MascotaRegistrada;
+import domain.entities.organizaciones.AtributosOrganizacion.AtributosOrganizacion;
+import domain.entities.organizaciones.AtributosOrganizacion.Parametros.CaracteristicaParaRegistro;
+import domain.entities.organizaciones.Configuraciones.ConfiguracionImagen;
+import domain.entities.usuarios.Direccion;
+import domain.entities.usuarios.Domicilio;
 
 import javax.persistence.*;
 import java.awt.geom.Point2D;
@@ -19,11 +20,11 @@ public class Organizacion {
     @GeneratedValue
     private int id;
     @Column
-    private String nombre;
+    private String nombreDeOrganizacion;
     @Column
     private String descripcion;
     @Transient
-    private Domicilio domicilio;
+    private Direccion direccion;
     @Column
     private long latitud;
     @Column
@@ -31,7 +32,7 @@ public class Organizacion {
     @Transient
     public Point2D.Double coordenadas;
     @Transient
-    private List<Mascota> mascotasRegistradas;
+    private List<MascotaRegistrada> mascotasRegistradas;
     @Transient
     private AtributosOrganizacion atributosOrganizacion;
     @Transient
@@ -39,9 +40,9 @@ public class Organizacion {
 
     //constructor sin builder
 //-----------------------------------------------------------------
-    public Organizacion(String nombre, String direccion, Point2D.Double coordenadas) {
-        this.nombre = nombre;
-        //this.direccion = direccion;
+    public Organizacion(String nombre, Direccion direccion, Point2D.Double coordenadas) {
+        this.nombreDeOrganizacion = nombre;
+        this.direccion = direccion;
         this.coordenadas = coordenadas;
         this.mascotasRegistradas=new ArrayList<>();
         preguntasAdopcion = new ArrayList<>();
@@ -54,7 +55,7 @@ public class Organizacion {
         this.mascotasRegistradas = new ArrayList<>();
     }
     public Organizacion nombre(String nombre){
-        this.nombre=nombre;
+        this.nombreDeOrganizacion=nombre;
         return this;
     }
 /*    public Organizacion direccion(String direccion){
@@ -65,17 +66,17 @@ public class Organizacion {
         this.coordenadas=coordenadas;
         return this;
     }
-    public Organizacion agregarCaracteristicas(List<Caracterisitica> caracterisiticas){
-        this.atributosOrganizacion.agregarCaracteristicas(caracterisiticas);
+    public Organizacion agregarCaracteristicas(List<CaracteristicaParaRegistro> caracteristicaParaRegistros){
+        this.atributosOrganizacion.agregarCaracteristicas(caracteristicaParaRegistros);
         return this;
     }
 
-    public Organizacion agregarCaracteristica(Caracterisitica caracterisitica){
-        this.atributosOrganizacion.agregarCaracteristica(caracterisitica);
+    public Organizacion agregarCaracteristica(CaracteristicaParaRegistro caracteristicaParaRegistro){
+        this.atributosOrganizacion.agregarCaracteristica(caracteristicaParaRegistro);
         return this;
     }
 
-    public List<Mascota> getMascotasRegistradas(){
+    public List<MascotaRegistrada> getMascotasRegistradas(){
         return this.mascotasRegistradas;
     }
 
@@ -117,12 +118,12 @@ public class Organizacion {
         this.coordenadas = coordenadas;
     }
 
-    public List<Caracterisitica> getCaracteristicas() {
+    public List<CaracteristicaParaRegistro> getCaracteristicas() {
         return this.atributosOrganizacion.getCaracteristicas();
     }
 
-    public void agregarMascota(Mascota mascota) {
-        this.mascotasRegistradas.add(mascota);
+    public void agregarMascota(MascotaRegistrada mascotaRegistrada) {
+        this.mascotasRegistradas.add(mascotaRegistrada);
     }
 
 

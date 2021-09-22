@@ -1,6 +1,6 @@
 package domain.entities.distancia;
 
-import domain.entities.Mascotas.Mascota;
+import domain.entities.mascotas.MascotaRegistrada;
 import domain.entities.utils.refugiodds.ServicioRefugioDdS;
 import domain.entities.utils.refugiodds.entidades.Hogar;
 import domain.entities.utils.refugiodds.entidades.Ubicacion;
@@ -13,7 +13,7 @@ import static domain.entities.distancia.Distancia.calcularDistancia;
 
 public class BuscarHogar {
 
-    public Hogar buscarHogarMasCercano(Mascota unaMascota, Ubicacion ubicacion) throws IOException {
+    public Hogar buscarHogarMasCercano(MascotaRegistrada unaMascotaRegistrada, Ubicacion ubicacion) throws IOException {
 
         ServicioRefugioDdS servicioRefugioDdS = ServicioRefugioDdS.getInstancia();
 
@@ -34,11 +34,11 @@ public class BuscarHogar {
                 continue;
             }
 
-            if (!hogar.admiteTipoMascota(unaMascota.getTipoMascota())) {
+            if (!hogar.admiteTipoMascota(unaMascotaRegistrada.getTipoMascota())) {
                 continue;
             }
 
-            if (!hogar.admiteTamanioMascota(unaMascota.getTamanio())) {
+            if (!hogar.admiteTamanioMascota(unaMascotaRegistrada.getTamanio())) {
                 continue;
             }
 

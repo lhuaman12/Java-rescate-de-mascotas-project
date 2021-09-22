@@ -1,4 +1,4 @@
-package domain.entities.Adopcion;
+package domain.entities.adopcion;
 
 public enum EstadoPublicacion {
     EN_REVISION,

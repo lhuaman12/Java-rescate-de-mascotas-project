@@ -1,4 +1,4 @@
-package domain.entities.Organizaciones.Caracterisiticas;
+package domain.entities.organizaciones.AtributosOrganizacion.Parametros;
 
 public enum Color {
     BLANCO,

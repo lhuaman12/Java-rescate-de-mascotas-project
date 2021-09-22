@@ -1,7 +1,7 @@
-package domain.entities.Mascotas;
+package domain.entities.mascotas;
 
 
-import domain.entities.Organizaciones.Configuraciones.TamanioImagen;
+import domain.entities.organizaciones.Configuraciones.TamanioImagen;
 
 public class Imagen {
     public byte[] datosImagen;

@@ -1,4 +1,4 @@
-package domain.entities.Organizaciones;
+package domain.entities.organizaciones.Configuraciones;
 
 import javax.persistence.*;
 
@@ -14,17 +14,17 @@ public class EstandarFotos {
     @Column
     private int alto;       // Pixels
     @Transient
-    private Calidad calidad;
+    private domain.entities.organizaciones.CalidadImagen calidadImagen;
 
 
     // Constructor
     public EstandarFotos(int ancho,
                          int alto,
-                         Calidad calidad) {
+                         domain.entities.organizaciones.CalidadImagen calidadImagen) {
 
         this.ancho = ancho;
         this.alto = alto;
-        this.calidad = calidad;
+        this.calidadImagen = calidadImagen;
     }
 
 
@@ -46,12 +46,12 @@ public class EstandarFotos {
         this.alto = alto;
     }
 
-    public Calidad getCalidad() {
-        return calidad;
+    public domain.entities.organizaciones.CalidadImagen getCalidad() {
+        return calidadImagen;
     }
 
-    public void setCalidad(Calidad calidad) {
-        this.calidad = calidad;
+    public void setCalidad(CalidadImagen calidadImagen) {
+        this.calidadImagen = calidadImagen;
     }
 
     //

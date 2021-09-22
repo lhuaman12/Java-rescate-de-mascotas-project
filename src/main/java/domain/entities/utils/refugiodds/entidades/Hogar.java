@@ -1,7 +1,7 @@
 package domain.entities.utils.refugiodds.entidades;
 
-import domain.entities.Mascotas.TamanioMascota;
-import domain.entities.Mascotas.TipoMascota;
+import domain.entities.mascotas.TamanioMascota;
+import domain.entities.mascotas.TipoMascota;
 
 import java.util.List;
 

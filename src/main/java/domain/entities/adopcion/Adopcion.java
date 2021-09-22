@@ -1,7 +1,7 @@
-package domain.entities.Adopcion;
+package domain.entities.adopcion;
 
-import domain.entities.Organizaciones.Organizacion;
-import domain.entities.Usuarios.Usuario;
+import domain.entities.organizaciones.Organizacion;
+import domain.entities.usuarios.Usuario;
 
 import java.util.Date;
 

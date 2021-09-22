@@ -1,6 +1,7 @@
-package domain.repositories;
+package domain.repositories.daos;
 
 import db.EntityManagerHelper;
+import domain.repositories.BusquedaCondicional;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;

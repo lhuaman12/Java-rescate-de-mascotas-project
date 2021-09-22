@@ -18,7 +18,7 @@
             "capacidad": 50,
             "lugares_disponibles": 45,
             "patio": true,
-            "caracteristicas": [
+            "caracteristicaParaRegistros": [
                 "Tranquilo",
                 "Pacífico"
             ]
@@ -39,7 +39,7 @@
             "capacidad": 50,
             "lugares_disponibles": 20,
             "patio": true,
-            "caracteristicas": []
+            "caracteristicaParaRegistros": []
         },
         {
             "id": "eyJpdiI6Iko3WDJRZ1d2Tld2RmJtSmVQK3F4TkE9PSIsInZhbHVlIjoiTUVtY29lUEhFbFlKQ2ZsSFZtc1kwdz09IiwibWFjIjoiNTVkOGQ4MmI5M2Q4Y2JiNDc2ZWM4NjNlMDJmNDk1NWE2ZmIwYjAyNWU0NmE2YzQxYjAxMDk5Mjc0YTY3YzMzYSJ9",
@@ -57,7 +57,7 @@
             "capacidad": 150,
             "lugares_disponibles": 89,
             "patio": true,
-            "caracteristicas": []
+            "caracteristicaParaRegistros": []
         },
         {
             "id": "eyJpdiI6IktpODlKMEtlMyt6UVdBTEpSaURSeVE9PSIsInZhbHVlIjoiZUU1SDU3eUFwUnhSdnNhMlNpTmI4dz09IiwibWFjIjoiOGNkNTVkZDQ0NWQ0YjIzZDQwMzUzOWJkNzQ5MmZlMWFmMGJkNGRhZWI2ZTUyNjcyOTI1NjY2ZDQ3MzQwOGQ5OCJ9",
@@ -75,7 +75,7 @@
             "capacidad": 150,
             "lugares_disponibles": 49,
             "patio": true,
-            "caracteristicas": []
+            "caracteristicaParaRegistros": []
         },
         {
             "id": "eyJpdiI6IitpTk53WGR1TnRQTE5FdDFEQUMyblE9PSIsInZhbHVlIjoibTQ3ZXdqTEg0M0xOcnZOM1dEaCsrdz09IiwibWFjIjoiOWRkN2I4NzgwYjJkOWQ2ZmZlZDNhYzM2YTYxODliZDE4N2I2MzBjZTQ0Nzg4MWYzMmUxOGE5YTA4MTEwZTc2MyJ9",
@@ -93,7 +93,7 @@
             "capacidad": 180,
             "lugares_disponibles": 80,
             "patio": true,
-            "caracteristicas": []
+            "caracteristicaParaRegistros": []
         },
         {
             "id": "eyJpdiI6IjZTajJDcGJYMkUrL2lpTFNYNTIxK3c9PSIsInZhbHVlIjoiY1R3cWtJOE81NnRSY1dUaHNzS2Z4Zz09IiwibWFjIjoiZTQxMDllMTJlZGRlYTU1OTc1MTI4ZTU1YTkwN2Q5NDU0YzFkZDViNWIxMWQ1MjVhNWQ4ODFiYWM3NzYwNTY5NSJ9",
@@ -111,7 +111,7 @@
             "capacidad": 200,
             "lugares_disponibles": 110,
             "patio": true,
-            "caracteristicas": []
+            "caracteristicaParaRegistros": []
         },
         {
             "id": "eyJpdiI6Ilp3MEhJQjdnYzBRa29ISzRpYnZlQlE9PSIsInZhbHVlIjoiZVpEV055NEp6QVVLWExFaFg1NEU4QT09IiwibWFjIjoiNzAzMWFkMjY4MDg1MDcyOTJlZGIxYTdlMTVmZjExZGY5ODFkNzIzNTU0ZTkwZGQzZGYwMzkwNTRiNmFhOGZiZSJ9",
@@ -129,7 +129,7 @@
             "capacidad": 20,
             "lugares_disponibles": 1,
             "patio": false,
-            "caracteristicas": [
+            "caracteristicaParaRegistros": [
                 "Manso"
             ]
         },
@@ -149,7 +149,7 @@
             "capacidad": 120,
             "lugares_disponibles": 30,
             "patio": true,
-            "caracteristicas": []
+            "caracteristicaParaRegistros": []
         },
         {
             "id": "eyJpdiI6IkZxYzIxQ1NsZmcva21DUi9nOGJBSGc9PSIsInZhbHVlIjoiWnhlSnkzWURyZE1vRjV0MjhWbXlrUT09IiwibWFjIjoiNTI0ODg4YTI5Y2JmNGMxNjk1M2U3NDdkZTAwY2Y4YWYwOWVlZDA4MDNkOGEyMWZlNGFiOWQ5MDczMDVhZjQ3YiJ9",
@@ -167,7 +167,7 @@
             "capacidad": 30,
             "lugares_disponibles": 5,
             "patio": true,
-            "caracteristicas": []
+            "caracteristicaParaRegistros": []
         },
         {
             "id": "eyJpdiI6IjVsRGdiQ05peFFUK2JlWXdyNDV2YWc9PSIsInZhbHVlIjoieEx3Y3ZxbkM2WGNoVmc1STV3dFZNZz09IiwibWFjIjoiZTZjNDYwZGI4NTFmMDYxNjFjYjZhYWFiOTIzZTFlNTAyYjU3MTUyMDM4MjgzY2MxZjE2ZmYxZjRmNTQyYTZjYyJ9",
@@ -185,7 +185,7 @@
             "capacidad": 22,
             "lugares_disponibles": 3,
             "patio": true,
-            "caracteristicas": [
+            "caracteristicaParaRegistros": [
                 "Delgado",
                 "Amistoso",
                 "Manso"

@@ -1,10 +1,10 @@
-package domain.entities.Usuarios;
+package domain.entities.usuarios;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "domicilio")
-public class Domicilio {
+public class Direccion {
 
     @Id
     @GeneratedValue

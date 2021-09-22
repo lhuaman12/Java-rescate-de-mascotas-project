@@ -1,4 +1,4 @@
-package domain.entities.Usuarios;
+package domain.entities.usuarios;
 
 public class Direccion {
     //private String

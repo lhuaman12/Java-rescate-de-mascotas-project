@@ -1,4 +1,4 @@
-package domain.entities.Organizaciones.Configuraciones;
+package domain.entities.organizaciones.Configuraciones;
 
 public class TamanioImagen {
     private int ancho;

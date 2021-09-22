@@ -1,11 +1,11 @@
-package domain.entities.Adopcion;
+package domain.entities.adopcion;
 
-import domain.entities.Mascotas.FotoMascota;
-import domain.entities.Mascotas.Sexo;
-import domain.entities.Mascotas.TamanioMascota;
-import domain.entities.Mascotas.TipoMascota;
-import domain.entities.Organizaciones.Organizacion;
-import domain.entities.Usuarios.Usuario;
+import domain.entities.mascotas.FotoMascota;
+import domain.entities.mascotas.Sexo;
+import domain.entities.mascotas.TamanioMascota;
+import domain.entities.mascotas.TipoMascota;
+import domain.entities.organizaciones.Organizacion;
+import domain.entities.usuarios.Usuario;
 
 import javax.persistence.*;
 import java.util.ArrayList;

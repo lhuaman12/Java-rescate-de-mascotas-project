@@ -1,4 +1,4 @@
-package domain.entities.Mascotas;
+package domain.entities.mascotas;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package domain.repositories;
+package domain.repositories.daos;
 
 import domain.repositories.BusquedaCondicional;
 
