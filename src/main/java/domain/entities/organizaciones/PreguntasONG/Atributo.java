@@ -1,15 +1,20 @@
-package domain.entities.organizaciones.AtributosOrganizacion.Parametros;
+package domain.entities.organizaciones.PreguntasONG;
 
 import domain.entities.usuarios.Administrador;
 
 import java.util.List;
 
-public class CaracteristicaParaRegistro {
+public class Atributo {
 
     private Administrador administradorResponsable; //trazabilidad
     private String CaracteristicaNombre;
     private List<String> opciones;
     private TipoDeDato tipoDeDato;
+    private TipoDeAtributo tipoDeAtributo;
+
+    public Atributo(TipoDeAtributo tipoDeAtributo) {
+        this.tipoDeAtributo = tipoDeAtributo;
+    }
 
     public Administrador getAdministradorResponsable() {
         return administradorResponsable;

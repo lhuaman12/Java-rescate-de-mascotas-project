@@ -1,4 +1,4 @@
-package domain.entities.organizaciones.AtributosOrganizacion.Parametros;
+package domain.entities.organizaciones.PreguntasONG;
 
 public enum TipoDeDato {
     PREGUNTA,

@@ -1,6 +1,6 @@
 package domain.entities.mascotas;
 
-import domain.entities.organizaciones.AtributosOrganizacion.Parametros.CaracteristicaParaRegistro;
+import domain.entities.organizaciones.PreguntasONG.Atributo;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,7 +21,7 @@ public class MascotaRegistrada extends MascotaBasica {
 
     private String tokenRescate;
 
-    private List<CaracteristicaParaRegistro> caracteristicas;
+    private List<Atributo> caracteristicas;
 
 
     // constructor

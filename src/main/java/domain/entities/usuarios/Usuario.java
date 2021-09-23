@@ -1,7 +1,7 @@
 package domain.entities.usuarios;
 
 import domain.entities.mascotas.*;
-import domain.entities.organizaciones.AtributosOrganizacion.Parametros.CaracteristicaParaRegistro;
+import domain.entities.organizaciones.PreguntasONG.Atributo;
 import domain.entities.rescate.Rescate;
 
 import java.time.LocalDate;
@@ -19,9 +19,9 @@ public class Usuario extends Persona{
     private List<Rescate> rescates;
     private List<MascotaRegistrada> mascotaRegistradas;
 
-    //private List<>
+    // TODO: investigar clase builder
     public Boolean registrarMascota(MascotaBasica mascota,String nombre, String apodo,
-                                    LocalDate edadAproximada,List<CaracteristicaParaRegistro> caracteristicas
+                                    LocalDate edadAproximada,List<Atributo> caracteristicas
                                     ){
         RegistroDeMascotasHandler registro = RegistroDeMascotasHandler.getInstancia();
         List<FotoMascota> fotos = registro.normalizarFotos(mascota.getFotoMascotas());

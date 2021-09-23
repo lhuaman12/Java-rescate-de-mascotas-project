@@ -1,12 +1,12 @@
 package domain.entities.usuarios;
 
-import domain.entities.organizaciones.AtributosOrganizacion.Parametros.CaracteristicaParaRegistro;
+import domain.entities.organizaciones.PreguntasONG.Atributo;
 import domain.entities.organizaciones.Organizacion;
 
 public class Administrador extends Persona{
     private Organizacion organizacion;
 
-    public void agregarCaracteristicaMascota(CaracteristicaParaRegistro caracteristicaMascota){
+    public void agregarCaracteristicaMascota(Atributo caracteristicaMascota){
         organizacion.agregarCaracteristica(caracteristicaMascota);
     }
 }

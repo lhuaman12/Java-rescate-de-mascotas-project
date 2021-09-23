@@ -12,7 +12,7 @@ public class Rescate {
 
     }
     public Usuario buscarDuenio(){
-        // buscar en DB por token, analizar eficiencia
+        // TODO: buscar en DB por token, analizar eficiencia
         return null;
     }
 }

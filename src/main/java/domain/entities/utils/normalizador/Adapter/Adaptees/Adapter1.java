@@ -1,8 +1,8 @@
 package domain.entities.utils.normalizador.Adapter.Adaptees;
 
-import domain.entities.utils.normalizador.Parametros.CalidadImagen;
-import domain.entities.utils.normalizador.Parametros.Imagen;
-import domain.entities.utils.normalizador.Parametros.TamanioImagen;
+import domain.entities.mascotas.FotoMascota;
+import domain.entities.organizaciones.Configuraciones.CalidadImagen;
+import domain.entities.organizaciones.Configuraciones.TamanioImagen;
 import domain.entities.utils.normalizador.Adapter.AdapterNormalizador;
 
 import javax.imageio.IIOImage;
@@ -12,17 +12,17 @@ import javax.imageio.ImageWriter;
 import javax.imageio.stream.ImageOutputStream;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 public class Adapter1 implements AdapterNormalizador {
 
-    public Imagen normalizarImagen(Imagen imagen, TamanioImagen tamanioImagen, CalidadImagen calidadImagen) {
+    public void normalizarImagen(FotoMascota fotoMascota, CalidadImagen calidadImagen, TamanioImagen tamanioImagen) {
 
-        ByteArrayInputStream streamImg = new ByteArrayInputStream(imagen.getDatosImagen());
+            try{
 
-        try {
+            byte[] fotoBytes = fotoMascota.traerBytes();
+
+            ByteArrayInputStream streamImg = new ByteArrayInputStream(fotoBytes);
             // Abrir imagen en buffer desde los bytes
             BufferedImage img = ImageIO.read(streamImg);
             //
@@ -30,14 +30,14 @@ public class Adapter1 implements AdapterNormalizador {
             int imgAlto = img.getHeight();
 
             if (imgAncho * tamanioImagen.getAlto() < imgAlto* tamanioImagen.getAncho()) {
-              tamanioImagen.setAncho(imgAncho* tamanioImagen.getAlto()/imgAlto);
+              fotoMascota.setAncho(imgAncho* tamanioImagen.getAlto()/imgAlto);
             } else {
-                tamanioImagen.setAlto(imgAlto* tamanioImagen.getAncho()/imgAncho);
+                fotoMascota.setAlto(imgAlto* tamanioImagen.getAncho()/imgAncho);
             }
             //Convertirlo en clase imagen con otra escala
-             Image resultingImage = img.getScaledInstance(tamanioImagen.getAncho(), tamanioImagen.getAlto(), Image.SCALE_DEFAULT);
+             Image resultingImage = img.getScaledInstance(fotoMascota.getAncho(), fotoMascota.getAlto(), Image.SCALE_DEFAULT);
             // crear un buffer con la imagen reescalada
-            BufferedImage imagenBuffer = new BufferedImage(tamanioImagen.getAncho(), tamanioImagen.getAlto(), BufferedImage.TYPE_INT_RGB);
+            BufferedImage imagenBuffer = new BufferedImage(fotoMascota.getAncho(), fotoMascota.getAlto(), BufferedImage.TYPE_INT_RGB);
              imagenBuffer.getGraphics().drawImage(resultingImage, 0, 0, null);
 
             //ajustando la calidad (comprension)
@@ -56,18 +56,20 @@ public class Adapter1 implements AdapterNormalizador {
             }
 
             // exportar a bytes
-            //ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-            //ImageIO.write(imagenBuffer,"JPG",buffer);
             // crear la imagen de respuesta;
-            Imagen imagenRespuesta = new Imagen(buffer.toByteArray(),tamanioImagen);
+                InputStream is = new ByteArrayInputStream(buffer.toByteArray());
+                BufferedImage newBi = ImageIO.read(is);
+                // guardando imagen
+                ImageIO.write(newBi, "jpg", new File(fotoMascota.getRuta()));
+                fotoMascota.setAncho(imagenBuffer.getWidth());
+                fotoMascota.setAlto(imagenBuffer.getHeight());
 
-            return imagenRespuesta;
+
         }
         catch (IOException e){
-            System.out.println("Error");
+            System.out.println(e.getMessage());
         }
 
-        return null;
     }
     // el ajuste de calidad se basa en el metodo de comprension
     private ByteArrayOutputStream ajustarCalidad(BufferedImage imagen, float calidadImagen) throws IOException {
@@ -85,4 +87,5 @@ public class Adapter1 implements AdapterNormalizador {
         writer.write(null, new IIOImage(imagen, null, null), param);
         return compressed;
     }
+
 }

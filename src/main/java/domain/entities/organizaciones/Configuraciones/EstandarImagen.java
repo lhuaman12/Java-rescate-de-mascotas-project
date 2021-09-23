@@ -1,11 +1,11 @@
 package domain.entities.organizaciones.Configuraciones;
 
 
-public class ConfiguracionImagen {
+public class EstandarImagen {
     CalidadImagen calidadImagen;
     TamanioImagen tamanioImagen;
 
-    public ConfiguracionImagen(CalidadImagen calidadImagen, TamanioImagen tamanioImagen) {
+    public EstandarImagen(CalidadImagen calidadImagen, TamanioImagen tamanioImagen) {
         this.calidadImagen = calidadImagen;
         this.tamanioImagen = tamanioImagen;
     }

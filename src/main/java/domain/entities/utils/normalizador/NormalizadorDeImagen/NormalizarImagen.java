@@ -1,25 +1,26 @@
 package domain.entities.utils.normalizador.NormalizadorDeImagen;
 
+import domain.entities.mascotas.FotoMascota;
+import domain.entities.organizaciones.Configuraciones.CalidadImagen;
+import domain.entities.organizaciones.Configuraciones.TamanioImagen;
 import domain.entities.utils.normalizador.Adapter.AdapterNormalizador;
-import domain.entities.utils.normalizador.Parametros.CalidadImagen;
-import domain.entities.utils.normalizador.Parametros.Imagen;
-import domain.entities.utils.normalizador.Parametros.TamanioImagen;
+
 
 public class NormalizarImagen {
     private AdapterNormalizador normalizador;
-    private Imagen imagen;
+    private FotoMascota imagen;
     private CalidadImagen calidadImagen;
     private TamanioImagen tamanio;
 
-    public NormalizarImagen(AdapterNormalizador normalizador, Imagen imagen, CalidadImagen calidadImagen, TamanioImagen tamanio) {
+    public NormalizarImagen(AdapterNormalizador normalizador, FotoMascota imagen, CalidadImagen calidadImagen, TamanioImagen tamanio) {
         this.normalizador = normalizador;
         this.imagen = imagen;
         this.calidadImagen = calidadImagen;
         this.tamanio = tamanio;
     }
 
-    public Imagen normalizar(){
-        return normalizador.normalizarImagen(this.imagen,this.tamanio,this.calidadImagen);
+    public void normalizar(){
+        this.normalizador.normalizarImagen(this.imagen,this.calidadImagen,this.tamanio);
     }
 
 }

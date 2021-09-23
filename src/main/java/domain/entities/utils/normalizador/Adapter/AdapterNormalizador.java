@@ -1,10 +1,11 @@
 package domain.entities.utils.normalizador.Adapter;
 
 
-import domain.entities.utils.normalizador.Parametros.CalidadImagen;
-import domain.entities.utils.normalizador.Parametros.Imagen;
-import domain.entities.utils.normalizador.Parametros.TamanioImagen;
+import domain.entities.mascotas.FotoMascota;
+import domain.entities.organizaciones.Configuraciones.CalidadImagen;
+import domain.entities.organizaciones.Configuraciones.TamanioImagen;
+
 
 public interface AdapterNormalizador {
-    public Imagen normalizarImagen(Imagen imagen, TamanioImagen tamanioImagen, CalidadImagen calidadImagen);
+    public void normalizarImagen(FotoMascota foto, CalidadImagen calidadImagen, TamanioImagen tamanioImagen);
 }

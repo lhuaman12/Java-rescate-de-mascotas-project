@@ -1,5 +1,5 @@
 package domain.entities.usuarios;
 
-public class Direccion {
+//public class Direccion {
     //private String
-}
+//}
