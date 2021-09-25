@@ -1,6 +1,6 @@
 package domain.controllers;
-import domain.entities.Rol;
-import domain.entities.Usuario;
+//import domain.entities.Rol;
+//import domain.entities.Usuario;
 import domain.entities.usuarios.Usuario;
 import domain.repositories.Repositorio;
 import domain.repositories.factories.FactoryRepositorio;
@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 public class UsuarioController {
+    /*
     private Repositorio<Usuario> repo;
 
     public UsuarioController(){
@@ -112,4 +113,5 @@ public class UsuarioController {
         this.repo.eliminar(usuario);
         return response;
     }
+    */
 }

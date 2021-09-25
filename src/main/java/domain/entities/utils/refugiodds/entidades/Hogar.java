@@ -1,8 +1,11 @@
 package domain.entities.utils.refugiodds.entidades;
 
+
+import domain.entities.mascotas.MascotaPerdida;
 import domain.entities.mascotas.TamanioMascota;
 import domain.entities.mascotas.TipoMascota;
 
+import java.awt.geom.Point2D;
 import java.util.List;
 
 public class Hogar {
@@ -45,6 +48,20 @@ public class Hogar {
             resultado = true;
         }
         return resultado;
+    }
+
+    public Boolean admiteMascota(MascotaPerdida mascota){
+        return this.admiteTamanioMascota(mascota.getTamanioMascota()) && this.admiteTipoMascota(mascota.getTipoMascota());
+    }
+
+    public Boolean cumpleRadioDeCercania(MascotaPerdida mascota,Double radioCercaniaKms){
+        Point2D coordenadaHogar = new Point2D.Double(this.ubicacion.getLat(),this.ubicacion.getLong()); // no era necesario instancia variables Poin2D puedo usar la clase directamente
+        Point2D coordenadaMascota = new Point2D.Double(mascota.getUbicacion().getLat(),mascota.getUbicacion().getLong());
+        if(coordenadaHogar.distance(coordenadaMascota)<=radioCercaniaKms)
+            return true;
+        else
+            return false;
+
     }
 
 }

@@ -1,5 +1,7 @@
 package domain.entities.mascotas;
 
+import domain.entities.utils.refugiodds.entidades.Ubicacion;
+
 import java.util.List;
 
 public class MascotaBasica {
@@ -8,6 +10,7 @@ public class MascotaBasica {
     protected TamanioMascota tamanioMascota;
     protected Boolean tieneDiscapacidad;
     protected String descripcionDiscapacidad;
+    protected Ubicacion ubicacion;
     protected Sexo sexo;
     protected List<FotoMascota> fotoMascotas;
 
@@ -61,5 +64,12 @@ public class MascotaBasica {
 
     public void setFotoMascotas(List<FotoMascota> fotoMascotas) {
         this.fotoMascotas = fotoMascotas;
+    }
+    public Ubicacion getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
     }
 }

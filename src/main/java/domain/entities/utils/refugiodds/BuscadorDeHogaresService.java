@@ -1,26 +1,29 @@
 package domain.entities.utils.refugiodds;
 
 
+import domain.entities.mascotas.MascotaPerdida;
+import domain.entities.utils.refugiodds.entidades.Hogar;
+import domain.entities.utils.refugiodds.entidades.ListadoDeHogares;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import domain.entities.utils.refugiodds.entidades.Hogar;
-import domain.entities.utils.refugiodds.entidades.ListadoDeHogares;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class ServicioRefugioDdS {
+public class BuscadorDeHogaresService {
 
 
-    private static ServicioRefugioDdS instancia = null;
+    private static BuscadorDeHogaresService instancia = null;
     private final static String urlAPI = "https://api.refugiosdds.com.ar/api/";
     private Retrofit retrofit;
 
 
-    private ServicioRefugioDdS() {
+    private BuscadorDeHogaresService() {
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(urlAPI)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -28,15 +31,15 @@ public class ServicioRefugioDdS {
     }
 
 
-    public static ServicioRefugioDdS getInstancia() {
+    public static BuscadorDeHogaresService getInstancia() {
         if (instancia == null) {
-            instancia = new ServicioRefugioDdS();
+            instancia = new BuscadorDeHogaresService();
         }
         return instancia;
     }
 
 
-    public ListadoDeHogares listadoDeHogares(int offset) throws IOException {
+    public ListadoDeHogares getListadoDeHogares(int offset) throws IOException {
 
         String authorization = "Bearer " +
                 System.getenv("DDS_REFUGIODDS_TOKEN");
@@ -54,14 +57,20 @@ public class ServicioRefugioDdS {
 
     }
 
-    public List<Hogar> hogares() throws IOException{
+    public List<Hogar> hogaresDisponibles() throws IOException{
         List<Hogar> listado = new ArrayList<Hogar>();
         int offset = 0;
         while(offset < 4) {
             offset++;
-            listado.addAll(this.listadoDeHogares(offset).hogares);
+            listado.addAll(this.getListadoDeHogares(offset).hogares);
         }
         return listado;
+    }
+
+    public List<Hogar> buscarHogar(MascotaPerdida mascotaPerdida) throws IOException {
+        List<Hogar> hogares = hogaresDisponibles();
+        return hogares.stream().filter(hogar->hogar.admiteMascota(mascotaPerdida)).collect(Collectors.toList());
+
     }
 
 }

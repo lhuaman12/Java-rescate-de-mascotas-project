@@ -8,6 +8,7 @@ import domain.repositories.testMemoData.Data;
 import java.util.HashMap;
 
 public class FactoryRepositorio {
+    /*
     private static HashMap<String, Repositorio> repos;
 
     static {
@@ -31,4 +32,5 @@ public class FactoryRepositorio {
         }
         return repo;
     }
+    */
 }

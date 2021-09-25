@@ -1,8 +1,15 @@
 package refugiodds;
 
-import org.junit.Test;
-import domain.entities.utils.refugiodds.ServicioRefugioDdS;
+
+import domain.entities.mascotas.EdadAproximada;
+import domain.entities.mascotas.MascotaPerdida;
+import domain.entities.mascotas.TamanioMascota;
+import domain.entities.mascotas.TipoMascota;
+import domain.entities.utils.refugiodds.BuscadorDeHogaresService;
 import domain.entities.utils.refugiodds.entidades.Hogar;
+import org.junit.Test;
+
+
 
 import java.io.IOException;
 import java.util.List;
@@ -60,16 +67,27 @@ public class RefugioDDSTest {
     @Test
     public void listarHogares() throws IOException {
 
-        ServicioRefugioDdS servicioRefugioDdS = ServicioRefugioDdS.getInstancia();
+        BuscadorDeHogaresService buscadorDeHogaresService = BuscadorDeHogaresService.getInstancia();
 
-        List<Hogar> listadoDeHogares = servicioRefugioDdS.hogares();
+        List<Hogar> listadoDeHogares = buscadorDeHogaresService.hogaresDisponibles();
         int i = 1;
         for (Hogar hogar : listadoDeHogares) {
-            System.out.println(i + "\t" + hogar.nombre);
+            System.out.println(i + "\t" + hogar.nombre + "\t" + hogar.telefono);
             i++;
         }
 
         System.out.println("\n\nCantidad total de hogares de tránsito: " + listadoDeHogares.size());
+
+    }
+    @Test
+    public void buscarHogarDeTransito() throws IOException {
+        MascotaPerdida mascota = new MascotaPerdida();
+        mascota.setEdadAprox(EdadAproximada.ABUELO);
+        mascota.setTipoMascota(TipoMascota.PERRO);
+        mascota.setTamanioMascota(TamanioMascota.GRANDE);
+        List<Hogar> hogaresDisponibles=mascota.buscarHogarDeTransito();
+        System.out.println("Cantidad de hogares encontrados"+hogaresDisponibles.size());
+        hogaresDisponibles.forEach(hogar->System.out.println(hogar.nombre));
 
     }
 

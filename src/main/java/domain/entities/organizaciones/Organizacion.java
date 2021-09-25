@@ -1,9 +1,10 @@
 package domain.entities.organizaciones;
 
 import domain.entities.mascotas.MascotaRegistrada;
+import domain.entities.organizaciones.Configuraciones.EstandarImagen;
 import domain.entities.organizaciones.PreguntasONG.Atributo;
 import domain.entities.usuarios.Direccion;
-import domain.entities.usuarios.Domicilio;
+
 
 import javax.persistence.*;
 import java.awt.geom.Point2D;
@@ -31,8 +32,12 @@ public class Organizacion {
 
     private List<Atributo> preguntasRequeridas;
 
+    private EstandarImagen estandarImagen;
+
     public void agregarRequerimiento(Atributo atributo){
         this.preguntasRequeridas.add(atributo);
     }
 
+    public void agregarCaracteristica(Atributo caracteristicaMascota) {
+    }
 }

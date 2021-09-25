@@ -1,4 +1,4 @@
-package test;
+package misc;
 
 import db.EntityManagerHelper;
 import org.junit.Assert;

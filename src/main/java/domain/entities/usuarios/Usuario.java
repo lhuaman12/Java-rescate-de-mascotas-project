@@ -2,6 +2,7 @@ package domain.entities.usuarios;
 
 import domain.entities.mascotas.*;
 import domain.entities.organizaciones.PreguntasONG.Atributo;
+import domain.entities.publicaciones.PublicacionRescate;
 import domain.entities.rescate.Rescate;
 
 import java.time.LocalDate;
@@ -18,6 +19,7 @@ public class Usuario extends Persona{
     private List<Contacto> contactos;
     private List<Rescate> rescates;
     private List<MascotaRegistrada> mascotaRegistradas;
+    static Integer cont=0;// para probar el token
 
     // TODO: investigar clase builder
     public Boolean registrarMascota(MascotaBasica mascota,String nombre, String apodo,
@@ -38,18 +40,25 @@ public class Usuario extends Persona{
                 fotos
             );
 
-        //fotos.forEach(foto->mascota.agregarFoto(registro.normalizarFoto(foto)));
+        fotos.forEach(foto->mascota.agregarFoto(registro.normalizarFoto(foto)));
         //mascota.agregarQR();
+        //agregar token
+        mascotaRegistrada.agregarToken(cont.toString()); // prueba para token
+        cont++;
         mascotaRegistrada.agregarToken(registro.generarToken());
         agregarMascota(mascotaRegistrada);
 
         return true;
     }
+
     public void agregarMascota(MascotaRegistrada mascotaRegistrada){
         this.mascotaRegistradas.add(mascotaRegistrada);
     }
     public void avisarMascotaPerdida(Rescate rescate){
         rescate.avisarDuenio();
+    }
+    public void publicacMascotaPerdida(PublicacionRescate publicacionRescate){
+
     }
 
 
