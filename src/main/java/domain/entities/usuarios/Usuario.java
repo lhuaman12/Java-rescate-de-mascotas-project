@@ -2,50 +2,40 @@ package domain.entities.usuarios;
 
 import domain.entities.mascotas.*;
 import domain.entities.organizaciones.PreguntasONG.Atributo;
+import domain.entities.publicaciones.PublicacionDeAdopcion;
+import domain.entities.publicaciones.PublicacionIntencionAdopcion;
 import domain.entities.publicaciones.PublicacionRescate;
 import domain.entities.rescate.Rescate;
 
+import javax.persistence.Id;
 import java.time.LocalDate;
 import java.util.List;
 
 public class Usuario extends Persona{
-
-    private String nombre;
-    private String apellido;
+    @Id
+    private int id ;
     private LocalDate fechaDeNacimiento;
     private Direccion direccion;
     private TipoDocumento tipoDocumento;
     private String nroDeDocumento;
+
     private List<Contacto> contactos;
     private List<Rescate> rescates;
     private List<MascotaRegistrada> mascotaRegistradas;
-    static Integer cont=0;// para probar el token
+    private List<PublicacionRescate> publicacionesRescate;
+    private List<PublicacionDeAdopcion> publicacionesAdopcion;
+    private List<PublicacionIntencionAdopcion> publicacionesIntAdopcion;
+    static Integer cont = 0;
 
-    // TODO: investigar clase builder
+    // TODO: registro ?
     public Boolean registrarMascota(MascotaBasica mascota,String nombre, String apodo,
-                                    LocalDate edadAproximada,List<Atributo> caracteristicas
+                                    LocalDate edadAproximada,List<CaracteristicasONG> caracteristicas
                                     ){
+
         RegistroDeMascotasHandler registro = RegistroDeMascotasHandler.getInstancia();
-        List<FotoMascota> fotos = registro.normalizarFotos(mascota.getFotoMascotas());
 
-        MascotaRegistrada mascotaRegistrada = new MascotaRegistrada(
-                nombre,
-                apodo,
-                mascota.getTipoMascota(),
-                edadAproximada,
-                mascota.getTamanioMascota(),
-                mascota.getTieneDiscapacidad(),
-                mascota.getDescripcionDiscapacidad(),
-                mascota.getSexo(),
-                fotos
-            );
+        MascotaRegistrada mascotaRegistrada = registro.registrarMascota(mascota,nombre,apodo,edadAproximada,caracteristicas);
 
-        fotos.forEach(foto->mascota.agregarFoto(registro.normalizarFoto(foto)));
-        //mascota.agregarQR();
-        //agregar token
-        mascotaRegistrada.agregarToken(cont.toString()); // prueba para token
-        cont++;
-        mascotaRegistrada.agregarToken(registro.generarToken());
         agregarMascota(mascotaRegistrada);
 
         return true;
@@ -57,8 +47,23 @@ public class Usuario extends Persona{
     public void avisarMascotaPerdida(Rescate rescate){
         rescate.avisarDuenio();
     }
-    public void publicacMascotaPerdida(PublicacionRescate publicacionRescate){
+    public void publicarMascotaPerdida(PublicacionRescate publicacionRescate){
+        publicacionesRescate.add(publicacionRescate);
+    }
+    public void publicarIntencionAdopcion(PublicacionIntencionAdopcion publicacion){
+        //TODO:generar titulo,cuerpo y publicarse
 
+        publicacionesIntAdopcion.add(publicacion);
+    }
+    public void publicarDarEnAdopcion(PublicacionDeAdopcion publicacion){
+        publicacionesAdopcion.add(publicacion);
+    }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
 

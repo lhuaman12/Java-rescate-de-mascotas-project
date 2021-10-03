@@ -55,13 +55,13 @@ public class Hogar {
     }
 
     public Boolean cumpleRadioDeCercania(MascotaPerdida mascota,Double radioCercaniaKms){
+
         Point2D coordenadaHogar = new Point2D.Double(this.ubicacion.getLat(),this.ubicacion.getLong()); // no era necesario instancia variables Poin2D puedo usar la clase directamente
         Point2D coordenadaMascota = new Point2D.Double(mascota.getUbicacion().getLat(),mascota.getUbicacion().getLong());
         if(coordenadaHogar.distance(coordenadaMascota)<=radioCercaniaKms)
             return true;
         else
             return false;
-
     }
 
 }

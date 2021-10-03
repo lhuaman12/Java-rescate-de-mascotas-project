@@ -2,12 +2,13 @@ package domain.entities.mascotas;
 
 import domain.entities.organizaciones.PreguntasONG.Atributo;
 
+import javax.persistence.Id;
 import java.time.LocalDate;
 import java.util.List;
 
 public class MascotaRegistrada extends MascotaBasica {
-
-    private int id;
+    @Id
+    private int id; // TODO: luego de persistir hashear el ID y generar un token
 
     private String nombre;
 
@@ -21,7 +22,7 @@ public class MascotaRegistrada extends MascotaBasica {
 
     private String tokenRescate;
 
-    private List<Atributo> caracteristicas;
+    private List<CaracteristicasONG> caracteristicas;
 
 
     // constructor
@@ -31,6 +32,7 @@ public class MascotaRegistrada extends MascotaBasica {
             TipoMascota tipoMascota,
             LocalDate edadAproximada,
             TamanioMascota tamanioMascota,
+            List<CaracteristicasONG> caracteristicas,
             Boolean tieneDiscapacidad,
             String descripcionDiscapacidad,
             Sexo sexo,
@@ -45,6 +47,7 @@ public class MascotaRegistrada extends MascotaBasica {
         this.descripcionDiscapacidad = descripcionDiscapacidad;
         this.sexo = sexo;
         this.fotoMascotas=fotos;
+        this.caracteristicas=caracteristicas;
 
     }
 

@@ -1,5 +1,6 @@
 package domain.entities.mascotas;
 
+import domain.entities.organizaciones.Organizacion;
 import domain.entities.utils.refugiodds.entidades.Ubicacion;
 
 import java.util.List;
@@ -8,11 +9,12 @@ public class MascotaBasica {
 
     protected TipoMascota tipoMascota;
     protected TamanioMascota tamanioMascota;
-    protected Boolean tieneDiscapacidad;
+    protected Boolean tieneDiscapacidad; // ejemplo, no tiene uso todavia
     protected String descripcionDiscapacidad;
     protected Ubicacion ubicacion;
     protected Sexo sexo;
     protected List<FotoMascota> fotoMascotas;
+    protected Organizacion organizacion;
 
     public void agregarFoto(FotoMascota foto){
         this.fotoMascotas.add(foto);

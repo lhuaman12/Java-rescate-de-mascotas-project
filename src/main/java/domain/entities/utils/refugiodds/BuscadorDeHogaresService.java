@@ -70,7 +70,6 @@ public class BuscadorDeHogaresService {
     public List<Hogar> buscarHogar(MascotaPerdida mascotaPerdida) throws IOException {
         List<Hogar> hogares = hogaresDisponibles();
         return hogares.stream().filter(hogar->hogar.admiteMascota(mascotaPerdida)).collect(Collectors.toList());
-
     }
 
 }

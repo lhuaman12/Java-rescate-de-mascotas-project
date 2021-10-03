@@ -15,7 +15,7 @@ abstract public class Publicacion {
 
     public void cambiarEstado(EstadoPublicacion estadoPublicacion, Voluntario voluntario){
         RegistroEstado nuevoRegistro = new RegistroEstado(voluntario,estadoPublicacion);
-        registroEstados.add(nuevoRegistro);// tiene sentido agregarlo a la lista? en la db se va a juntar por id,voluntario y se trae toda la lista directamente
+        registroEstados.add(nuevoRegistro);
     }
 
 }

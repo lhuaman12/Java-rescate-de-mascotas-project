@@ -111,6 +111,12 @@
             <artifactId>handlebars-humanize</artifactId>
             <version>4.2.0</version>
         </dependency>
+        <dependency> <!--Para generar tokens-->
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+
 
     </dependencies>
 </project>

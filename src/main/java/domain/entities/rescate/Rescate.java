@@ -6,7 +6,6 @@ import domain.entities.usuarios.Usuario;
 public class Rescate {
     private Usuario duenio;
     private MascotaPerdida mascotaPerdida;
-    private String tokenRescate;
 
     public void avisarDuenio(){
 
