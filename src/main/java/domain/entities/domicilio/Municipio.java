@@ -1,9 +1,6 @@
-package domain.domicilio;
-
-import org.hibernate.annotations.UpdateTimestamp;
+package domain.entities.domicilio;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "municipio")

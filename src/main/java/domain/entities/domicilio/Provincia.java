@@ -1,4 +1,4 @@
-package domain.domicilio;
+package domain.entities.domicilio;
 
 import javax.persistence.*;
 
