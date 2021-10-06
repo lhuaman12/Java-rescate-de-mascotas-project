@@ -5,10 +5,7 @@ import org.junit.Test;
 
 public class UsuariosTest {
     @Test
-    public void creacionDueño(){
+    public void creacionDuenio(){
         Usuario duenio = new Usuario();
-
-
     }
-
 }
