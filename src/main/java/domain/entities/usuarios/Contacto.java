@@ -12,17 +12,23 @@ public class Contacto {
     @Id
     @GeneratedValue
     private int id;
+
     @Column
     private String nombre;
+
     @Column
     private String apellido;
-    @Column
+
+    @Column(length = 32)
     private String telefono;
+
     @Column
     private String email;
+
     @Transient
     private List<MedioDeNotificacion> mediosDeNotificacion;
-    @Transient
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Notificacion> notificaciones;
 
 
@@ -36,9 +42,11 @@ public class Contacto {
         this.apellido = apellido;
         this.telefono = telefono;
         this.email = email;
+
         this.mediosDeNotificacion = new ArrayList<>();
         this.notificaciones = new ArrayList<>();
     }
+
 
     // Getters and Setters
 
