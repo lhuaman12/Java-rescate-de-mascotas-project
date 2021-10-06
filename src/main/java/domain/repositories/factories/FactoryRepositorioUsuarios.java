@@ -1,14 +1,18 @@
 package domain.repositories.factories;
 
-import config.Config;
-//import domain.entities.Usuario;
-import domain.entities.usuarios.Usuario;
-import domain.repositories.RepositorioDeUsuarios;
-import domain.repositories.daos.DAO;
-import domain.repositories.daos.DAOHibernate;
-import domain.repositories.daos.DAOMemoria;
-import domain.repositories.testMemoData.Data;
+public class FactoryRepositorioUsuarios {
+}
 /*
+package domain.repositories.factories;
+
+        import config.Config;
+        import domain.entities.Usuario;
+        import domain.repositories.RepositorioDeUsuarios;
+        import domain.repositories.daos.DAO;
+        import domain.repositories.daos.DAOHibernate;
+        import domain.repositories.daos.DAOMemoria;
+        import domain.repositories.testMemoData.Data;
+
 public class FactoryRepositorioUsuarios {
     private static RepositorioDeUsuarios repo;
 
@@ -28,6 +32,4 @@ public class FactoryRepositorioUsuarios {
         }
         return repo;
     }
-
-}
-*/
+}*/

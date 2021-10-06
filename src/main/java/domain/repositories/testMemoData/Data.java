@@ -3,16 +3,15 @@ package domain.repositories.testMemoData;
 public class Data {
 }
 
-
 /*
 package domain.repositories.testMemoData;
 
-        import domain.entities.EntidadPersistente;
-        import domain.entities.Rol;
-        import domain.entities.Usuario;
+import domain.entities.EntidadPersistente;
+import domain.entities.Rol;
+import domain.entities.Usuario;
 
-        import java.util.ArrayList;
-        import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Data {
 
@@ -28,4 +27,5 @@ public class Data {
         }
         return entidades;
     }
-}*/
+}
+ */

@@ -1,5 +1,11 @@
 package domain.repositories.factories;
 
+public class FactoryRepositorio {
+}
+
+/*
+package domain.repositories.factories;
+
 import config.Config;
 import domain.repositories.Repositorio;
 import domain.repositories.daos.*;
@@ -8,7 +14,6 @@ import domain.repositories.testMemoData.Data;
 import java.util.HashMap;
 
 public class FactoryRepositorio {
-    /*
     private static HashMap<String, Repositorio> repos;
 
     static {
@@ -32,5 +37,5 @@ public class FactoryRepositorio {
         }
         return repo;
     }
-    */
 }
+ */
