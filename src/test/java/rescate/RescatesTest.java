@@ -1,4 +1,4 @@
-package usuarios;
+package rescate;
 
 import domain.entities.mascotas.*;
 import domain.entities.usuarios.Usuario;
@@ -6,6 +6,7 @@ import domain.entities.utils.QR.GeneradorQRRescate;
 import domain.entities.utils.QR.JWTUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class RescatesTest {
@@ -20,12 +21,6 @@ public class RescatesTest {
         System.out.println(parsed.getBody());
 
         System.out.println(jwt.getSecretCode());
-
-
-    }
-    public void generarURLRescate(){
-        GeneradorQRRescate adapterGeneradorQRRescate = new GeneradorQRRescate();
-
     }
     @Test
     public void generarQRRescate() throws Exception {
@@ -35,5 +30,7 @@ public class RescatesTest {
         duenio.setId(1);
         RegistroDeMascotasHandler utilRegistro = RegistroDeMascotasHandler.getInstancia();
         String resp = utilRegistro.crearQR(mascota,duenio);
+        mascota.setQRPath(resp);
+        Assert.assertNotEquals(resp,null); // pasa la prueba si no es null
     }
 }
