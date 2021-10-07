@@ -14,5 +14,4 @@ public class DarkMagic {
             throw new RuntimeException("cannot get handlebars", e);
         }
     }
-
 }

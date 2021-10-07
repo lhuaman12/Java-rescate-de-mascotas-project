@@ -1,5 +1,6 @@
 package domain.repositories;
 
+
 import domain.entities.usuarios.Usuario;
 import domain.repositories.daos.DAO;
 

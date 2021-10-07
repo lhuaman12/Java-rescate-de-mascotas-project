@@ -11,18 +11,22 @@ public class Notificacion {
     @Id
     @GeneratedValue
     private int id;
-    @Transient
-    private String medioDeNotificacion;
+
+    @Enumerated(EnumType.STRING)
+    private MedioDeNotificacion medioDeNotificacion;
+
     @Column(columnDefinition = "DATE")
     private Date fechaHora;     // Timestamp?
+
     @Column
     private String tipoMensaje;
+
     @Column     // ToDo Text
     private String mensaje;
 
 
     // Constructor
-    public Notificacion(String medioDeNotificacion,
+    public Notificacion(MedioDeNotificacion medioDeNotificacion,
                         Date fechaHora,
                         String tipoMensaje,
                         String mensaje) {
@@ -36,11 +40,11 @@ public class Notificacion {
 
     // Getters and Setters
 
-    public String getMedioDeNotificacion() {
+    public MedioDeNotificacion getMedioDeNotificacion() {
         return medioDeNotificacion;
     }
 
-    public void setMedioDeNotificacion(String medioDeNotificacion) {
+    public void setMedioDeNotificacion(MedioDeNotificacion medioDeNotificacion) {
         this.medioDeNotificacion = medioDeNotificacion;
     }
 
@@ -72,3 +76,4 @@ public class Notificacion {
 
 
 }
+

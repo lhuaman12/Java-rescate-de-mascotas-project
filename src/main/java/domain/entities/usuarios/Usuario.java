@@ -1,7 +1,7 @@
 package domain.entities.usuarios;
 
+import domain.entities.domicilio.Domicilio;
 import domain.entities.mascotas.*;
-import domain.entities.organizaciones.PreguntasONG.Atributo;
 import domain.entities.publicaciones.PublicacionDeAdopcion;
 import domain.entities.publicaciones.PublicacionIntencionAdopcion;
 import domain.entities.publicaciones.PublicacionRescate;
@@ -15,7 +15,7 @@ public class Usuario extends Persona{
     @Id
     private int id ;
     private LocalDate fechaDeNacimiento;
-    private Direccion direccion;
+    private Domicilio domicilio;
     private TipoDocumento tipoDocumento;
     private String nroDeDocumento;
 

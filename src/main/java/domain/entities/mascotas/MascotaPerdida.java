@@ -1,6 +1,6 @@
 package domain.entities.mascotas;
 
-import domain.entities.usuarios.Direccion;
+import domain.entities.domicilio.Domicilio;
 import domain.entities.utils.refugiodds.BuscadorDeHogaresService;
 import domain.entities.utils.refugiodds.entidades.Hogar;
 
@@ -12,7 +12,7 @@ public class MascotaPerdida extends MascotaBasica {
     private EdadAproximada edadAprox;
     private List<FotoMascota> fotos;
     private Point2D coordenadas;
-    private Direccion direccion;
+    private Domicilio domicilio;
     private Hogar hogarDeTransito;
 
 
@@ -51,11 +51,11 @@ public class MascotaPerdida extends MascotaBasica {
         this.coordenadas = coordenadas;
     }
 
-    public Direccion getDireccion() {
-        return direccion;
+    public Domicilio getDomicilio() {
+        return domicilio;
     }
 
-    public void setDireccion(Direccion direccion) {
-        this.direccion = direccion;
+    public void setDomicilio(Domicilio domicilio) {
+        this.domicilio = domicilio;
     }
 }

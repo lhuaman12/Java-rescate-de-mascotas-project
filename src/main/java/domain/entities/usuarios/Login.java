@@ -12,22 +12,30 @@ public class Login {
     @Id
     @GeneratedValue
     private int id;
+
     @Column
     private String username;
+
     @Column
     private String password;
+
     @Column(columnDefinition = "DATE")
     private Date lastSuccessLogin;
+
     @Column
     private int loginFailCounter;
+
     @Column(columnDefinition = "DATE")
     private Date passwordLastSet;
+
     @Column(columnDefinition = "DATE")
     private Date dateCreated;
+
     @Column
     private char status;
-    @Transient
-    private List<String> passwords;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Password> passwords;       // Password history
 
 
     // Constructor
@@ -48,6 +56,7 @@ public class Login {
         this.status = status;
 
         this.passwords = new ArrayList<>();
+
     }
 
 
@@ -70,7 +79,7 @@ public class Login {
     }
 
     // ToDo
-    public void setPasswords(List<String> passwords) {
+    public void setPasswords(List<Password> passwords) {
         this.passwords = passwords;
     }
 
@@ -114,7 +123,7 @@ public class Login {
         this.status = status;
     }
 
-    public List<String> getPasswords() {
+    public List<Password> getPasswords() {
         return passwords;
     }
 
