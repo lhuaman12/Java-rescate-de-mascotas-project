@@ -1,5 +1,7 @@
 package domain.entities.mascotas;
 
+import domain.entities.usuarios.Usuario;
+import domain.entities.utils.QR.GeneradorQRRescate;
 import domain.entities.utils.normalizador.Adapter.AdapterNormalizador;
 
 import java.time.LocalDate;
@@ -7,11 +9,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 // singleton
-public final class RegistroDeMascotasHandler {
+public final class RegistroDeMascotasHandler implements GeneradorQR {
 
     private static RegistroDeMascotasHandler registroDeMascotasHandler; // singleton
     private static AdapterNormalizador normalizadorImagen;
-    //private static GeneradorToken generadorToken;
+    private static GeneradorQRRescate generadorQR= new GeneradorQRRescate();
 
     public static RegistroDeMascotasHandler getInstancia() {
         if (registroDeMascotasHandler == null) {
@@ -47,6 +49,9 @@ public final class RegistroDeMascotasHandler {
         return mascotaRegistrada;
     }
 
+    public String crearQR(MascotaRegistrada mascota, Usuario usuario) throws Exception {
+        return generadorQR.crearQR(mascota,usuario);
+    }
 
 
 }

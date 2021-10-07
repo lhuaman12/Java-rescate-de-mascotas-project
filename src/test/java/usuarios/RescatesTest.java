@@ -1,7 +1,9 @@
 package usuarios;
 
-import domain.entities.utils.generadorQRRescate.GeneradorQRRescate;
-import domain.entities.utils.generadorQRRescate.JWTUtil;
+import domain.entities.mascotas.*;
+import domain.entities.usuarios.Usuario;
+import domain.entities.utils.QR.GeneradorQRRescate;
+import domain.entities.utils.QR.JWTUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import org.junit.Test;
@@ -22,7 +24,16 @@ public class RescatesTest {
 
     }
     public void generarURLRescate(){
-        GeneradorQRRescate generadorQRRescate = new GeneradorQRRescate();
+        GeneradorQRRescate adapterGeneradorQRRescate = new GeneradorQRRescate();
 
+    }
+    @Test
+    public void generarQRRescate() throws Exception {
+        MascotaRegistrada mascota = new MascotaRegistrada("carlos","firulais", TipoMascota.PERRO,null, TamanioMascota.GRANDE,
+                null,null,null, Sexo.HEMBRA,null);
+        Usuario duenio = new Usuario();
+        duenio.setId(1);
+        RegistroDeMascotasHandler utilRegistro = RegistroDeMascotasHandler.getInstancia();
+        String resp = utilRegistro.crearQR(mascota,duenio);
     }
 }

@@ -25,7 +25,6 @@ public class Usuario extends Persona{
     private List<PublicacionRescate> publicacionesRescate;
     private List<PublicacionDeAdopcion> publicacionesAdopcion;
     private List<PublicacionIntencionAdopcion> publicacionesIntAdopcion;
-    static Integer cont = 0;
 
     // TODO: registro ?
     public Boolean registrarMascota(MascotaBasica mascota,String nombre, String apodo,

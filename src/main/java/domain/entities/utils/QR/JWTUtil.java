@@ -1,4 +1,4 @@
-package domain.entities.utils.generadorQRRescate;
+package domain.entities.utils.QR;
 
 
 import io.jsonwebtoken.*;
@@ -11,12 +11,12 @@ import java.security.Key;
 
 public class JWTUtil {
 
-    static Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    public static Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     //String jws = Jwts.builder().setSubject("Joe").signWith(key).compact();
 
     public String createToken(String idDuenio,String nombreMascota){
         //Header header = Header
-        return Jwts.builder().setId(idDuenio).setSubject("Mascota Perdida").claim("nombre_mascota",nombreMascota).signWith(key).compact();
+        return Jwts.builder().setId(idDuenio).setSubject("mascota_perdida").claim("nombre_mascota",nombreMascota).signWith(key).compact();
     }
     public String getSecretCode(){ // TODO: borrar luego esto no es seguro tener el secret en el codigo,tampoco usar el id (se podria hashear)
         return Encoders.BASE64.encode(key.getEncoded());

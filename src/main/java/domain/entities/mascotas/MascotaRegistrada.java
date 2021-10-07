@@ -51,13 +51,69 @@ public class MascotaRegistrada extends MascotaBasica {
 
     }
 
-    public void agregarQR(String QRPath){
-        this.QRPath=QRPath;
-    }
-    public void agregarToken(String token){
-        this.tokenRescate = token;
+    public int getId() {
+        return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApodo() {
+        return apodo;
+    }
+
+    public void setApodo(String apodo) {
+        this.apodo = apodo;
+    }
+
+    public LocalDate getEdadAprox() {
+        return edadAprox;
+    }
+
+    public void setEdadAprox(LocalDate edadAprox) {
+        this.edadAprox = edadAprox;
+    }
+
+    public String getQRPath() {
+        return QRPath;
+    }
+
+    public void setQRPath(String QRPath) {
+        this.QRPath = QRPath;
+    }
+
+    public LocalDate getFechaAlta() {
+        return fechaAlta;
+    }
+
+    public void setFechaAlta(LocalDate fechaAlta) {
+        this.fechaAlta = fechaAlta;
+    }
+
+    public String getTokenRescate() {
+        return tokenRescate;
+    }
+
+    public void setTokenRescate(String tokenRescate) {
+        this.tokenRescate = tokenRescate;
+    }
+
+    public List<CaracteristicasONG> getCaracteristicas() {
+        return caracteristicas;
+    }
+
+    public void setCaracteristicas(List<CaracteristicasONG> caracteristicas) {
+        this.caracteristicas = caracteristicas;
+    }
 }
 
 
