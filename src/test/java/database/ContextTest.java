@@ -1,4 +1,4 @@
-package misc;
+package database;
 
 import static org.junit.Assert.*;
 

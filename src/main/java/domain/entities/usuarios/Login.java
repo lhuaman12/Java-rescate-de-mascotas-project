@@ -39,6 +39,11 @@ public class Login {
 
 
     // Constructor
+
+    public Login() {
+        this.passwords = new ArrayList<>();
+    }
+
     public Login(String username,
                  String password,
                  Date lastSuccessLogin,
