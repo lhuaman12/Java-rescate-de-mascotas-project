@@ -1,11 +1,5 @@
 package domain.repositories.factories;
 
-public class FactoryRepositorio {
-}
-
-/*
-package domain.repositories.factories;
-
 import config.Config;
 import domain.repositories.Repositorio;
 import domain.repositories.daos.*;
@@ -38,4 +32,4 @@ public class FactoryRepositorio {
         return repo;
     }
 }
- */
+
