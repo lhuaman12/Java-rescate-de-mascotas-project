@@ -1,11 +1,8 @@
 package domain.repositories.testMemoData;
 
-public class DataUsuario {
-}
+public class DataUsuario {}
 
 /*
-package domain.repositories.testMemoData;
-
 import domain.entities.EntidadPersistente;
 import domain.entities.Rol;
 import domain.entities.Usuario;
@@ -64,4 +61,4 @@ public class DataUsuario {
         Collections.addAll(DataUsuario.usuarios, usuarios);
     }
 }
- */
+*/
