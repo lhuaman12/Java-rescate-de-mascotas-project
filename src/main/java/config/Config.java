@@ -2,7 +2,7 @@ package config;
 
 public class Config {
     // Database
-    public static boolean useDataBase = true;
+    public static boolean useDataBase = false;
     // Spark
-    public static int sparkPort = 9001;
+    public static int sparkPort = 9002;
 }
