@@ -1,24 +1,18 @@
 package server;
 
-public class Router {
-}
-
-
-/*
-package server;
-
 import domain.controllers.LoginController;
+import domain.controllers.MascotaController;
+import domain.controllers.RescateController;
 import domain.controllers.UsuarioController;
-import domain.controllers.UsuarioRestControllerEjemplo;
 import domain.middleware.AuthMiddleware;
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.utils.BooleanHelper;
 import spark.utils.HandlebarsTemplateEngineBuilder;
 
 public class Router {
-    private static HandlebarsTemplateEngine engine;
+
+    public static HandlebarsTemplateEngine engine;
 
     private static void initEngine() {
         Router.engine = HandlebarsTemplateEngineBuilder
@@ -34,33 +28,31 @@ public class Router {
         Router.configure();
     }
 
-    private static void configure(){
-        UsuarioRestControllerEjemplo usuarioRestControllerEjemplo = new UsuarioRestControllerEjemplo();
+    private static void configure() {
+        LoginController loginController = new LoginController();
+        AuthMiddleware authMiddleware = new AuthMiddleware();
         UsuarioController usuarioController = new UsuarioController();
-        LoginController loginController     = new LoginController();
-        AuthMiddleware authMiddleware       = new AuthMiddleware();
+        MascotaController mascotaController = new MascotaController();
+        RescateController rescateController = new RescateController();
 
+        // Login controller
         Spark.get("/", loginController::inicio, Router.engine);
-
         Spark.before("/", authMiddleware::verificarSesion);
-
         Spark.post("/login", loginController::login);
-
         Spark.get("/logout", loginController::logout);
+        // Test
+        Spark.get("/logins", loginController::mostrarTodos, Router.engine);
 
-        Spark.get("/usuarios", usuarioController::mostrarTodos, Router.engine);
+        // Usuario controller
+        Spark.get("/user/:id", usuarioController::mostrar, Router.engine);
+        Spark.get("/user/:id/contactos", usuarioController::mostrarContactos, Router.engine);
 
-        Spark.get("/usuario/:id", usuarioController::mostrar, Router.engine);
+        // Mascota controller
+        Spark.get("/mascota/:id", mascotaController::mostrar, Router.engine);
 
-        Spark.get("/usuario", usuarioController::crear, Router.engine);
-
-        Spark.post("/usuario/:id", usuarioController::modificar);
-
-        Spark.post("/usuario", usuarioController::guardar);
-
-        Spark.delete("/usuario/:id", usuarioController::eliminar);
-
-        Spark.get("/api/usuario/:id", usuarioRestControllerEjemplo::mostrar);
+        // Rescate controller
+        Spark.get("/rescate/:token", rescateController::rescateQR, Router.engine);
+        Spark.get("/rescate", rescateController::rescateSinQR, Router.engine);
     }
 }
- */
+
