@@ -41,16 +41,18 @@
         </div>
 
 
-        <form class="" action="index.hbs" method="post">
+        <form class=""
+        {{#if contacto}} action="/usuario/{{usuario.id}}/contacto/{{contacto.id}}" method="post"
+        {{else}} action="/usuario/{{usuario.id}}/contacto" method="post" {{/if}}>
 
           <div class="grid-item">
             <label for="">Nombre*</label>
-            <input type="text" name="" value=""  class="text-input" required>
+            <input type="text" name="nombre" class="text-input" {{#if contacto}} value="{{contacto.nombre}}" {{/if}}>
           </div>
 
           <div class="grid-item">
             <label for="">Apellido*</label>
-            <input type="text" name="" value="" class="text-input" required>
+            <input type="text" name="apellido" class="text-input" {{#if contacto}} value="{{contacto.apellido}}" {{/if}}>
           </div>
 
           <div class="grid-item">
@@ -60,12 +62,12 @@
 
           <div class="grid-item">
             <label for="phone">Teléfono</label>
-            <input type="tel" id="phone" name="phone" class="text-input" placeholder="1234567890" pattern="[0-9]{10}" required>
+            <input type="text" name="telefono" class="text-input" placeholder="1234567890" pattern="[0-9]{10}" required {{#if contacto}} value="{{contacto.telefono}}" {{/if}}>
           </div>
 
           <div class="grid-item">
             <label for="email">E-Mail</label>
-            <input type="email" name="email" value="" placeholder="email@example.com" class="text-input" required>
+            <input type="email" name="email" placeholder="email@example.com" class="text-input" required {{#if contacto}} value="{{contacto.email}}" {{/if}}>
           </div>
 
           <div class="grid-item">
