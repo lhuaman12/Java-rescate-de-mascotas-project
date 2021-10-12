@@ -33,6 +33,11 @@ public class Contacto {
 
 
     // Constructor
+    public Contacto() {
+        this.mediosDeNotificacion = new ArrayList<>();
+        this.notificaciones = new ArrayList<>();
+    }
+
     public Contacto(String nombre,
                     String apellido,
                     String telefono,
