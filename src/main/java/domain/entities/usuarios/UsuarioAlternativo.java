@@ -26,7 +26,7 @@ public class UsuarioAlternativo {
     private TipoDocumento tipoDocumento;
 
     @Column
-    private int nroDocumento;
+    private String nroDocumento;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "domicilio_id")
@@ -39,13 +39,15 @@ public class UsuarioAlternativo {
 
     // Constructor
 
+    public UsuarioAlternativo() {}
+
     public UsuarioAlternativo(
             int id,
             String nombre,
             String apellido,
             Date fechaNacimiento,
             TipoDocumento tipoDocumento,
-            int nroDocumento,
+            String nroDocumento,
             Domicilio domicilio,
             Login login) {
 
@@ -102,11 +104,11 @@ public class UsuarioAlternativo {
         this.tipoDocumento = tipoDocumento;
     }
 
-    public int getNroDocumento() {
+    public String getNroDocumento() {
         return nroDocumento;
     }
 
-    public void setNroDocumento(int nroDocumento) {
+    public void setNroDocumento(String nroDocumento) {
         this.nroDocumento = nroDocumento;
     }
 
