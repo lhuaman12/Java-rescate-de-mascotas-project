@@ -5,7 +5,7 @@ import domain.entities.domicilio.Localidad;
 import domain.entities.domicilio.Municipio;
 import domain.entities.domicilio.Provincia;
 import domain.entities.usuarios.Contacto;
-import domain.entities.usuarios.UsuarioAlternativo;
+import domain.entities.usuarios.Usuario;
 import domain.repositories.Repositorio;
 import domain.repositories.factories.FactoryRepositorio;
 import spark.ModelAndView;
@@ -18,11 +18,11 @@ import java.util.Map;
 
 public class UsuarioController {
 
-    private Repositorio<UsuarioAlternativo> repositorio;
+    private Repositorio<Usuario> repositorio;
     private Repositorio<Contacto> repositorioContacto;
 
     public UsuarioController() {
-        this.repositorio = FactoryRepositorio.get(UsuarioAlternativo.class);
+        this.repositorio = FactoryRepositorio.get(Usuario.class);
         this.repositorioContacto = FactoryRepositorio.get(Contacto.class);
     }
 
@@ -32,7 +32,7 @@ public class UsuarioController {
 
 
     public ModelAndView mostrarTodos(Request request, Response response) {
-        List<UsuarioAlternativo> usuariosAlternativos = this.repositorio.buscarTodos();
+        List<Usuario> usuariosAlternativos = this.repositorio.buscarTodos();
         Map<String, Object> parametros = new HashMap<>();
         parametros.put("usuarios", usuariosAlternativos);
         return new ModelAndView(parametros, "logins.hbs");
@@ -40,30 +40,29 @@ public class UsuarioController {
     }
 
     public ModelAndView mostrarUsuario(Request request, Response response) {
-        UsuarioAlternativo usuarioAlternativo = this.repositorio.buscar(new Integer(request.params("id")));
+        Usuario usuario = this.repositorio.buscar(new Integer(request.params("id")));
         Map<String, Object> parametros = new HashMap<>();
-        parametros.put("usuario", usuarioAlternativo);
+        parametros.put("usuario", usuario);
 
         return new ModelAndView(parametros, "usuario.hbs");
     }
 
     public Response modificar(Request request, Response response) {
-        UsuarioAlternativo usuarioAlternativo = this.repositorio.buscar(new Integer(request.params("id")));
 
         String nombre = request.queryParams("nombre");
         String apellido = request.queryParams("apellido");
 
-        usuarioAlternativo.setNombre(nombre);
-        usuarioAlternativo.setApellido(apellido);
-
-        this.repositorio.modificar(usuarioAlternativo);
+        Usuario usuario = this.repositorio.buscar(new Integer(request.params("id")));
+        usuario.setNombre(nombre);
+        usuario.setApellido(apellido);
+        this.repositorio.modificar(usuario);
 
         response.redirect("/logins");
         return response;
     }
 
     public Response guardar(Request request, Response response) {
-        UsuarioAlternativo usuarioAlternativo = new UsuarioAlternativo();
+        Usuario usuario = new Usuario();
         Domicilio domicilio = new Domicilio();
         Localidad localidadTemp = new Localidad();
         Municipio municipioTemp = new Municipio();
@@ -76,8 +75,8 @@ public class UsuarioController {
         String municipio = request.queryParams("municipio");
         String provincia = request.queryParams("provincia");
 
-        usuarioAlternativo.setNombre(nombre);
-        usuarioAlternativo.setApellido(apellido);
+        usuario.setNombre(nombre);
+        usuario.setApellido(apellido);
         domicilio.setCalle(calle);
         localidadTemp.setLocalidad(localidad);
         municipioTemp.setMunicipio(municipio);
@@ -86,8 +85,8 @@ public class UsuarioController {
         municipioTemp.setProvincia(provinciaTemp);
         localidadTemp.setMunicipio(municipioTemp);
         domicilio.setLocalidad(localidadTemp);
-        usuarioAlternativo.setDomicilio(domicilio);
-        this.repositorio.agregar(usuarioAlternativo);
+        usuario.setDomicilio(domicilio);
+        this.repositorio.agregar(usuario);
 
         response.redirect("/usuarios");
         return response;
@@ -111,7 +110,14 @@ public class UsuarioController {
         contacto.setTelefono(telefono);
         contacto.setEmail(email);
 
-        this.repositorio.agregar(contacto);
+        Usuario usuario = this.repositorio.buscar(new Integer(request.params("id")));
+        usuario.setContactos(contacto);
+        this.repositorio.modificar(usuario);
+
+        /*
+        UsuarioAlternativo usuarioAlternativo = this.repositorio.buscar(new Integer(request.params("id")));
+        usuarioAlternativo.setContactos(contacto);
+        */
 
         response.redirect("/usuarios");
         return response;
@@ -120,8 +126,10 @@ public class UsuarioController {
     public ModelAndView mostrarContacto(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
 
-        UsuarioAlternativo usuarioAlternativo = this.repositorio.buscar(new Integer(request.params("idUsuario")));
+/*
+        UsuarioAlternativo usuarioAlternativo = this.repositorio.buscar(new Integer(request.params("id")));
         parametros.put("usuario", usuarioAlternativo);
+*/
 
         Contacto contacto = this.repositorioContacto.buscar(new Integer(request.params("idContacto")));
         parametros.put("contacto", contacto);
