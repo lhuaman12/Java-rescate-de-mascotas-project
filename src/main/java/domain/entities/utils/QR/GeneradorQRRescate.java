@@ -2,7 +2,7 @@ package domain.entities.utils.QR;
 
 import domain.entities.mascotas.MascotaRegistrada;
 import domain.entities.usuarios.Usuario;
-import domain.entities.utils.QR.Adaptee.ZXing;
+import domain.entities.utils.QR.AdapteeQR.ZXing;
 
 public class GeneradorQRRescate implements GeneradorToken {
     private final String pathFile="src/main/resources/dueniosQRs/";
@@ -21,7 +21,7 @@ public class GeneradorQRRescate implements GeneradorToken {
 
     public String crearQR(MascotaRegistrada mascota, Usuario usuario) throws Exception{
         String pathQR = pathFile+"usuario"+String.valueOf(usuario.getId())+".jpg";
-        String URL = generarURL(String.valueOf(usuario.getId()),mascota.getApodo());
+        String URL = generarURL(String.valueOf(mascota.getId()),mascota.getApodo());
         adaptee.crearQR(URL,pathQR);
         return pathQR;
     }

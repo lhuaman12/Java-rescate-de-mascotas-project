@@ -1,4 +1,4 @@
-package domain.entities.utils.QR.Adaptee;
+package domain.entities.utils.QR.AdapteeQR;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;

@@ -1,5 +1,6 @@
 package domain.entities.usuarios;
 
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +26,8 @@ public class Contacto {
     @Column
     private String email;
 
-    @Transient
-    private List<MedioDeNotificacion> mediosDeNotificacion;
+    @Transient // por ahora solo un medio de notificacion, segun lo charlado con el ayudante era mejor evitar varios medios al mismo tiempo
+    private MedioDeNotificacion mediosDeNotificacion;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Notificacion> notificaciones;
@@ -43,8 +44,16 @@ public class Contacto {
         this.telefono = telefono;
         this.email = email;
 
-        this.mediosDeNotificacion = new ArrayList<>();
         this.notificaciones = new ArrayList<>();
+    }
+
+    public String getDatos(){
+        String data = new String();
+        data="Nombre: "+ getNombre()+"\n"+
+             "Apellido: "+ getApellido()+"\n"+
+             "Telefono: "+ getTelefono()+"\n"+
+             "Email: "+ getEmail();
+        return data;
     }
 
 
@@ -90,7 +99,7 @@ public class Contacto {
         this.email = email;
     }
 
-    public List<MedioDeNotificacion> getMediosDeNotificacion() {
+    public MedioDeNotificacion getMediosDeNotificacion() {
         return mediosDeNotificacion;
     }
 
@@ -99,7 +108,7 @@ public class Contacto {
     }
 
     // ToDo
-    public void setMediosDeNotificacion(List<MedioDeNotificacion> mediosDeNotificacion) {
+    public void setMediosDeNotificacion(MedioDeNotificacion mediosDeNotificacion) {
         this.mediosDeNotificacion = mediosDeNotificacion;
     }
 

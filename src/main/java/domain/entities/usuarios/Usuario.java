@@ -26,7 +26,6 @@ public class Usuario extends Persona{
     private List<PublicacionDeAdopcion> publicacionesAdopcion;
     private List<PublicacionIntencionAdopcion> publicacionesIntAdopcion;
 
-    // TODO: registro ?
     public Boolean registrarMascota(MascotaBasica mascota,String nombre, String apodo,
                                     LocalDate edadAproximada,List<CaracteristicasONG> caracteristicas
                                     ){
@@ -43,8 +42,9 @@ public class Usuario extends Persona{
     public void agregarMascota(MascotaRegistrada mascotaRegistrada){
         this.mascotaRegistradas.add(mascotaRegistrada);
     }
+
     public void avisarMascotaPerdida(Rescate rescate){
-        rescate.avisarDuenio();
+        //rescate.avisarMascotaEncontrada();
     }
     public void publicarMascotaPerdida(PublicacionRescate publicacionRescate){
         publicacionesRescate.add(publicacionRescate);
@@ -66,4 +66,11 @@ public class Usuario extends Persona{
     }
 
 
+    public List<Contacto> getContactos() {
+        return contactos;
+    }
+
+    public void setContactos(List<Contacto> contactos) {
+        this.contactos = contactos;
+    }
 }
