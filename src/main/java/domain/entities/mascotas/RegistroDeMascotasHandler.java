@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 // singleton
-public final class RegistroDeMascotasHandler implements GeneradorQR {
+public final class RegistroDeMascotasHandler {
 
     private static RegistroDeMascotasHandler registroDeMascotasHandler; // singleton
     private static AdapterNormalizador normalizadorImagen;

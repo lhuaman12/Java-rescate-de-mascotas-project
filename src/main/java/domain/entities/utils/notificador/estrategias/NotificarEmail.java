@@ -33,7 +33,6 @@ public class NotificarEmail implements EstrategiaDeNotificacion {
                         return new PasswordAuthentication(ACCOUNT_USER, ACCOUNT_PASS);
                     }
                 });
-
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(ACCOUNT_USER));

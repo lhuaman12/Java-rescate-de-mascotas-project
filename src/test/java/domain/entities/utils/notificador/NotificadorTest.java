@@ -25,6 +25,8 @@ public class NotificadorTest {
 
     @Test
     public void NotificarEmail() {
+        System.out.println(System.getenv("DDS_EMAIL_ACCOUNT_USER"));
+        System.out.println(System.getenv("DDS_EMAIL_ACCOUNT_PASS"));
         this.notificador.setNotificable(this.mensaje);
         this.notificador.notificar();
     }

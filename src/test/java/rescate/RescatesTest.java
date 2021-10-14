@@ -14,9 +14,9 @@ public class RescatesTest {
     public void generarTokenTest(){
 
         JWTUtil jwt = new JWTUtil();
-        String token = jwt.createToken("1","firulais");
+        String token = jwt.createRescateToken("1","firulais");
         System.out.println(token);
-        Jws<Claims> parsed= jwt.leerRequest(token);
+        Jws<Claims> parsed= jwt.leerToken(token);
 
         System.out.println(parsed.getBody());
 
@@ -28,9 +28,30 @@ public class RescatesTest {
                 null,null,null, Sexo.HEMBRA,null);
         Usuario duenio = new Usuario();
         duenio.setId(1);
+        mascota.setId(2);
         RegistroDeMascotasHandler utilRegistro = RegistroDeMascotasHandler.getInstancia();
         String resp = utilRegistro.crearQR(mascota,duenio);
         mascota.setQRPath(resp);
-        Assert.assertNotEquals(resp,null); // pasa la prueba si no es null
+        Assert.assertNotEquals(null,resp);
+    }
+    @Test
+    public void leerTokenRescate() throws Exception {
+        MascotaRegistrada mascota = new MascotaRegistrada("carlos","firulais", TipoMascota.PERRO,null, TamanioMascota.GRANDE,
+                null,null,null, Sexo.HEMBRA,null);
+        Usuario duenio = new Usuario();
+        duenio.setId(1);
+        mascota.setId(1);
+        RegistroDeMascotasHandler utilRegistro = RegistroDeMascotasHandler.getInstancia();
+        GeneradorQRRescate generador = new GeneradorQRRescate();
+        String URLRescate = generador.generarURL(String.valueOf(mascota.getId()), mascota.getNombre());
+        ////
+
+        /*JWTUtil jwt = new JWTUtil();
+        Jws<Claims> parsed= jwt.leerToken();
+        String idMascota = parsed.getBody().getId();
+        //
+        System.out.println(parsed.getBody().getSubject());
+        Assert.assertEquals(mascota.getId(),idMascota);
+*/
     }
 }
