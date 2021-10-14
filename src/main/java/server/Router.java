@@ -35,7 +35,7 @@ public class Router {
         MascotaController mascotaController = new MascotaController();
         RescateController rescateController = new RescateController();
 
-        // Login controller
+        // Login
         Spark.get("/", loginController::inicio, Router.engine);
         Spark.before("/", authMiddleware::verificarSesion);
         Spark.post("/login", loginController::login);
@@ -43,14 +43,22 @@ public class Router {
         // Test
         Spark.get("/logins", loginController::mostrarTodos, Router.engine);
 
-        // Usuario controller
-        Spark.get("/user/:id", usuarioController::mostrar, Router.engine);
-        Spark.get("/user/:id/contactos", usuarioController::mostrarContactos, Router.engine);
+        // Usuarios
+        Spark.get("/usuarios", usuarioController::mostrarTodos, Router.engine);
+        Spark.get("/usuario", usuarioController::crear, Router.engine);
+        Spark.post("/usuario", usuarioController::guardar);
+        Spark.get("/usuario/:id", usuarioController::mostrarUsuario, Router.engine);
+        Spark.post("/usuario/:id", usuarioController::modificar);
+        // Contactos
+        Spark.get("/usuario/:id/contacto", usuarioController::crearContacto, Router.engine);
+        Spark.post("/usuario/:id/contacto", usuarioController::guardarConctacto);
+        Spark.get("/usuario/:idUsuario/contacto/:idContacto", usuarioController::mostrarContacto, Router.engine);
+        Spark.post("/usuario/:idUsuario/contacto/:idContacto", usuarioController::modificarContacto);
 
-        // Mascota controller
+        // Mascotas
         Spark.get("/mascota/:id", mascotaController::mostrar, Router.engine);
 
-        // Rescate controller
+        // Rescates
         Spark.get("/rescate/:token", rescateController::rescateQR, Router.engine);
         Spark.get("/rescate", rescateController::rescateSinQR, Router.engine);
     }

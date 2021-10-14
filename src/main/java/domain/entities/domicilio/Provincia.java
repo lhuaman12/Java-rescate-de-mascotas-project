@@ -16,6 +16,7 @@ public class Provincia {
 
 
     // Constructor
+    public Provincia() {}
 
     public Provincia(int id, String provincia) {
         this.id = id;

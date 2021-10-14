@@ -31,12 +31,14 @@ public class Domicilio {
     @Column
     private double longitud;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "localidad_id", referencedColumnName = "id")
     private Localidad localidad;
 
 
     // Constructor
+    public Domicilio() {}
+
     public Domicilio(
             int id,
             String calle,

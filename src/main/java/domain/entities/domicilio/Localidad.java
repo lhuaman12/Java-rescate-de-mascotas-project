@@ -13,12 +13,13 @@ public class Localidad {
     @Column
     private String localidad;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "municipio_id", referencedColumnName = "id")
     private Municipio municipio;
 
 
     // Constructor
+    public Localidad() {}
 
     public Localidad(int id, String localidad, Municipio municipio) {
         this.id = id;

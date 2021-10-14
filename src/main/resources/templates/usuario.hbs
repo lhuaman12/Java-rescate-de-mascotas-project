@@ -39,11 +39,12 @@
           <h3><u class="underlined-wavy">Datos</u> personales</h3>
           <button type="button" name="button" class="btn">INGRESAR DATOS</button>
         </div>
-        <form class="" action="index.hbs" method="post">
+
+        <form class="" {{#if usuario}} action="/usuario/{{usuario.id}}" method="post" {{else}} action="/usuario" method="post" {{/if}}>
 
           <div class="grid-item">
             <label for="">Nombre*</label>
-            <input type="text" name="" value="" class="text-input">
+            <input type="text" name="nombre" class="text-input" {{#if usuario}} value="{{usuario.nombre}}" {{/if}}>
           </div>
 
           <div class="grid-item">
@@ -53,38 +54,38 @@
 
           <div class="grid-item">
             <label for="">Apellido*</label>
-            <input type="text" name="" value="" class="text-input">
+            <input type="text" name="apellido" class="text-input" {{#if usuario}} value="{{usuario.apellido}}" {{/if}}>
           </div>
 
           <div class="grid-item">
             <label for="">Tipo de documento*</label>
-            <select name="" class="text-input">
-              <option value="">D.N.I. - Documento Nacional de Identidad</option>
-              <option value="">L.C. - Libreta Cívica</option>
-              <option value="">L.E. - Libreta de Enrolamiento</option>
-              <option value="">C.I. - Cédula de Identidad</option>
-              <option value="">Pasaporte</option>
+            <select name="tipoDocumento" class="text-input">
+{{!--             <select name="Tipo de documento" class="text-input" {{#if usuario}} value="{{usuario.tipoDocumento}}" {{/if}}> --}}
+              <option>Seleccionar...</option>
+{{!--               {{#each tiposDocumentos}}
+              <option value={{id}}></option>
+              {{/each}} --}}
             </select>
           </div>
 
           <div class="grid-item">
             <label for="">Número de documento*</label>
-            <input type="text" name="" value="" class="text-input">
+            <input type="text" name="nroDocumento" class="text-input" {{#if usuario}} value="{{usuario.nroDocumento}}" {{/if}}>
           </div>
 
           <div class="grid-item">
             <label for="">Fecha de nacimiento*</label>
-            <input type="date" name="" class="text-input">
+            <input type="date" name="fechaNacimiento" class="text-input">
           </div>
           
           <div class="grid-item">
             <label for="">Calle*</label>
-            <input type="text" name="" value="" class="text-input">
+            <input type="text" name="calle" class="text-input" {{#if usuario}} value="{{usuario.domicilio.calle}}" {{/if}}>
           </div>
 
           <div class="grid-item">
             <label for="">Altura*</label>
-            <input type="text" name="" value=""  class="text-input">
+            <input type="text" name="altura" value=""  class="text-input">
           </div>
 
           <div class="grid-item">
@@ -93,20 +94,19 @@
           </div>
 
           <div class="grid-item">
-            <label for="">Código postal*</label>
-            <input type="text" name="" value="" class="text-input">
+            <label for="">Localidad*</label>
+            <input type="text" name="localidad" class="text-input" {{#if usuario}} value="{{usuario.domicilio.localidad.localidad}}" {{/if}}>
           </div>
 
           <div class="grid-item">
-            <label for="">Localidad*</label>
-            <input type="text" name="" value="" class="text-input">
+            <label for="">Municipio*</label>
+            <input type="text" name="municipio" class="text-input" {{#if usuario}} value="{{usuario.domicilio.localidad.municipio.municipio}}" {{/if}}>
           </div>
 
           <div class="grid-item">
             <label for="">Provincia*</label>
-            <input type="text" name="" value="" class="text-input">
-          </div>  
-            
+            <input type="text" name="provincia" class="text-input" {{#if usuario}} value="{{usuario.domicilio.localidad.municipio.provincia.provincia}}" {{/if}}>
+          </div>
   
             <div class="grid-item">
               <label for="" style="font-size: 12px; color: #8341a2; max-width:150px;padding-right:0px;">Los campos marcados con (*) son obligatorios.</label>
