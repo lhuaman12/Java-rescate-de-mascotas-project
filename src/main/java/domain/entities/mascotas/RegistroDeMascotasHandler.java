@@ -1,3 +1,7 @@
+
+// ToDo: Consultar si este handler sigue teniendo sentido o lo resolvemos desde los Controllers
+
+/*
 package domain.entities.mascotas;
 
 import domain.entities.usuarios.Usuario;
@@ -55,4 +59,5 @@ public final class RegistroDeMascotasHandler {
 
 
 }
+*/
 

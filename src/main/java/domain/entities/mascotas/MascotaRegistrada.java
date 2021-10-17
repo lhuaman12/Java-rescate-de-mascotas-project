@@ -1,63 +1,44 @@
 package domain.entities.mascotas;
 
-import domain.entities.organizaciones.PreguntasONG.Atributo;
+import domain.entities.usuarios.Usuario;
 
-import javax.persistence.Id;
-import java.time.LocalDate;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class MascotaRegistrada extends MascotaBasica {
-    @Id
-    private int id; // TODO: luego de persistir hashear el ID y generar un token
 
+@Entity
+    @DiscriminatorValue("registrada")
+public class MascotaRegistrada extends Mascota {
+
+    @Column
     private String nombre;
 
+    @Column
     private String apodo;
 
-    private LocalDate edadAprox;
+    @Column(columnDefinition = "DATE")
+    private Date fechaNac;
 
-    private String QRPath;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "duenio_id", referencedColumnName = "id")
+    private Usuario duenio;
 
-    private java.time.LocalDate fechaAlta;
-
+    @Column
     private String tokenRescate;
 
+    @Transient
     private List<CaracteristicasONG> caracteristicas;
 
 
-    // constructor
-    public MascotaRegistrada(
-            String nombre,
-            String apodo,
-            TipoMascota tipoMascota,
-            LocalDate edadAproximada,
-            TamanioMascota tamanioMascota,
-            List<CaracteristicasONG> caracteristicas,
-            Boolean tieneDiscapacidad,
-            String descripcionDiscapacidad,
-            Sexo sexo,
-            List<FotoMascota> fotos
-    ) {
-        this.nombre = nombre;
-        this.apodo = apodo;
-        this.tipoMascota = tipoMascota;
-        this.edadAprox = edadAprox;
-        this.tamanioMascota = tamanioMascota;
-        this.tieneDiscapacidad = tieneDiscapacidad;
-        this.descripcionDiscapacidad = descripcionDiscapacidad;
-        this.sexo = sexo;
-        this.fotoMascotas=fotos;
-        this.caracteristicas=caracteristicas;
-
+    // Constructor
+    public MascotaRegistrada() {
+        this.caracteristicas = new ArrayList<>();
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    // Getters and Setters
 
     public String getNombre() {
         return nombre;
@@ -75,28 +56,12 @@ public class MascotaRegistrada extends MascotaBasica {
         this.apodo = apodo;
     }
 
-    public LocalDate getEdadAprox() {
-        return edadAprox;
+    public Date getFechaNac() {
+        return fechaNac;
     }
 
-    public void setEdadAprox(LocalDate edadAprox) {
-        this.edadAprox = edadAprox;
-    }
-
-    public String getQRPath() {
-        return QRPath;
-    }
-
-    public void setQRPath(String QRPath) {
-        this.QRPath = QRPath;
-    }
-
-    public LocalDate getFechaAlta() {
-        return fechaAlta;
-    }
-
-    public void setFechaAlta(LocalDate fechaAlta) {
-        this.fechaAlta = fechaAlta;
+    public void setFechaNac(Date fechaNac) {
+        this.fechaNac = fechaNac;
     }
 
     public String getTokenRescate() {
@@ -113,6 +78,14 @@ public class MascotaRegistrada extends MascotaBasica {
 
     public void setCaracteristicas(List<CaracteristicasONG> caracteristicas) {
         this.caracteristicas = caracteristicas;
+    }
+
+    public Usuario getDuenio() {
+        return duenio;
+    }
+
+    public void setDuenio(Usuario duenio) {
+        this.duenio = duenio;
     }
 }
 
