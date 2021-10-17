@@ -23,10 +23,10 @@ public abstract class Mascota {
     private Organizacion organizacion;
 
     @Enumerated(EnumType.STRING)
-    private Sexo sexo;
+    private TipoMascota tipoMascota;
 
     @Enumerated(EnumType.STRING)
-    private TipoMascota tipoMascota;
+    private Sexo sexo;
 
     @Enumerated(EnumType.STRING)
     private TamanioMascota tamanioMascota;

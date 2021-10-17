@@ -2,10 +2,7 @@ package database;
 
 import db.EntityManagerHelper;
 import domain.entities.domicilio.Domicilio;
-import domain.entities.mascotas.MascotaRegistrada;
-import domain.entities.mascotas.Sexo;
-import domain.entities.mascotas.TamanioMascota;
-import domain.entities.mascotas.TipoMascota;
+import domain.entities.mascotas.*;
 import domain.entities.organizaciones.Organizacion;
 import domain.entities.rescate.RescateConQR;
 import domain.entities.rescate.RescateSinQR;
@@ -230,6 +227,14 @@ public class EntityManagerTest {
         organizacion.setDescripcion("Descripción Organización 3");
         organizacion.setDomicilio(domicilioOrg);
 
+        // Mascota
+        MascotaPerdida mascota = new MascotaPerdida();
+        mascota.setEdadAprox(EdadAproximada.ABUELO);
+        mascota.setTipoMascota(TipoMascota.PERRO);
+        mascota.setSexo(Sexo.MACHO);
+        mascota.setTamanioMascota(TamanioMascota.MEDIANA);
+        mascota.setDateTime(LocalDateTime.now());
+
         // Rescatista
         Usuario rescatista = new Usuario();
         rescatista.setNombre("Pedro");
@@ -249,11 +254,13 @@ public class EntityManagerTest {
         rescateSinQR.setDescripcion("Descripción del estado en que se encontró a la mascota sin QR.");
         rescateSinQR.setLocalDateTime(LocalDateTime.now());
         rescateSinQR.setOrganizacion(organizacion);
+        rescateSinQR.setMascotaPerdida(mascota);
 
         // EntityManager
         EntityManagerHelper.beginTransaction();
         EntityManagerHelper.getEntityManager().persist(domicilioOrg);
         EntityManagerHelper.getEntityManager().persist(organizacion);
+        EntityManagerHelper.getEntityManager().persist(mascota);
         EntityManagerHelper.getEntityManager().persist(rescatista);
         EntityManagerHelper.getEntityManager().persist(domicilio);
         EntityManagerHelper.getEntityManager().persist(rescateSinQR);

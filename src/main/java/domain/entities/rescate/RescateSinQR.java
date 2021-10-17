@@ -13,9 +13,9 @@ public class RescateSinQR extends Rescate {
     @JoinColumn(name = "duenio_id")
     private Usuario duenio;
 
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "mascota_id")
     private MascotaPerdida mascotaPerdida;
-
 
     // Constructor
     public RescateSinQR() {}
