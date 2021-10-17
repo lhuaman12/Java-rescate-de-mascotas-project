@@ -1,5 +1,5 @@
 package domain.entities.usuarios;
 
-public class Voluntario extends Usuario{
+public class Voluntario {
 
 }

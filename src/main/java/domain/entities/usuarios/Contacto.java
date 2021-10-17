@@ -35,7 +35,6 @@ public class Contacto {
 
     // Constructor
     public Contacto() {
-        this.mediosDeNotificacion = new ArrayList<>();
         this.notificaciones = new ArrayList<>();
     }
 
