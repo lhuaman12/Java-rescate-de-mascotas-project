@@ -1,6 +1,6 @@
 package domain.controllers;
 
-import domain.entities.mascotas.MascotaBasica;
+import domain.entities.mascotas.Mascota;
 import domain.repositories.Repositorio;
 import domain.repositories.factories.FactoryRepositorio;
 import spark.ModelAndView;
@@ -11,10 +11,10 @@ import java.util.HashMap;
 
 public class MascotaController {
 
-    private Repositorio<MascotaBasica> repositorio;
+    private Repositorio<Mascota> repositorio;
 
     public MascotaController() {
-        this.repositorio = FactoryRepositorio.get(MascotaBasica.class);
+        this.repositorio = FactoryRepositorio.get(Mascota.class);
     }
 
     public ModelAndView mostrar(Request request, Response response) {
