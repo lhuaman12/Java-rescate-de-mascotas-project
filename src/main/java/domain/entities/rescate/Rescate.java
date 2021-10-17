@@ -8,8 +8,7 @@ import domain.entities.usuarios.Usuario;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Entity
 @Table(name = "rescate")
@@ -22,31 +21,26 @@ public abstract class Rescate {
     private int id;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "organizacion_id")
+    @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
     private Organizacion organizacion;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "rescatista_id")
+    @JoinColumn(name = "rescatista_id", referencedColumnName = "id")
     private Usuario rescatista;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "domicilio_id")
+    @JoinColumn(name = "domicilio_id", referencedColumnName = "id")
     private Domicilio domicilio;            // Lugar en que se encontró la mascota.
 
     @Column
     private String descripcion;             // Descripción del estado en que se encontró la mascota.
-
-    @Transient
-    private List<FotoMascota> fotosMascota;       // Al menos una foto de la mascota perdida.
 
     @Column(columnDefinition = "DATETIME", name="datetime")
     private LocalDateTime localDateTime;
 
 
     // Constructor
-    public Rescate() {
-        this.fotosMascota = new ArrayList<>();
-    }
+    public Rescate() {}
 
 
     // Getters and Setters
@@ -81,14 +75,6 @@ public abstract class Rescate {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public List<FotoMascota> getFotosMascota() {
-        return fotosMascota;
-    }
-
-    public void setFotosMascota(List<FotoMascota> fotosMascota) {
-        this.fotosMascota = fotosMascota;
     }
 
     public LocalDateTime getLocalDateTime() {
