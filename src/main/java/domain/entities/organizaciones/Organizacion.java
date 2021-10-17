@@ -53,7 +53,7 @@ public class Organizacion {
     }
 
     // Constructor
-
+    public Organizacion() {}
 
     public Organizacion(
             int id,
