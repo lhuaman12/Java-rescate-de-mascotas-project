@@ -1,17 +1,13 @@
 package domain.entities.usuarios;
 
 import domain.entities.domicilio.Domicilio;
-import domain.entities.mascotas.CaracteristicasONG;
-import domain.entities.mascotas.MascotaBasica;
 import domain.entities.mascotas.MascotaRegistrada;
-import domain.entities.mascotas.RegistroDeMascotasHandler;
 import domain.entities.publicaciones.PublicacionDeAdopcion;
 import domain.entities.publicaciones.PublicacionIntencionAdopcion;
 import domain.entities.publicaciones.PublicacionRescate;
 import domain.entities.rescate.Rescate;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,15 +40,16 @@ public class Usuario {
     private Domicilio domicilio;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private List<Contacto> contactos;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "login_id")
     private Login login;
 
-    @Transient
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MascotaRegistrada> mascotasRegistradas;
+
     @Transient
     private List<Rescate> rescates;
     @Transient

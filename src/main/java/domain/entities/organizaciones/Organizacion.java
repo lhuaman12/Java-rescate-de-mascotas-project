@@ -4,9 +4,10 @@ import domain.entities.domicilio.Domicilio;
 import domain.entities.mascotas.MascotaRegistrada;
 import domain.entities.organizaciones.Configuraciones.EstandarImagen;
 import domain.entities.organizaciones.PreguntasONG.Atributo;
+import domain.entities.rescate.Rescate;
 
 import javax.persistence.*;
-import java.awt.geom.Point2D;
+import java.util.ArrayList;
 import java.util.List;
 
 @Table
@@ -27,17 +28,11 @@ public class Organizacion {
     @JoinColumn(name = "domicilio_id")
     private Domicilio domicilio;
 
-    @Transient
-    private long latitud;
-
-    @Transient
-    private long longitud;
-
-    @Transient
-    public Point2D.Double coordenadas;
-
-    @Transient
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MascotaRegistrada> mascotasRegistradas;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Rescate> rescates;
 
     @Transient
     private List<Atributo> preguntasRequeridas;
@@ -45,42 +40,16 @@ public class Organizacion {
     @Transient
     private EstandarImagen estandarImagen;
 
-    public void agregarRequerimiento(Atributo atributo){
-        this.preguntasRequeridas.add(atributo);
-    }
-
-    public void agregarCaracteristica(Atributo caracteristicaMascota) {
-    }
 
     // Constructor
-    public Organizacion() {}
-
-    public Organizacion(
-            int id,
-            String nombre,
-            String descripcion,
-            Domicilio domicilio,
-            long latitud,
-            long longitud,
-            Point2D.Double coordenadas,
-            List<MascotaRegistrada> mascotasRegistradas,
-            List<Atributo> preguntasRequeridas,
-            EstandarImagen estandarImagen) {
-
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.domicilio = domicilio;
-        this.latitud = latitud;
-        this.longitud = longitud;
-        this.coordenadas = coordenadas;
-        this.mascotasRegistradas = mascotasRegistradas;
-        this.preguntasRequeridas = preguntasRequeridas;
-        this.estandarImagen = estandarImagen;
+    public Organizacion() {
+        this.mascotasRegistradas = new ArrayList<>();
+        this.rescates = new ArrayList<>();
+        this.preguntasRequeridas = new ArrayList<>();
     }
 
-    // Getters and Setters
 
+    // Getters and Setters
 
     public int getId() {
         return id;
@@ -114,36 +83,20 @@ public class Organizacion {
         this.domicilio = domicilio;
     }
 
-    public long getLatitud() {
-        return latitud;
-    }
-
-    public void setLatitud(long latitud) {
-        this.latitud = latitud;
-    }
-
-    public long getLongitud() {
-        return longitud;
-    }
-
-    public void setLongitud(long longitud) {
-        this.longitud = longitud;
-    }
-
-    public Point2D.Double getCoordenadas() {
-        return coordenadas;
-    }
-
-    public void setCoordenadas(Point2D.Double coordenadas) {
-        this.coordenadas = coordenadas;
-    }
-
     public List<MascotaRegistrada> getMascotasRegistradas() {
         return mascotasRegistradas;
     }
 
     public void setMascotasRegistradas(List<MascotaRegistrada> mascotasRegistradas) {
         this.mascotasRegistradas = mascotasRegistradas;
+    }
+
+    public List<Rescate> getRescates() {
+        return rescates;
+    }
+
+    public void setRescates(List<Rescate> rescates) {
+        this.rescates = rescates;
     }
 
     public List<Atributo> getPreguntasRequeridas() {
@@ -160,5 +113,14 @@ public class Organizacion {
 
     public void setEstandarImagen(EstandarImagen estandarImagen) {
         this.estandarImagen = estandarImagen;
+    }
+
+
+    // Methods
+    public void agregarRequerimiento(Atributo atributo){
+        this.preguntasRequeridas.add(atributo);
+    }
+
+    public void agregarCaracteristica(Atributo caracteristicaMascota) {
     }
 }
