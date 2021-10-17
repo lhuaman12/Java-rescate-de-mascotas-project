@@ -21,7 +21,7 @@ public abstract class Rescate {
     @GeneratedValue
     private int id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "organizacion_id")
     private Organizacion organizacion;
 
