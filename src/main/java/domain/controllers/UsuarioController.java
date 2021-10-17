@@ -114,11 +114,6 @@ public class UsuarioController {
         usuario.setContactos(contacto);
         this.repositorio.modificar(usuario);
 
-        /*
-        UsuarioAlternativo usuarioAlternativo = this.repositorio.buscar(new Integer(request.params("id")));
-        usuarioAlternativo.setContactos(contacto);
-        */
-
         response.redirect("/usuarios");
         return response;
     }
