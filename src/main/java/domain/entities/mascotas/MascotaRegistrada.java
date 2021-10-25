@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @Entity
-    @DiscriminatorValue("registrada")
+@DiscriminatorValue("registrada")
 public class MascotaRegistrada extends Mascota {
 
     @Column

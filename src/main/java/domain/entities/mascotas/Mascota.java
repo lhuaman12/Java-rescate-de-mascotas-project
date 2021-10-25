@@ -18,6 +18,9 @@ public abstract class Mascota {
     @GeneratedValue
     private int id;
 
+    @Column
+    private String nombrecillo;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
     private Organizacion organizacion;
@@ -99,6 +102,14 @@ public abstract class Mascota {
 
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public String getNombrecillo() {
+        return nombrecillo;
+    }
+
+    public void setNombrecillo(String nombrecillo) {
+        this.nombrecillo = nombrecillo;
     }
 
     // Methods

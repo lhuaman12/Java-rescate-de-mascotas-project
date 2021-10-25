@@ -40,16 +40,17 @@
           <h3><u class="underlined-wavy">Mas</u>cota perdida</h3>
           <button type="button" name="button" class="btn">INGRESAR MASCOTA PERDIDA</button>
         </div>
-        <form class="" action="index.hbs" method="post">
+
+        <form class="" {{#if rescate}} action="/rescate/{{rescate.id}}" method="post" {{else}} action="/rescate" method="post" {{/if}}>
+
+
           <div class="grid-item">
             <label for="">Mascota*</label>
             <div class="radio-buttons">
-
               <div class="radio-item">
                 <input type="radio" name="tipo-mascotaRegistrada" value="">
                 <label for="">Gato</label>
               </div>
-
               <div class="radio-item">
                 <input type="radio" name="tipo-mascotaRegistrada" value="">
                 <label for="">Perro</label>
@@ -60,12 +61,10 @@
           <div class="grid-item">
             <label for="">Sexo*</label>
             <div class="radio-buttons">
-
               <div class="radio-item">
                 <input type="radio" name="tipo-mascotaRegistrada" value="">
                 <label for="">Hembra</label>
               </div>
-
               <div class="radio-item">
                 <input type="radio" name="tipo-mascotaRegistrada" value="">
                 <label for="">Macho</label>

@@ -39,16 +39,16 @@
           <h3><u class="underlined-wavy">Mas</u>cotas</h3>
           <button type="button" name="button" class="btn">INGRESAR MASCOTA</button>
         </div>
-        <form class="" action="index.hbs" method="post">
+
+        <form class="" {{#if mascota}} action="/mascota/{{mascota.id}}" method="post" {{else}} action="/mascota" method="post" {{/if}}>
+
           <div class="grid-item">
             <label for="">Mascota*</label>
             <div class="radio-buttons">
-
               <div class="radio-item">
                 <input type="radio" name="tipo-mascotaRegistrada" value="">
                 <label for="">Gato</label>
               </div>
-
               <div class="radio-item">
                 <input type="radio" name="tipo-mascotaRegistrada" value="">
                 <label for="">Perro</label>
@@ -60,12 +60,12 @@
 
           <div class="grid-item">
             <label for="">Nombre*</label>
-            <input type="text" name="" value="" class="text-input" required>
+            <input type="text" name="nombrecillo" class="text-input" required {{#if mascota}} value="{{mascota.nombrecillo}}" {{/if}}>
           </div>
 
           <div class="grid-item">
             <label for="">Apodo*</label>
-            <input type="text" name="" value="" class="text-input" required>
+            <input type="text" name="apodo" class="text-input" required {{#if mascota}} value="{{mascota.apodo}}" {{/if}}>
           </div>
 
           <div class="grid-item">
