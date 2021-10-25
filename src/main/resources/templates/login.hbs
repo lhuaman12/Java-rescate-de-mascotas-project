@@ -1,39 +1,73 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://kit.fontawesome.com/27517fada0.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="/js/generales.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/minty.css">
     <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/estilos.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@700&display=swap" rel="stylesheet">
-    <title>Rescate de Patitas ● Login</title>
+    <link rel="icon" href="img/Logo.png">
+    <link rel="stylesheet" href="/css/prendas.estilos.css">
+    <title>¿Que me pongo?</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Simple Login Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+    	.login-form {
+    		width: 340px;
+        	margin: 50px auto;
+    	}
+        .login-form form {
+        	margin-bottom: 15px;
+            background: #f7f7f7;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+        }
+        .login-form h2 {
+            margin: 0 0 15px;
+        }
+        .form-control, .btn {
+            min-height: 38px;
+            border-radius: 2px;
+        }
+        .btn {
+            font-size: 15px;
+            font-weight: bold;
+        }
+    </style>
   </head>
-  <body>
-
-    <!-- HEADER -->
-    <header>
-    </header>
-
-    <!-- MAIN CONTAINER -->
-    <div class="main-container">
-      <br><br>
-      <div align="center">
-        <form action="/login" method="post" class="form-">
-          <div class="grid-item">
-            <label>Ingresá tu usuario</label>
-            <input type="text" name="usuario" value="" class="text-input">
-          </div>
-          <div class="grid-item">
-            <label>Contraseña</label>
-            <input type="password" name="password" value="" class="text-input">
-          </div>
-          <div class="grid-item">
-            <input type="submit" name="" value="INGRESAR" class="btn btn-submit">
-          </div>
-        </form>
+     <body>
+      <div class = "container-login100" style="background-image: url('img/bg-01.jpg');">
+      <div class="login-form">
+          <form action="/login" method="post">
+              <h2 class="text-center">Iniciar sesión</h2>
+              <div class="form-group">
+                  <input type="text" name="username" class="form-control" placeholder="Usuario" required="required">
+              </div>
+              <div class="form-group">
+                  <input type="password" name="password" class="form-control" placeholder="Contraseña" required="required">
+              </div>
+              <div class="form-group">
+                  <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
+              </div>
+              <div class="clearfix">
+                  <label class="pull-left checkbox-inline"><input type="checkbox"> Recordarme</label>
+                  <a href="#" class="pull-right">¿Olvidó su contraseña?</a>
+              </div>
+          </form>
+          <p class="text-center"><a href="/signup">Crear una cuenta</a></p>
       </div>
-    </div>
-    <!-- END MAIN CONTAINER -->
-  </body>
-</html>
+      </div>
+    </body>
+    <script>
+    </script>
+  </html>
