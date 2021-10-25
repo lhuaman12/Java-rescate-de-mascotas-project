@@ -42,8 +42,7 @@
 
 
         <form class=""
-        {{#if contacto}} action="/usuario/{{usuario.id}}/contacto/{{contacto.id}}" method="post"
-        {{else}} action="/usuario/{{usuario.id}}/contacto" method="post" {{/if}}>
+        {{#if contacto}} action="/usuario/{{usuario.id}}/contacto/{{contacto.id}}" method="post" {{else}} action="/usuario/{{usuario.id}}/contacto" method="post" {{/if}}>
 
           <div class="grid-item">
             <label for="">Nombre*</label>
@@ -62,12 +61,12 @@
 
           <div class="grid-item">
             <label for="phone">Teléfono</label>
-            <input type="text" name="telefono" class="text-input" placeholder="1234567890" pattern="[0-9]{10}" required {{#if contacto}} value="{{contacto.telefono}}" {{/if}}>
+            <input type="text" name="telefono" class="text-input" placeholder="1234567890" pattern="[0-9]{10}" {{#if contacto}} value="{{contacto.telefono}}" {{/if}}>
           </div>
 
           <div class="grid-item">
             <label for="email">E-Mail</label>
-            <input type="email" name="email" placeholder="email@example.com" class="text-input" required {{#if contacto}} value="{{contacto.email}}" {{/if}}>
+            <input type="email" name="email" placeholder="email@example.com" class="text-input" {{#if contacto}} value="{{contacto.email}}" {{/if}}>
           </div>
 
           <div class="grid-item">

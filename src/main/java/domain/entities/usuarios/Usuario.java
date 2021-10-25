@@ -214,4 +214,8 @@ public class Usuario {
     public void setPublicacionesIntAdopcion(List<PublicacionIntencionAdopcion> publicacionesIntAdopcion) {
         this.publicacionesIntAdopcion = publicacionesIntAdopcion;
     }
+
+    // Methods
+
+
 }

@@ -30,34 +30,34 @@ public class UsuarioController {
         return new ModelAndView(new HashMap<>(), "usuario.hbs");
     }
 
-
     public ModelAndView mostrarTodos(Request request, Response response) {
-        List<Usuario> usuariosAlternativos = this.repositorio.buscarTodos();
-        Map<String, Object> parametros = new HashMap<>();
-        parametros.put("usuarios", usuariosAlternativos);
-        return new ModelAndView(parametros, "logins.hbs");
+        List<Usuario> usuarios = this.repositorio.buscarTodos();
+        Map<String, Object> params = new HashMap<>();
+        params.put("usuarios", usuarios);
+        return new ModelAndView(params, "logins.hbs");
 
     }
 
     public ModelAndView mostrarUsuario(Request request, Response response) {
         Usuario usuario = this.repositorio.buscar(new Integer(request.params("id")));
-        Map<String, Object> parametros = new HashMap<>();
-        parametros.put("usuario", usuario);
+        Map<String, Object> params = new HashMap<>();
+        params.put("usuario", usuario);
 
-        return new ModelAndView(parametros, "usuario.hbs");
+        return new ModelAndView(params, "usuario.hbs");
     }
 
     public Response modificar(Request request, Response response) {
 
+        String id = request.params("id");
         String nombre = request.queryParams("nombre");
         String apellido = request.queryParams("apellido");
 
-        Usuario usuario = this.repositorio.buscar(new Integer(request.params("id")));
+        Usuario usuario = this.repositorio.buscar(new Integer(id));
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         this.repositorio.modificar(usuario);
 
-        response.redirect("/logins");
+        response.redirect("/usuarios");
         return response;
     }
 
@@ -94,7 +94,11 @@ public class UsuarioController {
     }
 
     public ModelAndView crearContacto(Request request, Response response) {
-        return new ModelAndView(new HashMap<>(), "contacto.hbs");
+        Usuario usuario = this.repositorio.buscar(new Integer(request.params("id")));
+        Map<String, Object> params = new HashMap<>();
+        params.put("usuario", usuario);
+
+        return new ModelAndView(params, "contacto.hbs");
     }
 
     public Response guardarConctacto(Request request, Response response) {
@@ -110,21 +114,17 @@ public class UsuarioController {
         contacto.setTelefono(telefono);
         contacto.setEmail(email);
 
-        Usuario usuario = this.repositorio.buscar(new Integer(request.params("id")));
+        String id = request.params("id");
+        Usuario usuario = this.repositorio.buscar(new Integer(id));
         usuario.setContactos(contacto);
         this.repositorio.modificar(usuario);
 
-        response.redirect("/usuarios");
+        response.redirect("/usuario/" + id + "/contactos");
         return response;
     }
 
     public ModelAndView mostrarContacto(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
-
-/*
-        UsuarioAlternativo usuarioAlternativo = this.repositorio.buscar(new Integer(request.params("id")));
-        parametros.put("usuario", usuarioAlternativo);
-*/
 
         Contacto contacto = this.repositorioContacto.buscar(new Integer(request.params("idContacto")));
         parametros.put("contacto", contacto);
@@ -151,4 +151,16 @@ public class UsuarioController {
         response.redirect("/usuarios");
         return response;
     }
+
+    public ModelAndView mostrarContactos(Request request, Response response) {
+
+        Usuario usuario = this.repositorio.buscar(new Integer(request.params("id")));
+        List<Contacto> contactos = usuario.getContactos();
+        Map<String, Object> params = new HashMap<>();
+        params.put("usuario", usuario);
+        params.put("contactos", contactos);
+
+        return new ModelAndView(params, "contactos.hbs");
+    }
+
 }

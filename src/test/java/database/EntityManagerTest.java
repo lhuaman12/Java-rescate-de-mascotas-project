@@ -6,6 +6,7 @@ import domain.entities.mascotas.*;
 import domain.entities.organizaciones.Organizacion;
 import domain.entities.rescate.RescateConQR;
 import domain.entities.rescate.RescateSinQR;
+import domain.entities.usuarios.Contacto;
 import domain.entities.usuarios.Login;
 import domain.entities.usuarios.TipoDocumento;
 import domain.entities.usuarios.Usuario;
@@ -40,6 +41,22 @@ public class EntityManagerTest {
         Assert.assertEquals("test", login.getUsername());
     }
 
+    // Contacto
+    @Test
+    public void persistirContactoTest() {
+
+        // Contacto
+        Contacto contacto = new Contacto();
+        contacto.setNombre("Nombre contacto 1");
+        contacto.setApellido("Apellido contacto 1");
+        contacto.setTelefono("1234567890");
+        contacto.setEmail("contacto1@mail.com");
+
+        // EntityManager
+        EntityManagerHelper.beginTransaction();
+        EntityManagerHelper.getEntityManager().persist(contacto);
+        EntityManagerHelper.commit();
+    }
 
     // Usuario
     @Test
@@ -55,6 +72,13 @@ public class EntityManagerTest {
         domicilio.setCalle("Calle Usuario 1");
         domicilio.setAltura(1234);
 
+        // Contacto
+        Contacto contacto = new Contacto();
+        contacto.setNombre("Nombre contacto Juan Pérez");
+        contacto.setApellido("Apellido contacto Juan Pérez");
+        contacto.setTelefono("1144448888");
+        contacto.setEmail("contactoDeJuanPérez@mail.com");
+
         // Usuario
         Usuario usuario = new Usuario();
         usuario.setNombre("Juan");
@@ -64,6 +88,7 @@ public class EntityManagerTest {
         usuario.setFechaNacimiento(Date.from(Instant.now()));
         usuario.setLogin(login);
         usuario.setDomicilio(domicilio);
+        usuario.setContactos(contacto);
 
         // EntityManager
         EntityManagerHelper.beginTransaction();
@@ -155,6 +180,14 @@ public class EntityManagerTest {
         EntityManagerHelper.commit();
 
     }
+
+    // Recuperar mascota registrada
+    @Test
+    public void recuperarMascotaRegistradaTest() {
+        MascotaRegistrada mascotaRegistrada = (MascotaRegistrada) EntityManagerHelper.createQuery("from Mascota where id = 2").getSingleResult();
+        Assert.assertEquals("Nombre Firulais", mascotaRegistrada.getNombre());
+    }
+
 
     // Rescate con QR
     @Test
