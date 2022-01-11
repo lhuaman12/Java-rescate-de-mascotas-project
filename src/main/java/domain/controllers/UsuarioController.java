@@ -25,9 +25,47 @@ public class UsuarioController {
         this.repositorio = FactoryRepositorio.get(Usuario.class);
         this.repositorioContacto = FactoryRepositorio.get(Contacto.class);
     }
-
+    //crear usuario
     public ModelAndView crear(Request request, Response response) {
         return new ModelAndView(new HashMap<>(), "usuario.hbs");
+    }
+    //guardar el usuario
+    public Response guardar(Request request, Response response) {
+
+        // datos usuario
+        Usuario usuario = new Usuario();
+        Localidad localidadTemp = new Localidad();
+        Municipio municipioTemp = new Municipio();
+        Provincia provinciaTemp = new Provincia();
+        Domicilio domicilio = new Domicilio();
+        // contacto usuario
+        Contacto contacto = new Contacto();
+
+
+        String nombre = request.queryParams("nombre");
+        String apellido = request.queryParams("apellido");
+        String calle = request.queryParams("calle");
+        String localidad = request.queryParams("localidad");
+        String municipio = request.queryParams("municipio");
+        String provincia = request.queryParams("provincia");
+
+        usuario.setNombre(nombre);
+        usuario.setApellido(apellido);
+        domicilio.setCalle(calle);
+        localidadTemp.setLocalidad(localidad);
+        municipioTemp.setMunicipio(municipio);
+        provinciaTemp.setProvincia(provincia);
+
+        municipioTemp.setProvincia(provinciaTemp);
+        localidadTemp.setMunicipio(municipioTemp);
+        domicilio.setLocalidad(localidadTemp);
+        usuario.setDomicilio(domicilio);
+
+        this.repositorio.agregar(usuario);
+
+        //response.redirect("/usuarios");
+        return response;
+
     }
 
     public ModelAndView mostrarTodos(Request request, Response response) {
@@ -59,38 +97,6 @@ public class UsuarioController {
 
         response.redirect("/usuarios");
         return response;
-    }
-
-    public Response guardar(Request request, Response response) {
-        Usuario usuario = new Usuario();
-        Domicilio domicilio = new Domicilio();
-        Localidad localidadTemp = new Localidad();
-        Municipio municipioTemp = new Municipio();
-        Provincia provinciaTemp = new Provincia();
-
-        String nombre = request.queryParams("nombre");
-        String apellido = request.queryParams("apellido");
-        String calle = request.queryParams("calle");
-        String localidad = request.queryParams("localidad");
-        String municipio = request.queryParams("municipio");
-        String provincia = request.queryParams("provincia");
-
-        usuario.setNombre(nombre);
-        usuario.setApellido(apellido);
-        domicilio.setCalle(calle);
-        localidadTemp.setLocalidad(localidad);
-        municipioTemp.setMunicipio(municipio);
-        provinciaTemp.setProvincia(provincia);
-
-        municipioTemp.setProvincia(provinciaTemp);
-        localidadTemp.setMunicipio(municipioTemp);
-        domicilio.setLocalidad(localidadTemp);
-        usuario.setDomicilio(domicilio);
-        this.repositorio.agregar(usuario);
-
-        response.redirect("/usuarios");
-        return response;
-
     }
 
     public ModelAndView crearContacto(Request request, Response response) {
@@ -164,3 +170,4 @@ public class UsuarioController {
     }
 
 }
+

@@ -68,6 +68,10 @@ public class Router {
         Spark.get("/rescate/:token", rescateController::rescateQR, Router.engine);
         Spark.get("/rescate", rescateController::rescateSinQR, Router.engine);
         Spark.get("/rescate/:id", rescateController::mostrarRescateSinQR, Router.engine);
+
+        // Publicaciones de mascotas perdidas
+
+
     }
 }
 

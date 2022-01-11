@@ -26,9 +26,10 @@ public class Contacto {
     @Column
     private String email;
 
-    @Transient // por ahora solo un medio de notificacion, segun lo charlado con el ayudante era mejor evitar varios medios al mismo tiempo
+    @Transient // un solo medio
     private MedioDeNotificacion mediosDeNotificacion;
 
+    // notificaciones de trazabilidad
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Notificacion> notificaciones;
 
