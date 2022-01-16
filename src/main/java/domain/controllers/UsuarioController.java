@@ -1,10 +1,10 @@
 package domain.controllers;
 
 import domain.entities.domicilio.Domicilio;
-import domain.entities.domicilio.Localidad;
 import domain.entities.domicilio.Municipio;
 import domain.entities.domicilio.Provincia;
 import domain.entities.usuarios.Contacto;
+import domain.entities.usuarios.MedioDeNotificacion;
 import domain.entities.usuarios.Usuario;
 import domain.repositories.Repositorio;
 import domain.repositories.factories.FactoryRepositorio;
@@ -32,39 +32,98 @@ public class UsuarioController {
     //guardar el usuario
     public Response guardar(Request request, Response response) {
 
-        // datos usuario
+        System.out.println(request.queryParams());
+        // System.out.println(request.queryParams("registrar_ok"));
+
+        // instanciamiento de datos usuario,contacto
         Usuario usuario = new Usuario();
-        Localidad localidadTemp = new Localidad();
         Municipio municipioTemp = new Municipio();
         Provincia provinciaTemp = new Provincia();
         Domicilio domicilio = new Domicilio();
-        // contacto usuario
+
         Contacto contacto = new Contacto();
 
-
+        //Usuario values
         String nombre = request.queryParams("nombre");
         String apellido = request.queryParams("apellido");
         String calle = request.queryParams("calle");
-        String localidad = request.queryParams("localidad");
         String municipio = request.queryParams("municipio");
         String provincia = request.queryParams("provincia");
+        String tipoDeDocumento = request.queryParams("tipo_de_doc");
+        System.out.println(tipoDeDocumento);
+        String nro_documento = request.queryParams("nro_documento");
+        String codigoPostal = request.queryParams("codigo_postal");
 
+        //String fecha_de_nacimiento = request.queryParams("fechaNacimiento"); Tipo?
+
+
+        // Contacto values
+        String nombre_contacto = request.queryParams("nombre_contacto");
+        String apellido_contacto = request.queryParams("apellido_contacto");
+        String tel_contacto = request.queryParams("tel_contacto");
+        String email_contacto = request.queryParams("email_contacto");
+        String medio_notif = request.queryParams("medio_notif");
+
+        //asignacion
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
+        usuario.setNroDocumento(nro_documento);
+
+        usuario.agregarContacto(contacto);
+
         domicilio.setCalle(calle);
-        localidadTemp.setLocalidad(localidad);
-        municipioTemp.setMunicipio(municipio);
-        provinciaTemp.setProvincia(provincia);
+        domicilio.setCodPostal(codigoPostal);
+        municipioTemp.setNombre(municipio);
+        provinciaTemp.setNombre(provincia);
 
         municipioTemp.setProvincia(provinciaTemp);
-        localidadTemp.setMunicipio(municipioTemp);
-        domicilio.setLocalidad(localidadTemp);
         usuario.setDomicilio(domicilio);
+        domicilio.setMunicipio(municipioTemp);
+
+        contacto.setNombre(nombre_contacto);
+        contacto.setApellido(apellido_contacto);
+        contacto.setEmail(email_contacto);
+        contacto.setTelefono(tel_contacto);
+
+        System.out.println(medio_notif);
+        switch(medio_notif){
+            case "Whatsapp":
+                contacto.setMedioDeNotificacion(MedioDeNotificacion.WHATSAPP);
+                break;
+            case "SMS":
+                contacto.setMedioDeNotificacion(MedioDeNotificacion.SMS);
+                break;
+            case "email":
+                contacto.setMedioDeNotificacion(MedioDeNotificacion.EMAIL);
+                break;
+            default:
+                response.status(404);
+                response.body("Error al cargar contacto");
+                return response;
+        }
+
+
 
         this.repositorio.agregar(usuario);
 
-        //response.redirect("/usuarios");
+
+        response.redirect("/usuarios");
         return response;
+
+
+        /*
+        if(request.queryParams("registrar_ok")=="registrar_ok"){
+
+        }
+
+        // contacto usuario
+        //Contacto contacto = new Contacto();
+
+        response.redirect("/usuarios");
+        return response;
+
+
+         */
 
     }
 

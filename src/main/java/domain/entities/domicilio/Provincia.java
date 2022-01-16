@@ -12,15 +12,15 @@ public class Provincia {
     private int id;
 
     @Column
-    private String provincia;
+    private String nombre;
 
 
     // Constructor
     public Provincia() {}
 
-    public Provincia(int id, String provincia) {
+    public Provincia(int id, String nombre) {
         this.id = id;
-        this.provincia = provincia;
+        this.nombre = nombre;
     }
 
 
@@ -34,12 +34,12 @@ public class Provincia {
         this.id = id;
     }
 
-    public String getProvincia() {
-        return provincia;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setProvincia(String provincia) {
-        this.provincia = provincia;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
 }

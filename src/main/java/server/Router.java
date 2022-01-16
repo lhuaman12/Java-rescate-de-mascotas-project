@@ -27,7 +27,7 @@ public class Router {
         Spark.staticFileLocation("/public");
         Router.configure();
     }
-
+    //TODO: agregar partials para reutilizar plantillas
     private static void configure() {
         LoginController loginController = new LoginController();
         AuthMiddleware authMiddleware = new AuthMiddleware();

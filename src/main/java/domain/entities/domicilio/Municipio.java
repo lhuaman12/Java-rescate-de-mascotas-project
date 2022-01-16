@@ -11,7 +11,7 @@ public class Municipio {
     private int id;
 
     @Column
-    private String municipio;
+    private String nombre;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "provincia_id", referencedColumnName = "id")
@@ -23,7 +23,7 @@ public class Municipio {
 
     public Municipio(int id, String municipio, Provincia provincia) {
         this.id = id;
-        this.municipio = municipio;
+        this.nombre = municipio;
         this.provincia = provincia;
     }
 
@@ -38,12 +38,12 @@ public class Municipio {
         this.id = id;
     }
 
-    public String getMunicipio() {
-        return municipio;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setMunicipio(String municipio) {
-        this.municipio = municipio;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public Provincia getProvincia() {

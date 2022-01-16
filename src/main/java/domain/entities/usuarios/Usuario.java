@@ -100,6 +100,11 @@ public class Usuario {
         this.publicacionesIntAdopcion = new ArrayList<>();
     }
 
+    public void agregarContacto(Contacto contacto){
+        this.contactos.add(contacto);
+    }
+
+
 
     // Getters and Setters
 
@@ -214,8 +219,5 @@ public class Usuario {
     public void setPublicacionesIntAdopcion(List<PublicacionIntencionAdopcion> publicacionesIntAdopcion) {
         this.publicacionesIntAdopcion = publicacionesIntAdopcion;
     }
-
-    // Methods
-
 
 }

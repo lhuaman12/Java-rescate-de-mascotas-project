@@ -1,6 +1,8 @@
 package domain.entities.usuarios;
 
 
+import converters.MedioDeComunicacionAttributeConverter;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +28,10 @@ public class Contacto {
     @Column
     private String email;
 
-    @Transient // un solo medio
-    private MedioDeNotificacion mediosDeNotificacion;
+    //@Transient
+    //@Column(columnDefinition = "String")
+    @Convert( converter = MedioDeComunicacionAttributeConverter.class)
+    private MedioDeNotificacion medioDeNotificacion;
 
     // notificaciones de trazabilidad
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -104,8 +108,8 @@ public class Contacto {
         this.email = email;
     }
 
-    public MedioDeNotificacion getMediosDeNotificacion() {
-        return mediosDeNotificacion;
+    public MedioDeNotificacion getMedioDeNotificacion() {
+        return medioDeNotificacion;
     }
 
     public List<Notificacion> getNotificaciones() {
@@ -113,8 +117,8 @@ public class Contacto {
     }
 
     // ToDo
-    public void setMediosDeNotificacion(MedioDeNotificacion mediosDeNotificacion) {
-        this.mediosDeNotificacion = mediosDeNotificacion;
+    public void setMedioDeNotificacion(MedioDeNotificacion medioDeNotificacion) {
+        this.medioDeNotificacion = medioDeNotificacion;
     }
 
     // ToDo

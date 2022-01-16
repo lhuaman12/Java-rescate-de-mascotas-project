@@ -31,14 +31,28 @@ public class Domicilio {
     @Column
     private double longitud;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    public Municipio getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(Municipio municipio) {
+        this.municipio = municipio;
+    }
+
+    @OneToOne(cascade={CascadeType.ALL})
+    @JoinColumn(name = "municipio_id")
+    private Municipio municipio;
+
+    /*@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "localidad_id", referencedColumnName = "id")
     private Localidad localidad;
+    */
 
 
     // Constructor
-    public Domicilio() {}
+    //public Domicilio() {}
 
+    /*
     public Domicilio(
             int id,
             String calle,
@@ -60,7 +74,7 @@ public class Domicilio {
         this.longitud = longitud;
         this.localidad = localidad;
     }
-
+    */
 
     // Getters and Setters
 
@@ -127,7 +141,7 @@ public class Domicilio {
     public void setLongitud(double longitud) {
         this.longitud = longitud;
     }
-
+    /*
     public Localidad getLocalidad() {
         return localidad;
     }
@@ -135,7 +149,7 @@ public class Domicilio {
     public void setLocalidad(Localidad localidad) {
         this.localidad = localidad;
     }
-
+    */
     //
 
 }

@@ -47,7 +47,7 @@ public class MensajeMascotaPerdida implements Notificable {
     @Override
     public String destinatario() {
         String destinatario;
-        switch(contacto.getMediosDeNotificacion()){
+        switch(contacto.getMedioDeNotificacion()){
             case EMAIL: destinatario= contacto.getEmail();break;
             case SMS: destinatario=contacto.getTelefono();break;
             case WHATSAPP: destinatario= contacto.getTelefono();break;
