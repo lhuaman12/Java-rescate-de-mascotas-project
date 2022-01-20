@@ -1,5 +1,6 @@
 package domain.entities.usuarios;
 
+import converters.TipoDeDocumentoAttributeConverter;
 import domain.entities.domicilio.Domicilio;
 import domain.entities.mascotas.MascotaRegistrada;
 import domain.entities.publicaciones.PublicacionDeAdopcion;
@@ -8,14 +9,14 @@ import domain.entities.publicaciones.PublicacionRescate;
 import domain.entities.rescate.Rescate;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "usuario")
 public class Usuario {
-
+        //TODO: agregar roles
     @Id
     @GeneratedValue
     private int id;
@@ -27,9 +28,10 @@ public class Usuario {
     private String apellido;
 
     @Column(columnDefinition = "DATE")
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
 
-    @Enumerated(EnumType.STRING)
+    //@Enumerated(EnumType.STRING)
+    @Convert(converter = TipoDeDocumentoAttributeConverter.class)
     private TipoDocumento tipoDocumento;
 
     @Column
@@ -76,7 +78,7 @@ public class Usuario {
             int id,
             String nombre,
             String apellido,
-            Date fechaNacimiento,
+            LocalDate fechaNacimiento,
             TipoDocumento tipoDocumento,
             String nroDocumento,
             Domicilio domicilio,
@@ -132,11 +134,11 @@ public class Usuario {
         this.apellido = apellido;
     }
 
-    public Date getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

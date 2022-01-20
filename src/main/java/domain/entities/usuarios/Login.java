@@ -1,6 +1,7 @@
 package domain.entities.usuarios;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,16 +27,20 @@ public class Login {
     private int loginFailCounter;
 
     @Column(columnDefinition = "DATE")
-    private Date passwordLastSet;
+    private LocalDate passwordLastSet;
 
     @Column(columnDefinition = "DATE")
-    private Date dateCreated;
+    private LocalDate dateCreated;
 
     @Column
     private char status;
 
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Password> passwords;       // Password history
+    private List<PasswordHistory> passwords;       // Password history
+
+    @Column
+    private Usuario usuario;
 
 
     // Constructor
@@ -48,8 +53,8 @@ public class Login {
                  String password,
                  Date lastSuccessLogin,
                  int loginFailCounter,
-                 Date passwordLastSet,
-                 Date dateCreated,
+                 LocalDate passwordLastSet,
+                 LocalDate dateCreated,
                  char status) {
 
         this.username = username;
@@ -84,7 +89,7 @@ public class Login {
     }
 
     // ToDo
-    public void setPasswords(List<Password> passwords) {
+    public void setPasswords(List<PasswordHistory> passwords) {
         this.passwords = passwords;
     }
 
@@ -104,19 +109,19 @@ public class Login {
         this.loginFailCounter = loginFailCounter;
     }
 
-    public Date getPasswordLastSet() {
+    public LocalDate getPasswordLastSet() {
         return passwordLastSet;
     }
 
-    public void setPasswordLastSet(Date passwordLastSet) {
+    public void setPasswordLastSet(LocalDate passwordLastSet) {
         this.passwordLastSet = passwordLastSet;
     }
 
-    public Date getDateCreated() {
+    public LocalDate getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(LocalDate dateCreated) {
         this.dateCreated = dateCreated;
     }
 
@@ -128,7 +133,7 @@ public class Login {
         this.status = status;
     }
 
-    public List<Password> getPasswords() {
+    public List<PasswordHistory> getPasswords() {
         return passwords;
     }
 

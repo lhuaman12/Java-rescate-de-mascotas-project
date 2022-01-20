@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "password_history")
-public class Password {
+public class PasswordHistory {
 
     @Id
     @GeneratedValue

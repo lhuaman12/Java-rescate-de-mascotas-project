@@ -10,25 +10,29 @@ public class MedioDeComunicacionAttributeConverter implements AttributeConverter
 
     @Override
     public String convertToDatabaseColumn(MedioDeNotificacion medioDeNotificacion){
-        if(medioDeNotificacion == MedioDeNotificacion.EMAIL)
-            return "email";
 
-        else if (medioDeNotificacion == MedioDeNotificacion.SMS)
-            return "SMS";
-        else if (medioDeNotificacion == MedioDeNotificacion.WHATSAPP)
-            return "WhatsApp";
+        switch(medioDeNotificacion){
+            case EMAIL:
+                return "email";
+            case SMS:
+                return "SMS";
+            case WHATSAPP:
+                return "WhatsApp";
+        }
 
         return null;
     }
 
     @Override
     public MedioDeNotificacion convertToEntityAttribute(String s) {
-        if(s == "email")
-            return MedioDeNotificacion.EMAIL;
-        else if (s == "SMS")
-            return MedioDeNotificacion.SMS;
-        else if (s == "WhatsApp")
-            return MedioDeNotificacion.WHATSAPP;
+        switch(s){
+            case "email":
+                return MedioDeNotificacion.EMAIL;
+            case "SMS":
+                return MedioDeNotificacion.SMS;
+            case "WhatsApp":
+                return MedioDeNotificacion.WHATSAPP;
+        }
         return null;
     }
 }

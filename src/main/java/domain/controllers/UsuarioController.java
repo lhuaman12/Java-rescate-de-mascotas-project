@@ -5,13 +5,19 @@ import domain.entities.domicilio.Municipio;
 import domain.entities.domicilio.Provincia;
 import domain.entities.usuarios.Contacto;
 import domain.entities.usuarios.MedioDeNotificacion;
+import domain.entities.usuarios.TipoDocumento;
 import domain.entities.usuarios.Usuario;
 import domain.repositories.Repositorio;
 import domain.repositories.factories.FactoryRepositorio;
+import org.uqbarproject.jpa.java8.extras.convert.LocalDateTimeConverter;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import javax.swing.plaf.synth.SynthTextAreaUI;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,22 +26,24 @@ public class UsuarioController {
 
     private Repositorio<Usuario> repositorio;
     private Repositorio<Contacto> repositorioContacto;
+    //private Repositorio<Cuenta> repositorioCuenta;
+
 
     public UsuarioController() {
         this.repositorio = FactoryRepositorio.get(Usuario.class);
         this.repositorioContacto = FactoryRepositorio.get(Contacto.class);
+        //this.repositorioCuenta = FactoryRepositorio.get(Cuenta.class);
     }
-    //crear usuario
+    // Vista crear usuario
     public ModelAndView crear(Request request, Response response) {
         return new ModelAndView(new HashMap<>(), "usuario.hbs");
     }
-    //guardar el usuario
+    // POST guardar el usuario
     public Response guardar(Request request, Response response) {
 
-        System.out.println(request.queryParams());
-        // System.out.println(request.queryParams("registrar_ok"));
+        String registrarOk = request.queryParams("registrar_ok");
 
-        // instanciamiento de datos usuario,contacto
+        // Instanciamiento de datos usuario,contacto
         Usuario usuario = new Usuario();
         Municipio municipioTemp = new Municipio();
         Provincia provinciaTemp = new Provincia();
@@ -49,12 +57,12 @@ public class UsuarioController {
         String calle = request.queryParams("calle");
         String municipio = request.queryParams("municipio");
         String provincia = request.queryParams("provincia");
-        String tipoDeDocumento = request.queryParams("tipo_de_doc");
-        System.out.println(tipoDeDocumento);
+        String tipo_de_doc = request.queryParams("tipo_de_doc");
         String nro_documento = request.queryParams("nro_documento");
         String codigoPostal = request.queryParams("codigo_postal");
+        String fecha_de_nacimiento = request.queryParams("fechaNacimiento");
 
-        //String fecha_de_nacimiento = request.queryParams("fechaNacimiento"); Tipo?
+        LocalDate fechaDeNacimiento = LocalDate.parse(fecha_de_nacimiento);
 
 
         // Contacto values
@@ -68,8 +76,8 @@ public class UsuarioController {
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         usuario.setNroDocumento(nro_documento);
-
         usuario.agregarContacto(contacto);
+        usuario.setFechaNacimiento(fechaDeNacimiento);
 
         domicilio.setCalle(calle);
         domicilio.setCodPostal(codigoPostal);
@@ -84,8 +92,22 @@ public class UsuarioController {
         contacto.setApellido(apellido_contacto);
         contacto.setEmail(email_contacto);
         contacto.setTelefono(tel_contacto);
+        //
 
-        System.out.println(medio_notif);
+        switch(tipo_de_doc){
+            case "DNI":
+                usuario.setTipoDocumento(TipoDocumento.DNI);
+            case "libreta_civica":
+                usuario.setTipoDocumento(TipoDocumento.LC);
+            case "cedula_de_identidad":
+                usuario.setTipoDocumento(TipoDocumento.CI);
+            case "pasaporte":
+                usuario.setTipoDocumento(TipoDocumento.PAS);
+            case "libreta_de_enrolamiento":
+                usuario.setTipoDocumento(TipoDocumento.LE);
+        }
+
+
         switch(medio_notif){
             case "Whatsapp":
                 contacto.setMedioDeNotificacion(MedioDeNotificacion.WHATSAPP);
@@ -102,34 +124,35 @@ public class UsuarioController {
                 return response;
         }
 
-
-
         this.repositorio.agregar(usuario);
 
+        if(registrarOk == null)
+            response.redirect("/usuario/:id/registrar_mascota");
 
-        response.redirect("/usuarios");
+        if(registrarOk.equals("yes"))
+            response.redirect("/sign_up/"+String.valueOf(usuario.getId()));
+
+
         return response;
 
 
-        /*
-        if(request.queryParams("registrar_ok")=="registrar_ok"){
+    }
+    // Vista registrar usuario
+    public ModelAndView registrarUsuario(Request request, Response response){
+        Map<String,Object> params = new HashMap<>();
+        Integer id = Integer.valueOf(request.params("id"));
+        Usuario usuario = this.repositorio.buscar(id);
+        params.put("usuario",usuario);
 
-        }
-
-        // contacto usuario
-        //Contacto contacto = new Contacto();
-
-        response.redirect("/usuarios");
-        return response;
-
-
-         */
-
+        return new ModelAndView(params,"registro_usuario.hbs");
     }
 
     public ModelAndView mostrarTodos(Request request, Response response) {
         List<Usuario> usuarios = this.repositorio.buscarTodos();
+
         Map<String, Object> params = new HashMap<>();
+
+
         params.put("usuarios", usuarios);
         return new ModelAndView(params, "logins.hbs");
 
@@ -227,6 +250,7 @@ public class UsuarioController {
 
         return new ModelAndView(params, "contactos.hbs");
     }
+
 
 }
 

@@ -14,6 +14,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -85,7 +86,7 @@ public class EntityManagerTest {
         usuario.setApellido("Pérez");
         usuario.setTipoDocumento(TipoDocumento.DNI);
         usuario.setNroDocumento("123456789");
-        usuario.setFechaNacimiento(Date.from(Instant.now()));
+        usuario.setFechaNacimiento(LocalDate.parse("1950-11-21"));
         usuario.setLogin(login);
         usuario.setDomicilio(domicilio);
         usuario.setContactos(contacto);
@@ -153,7 +154,7 @@ public class EntityManagerTest {
         usuario.setApellido("Pérez");
         usuario.setTipoDocumento(TipoDocumento.DNI);
         usuario.setNroDocumento("123456789");
-        usuario.setFechaNacimiento(Date.from(Instant.now()));
+        usuario.setFechaNacimiento(LocalDate.parse("1844-11-21"));
         usuario.setLogin(login);
         usuario.setDomicilio(domicilio);
 
