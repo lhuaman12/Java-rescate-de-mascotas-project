@@ -43,12 +43,6 @@ public class Domicilio {
     @JoinColumn(name = "municipio_id")
     private Municipio municipio;
 
-    /*@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "localidad_id", referencedColumnName = "id")
-    private Localidad localidad;
-    */
-
-
     // Constructor
     //public Domicilio() {}
 

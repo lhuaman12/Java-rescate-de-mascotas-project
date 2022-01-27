@@ -39,7 +39,7 @@ public class Login {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PasswordHistory> passwords;       // Password history
 
-    @Column
+    @Transient
     private Usuario usuario;
 
 

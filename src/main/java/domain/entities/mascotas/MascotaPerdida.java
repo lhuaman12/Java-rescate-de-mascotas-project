@@ -12,8 +12,8 @@ import java.util.List;
 @DiscriminatorValue("perdida")
 public class MascotaPerdida extends Mascota {
 
-    @Enumerated(EnumType.STRING)
-    private EdadAproximada edadAprox;
+    //@Enumerated(EnumType.STRING)
+    //private EdadAproximada edadAprox;
 
     @Transient
     private Hogar hogarDeTransito;
@@ -24,14 +24,16 @@ public class MascotaPerdida extends Mascota {
 
 
     // Getters and Setters
-
+    /*
     public EdadAproximada getEdadAprox() {
         return edadAprox;
     }
 
+
     public void setEdadAprox(EdadAproximada edadAprox) {
         this.edadAprox = edadAprox;
     }
+    */
 
     public Hogar getHogarDeTransito() {
         return hogarDeTransito;

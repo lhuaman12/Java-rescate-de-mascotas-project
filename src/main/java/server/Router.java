@@ -64,9 +64,10 @@ public class Router {
         Spark.post("/usuario/:idUsuario/contacto/:idContacto", usuarioController::modificarContacto);
         */
         // Mascotas
+        Spark.get("/usuario/:id/registrar_mascota", mascotaController::registrarMascota, Router.engine);
+        Spark.post("/usuario/:id/registrar_mascota",mascotaController::guardarMascota);
         Spark.get("/mascotas", mascotaController::mostrarTodas, Router.engine);
-        Spark.get("/mascota", mascotaController::crear, Router.engine);
-        Spark.post("/mascota", mascotaController::guardar);
+        Spark.post("/mascota", mascotaController::guardarRegistroMascota);
         Spark.get("/mascota/:id", mascotaController::mostrar, Router.engine);
         Spark.post("/mascota/:id", mascotaController::modificar);
 

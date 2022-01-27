@@ -18,9 +18,6 @@ public class MascotaRegistrada extends Mascota {
     @Column
     private String apodo;
 
-    @Column(columnDefinition = "DATE")
-    private Date fechaNac;
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "duenio_id", referencedColumnName = "id")
     private Usuario duenio;
@@ -54,14 +51,6 @@ public class MascotaRegistrada extends Mascota {
 
     public void setApodo(String apodo) {
         this.apodo = apodo;
-    }
-
-    public Date getFechaNac() {
-        return fechaNac;
-    }
-
-    public void setFechaNac(Date fechaNac) {
-        this.fechaNac = fechaNac;
     }
 
     public String getTokenRescate() {

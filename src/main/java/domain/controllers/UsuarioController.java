@@ -61,6 +61,8 @@ public class UsuarioController {
         String nro_documento = request.queryParams("nro_documento");
         String codigoPostal = request.queryParams("codigo_postal");
         String fecha_de_nacimiento = request.queryParams("fechaNacimiento");
+        String latitud = request.queryParams("latitud");
+        String longitud = request.queryParams("longitud");
 
         LocalDate fechaDeNacimiento = LocalDate.parse(fecha_de_nacimiento);
 
@@ -81,6 +83,8 @@ public class UsuarioController {
 
         domicilio.setCalle(calle);
         domicilio.setCodPostal(codigoPostal);
+        domicilio.setLatitud(Double.valueOf(latitud));
+        domicilio.setLongitud(Double.valueOf(longitud));
         municipioTemp.setNombre(municipio);
         provinciaTemp.setNombre(provincia);
 
@@ -127,7 +131,7 @@ public class UsuarioController {
         this.repositorio.agregar(usuario);
 
         if(registrarOk == null)
-            response.redirect("/usuario/:id/registrar_mascota");
+            response.redirect("/usuario/"+String.valueOf(usuario.getId())+"/registrar_mascota");
 
         if(registrarOk.equals("yes"))
             response.redirect("/sign_up/"+String.valueOf(usuario.getId()));

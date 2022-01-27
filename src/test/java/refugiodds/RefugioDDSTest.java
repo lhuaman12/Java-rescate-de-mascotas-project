@@ -82,7 +82,7 @@ public class RefugioDDSTest {
     @Test
     public void buscarHogarDeTransito() throws IOException {
         MascotaPerdida mascota = new MascotaPerdida();
-        mascota.setEdadAprox(EdadAproximada.ABUELO);
+        mascota.setEdadAproximada(EdadAproximada.ABUELO);
         mascota.setTipoMascota(TipoMascota.PERRO);
         mascota.setTamanioMascota(TamanioMascota.GRANDE);
         List<Hogar> hogaresDisponibles=mascota.buscarHogarDeTransito();

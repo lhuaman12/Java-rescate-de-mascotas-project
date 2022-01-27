@@ -1,8 +1,10 @@
 package domain.entities.usuarios;
 
 import converters.TipoDeDocumentoAttributeConverter;
+import domain.entities.distancia.Distancia;
 import domain.entities.domicilio.Domicilio;
 import domain.entities.mascotas.MascotaRegistrada;
+import domain.entities.organizaciones.Organizacion;
 import domain.entities.publicaciones.PublicacionDeAdopcion;
 import domain.entities.publicaciones.PublicacionIntencionAdopcion;
 import domain.entities.publicaciones.PublicacionRescate;
@@ -48,6 +50,9 @@ public class Usuario {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "login_id")
     private Login login;
+
+    @Transient
+    private List<Roles> roles;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MascotaRegistrada> mascotasRegistradas;
@@ -100,6 +105,24 @@ public class Usuario {
         this.publicacionesRescate = new ArrayList<>();
         this.publicacionesAdopcion = new ArrayList<>();
         this.publicacionesIntAdopcion = new ArrayList<>();
+    }
+
+    public Organizacion getOrganizacionMasCercana(List<Organizacion> organizaciones){
+            Organizacion organizacionMasCercana = organizaciones.get(0);
+
+            Double distancia1 = Distancia.calcularDistancia(organizaciones.get(0).getDomicilio().getLatitud()
+                    ,organizaciones.get(0).getDomicilio().getLongitud(),this.getDomicilio().getLatitud(),this.getDomicilio().getLongitud());
+            Double distancia2;
+
+            for(int i=0;i< organizaciones.size();i++){
+                distancia2 = Distancia.calcularDistancia(organizaciones.get(i).getDomicilio().getLatitud()
+                        ,organizaciones.get(i).getDomicilio().getLongitud(),this.getDomicilio().getLatitud(),this.getDomicilio().getLongitud());
+                if(distancia2 < distancia1){
+                    organizacionMasCercana = organizaciones.get(i);
+                }
+
+            }
+            return organizacionMasCercana;
     }
 
     public void agregarContacto(Contacto contacto){

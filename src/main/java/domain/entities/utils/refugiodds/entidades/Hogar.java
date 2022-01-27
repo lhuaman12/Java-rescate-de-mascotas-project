@@ -44,7 +44,7 @@ public class Hogar {
 
     public boolean admiteTamanioMascota(TamanioMascota tamanioMascota) {
         Boolean resultado;
-        if (tamanioMascota.equals(TamanioMascota.GRANDE) || tamanioMascota.equals(TamanioMascota.MEDIANA)) {
+        if (tamanioMascota.equals(TamanioMascota.GRANDE) || tamanioMascota.equals(TamanioMascota.MEDIANO)){
             resultado = this.patio;
         } else {
             resultado = true;

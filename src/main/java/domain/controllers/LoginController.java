@@ -42,7 +42,6 @@ public class LoginController {
         String nombreUsuario = request.queryParams("nombre_usuario");
         String contrasenia = request.queryParams("contrasenia");
         Login login = (Login) EntityManagerHelper.getEntityManager().createQuery("from login where username="+nombreUsuario).getSingleResult();
-
         /*
         if(login != null)
             response.redirect("/sign_up/"+id+"?user_error=1");

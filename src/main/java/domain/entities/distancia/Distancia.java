@@ -1,8 +1,11 @@
 package domain.entities.distancia;
 
+import java.awt.geom.Point2D;
+
 public class Distancia {
 
     public static double calcularDistancia(double lat1, double lon1, double lat2, double lon2) {
+        //return Point2D.distance(lat1, lon1, lat2, lon2);
 
         final int R = 6371; // Radio de la Tierra
 

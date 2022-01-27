@@ -162,10 +162,10 @@ public class EntityManagerTest {
         MascotaRegistrada mascota = new MascotaRegistrada();
         mascota.setNombre("Nombre Firulais");
         mascota.setApodo("Apodo Firulais");
-        mascota.setFechaNac(Date.from(Instant.now()));
+        //mascota.setFechaNac(Date.from(Instant.now()));
         mascota.setTipoMascota(TipoMascota.PERRO);
         mascota.setSexo(Sexo.MACHO);
-        mascota.setTamanioMascota(TamanioMascota.MEDIANA);
+        //mascota.setTamanioMascota(TamanioMascota.MEDIANA);
         mascota.setDateTime(LocalDateTime.now());
         mascota.setOrganizacion(organizacion);
         mascota.setDuenio(usuario);
@@ -263,10 +263,10 @@ public class EntityManagerTest {
 
         // Mascota
         MascotaPerdida mascota = new MascotaPerdida();
-        mascota.setEdadAprox(EdadAproximada.ABUELO);
+        mascota.setEdadAproximada(EdadAproximada.ABUELO);
         mascota.setTipoMascota(TipoMascota.PERRO);
         mascota.setSexo(Sexo.MACHO);
-        mascota.setTamanioMascota(TamanioMascota.MEDIANA);
+        //mascota.setTamanioMascota(TamanioMascota.MEDIANA);
         mascota.setDateTime(LocalDateTime.now());
 
         // Rescatista

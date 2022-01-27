@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <!--Google fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@700&display=swap"
+    rel="stylesheet">
+
+  <!-- Materialice CSS-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!--Icons-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <meta charset="utf-8">
+  <title>Rescate de Patitas</title>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <div>
+    <nav>
+      <div class="nav-wrapper purple darken-4">
+        <a href="/" class="brand-logo">Rescate de patitas</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="sass.html">Mascotas buscando dueño</a></li>
+          <li><a href="badges.html">Mascotas perdidas</a></li>
+          <li><a href="collapsible.html">Quiero adoptar</a></li>
+        </ul>
+      </div>
+    </nav>
+    <br />
+    <br />
+
+    <!-- CONTENEDOR FORMULARIO -->
+
+     <div class="container">
+      <div class="row card">
+
+        <div class="col s12">
+          <h3><u class="underlined-wavy">Datos personales</u></h3>
+        </div>
+        <div class="col s12">
+          <form action="/usuario/{{usuario.id}}/registrar_mascota" method="post" enctype="multipart/form-data">
+            <div class="row">
+              <div class="col s12">
+                <div class="input-field col s4">
+                  <input placeholder="Ej: Juan" id="nombre" type="text" class="validate" name="nombre">
+                  <label for="nombre">Nombre de la mascota</label>
+                </div>
+                <div class="input-field col s4">
+                  <input placeholder="Ej: Juan" id="nombre" type="text" class="validate" name="apodo">
+                  <label for="nombre">Apodo</label>
+                </div>
+              <div class="col s12">
+                <div class="input-field col s4">
+                  <select class="browser-default" name="tipo_de_mascota">
+                    <option value="" disabled selected>Seleccione tipo de mascota</option>
+                    <option value="gato">Gato</option>
+                    <option value="perro">Perro</option>
+                  </select>
+                </div>
+                <div class="input-field col s4">
+                  <select class="browser-default" name="edad_mascota">
+                    <option value="" disabled selected>Edad aproximada</option>
+                    <option value="cachorro">Cachorro (45 días a 12 meses)</option>
+                    <option value="joven">Joven (1 a 5 años)</option>
+                    <option value="adulto">Adulto (5 a 9 años)</option>
+                    <option value="abuelo">Abuelo (Mayor a 9 años)</option>
+                  </select>
+                </div>
+              </div>
+              <div class = "col s12">
+                 <div class="input-field col s4">
+                  <select class="browser-default" name="sexo_mascota">
+                    <option value="" disabled selected>Sexo</option>
+                    <option value="gato">Macho</option>
+                    <option value="perro">Hembra</option>
+                  </select>
+                </div>
+                <div class="input-field col s4">
+                  <select class="browser-default" name="tamanio_mascota">
+                    <option value="" disabled selected>Tamaño mascota</option>
+                    <option value="pequenio">Pequeño</option>
+                    <option value="mediano" >Mediano</option>
+                    <option value="grande">Grande</option>
+                  </select>
+                </div>
+                <div class="input-field col s4">
+                  <select class="browser-default" name="esta_castrado">
+                    <option value="" disabled selected>Esta castrado?</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col s12">
+                <div class="input-field col s4">
+                  <label for="files">Seleccione fotos:</label>
+                  <input type="file" id="files" name="files" multiple>
+                </div>
+                <div class="input-field col s4">
+                  
+                </div>
+              </div>
+              <br/>
+              <br/>
+              <button class="btn waves-effect waves-light" type="submit">Enviar
+                    <i class="material-icons right">send</i>
+              </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+
+
+  <!--
+
+    <div class="main-container">
+      <div class="form-container">
+
+        <div class="form-title-container">
+          <h3><u class="underlined-wavy">Mas</u>cotas</h3>
+          <button type="button" name="button" class="btn">Registrar macs</button>
+        </div>
+
+
+        <form class="" {{#if mascota}} action="/mascota/{{mascota.id}}" method="post" {{else}} action="/mascota" method="post" {{/if}}>
+
+          <div class="grid-item">
+            <label for="">Mascota*</label>
+            <div class="radio-buttons">
+              <div class="radio-item">
+                <input type="radio" name="tipo-mascotaRegistrada" value="">
+                <label for="">Gato</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" name="tipo-mascotaRegistrada" value="">
+                <label for="">Perro</label>
+              </div>
+
+
+            </div>
+          </div>
+
+          <div class="grid-item">
+            <label for="">Nombre*</label>
+            <input type="text" name="nombrecillo" class="text-input" required {{#if mascota}} value="{{mascota.nombrecillo}}" {{/if}}>
+          </div>
+
+          <div class="grid-item">
+            <label for="">Apodo*</label>
+            <input type="text" name="apodo" class="text-input" required {{#if mascota}} value="{{mascota.apodo}}" {{/if}}>
+          </div>
+
+          <div class="grid-item">
+            <label for="">Sexo*</label>
+            <div class="radio-buttons">
+
+              <div class="radio-item">
+                <input type="radio" name="tipo-mascotaRegistrada" value="">
+                <label for="">Hembra</label>
+              </div>
+
+              <div class="radio-item">
+                <input type="radio" name="tipo-mascotaRegistrada" value="">
+                <label for="">Macho</label>
+              </div>
+              
+            </div>
+          </div>
+
+          <div class="grid-item">
+            <label for="">Edad aproximada*</label>
+            <select name="" class="text-input">
+              <option value=""></option>
+              <option value="">Cachorro (45 días a 12 meses)</option>
+              <option value="">Joven (1 a 5 años)</option>
+              <option value="">Adulto (5 a 9 años)</option>
+              <option value="">Abuelo (Más de 9 años)</option>
+            </select>
+          </div>
+
+          <div class="grid-item">
+            <label for="">Descripcion física*</label>
+            <input type="text" name="" value="" class="text-input">
+          </div>
+
+          <div class="grid-item">
+            <label for="">Características</label>
+            <select name="" class="text-input">
+              <option value=""></option>
+              <option value="">Color principal</option>
+              <option value="">Color secundario</option>
+              <option value="">¿Está castrada?</option>
+              <option value="">Otras características</option>
+            </select>
+          </div>
+
+          <div class="grid-item">
+            <label for="" style="visibility:hidden;">-</label>
+            <input type="text" name="" value="" placeholder="Ingresar característica" class="text-input caracteristicaParaRegistro-input">
+          </div>
+
+          <div class="grid-item">
+            <label for="">Fotos</label>
+            <button type="button" name="button" class="btn">SUBIR FOTO</button>
+          </div>
+
+          <div class="grid-item">
+            <label for="" style="font-size: 12px; color: #8341a2; max-width:150px;padding-right:0px;">Los campos marcados con (*) son obligatorios.</label>
+          </div>
+          <div class="grid-item" style="visibility:hidden;">
+            <input type="text" name="" value="" class="text-input">
+          </div>
+          <div class="grid-item">
+            <input type="submit" name="" value="GUARDAR" class="btn btn-submit">
+          </div>
+        </form>
+      </div>
+    </div>
+
+-->
+  </body>
+</html>

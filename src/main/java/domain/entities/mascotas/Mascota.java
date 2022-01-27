@@ -18,12 +18,15 @@ public abstract class Mascota {
     @GeneratedValue
     private int id;
 
-    @Column
-    private String nombrecillo;
+    //@Column
+    //private String nombre;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
     private Organizacion organizacion;
+
+    @Enumerated(EnumType.STRING)
+    private EdadAproximada edadAproximada;
 
     @Enumerated(EnumType.STRING)
     private TipoMascota tipoMascota;
@@ -103,13 +106,21 @@ public abstract class Mascota {
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
-
-    public String getNombrecillo() {
-        return nombrecillo;
+    /*
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombrecillo(String nombrecillo) {
-        this.nombrecillo = nombrecillo;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    */
+    public EdadAproximada getEdadAproximada() {
+        return edadAproximada;
+    }
+
+    public void setEdadAproximada(EdadAproximada edadAproximada) {
+        this.edadAproximada = edadAproximada;
     }
 
     // Methods
