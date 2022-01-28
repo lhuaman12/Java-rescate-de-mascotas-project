@@ -1,14 +1,13 @@
 package server;
 
-import domain.controllers.LoginController;
-import domain.controllers.MascotaController;
-import domain.controllers.RescateController;
-import domain.controllers.UsuarioController;
+
+import domain.controllers.*;
 import domain.middleware.AuthMiddleware;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.utils.BooleanHelper;
 import spark.utils.HandlebarsTemplateEngineBuilder;
+import spark.utils.helpers.ConditionalHelpers;
 
 public class Router {
 
@@ -19,6 +18,7 @@ public class Router {
                 .create()
                 .withDefaultHelpers()
                 .withHelper("isTrue", BooleanHelper.isTrue)
+                .withHelper("equals", ConditionalHelpers.eq)
                 .build();
     }
 
@@ -34,6 +34,7 @@ public class Router {
         UsuarioController usuarioController = new UsuarioController();
         MascotaController mascotaController = new MascotaController();
         RescateController rescateController = new RescateController();
+        OrganizacionController organizacionController = new OrganizacionController();
 
         // Login
         Spark.get("/", loginController::inicio, Router.engine);
@@ -76,7 +77,9 @@ public class Router {
         Spark.get("/rescate", rescateController::rescateSinQR, Router.engine);
         Spark.get("/rescate/:id", rescateController::mostrarRescateSinQR, Router.engine);
 
-        // Publicaciones de mascotas perdidas
+        // Organizaciones
+
+        Spark.get("/organizacion/:id", organizacionController::panelDeAdmnistrador, Router.engine);
 
 
     }

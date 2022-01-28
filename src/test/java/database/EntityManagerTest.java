@@ -4,6 +4,9 @@ import db.EntityManagerHelper;
 import domain.entities.domicilio.Domicilio;
 import domain.entities.mascotas.*;
 import domain.entities.organizaciones.Organizacion;
+import domain.entities.organizaciones.PreguntasONG.Atributo;
+import domain.entities.organizaciones.PreguntasONG.TipoDeAtributo;
+import domain.entities.organizaciones.PreguntasONG.TipoDeDato;
 import domain.entities.rescate.RescateConQR;
 import domain.entities.rescate.RescateSinQR;
 import domain.entities.usuarios.Contacto;
@@ -13,10 +16,13 @@ import domain.entities.usuarios.Usuario;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.sql.Array;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class EntityManagerTest {
@@ -104,21 +110,28 @@ public class EntityManagerTest {
     @Test
     public void persistirOrganizacionTest() {
 
-        // Domicilio
-        Domicilio domicilio = new Domicilio();
-        domicilio.setCalle("Calle Organización 1");
-        domicilio.setAltura(1234);
+        // Domicilio organización
+        Domicilio domicilioOrg = new Domicilio();
+        domicilioOrg.setCalle("Calle Organización 3");
+        domicilioOrg.setAltura(1234);
+        domicilioOrg.setLongitud(-80.00);
+        domicilioOrg.setLatitud(-80.00);
 
         // Organización
         Organizacion organizacion = new Organizacion();
-        organizacion.setNombre("Organización 1");
-        organizacion.setDescripcion("Descripción Organización 1");
-        organizacion.setDomicilio(domicilio);
+        organizacion.setNombre("Los bichos");
+        organizacion.setDescripcion("Rescatar y darles hogar a todos los animales");
+        organizacion.setDomicilio(domicilioOrg);
+        // Nuevo atributo tipo registro
+        Atributo atributo1 = new Atributo(TipoDeAtributo.REGISTRO);
+        atributo1.setTipoDeDato(TipoDeDato.PREGUNTA);
+        atributo1.setCaracteristicaNombre("El perro tiene marcas de lesiones o cicatrices visibles");
+        organizacion.getPreguntasRequeridas().add(atributo1);
 
-        // EntityManager
         EntityManagerHelper.beginTransaction();
-        EntityManagerHelper.getEntityManager().persist(domicilio);
-        EntityManagerHelper.getEntityManager().persist(organizacion);
+        EntityManagerHelper.persist(domicilioOrg);
+        EntityManagerHelper.persist(atributo1);
+        EntityManagerHelper.persist(organizacion);
         EntityManagerHelper.commit();
     }
 
@@ -254,19 +267,26 @@ public class EntityManagerTest {
         Domicilio domicilioOrg = new Domicilio();
         domicilioOrg.setCalle("Calle Organización 3");
         domicilioOrg.setAltura(1234);
+        domicilioOrg.setLongitud(-80.00);
+        domicilioOrg.setLatitud(-80.00);
 
         // Organización
         Organizacion organizacion = new Organizacion();
-        organizacion.setNombre("Organizacion 3");
-        organizacion.setDescripcion("Descripción Organización 3");
+        organizacion.setNombre("Los bichos");
+        organizacion.setDescripcion("Rescatar y darles hogar a todos los animales");
         organizacion.setDomicilio(domicilioOrg);
+        // Nuevo atributo tipo registro
+        Atributo atributo1 = new Atributo(TipoDeAtributo.REGISTRO);
+        atributo1.setTipoDeDato(TipoDeDato.PREGUNTA);
+        atributo1.setCaracteristicaNombre("El perro tiene marcas de lesiones o cicatrices visibles");
+        organizacion.getPreguntasRequeridas().add(atributo1);
 
         // Mascota
         MascotaPerdida mascota = new MascotaPerdida();
         mascota.setEdadAproximada(EdadAproximada.ABUELO);
         mascota.setTipoMascota(TipoMascota.PERRO);
         mascota.setSexo(Sexo.MACHO);
-        //mascota.setTamanioMascota(TamanioMascota.MEDIANA);
+        mascota.setTamanioMascota(TamanioMascota.MEDIANO);
         mascota.setDateTime(LocalDateTime.now());
 
         // Rescatista

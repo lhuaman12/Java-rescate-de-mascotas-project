@@ -34,7 +34,7 @@ public class Organizacion {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Rescate> rescates;
 
-    @Transient
+    @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL})
     private List<Atributo> preguntasRequeridas;
 
     @Transient

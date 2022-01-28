@@ -1,26 +1,52 @@
 package domain.entities.organizaciones.PreguntasONG;
 
-import domain.entities.usuarios.Administrador;
+import domain.entities.organizaciones.Organizacion;
+import domain.entities.usuarios.Usuario;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Generated;
 
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
+@Table
+@Entity(name ="atributo")
 public class Atributo {
+    @Id
+    @GeneratedValue
+    private int id;
 
-    private Administrador administradorResponsable; //trazabilidad
+    @OneToOne(cascade = CascadeType.ALL)
+    private Usuario administradorResponsable;
+    @Column
     private String CaracteristicaNombre;
+
+    @ElementCollection
+    @CollectionTable(name="opcion", joinColumns=@JoinColumn(name="id"))
+    @Column(name="opcion")
     private List<String> opciones;
+
+    @Enumerated(EnumType.STRING)
     private TipoDeDato tipoDeDato;
+
+    @Enumerated(EnumType.STRING)
     private TipoDeAtributo tipoDeAtributo;
+
+    @ManyToOne
+    @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
+    private Organizacion organizacion;
 
     public Atributo(TipoDeAtributo tipoDeAtributo) {
         this.tipoDeAtributo = tipoDeAtributo;
+        this.opciones = new ArrayList<>();
     }
 
-    public Administrador getAdministradorResponsable() {
+
+    public Usuario getAdministradorResponsable() {
         return administradorResponsable;
     }
 
-    public void setAdministradorResponsable(Administrador administradorResponsable) {
+    public void setAdministradorResponsable(Usuario administradorResponsable) {
         this.administradorResponsable = administradorResponsable;
     }
 

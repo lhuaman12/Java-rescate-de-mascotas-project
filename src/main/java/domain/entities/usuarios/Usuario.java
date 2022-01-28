@@ -18,7 +18,7 @@ import java.util.List;
 @Entity
 @Table(name = "usuario")
 public class Usuario {
-        //TODO: agregar roles
+
     @Id
     @GeneratedValue
     private int id;
@@ -51,8 +51,12 @@ public class Usuario {
     @JoinColumn(name = "login_id")
     private Login login;
 
-    @Transient
-    private List<Roles> roles;
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Rol> roles;
+
+    @ManyToOne
+    @JoinColumn(name = "organizacion_id",referencedColumnName = "id")
+    private Organizacion organizacion;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MascotaRegistrada> mascotasRegistradas;
@@ -106,7 +110,7 @@ public class Usuario {
         this.publicacionesAdopcion = new ArrayList<>();
         this.publicacionesIntAdopcion = new ArrayList<>();
     }
-
+    // Metodos de usuario
     public Organizacion getOrganizacionMasCercana(List<Organizacion> organizaciones){
             Organizacion organizacionMasCercana = organizaciones.get(0);
 
@@ -243,6 +247,25 @@ public class Usuario {
 
     public void setPublicacionesIntAdopcion(List<PublicacionIntencionAdopcion> publicacionesIntAdopcion) {
         this.publicacionesIntAdopcion = publicacionesIntAdopcion;
+    }
+    public void setContactos(List<Contacto> contactos) {
+        this.contactos = contactos;
+    }
+
+    public List<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
+    }
+
+    public Organizacion getOrganizacion() {
+        return organizacion;
+    }
+
+    public void setOrganizacion(Organizacion organizacion) {
+        this.organizacion = organizacion;
     }
 
 }
