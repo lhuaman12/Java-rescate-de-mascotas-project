@@ -18,7 +18,7 @@ public class Router {
                 .create()
                 .withDefaultHelpers()
                 .withHelper("isTrue", BooleanHelper.isTrue)
-                .withHelper("equals", ConditionalHelpers.eq)
+                .withHelper("eq", ConditionalHelpers.eq)
                 .build();
     }
 

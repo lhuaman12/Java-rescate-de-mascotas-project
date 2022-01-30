@@ -2,15 +2,13 @@ package domain.entities.organizaciones.PreguntasONG;
 
 import domain.entities.organizaciones.Organizacion;
 import domain.entities.usuarios.Usuario;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.Generated;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Table
-@Entity(name ="atributo")
+@Entity
+@Table(name ="atributo")
 public class Atributo {
     @Id
     @GeneratedValue
@@ -19,25 +17,43 @@ public class Atributo {
     @OneToOne(cascade = CascadeType.ALL)
     private Usuario administradorResponsable;
     @Column
-    private String CaracteristicaNombre;
+    private String caracteristicaNombre;
 
     @ElementCollection
     @CollectionTable(name="opcion", joinColumns=@JoinColumn(name="id"))
     @Column(name="opcion")
     private List<String> opciones;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @JoinColumn(name="tipo_de_dato_id")
     private TipoDeDato tipoDeDato;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @JoinColumn(name = "tipo_de_atributo_id",referencedColumnName = "id")
     private TipoDeAtributo tipoDeAtributo;
 
     @ManyToOne
     @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
     private Organizacion organizacion;
 
-    public Atributo(TipoDeAtributo tipoDeAtributo) {
+    public TipoDeAtributo getTipoDeAtributo() {
+        return tipoDeAtributo;
+    }
+
+    public void setTipoDeAtributo(TipoDeAtributo tipoDeAtributo) {
         this.tipoDeAtributo = tipoDeAtributo;
+    }
+
+    public Organizacion getOrganizacion() {
+        return organizacion;
+    }
+
+    public void setOrganizacion(Organizacion organizacion) {
+        this.organizacion = organizacion;
+    }
+
+    public Atributo() {
+        //this.tipoDeAtributo = tipoDeAtributo;
         this.opciones = new ArrayList<>();
     }
 
@@ -51,11 +67,11 @@ public class Atributo {
     }
 
     public String getCaracteristicaNombre() {
-        return CaracteristicaNombre;
+        return caracteristicaNombre;
     }
 
     public void setCaracteristicaNombre(String caracteristicaNombre) {
-        CaracteristicaNombre = caracteristicaNombre;
+        this.caracteristicaNombre = caracteristicaNombre;
     }
 
     public List<String> getOpciones() {

@@ -16,13 +16,8 @@ import domain.entities.usuarios.Usuario;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.sql.Array;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 
 public class EntityManagerTest {
@@ -123,9 +118,14 @@ public class EntityManagerTest {
         organizacion.setDescripcion("Rescatar y darles hogar a todos los animales");
         organizacion.setDomicilio(domicilioOrg);
         // Nuevo atributo tipo registro
-        Atributo atributo1 = new Atributo(TipoDeAtributo.REGISTRO);
-        atributo1.setTipoDeDato(TipoDeDato.PREGUNTA);
-        atributo1.setCaracteristicaNombre("El perro tiene marcas de lesiones o cicatrices visibles");
+        Atributo atributo1 = new Atributo();
+        TipoDeAtributo tipoDeAtributo = new TipoDeAtributo();
+        TipoDeDato tipoDeDato = new TipoDeDato();
+        tipoDeDato.setNombre("boolean");
+        tipoDeAtributo.setNombre("registro");
+        atributo1.setCaracteristicaNombre("El perro tiene marcas de lesiones o cicatrices visibles?");
+        //atributo1.setOrganizacion(organizacion);
+        atributo1.setTipoDeAtributo(tipoDeAtributo);
         organizacion.getPreguntasRequeridas().add(atributo1);
 
         EntityManagerHelper.beginTransaction();
@@ -276,8 +276,8 @@ public class EntityManagerTest {
         organizacion.setDescripcion("Rescatar y darles hogar a todos los animales");
         organizacion.setDomicilio(domicilioOrg);
         // Nuevo atributo tipo registro
-        Atributo atributo1 = new Atributo(TipoDeAtributo.REGISTRO);
-        atributo1.setTipoDeDato(TipoDeDato.PREGUNTA);
+        Atributo atributo1 = new Atributo();
+     //   atributo1.setTipoDeDato(TipoDeDato.PREGUNTA);
         atributo1.setCaracteristicaNombre("El perro tiene marcas de lesiones o cicatrices visibles");
         organizacion.getPreguntasRequeridas().add(atributo1);
 

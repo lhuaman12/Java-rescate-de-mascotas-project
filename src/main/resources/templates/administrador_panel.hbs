@@ -39,9 +39,11 @@
         <div class="div">
             <h3>Preguntas de registro de mascotas</h3>
             {{#each org.preguntasRequeridas}}
-                <p>1</p>
+                {{#eq "tipoDeAtributo" "REGISTRO"}}
+                <p>A</p>
+                <!--<p>{{caracteristicaNombre}}</p>-->
+                {{/eq}}
             {{/each}}
-
         </div>
     </div>
 
