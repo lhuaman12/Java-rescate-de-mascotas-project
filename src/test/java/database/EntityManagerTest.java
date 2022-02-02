@@ -5,8 +5,8 @@ import domain.entities.domicilio.Domicilio;
 import domain.entities.mascotas.*;
 import domain.entities.organizaciones.Organizacion;
 import domain.entities.organizaciones.PreguntasONG.Atributo;
-import domain.entities.organizaciones.PreguntasONG.TipoDeAtributo;
-import domain.entities.organizaciones.PreguntasONG.TipoDeDato;
+import domain.entities.organizaciones.PreguntasONG.TipoDePregunta;
+import domain.entities.organizaciones.PreguntasONG.TipoDeRegistro;
 import domain.entities.rescate.RescateConQR;
 import domain.entities.rescate.RescateSinQR;
 import domain.entities.usuarios.Contacto;
@@ -103,7 +103,7 @@ public class EntityManagerTest {
 
     // Organización
     @Test
-    public void persistirOrganizacionTest() {
+    public void persistirPreguntasDeOrganizacionTest() {
 
         // Domicilio organización
         Domicilio domicilioOrg = new Domicilio();
@@ -117,20 +117,42 @@ public class EntityManagerTest {
         organizacion.setNombre("Los bichos");
         organizacion.setDescripcion("Rescatar y darles hogar a todos los animales");
         organizacion.setDomicilio(domicilioOrg);
-        // Nuevo atributo tipo registro
+        // Nuevo atributo tipo registro y boolean
         Atributo atributo1 = new Atributo();
-        TipoDeAtributo tipoDeAtributo = new TipoDeAtributo();
-        TipoDeDato tipoDeDato = new TipoDeDato();
-        tipoDeDato.setNombre("boolean");
-        tipoDeAtributo.setNombre("registro");
-        atributo1.setCaracteristicaNombre("El perro tiene marcas de lesiones o cicatrices visibles?");
-        //atributo1.setOrganizacion(organizacion);
-        atributo1.setTipoDeAtributo(tipoDeAtributo);
+        TipoDeRegistro tipoDeRegistro = new TipoDeRegistro();
+        TipoDePregunta tipoDePregunta = new TipoDePregunta();
+        tipoDeRegistro.setNombre("registro_de_mascota");
+        tipoDePregunta.setNombre("boolean");
+        atributo1.setTipoDeRegistro(tipoDeRegistro);
+        atributo1.setTipoDePregunta(tipoDePregunta);
+        atributo1.setCaracteristicaNombre("El perro tiene marcas de lesiones o cicatrices visibles");
+        atributo1.setOrganizacion(organizacion);
         organizacion.getPreguntasRequeridas().add(atributo1);
+        //Nuevo atributo tipo registro y boolean
+        Atributo atributo2 = new Atributo();
+        TipoDePregunta tipoDePregunta1 = new TipoDePregunta();
+        TipoDeRegistro tipoDeRegistro1 = new TipoDeRegistro();
+        tipoDeRegistro1.setNombre("registro_de_mascota");
+        tipoDePregunta1.setNombre("boolean");
+        atributo2.setCaracteristicaNombre("El perro presenta un peso inferior a 10 kgs");
+        atributo2.setTipoDePregunta(tipoDePregunta1);
+        atributo2.setTipoDeRegistro(tipoDeRegistro1);
+        atributo2.setOrganizacion(organizacion);
+        organizacion.getPreguntasRequeridas().add(atributo2);
+        // Nuevo atributo tipo registro y pregunta/respuesta
 
+
+        //
         EntityManagerHelper.beginTransaction();
         EntityManagerHelper.persist(domicilioOrg);
+        //
+        EntityManagerHelper.persist(tipoDeRegistro);
+        EntityManagerHelper.persist(tipoDePregunta);
         EntityManagerHelper.persist(atributo1);
+        //
+        EntityManagerHelper.persist(tipoDeRegistro1);
+        EntityManagerHelper.persist(tipoDePregunta1);
+        EntityManagerHelper.persist(atributo2);
         EntityManagerHelper.persist(organizacion);
         EntityManagerHelper.commit();
     }

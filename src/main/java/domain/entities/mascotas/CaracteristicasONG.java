@@ -1,7 +1,17 @@
 package domain.entities.mascotas;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "caracteristica_ong")
 public class CaracteristicasONG {
+
+    @Id
+    @GeneratedValue
+    private int id;
+    @Column
     private String nombreCaracteristica;
+    @Column
     private String respuesta;
 
     public String getNombreCaracteristica() {

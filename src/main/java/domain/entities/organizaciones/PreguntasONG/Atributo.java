@@ -10,6 +10,7 @@ import java.util.List;
 @Entity
 @Table(name ="atributo")
 public class Atributo {
+
     @Id
     @GeneratedValue
     private int id;
@@ -19,30 +20,20 @@ public class Atributo {
     @Column
     private String caracteristicaNombre;
 
-    @ElementCollection
-    @CollectionTable(name="opcion", joinColumns=@JoinColumn(name="id"))
-    @Column(name="opcion")
-    private List<String> opciones;
+    @OneToMany(mappedBy = "atributo",cascade = {CascadeType.ALL})
+    private List<OpcionesDePregunta> opciones;
 
     @ManyToOne
     @JoinColumn(name="tipo_de_dato_id")
-    private TipoDeDato tipoDeDato;
+    private TipoDeRegistro tipoDeRegistro;
 
     @ManyToOne
     @JoinColumn(name = "tipo_de_atributo_id",referencedColumnName = "id")
-    private TipoDeAtributo tipoDeAtributo;
+    private TipoDePregunta tipoDePregunta;
 
     @ManyToOne
     @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
     private Organizacion organizacion;
-
-    public TipoDeAtributo getTipoDeAtributo() {
-        return tipoDeAtributo;
-    }
-
-    public void setTipoDeAtributo(TipoDeAtributo tipoDeAtributo) {
-        this.tipoDeAtributo = tipoDeAtributo;
-    }
 
     public Organizacion getOrganizacion() {
         return organizacion;
@@ -53,10 +44,16 @@ public class Atributo {
     }
 
     public Atributo() {
-        //this.tipoDeAtributo = tipoDeAtributo;
         this.opciones = new ArrayList<>();
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Usuario getAdministradorResponsable() {
         return administradorResponsable;
@@ -74,20 +71,29 @@ public class Atributo {
         this.caracteristicaNombre = caracteristicaNombre;
     }
 
-    public List<String> getOpciones() {
+    public List<OpcionesDePregunta> getOpciones() {
         return opciones;
     }
 
-    public void setOpciones(List<String> opciones) {
+    public void setOpciones(List<OpcionesDePregunta> opciones) {
         this.opciones = opciones;
     }
 
-    public TipoDeDato getTipoDeDato() {
-        return tipoDeDato;
+    public TipoDeRegistro getTipoDeRegistro() {
+        return tipoDeRegistro;
     }
 
-    public void setTipoDeDato(TipoDeDato tipoDeDato) {
-        this.tipoDeDato = tipoDeDato;
+    public void setTipoDeRegistro(TipoDeRegistro tipoDeRegistro) {
+        this.tipoDeRegistro = tipoDeRegistro;
     }
+
+    public void setTipoDePregunta(TipoDePregunta tipoDePregunta) {
+        this.tipoDePregunta = tipoDePregunta;
+    }
+
+    public TipoDePregunta getTipoDePregunta() {
+        return tipoDePregunta;
+    }
+
 }
 

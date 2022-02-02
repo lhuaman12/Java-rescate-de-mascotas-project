@@ -95,15 +95,42 @@
                   </select>
                 </div>
               </div>
+  
               <div class="col s12">
                 <div class="input-field col s4">
                   <label for="files">Seleccione fotos:</label>
                   <input type="file" id="files" name="files" multiple>
                 </div>
-                <div class="input-field col s4">
-                  
-                </div>
               </div>
+              {{#each org.preguntasRequeridas}}
+                {{#eq tipoDeRegistro.nombre "registro_de_mascota"}}
+                  {{#eq tipoDePregunta.nombre "boolean"}}
+                    <div class="input-field col s6">
+                      <select class="browser-default" name="pregunta_{{id}}">
+                      <option value="" disabled selected>{{caracteristicaNombre}}</option>
+                      <option value="Si">Si</option>
+                      <option value="No">No</option>
+                      </select>
+                    </div>
+                  {{/eq}}
+                  {{#eq tipoDePregunta.nombre "pregunta"}}
+                    <div class="input-field col s6">
+                        <input name="{{pregunta_{{id}}" id="pregunta_{{id}}" type="text" class="validate">
+                        <label class="active" for="first_name2">{{caracteristicaNombre}}</label>
+                    </div>
+                  {{/eq}}
+                  {{#eq tipoDePregunta.nombre "multiple_choice"}}
+                    <div class="input-field col s6">
+                      <select class="browser-default" name="pregunta_{{id}}">
+                      <option value="" disabled selected>{{caracteristicaNombre}}</option>
+                      {{#each opciones}}
+                        <option value="{{nombreOpcion}}">{{nombreOpcion}}</option>
+                      {{/each}}
+                      </select>
+                    </div>
+                  {{/eq}}
+                {{/eq}}
+              {{/each}}
               <br/>
               <br/>
               <button class="btn waves-effect waves-light" type="submit">Enviar
@@ -113,115 +140,5 @@
         </div>
       </div>
     </div>
-    
-
-
-  <!--
-
-    <div class="main-container">
-      <div class="form-container">
-
-        <div class="form-title-container">
-          <h3><u class="underlined-wavy">Mas</u>cotas</h3>
-          <button type="button" name="button" class="btn">Registrar macs</button>
-        </div>
-
-
-        <form class="" {{#if mascota}} action="/mascota/{{mascota.id}}" method="post" {{else}} action="/mascota" method="post" {{/if}}>
-
-          <div class="grid-item">
-            <label for="">Mascota*</label>
-            <div class="radio-buttons">
-              <div class="radio-item">
-                <input type="radio" name="tipo-mascotaRegistrada" value="">
-                <label for="">Gato</label>
-              </div>
-              <div class="radio-item">
-                <input type="radio" name="tipo-mascotaRegistrada" value="">
-                <label for="">Perro</label>
-              </div>
-
-
-            </div>
-          </div>
-
-          <div class="grid-item">
-            <label for="">Nombre*</label>
-            <input type="text" name="nombrecillo" class="text-input" required {{#if mascota}} value="{{mascota.nombrecillo}}" {{/if}}>
-          </div>
-
-          <div class="grid-item">
-            <label for="">Apodo*</label>
-            <input type="text" name="apodo" class="text-input" required {{#if mascota}} value="{{mascota.apodo}}" {{/if}}>
-          </div>
-
-          <div class="grid-item">
-            <label for="">Sexo*</label>
-            <div class="radio-buttons">
-
-              <div class="radio-item">
-                <input type="radio" name="tipo-mascotaRegistrada" value="">
-                <label for="">Hembra</label>
-              </div>
-
-              <div class="radio-item">
-                <input type="radio" name="tipo-mascotaRegistrada" value="">
-                <label for="">Macho</label>
-              </div>
-              
-            </div>
-          </div>
-
-          <div class="grid-item">
-            <label for="">Edad aproximada*</label>
-            <select name="" class="text-input">
-              <option value=""></option>
-              <option value="">Cachorro (45 días a 12 meses)</option>
-              <option value="">Joven (1 a 5 años)</option>
-              <option value="">Adulto (5 a 9 años)</option>
-              <option value="">Abuelo (Más de 9 años)</option>
-            </select>
-          </div>
-
-          <div class="grid-item">
-            <label for="">Descripcion física*</label>
-            <input type="text" name="" value="" class="text-input">
-          </div>
-
-          <div class="grid-item">
-            <label for="">Características</label>
-            <select name="" class="text-input">
-              <option value=""></option>
-              <option value="">Color principal</option>
-              <option value="">Color secundario</option>
-              <option value="">¿Está castrada?</option>
-              <option value="">Otras características</option>
-            </select>
-          </div>
-
-          <div class="grid-item">
-            <label for="" style="visibility:hidden;">-</label>
-            <input type="text" name="" value="" placeholder="Ingresar característica" class="text-input caracteristicaParaRegistro-input">
-          </div>
-
-          <div class="grid-item">
-            <label for="">Fotos</label>
-            <button type="button" name="button" class="btn">SUBIR FOTO</button>
-          </div>
-
-          <div class="grid-item">
-            <label for="" style="font-size: 12px; color: #8341a2; max-width:150px;padding-right:0px;">Los campos marcados con (*) son obligatorios.</label>
-          </div>
-          <div class="grid-item" style="visibility:hidden;">
-            <input type="text" name="" value="" class="text-input">
-          </div>
-          <div class="grid-item">
-            <input type="submit" name="" value="GUARDAR" class="btn btn-submit">
-          </div>
-        </form>
-      </div>
-    </div>
-
--->
   </body>
 </html>

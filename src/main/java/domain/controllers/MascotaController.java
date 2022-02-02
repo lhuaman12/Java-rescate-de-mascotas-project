@@ -21,10 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 public class MascotaController {
 
@@ -40,13 +37,18 @@ public class MascotaController {
         this.repoMascotaRegistrada = FactoryRepositorio.get(MascotaRegistrada.class);
         this.repoMascotaPerdida = FactoryRepositorio.get(MascotaPerdida.class);
         this.repoUsuarios = FactoryRepositorio.get(Usuario.class);
+        this.organizaciones= FactoryRepositorio.get(Organizacion.class);
     }
 
     public ModelAndView registrarMascota(Request request, Response response) {
-        String id  = request.params("id");
+        String idUsuario  = request.params("id");
         Map<String,Object> params = new HashMap<>();
-        Usuario usuario = this.repoUsuarios.buscar(Integer.valueOf(id));
+
+        Usuario usuario = this.repoUsuarios.buscar(Integer.valueOf(idUsuario));
+        List<Organizacion> organizaciones= (List<Organizacion>) this.organizaciones.buscarTodos();
+        Organizacion organizacionMasCercana = usuario.getOrganizacionMasCercana(organizaciones);
         params.put("usuario", usuario);
+        params.put("org",organizacionMasCercana);
         return new ModelAndView(params, "registro_mascota.hbs");
     }
 
