@@ -25,4 +25,12 @@ public class OpcionesDePregunta {
         this.nombreOpcion = nombreOpcion;
     }
 
+    public Atributo getAtributo() {
+        return atributo;
+    }
+
+    public void setAtributo(Atributo atributo) {
+        this.atributo = atributo;
+    }
+
 }

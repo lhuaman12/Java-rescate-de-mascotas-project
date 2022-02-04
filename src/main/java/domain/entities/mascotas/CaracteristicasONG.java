@@ -14,6 +14,10 @@ public class CaracteristicasONG {
     @Column
     private String respuesta;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "mascota_id", referencedColumnName = "id")
+    private MascotaRegistrada mascotaRegistrada;
+
     public String getNombreCaracteristica() {
         return nombreCaracteristica;
     }
@@ -28,6 +32,22 @@ public class CaracteristicasONG {
 
     public void setRespuesta(String respuesta) {
         this.respuesta = respuesta;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public MascotaRegistrada getMascotaRegistrada() {
+        return mascotaRegistrada;
+    }
+
+    public void setMascotaRegistrada(MascotaRegistrada mascotaRegistrada) {
+        this.mascotaRegistrada = mascotaRegistrada;
     }
 
 }

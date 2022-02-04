@@ -1,6 +1,6 @@
 package domain.entities.utils.normalizador.Adapter.Adaptees;
 
-import domain.entities.mascotas.FotoMascota;
+import domain.entities.mascotas.foto_mascota;
 import domain.entities.organizaciones.Configuraciones.CalidadImagen;
 import domain.entities.organizaciones.Configuraciones.TamanioImagen;
 import domain.entities.utils.normalizador.Adapter.AdapterNormalizador;
@@ -16,11 +16,11 @@ import java.io.*;
 
 public class Adapter1 implements AdapterNormalizador {
 
-    public void normalizarImagen(FotoMascota fotoMascota, CalidadImagen calidadImagen, TamanioImagen tamanioImagen) {
+    public void normalizarImagen(foto_mascota fotomascota, CalidadImagen calidadImagen, TamanioImagen tamanioImagen) {
 
             try{
 
-            byte[] fotoBytes = fotoMascota.traerBytes();
+            byte[] fotoBytes = fotomascota.traerBytes();
 
             ByteArrayInputStream streamImg = new ByteArrayInputStream(fotoBytes);
             // Abrir imagen en buffer desde los bytes
@@ -30,14 +30,14 @@ public class Adapter1 implements AdapterNormalizador {
             int imgAlto = img.getHeight();
 
             if (imgAncho * tamanioImagen.getAlto() < imgAlto* tamanioImagen.getAncho()) {
-              fotoMascota.setAncho(imgAncho* tamanioImagen.getAlto()/imgAlto);
+              fotomascota.setAncho(imgAncho* tamanioImagen.getAlto()/imgAlto);
             } else {
-                fotoMascota.setAlto(imgAlto* tamanioImagen.getAncho()/imgAncho);
+                fotomascota.setAlto(imgAlto* tamanioImagen.getAncho()/imgAncho);
             }
             //Convertirlo en clase imagen con otra escala
-             Image resultingImage = img.getScaledInstance(fotoMascota.getAncho(), fotoMascota.getAlto(), Image.SCALE_DEFAULT);
+             Image resultingImage = img.getScaledInstance(fotomascota.getAncho(), fotomascota.getAlto(), Image.SCALE_DEFAULT);
             // crear un buffer con la imagen reescalada
-            BufferedImage imagenBuffer = new BufferedImage(fotoMascota.getAncho(), fotoMascota.getAlto(), BufferedImage.TYPE_INT_RGB);
+            BufferedImage imagenBuffer = new BufferedImage(fotomascota.getAncho(), fotomascota.getAlto(), BufferedImage.TYPE_INT_RGB);
              imagenBuffer.getGraphics().drawImage(resultingImage, 0, 0, null);
 
             //ajustando la calidad (comprension)
@@ -60,9 +60,9 @@ public class Adapter1 implements AdapterNormalizador {
                 InputStream is = new ByteArrayInputStream(buffer.toByteArray());
                 BufferedImage newBi = ImageIO.read(is);
                 // guardando imagen
-                ImageIO.write(newBi, "jpg", new File(fotoMascota.getRuta()));
-                fotoMascota.setAncho(imagenBuffer.getWidth());
-                fotoMascota.setAlto(imagenBuffer.getHeight());
+                ImageIO.write(newBi, "jpg", new File(fotomascota.getRuta()));
+                fotomascota.setAncho(imagenBuffer.getWidth());
+                fotomascota.setAlto(imagenBuffer.getHeight());
 
 
         }

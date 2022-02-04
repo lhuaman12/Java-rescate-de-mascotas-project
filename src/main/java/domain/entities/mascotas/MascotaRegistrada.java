@@ -1,6 +1,7 @@
 package domain.entities.mascotas;
 
 import domain.entities.usuarios.Usuario;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -25,7 +26,10 @@ public class MascotaRegistrada extends Mascota {
     @Column
     private String tokenRescate;
 
-    @Transient
+    @Column
+    private Boolean estaCastrado;
+
+    @OneToMany(mappedBy = "mascotaRegistrada",cascade = {CascadeType.ALL})
     private List<CaracteristicasONG> caracteristicas;
 
 
@@ -75,6 +79,14 @@ public class MascotaRegistrada extends Mascota {
 
     public void setDuenio(Usuario duenio) {
         this.duenio = duenio;
+    }
+
+    public void setEstaCastrado(Boolean estaCastrado) {
+        this.estaCastrado = estaCastrado;
+    }
+
+    public Boolean getEstaCastrado() {
+        return estaCastrado;
     }
 }
 

@@ -1,7 +1,6 @@
 package domain.entities.rescate;
 
 import domain.entities.domicilio.Domicilio;
-import domain.entities.mascotas.FotoMascota;
 import domain.entities.organizaciones.Organizacion;
 import domain.entities.usuarios.Contacto;
 import domain.entities.usuarios.Usuario;

@@ -5,6 +5,7 @@ import domain.entities.domicilio.Domicilio;
 import domain.entities.mascotas.*;
 import domain.entities.organizaciones.Organizacion;
 import domain.entities.organizaciones.PreguntasONG.Atributo;
+import domain.entities.organizaciones.PreguntasONG.OpcionesDePregunta;
 import domain.entities.organizaciones.PreguntasONG.TipoDePregunta;
 import domain.entities.organizaciones.PreguntasONG.TipoDeRegistro;
 import domain.entities.rescate.RescateConQR;
@@ -139,7 +140,30 @@ public class EntityManagerTest {
         atributo2.setTipoDeRegistro(tipoDeRegistro1);
         atributo2.setOrganizacion(organizacion);
         organizacion.getPreguntasRequeridas().add(atributo2);
-        // Nuevo atributo tipo registro y pregunta/respuesta
+        // Nuevo atributo tipo registro de multiple_choice
+        Atributo atributo3 = new Atributo();
+        TipoDePregunta tipoDePregunta2 = new TipoDePregunta();
+        TipoDeRegistro tipoDeRegistro2 = new TipoDeRegistro();
+        tipoDeRegistro2.setNombre("registro_de_mascota");
+        tipoDePregunta2.setNombre("multiple_choice");
+        atributo3.setTipoDePregunta(tipoDePregunta2);
+        atributo3.setTipoDeRegistro(tipoDeRegistro2);
+        atributo3.setOrganizacion(organizacion);
+        atributo3.setCaracteristicaNombre("cuantas patas tiene");
+        OpcionesDePregunta opcion1 = new OpcionesDePregunta();
+        opcion1.setNombreOpcion("1");
+        OpcionesDePregunta opcion2 = new OpcionesDePregunta();
+        opcion2.setNombreOpcion("2");
+        OpcionesDePregunta opcion3 = new OpcionesDePregunta();
+        opcion3.setNombreOpcion("3");
+        opcion1.setAtributo(atributo3);
+        opcion2.setAtributo(atributo3);
+        opcion3.setAtributo(atributo3);
+
+        atributo3.getOpciones().add(opcion1);
+        atributo3.getOpciones().add(opcion2);
+        atributo3.getOpciones().add(opcion3);
+
 
 
         //
@@ -153,6 +177,16 @@ public class EntityManagerTest {
         EntityManagerHelper.persist(tipoDeRegistro1);
         EntityManagerHelper.persist(tipoDePregunta1);
         EntityManagerHelper.persist(atributo2);
+
+        //
+        EntityManagerHelper.persist(tipoDeRegistro2);
+        EntityManagerHelper.persist(tipoDePregunta2);
+        EntityManagerHelper.persist(opcion3);
+        EntityManagerHelper.persist(opcion2);
+        EntityManagerHelper.persist(opcion1);
+        EntityManagerHelper.persist(tipoDePregunta2);
+        EntityManagerHelper.persist(atributo3);
+        //
         EntityManagerHelper.persist(organizacion);
         EntityManagerHelper.commit();
     }
@@ -200,19 +234,19 @@ public class EntityManagerTest {
         //mascota.setFechaNac(Date.from(Instant.now()));
         mascota.setTipoMascota(TipoMascota.PERRO);
         mascota.setSexo(Sexo.MACHO);
-        //mascota.setTamanioMascota(TamanioMascota.MEDIANA);
+        mascota.setTamanioMascota(TamanioMascota.MEDIANO);
         mascota.setDateTime(LocalDateTime.now());
         mascota.setOrganizacion(organizacion);
         mascota.setDuenio(usuario);
 
         // EntityManager
         EntityManagerHelper.beginTransaction();
-        EntityManagerHelper.getEntityManager().persist(domicilioOrg);
+        //EntityManagerHelper.getEntityManager().persist(domicilioOrg);
         EntityManagerHelper.getEntityManager().persist(organizacion);
-        EntityManagerHelper.getEntityManager().persist(login);
-        EntityManagerHelper.getEntityManager().persist(domicilio);
+        //EntityManagerHelper.getEntityManager().persist(login);
+        //EntityManagerHelper.getEntityManager().persist(domicilio);
         EntityManagerHelper.getEntityManager().persist(usuario);
-        EntityManagerHelper.getEntityManager().persist(mascota);
+        //EntityManagerHelper.getEntityManager().persist(mascota);
         EntityManagerHelper.commit();
 
     }

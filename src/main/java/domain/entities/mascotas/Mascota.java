@@ -38,7 +38,7 @@ public abstract class Mascota {
     private TamanioMascota tamanioMascota;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<FotoMascota> fotosMascota;
+    private List<foto_mascota> fotosMascota;
 
     @Column(columnDefinition = "DATETIME", name="datetime")
     private LocalDateTime dateTime;
@@ -91,11 +91,11 @@ public abstract class Mascota {
         this.tamanioMascota = tamanioMascota;
     }
 
-    public List<FotoMascota> getFotosMascota() {
+    public List<foto_mascota> getFotosMascota() {
         return fotosMascota;
     }
 
-    public void setFotosMascota(List<FotoMascota> fotosMascota) {
+    public void setFotosMascota(List<foto_mascota> fotosMascota) {
         this.fotosMascota = fotosMascota;
     }
 

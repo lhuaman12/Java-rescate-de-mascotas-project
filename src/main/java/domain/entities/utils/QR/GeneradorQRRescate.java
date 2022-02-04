@@ -5,7 +5,7 @@ import domain.entities.usuarios.Usuario;
 import domain.entities.utils.QR.AdapteeQR.ZXing;
 
 public class GeneradorQRRescate implements GeneradorToken {
-    private final String pathFile="src/main/resources/dueniosQRs/";
+    private final String pathFile="src/main/resources/mascotas_info/QRs";
     private final String URLBase="https://patitas.com?rescate_id=";
     private ZXing adaptee = new ZXing();
     private GeneradorToken generadorToken = new AdapterGeneradorDeToken();

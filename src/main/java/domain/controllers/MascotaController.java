@@ -1,10 +1,10 @@
 package domain.controllers;
 
+import db.EntityManagerHelper;
 import domain.controllers.utils.UtilsRequest;
-import domain.entities.mascotas.Mascota;
-import domain.entities.mascotas.MascotaPerdida;
-import domain.entities.mascotas.MascotaRegistrada;
+import domain.entities.mascotas.*;
 import domain.entities.organizaciones.Organizacion;
+import domain.entities.organizaciones.PreguntasONG.Atributo;
 import domain.entities.usuarios.Usuario;
 import domain.repositories.Repositorio;
 import domain.repositories.factories.FactoryRepositorio;
@@ -16,10 +16,7 @@ import spark.Response;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletException;
 import javax.servlet.http.Part;
-import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -53,33 +50,116 @@ public class MascotaController {
     }
 
     public Response guardarMascota(Request request, Response response) throws ServletException, IOException {
-        String id = request.params("id");
-        Usuario usuario = this.repoUsuarios.buscar(Integer.valueOf(id));
-
         request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
-        //String result = UtilsRequest.ObtainAttributeByName(request,"nombre");
-        //System.out.println(result);
-        //System.out.println(request.raw().getPart("files").toString());
+        String idDuenio = request.params("id");
+        String idOrganizacion = UtilsRequest.ObtainAttributeByName(request,"organizacion");
+        Usuario usuario = this.repoUsuarios.buscar(Integer.valueOf(idDuenio));
+        Organizacion organizacion = this.organizaciones.buscar(Integer.valueOf(idOrganizacion));
+        ///////
+        MascotaRegistrada mascota = new MascotaRegistrada();
+        mascota.setDuenio(usuario);
+        mascota.setOrganizacion(organizacion);
+
+        foto_mascota fotomascota = new foto_mascota();
+
         Collection<Part> part = request.raw().getParts();
         Iterator<Part> iterator = part.iterator();
-        /*
+        Part partAux;
         while(iterator.hasNext()){
-            iterator.next().getInputStream().
-            //System.out.println("value="+iterator.next());
+            partAux  =iterator.next();
+            String name = partAux.getName();
+            String value = IOUtils.toString(partAux.getInputStream(),StandardCharsets.UTF_8);
+            //System.out.println("Name:"+name);
+            //System.out.println("Valor:"+value);
+
+            switch (name){
+                case "nombre":
+                    mascota.setNombre(value);
+                    break;
+                case "apodo":
+                    mascota.setApodo(value);
+                    break;
+                case "tipo_de_mascota":
+                    if(value.equals("gato"))
+                        mascota.setTipoMascota(TipoMascota.GATO);
+                    if(value.equals("perro"))
+                        mascota.setTipoMascota(TipoMascota.PERRO);
+                    break;
+                case "sexo_mascota":
+                    if(value.equals("macho"))
+                        mascota.setSexo(Sexo.MACHO);
+                    if(value.equals("hembra"))
+                        mascota.setSexo(Sexo.HEMBRA);
+                    break;
+                case "tamanio_mascota":
+                    if(value.equals("pequenio"))
+                        mascota.setTamanioMascota(TamanioMascota.PEQUENIO);
+                    if(value.equals("mediano"))
+                        mascota.setTamanioMascota(TamanioMascota.MEDIANO);
+                    if(value.equals("grande"))
+                        mascota.setTamanioMascota(TamanioMascota.GRANDE);
+                    break;
+                case "esta_castrado" :
+                    if(value.equals("Si"))
+                        mascota.setEstaCastrado(Boolean.TRUE);
+                    if(value.equals("No"))
+                        mascota.setEstaCastrado(Boolean.FALSE);
+                    break;
+                case "files":
+                        System.out.println(value);
+                        break;
+                case "edad_mascota":
+                    if(value.equals("cachorro"))
+                    mascota.setEdadAproximada(EdadAproximada.CACHORRO);
+                    if(value.equals("joven"))
+                        mascota.setEdadAproximada(EdadAproximada.JOVEN);
+                    if(value.equals("adulto"))
+                        mascota.setEdadAproximada(EdadAproximada.ADULTO);
+                    if(value.equals("abuelo"))
+                        mascota.setEdadAproximada(EdadAproximada.ABUELO);
+                    break;
+                case "organizacion":
+                    // no hacer nada
+                    break;
+
+                // Si no son atributos de plataforma son caracteristicas de organizacion
+                default:
+                    //System.out.println(name);
+                    //System.out.println(value);
+                    //TODO: recorta el string "pregunta_x" y devuelve x, esta medio hardcodeado xd
+
+                    String idAtributo = name.substring(9);
+                    System.out.println(idAtributo);
+
+                    CaracteristicasONG caracteristica = new CaracteristicasONG();
+                    organizacion.getPreguntasRequeridas().stream().forEach( a -> System.out.println("Atributo: "+ a.getId()));
+                    Atributo atributo = organizacion.getPreguntasRequeridas().stream().filter( a -> a.getId()==Integer.valueOf(idAtributo)).findFirst().get();
+                    System.out.println(atributo.getCaracteristicaNombre());
+                    System.out.println(value);
+                    caracteristica.setMascotaRegistrada(mascota);
+                    caracteristica.setNombreCaracteristica(atributo.getCaracteristicaNombre());
+                    caracteristica.setRespuesta(value);
+                    mascota.getCaracteristicas().add(caracteristica);
+
+                    break;
+
+
+            }
+
         }
-        */
 
-
-        /*try (InputStream is = request.raw().getPart("files").getInputStream()) {
-            File targetFile = new File("src/main/resources/duenios/"+id+"/targetFile.jpeg");
-
-        }
-        */
-
+            repoMascotaRegistrada.agregar(mascota);
+            System.out.println(mascota.getNombre());
+            System.out.println(mascota.getApodo());
+            System.out.println(mascota.getTipoMascota());
+            System.out.println("duenio nombre : "+mascota.getDuenio().getNombre());
+            System.out.println(mascota.getEdadAproximada());
+            System.out.println("id de la mascota!!!"+mascota.getId());
 
 
 
         return response;
+
     }
 
     public ModelAndView mostrar(Request request, Response response) {

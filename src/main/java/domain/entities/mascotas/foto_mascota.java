@@ -9,7 +9,7 @@ import java.io.IOException;
 
 @Entity
 @Table(name = "foto_mascota")
-public class FotoMascota {
+public class foto_mascota {
 
     @Id
     @GeneratedValue
@@ -22,18 +22,18 @@ public class FotoMascota {
     @JoinColumn(name = "mascota_id", referencedColumnName = "id")
     private Mascota mascota;
 
-    @Transient
+    @Column
     private int ancho;
 
-    @Transient
+    @Column
     private int alto;
 
-    @Transient
-    Boolean esRutaLocal;
+    @Column
+    private Boolean esRutaLocal;
 
 
     // Constructor
-    public FotoMascota() {}
+    public foto_mascota() {}
 
 
     // Getters and Setters
@@ -100,6 +100,12 @@ public class FotoMascota {
 
         }
         return null;
+    }
+    public void guardarFoto(MascotaRegistrada mascota,Byte[] fotoBytes){
+        final String URL = "src/main/resources/mascotas_info/";
+        String customPath = URL + "mascota_" + mascota.getId() + "/fotos";
+
+        this.setRuta(customPath);
     }
 
 }

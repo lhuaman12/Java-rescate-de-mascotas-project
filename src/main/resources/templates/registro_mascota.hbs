@@ -46,11 +46,11 @@
             <div class="row">
               <div class="col s12">
                 <div class="input-field col s4">
-                  <input placeholder="Ej: Juan" id="nombre" type="text" class="validate" name="nombre">
+                  <input placeholder="Ej: Pancho" id="nombre" type="text" class="validate" name="nombre">
                   <label for="nombre">Nombre de la mascota</label>
                 </div>
                 <div class="input-field col s4">
-                  <input placeholder="Ej: Juan" id="nombre" type="text" class="validate" name="apodo">
+                  <input placeholder="Ej: Pancho" id="apodo" type="text" class="validate" name="apodo">
                   <label for="nombre">Apodo</label>
                 </div>
               <div class="col s12">
@@ -75,8 +75,8 @@
                  <div class="input-field col s4">
                   <select class="browser-default" name="sexo_mascota">
                     <option value="" disabled selected>Sexo</option>
-                    <option value="gato">Macho</option>
-                    <option value="perro">Hembra</option>
+                    <option value="macho">Macho</option>
+                    <option value="hembra">Hembra</option>
                   </select>
                 </div>
                 <div class="input-field col s4">
@@ -115,7 +115,7 @@
                   {{/eq}}
                   {{#eq tipoDePregunta.nombre "pregunta"}}
                     <div class="input-field col s6">
-                        <input name="{{pregunta_{{id}}" id="pregunta_{{id}}" type="text" class="validate">
+                        <input name="pregunta_{{id}}" id="pregunta_{{id}}" type="text" class="validate">
                         <label class="active" for="first_name2">{{caracteristicaNombre}}</label>
                     </div>
                   {{/eq}}
@@ -131,6 +131,7 @@
                   {{/eq}}
                 {{/eq}}
               {{/each}}
+              <input id="organizacion" type="hidden" name="organizacion" value="{{org.id}}">
               <br/>
               <br/>
               <button class="btn waves-effect waves-light" type="submit">Enviar
