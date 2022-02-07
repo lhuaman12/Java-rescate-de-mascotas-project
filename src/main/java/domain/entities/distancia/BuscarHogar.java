@@ -19,7 +19,7 @@ public class BuscarHogar {
 
         List<Hogar> listadoDeHogares = buscadorDeHogaresService.hogaresDisponibles();
 
-        //ListadoDeHogares listadoDeHogares = servicioRefugioDdS.listadoDeHogares(1);
+        //ListadoDeHogares listadoDeHogares = servicioRefugioDdS.listadoDeHogares(1.jpg);
 
         Hogar hogarMasCercano = new Hogar();
 

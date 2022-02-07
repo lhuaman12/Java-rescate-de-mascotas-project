@@ -18,9 +18,6 @@ public abstract class Mascota {
     @GeneratedValue
     private int id;
 
-    //@Column
-    //private String nombre;
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
     private Organizacion organizacion;
@@ -38,7 +35,7 @@ public abstract class Mascota {
     private TamanioMascota tamanioMascota;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<foto_mascota> fotosMascota;
+    private List<FotoMascota> fotosMascota;
 
     @Column(columnDefinition = "DATETIME", name="datetime")
     private LocalDateTime dateTime;
@@ -91,11 +88,11 @@ public abstract class Mascota {
         this.tamanioMascota = tamanioMascota;
     }
 
-    public List<foto_mascota> getFotosMascota() {
+    public List<FotoMascota> getFotosMascota() {
         return fotosMascota;
     }
 
-    public void setFotosMascota(List<foto_mascota> fotosMascota) {
+    public void setFotosMascota(List<FotoMascota> fotosMascota) {
         this.fotosMascota = fotosMascota;
     }
 

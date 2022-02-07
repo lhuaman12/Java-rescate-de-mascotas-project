@@ -9,15 +9,11 @@ import domain.entities.usuarios.TipoDocumento;
 import domain.entities.usuarios.Usuario;
 import domain.repositories.Repositorio;
 import domain.repositories.factories.FactoryRepositorio;
-import org.uqbarproject.jpa.java8.extras.convert.LocalDateTimeConverter;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -163,7 +159,7 @@ public class UsuarioController {
     }
 
     public ModelAndView mostrarUsuario(Request request, Response response) {
-        Usuario usuario = this.repositorio.buscar(new Integer(request.params("id")));
+        Usuario usuario = this.repositorio.buscar(Integer.valueOf(request.params("id")));
         Map<String, Object> params = new HashMap<>();
         params.put("usuario", usuario);
 
@@ -176,7 +172,7 @@ public class UsuarioController {
         String nombre = request.queryParams("nombre");
         String apellido = request.queryParams("apellido");
 
-        Usuario usuario = this.repositorio.buscar(new Integer(id));
+        Usuario usuario = this.repositorio.buscar(Integer.valueOf(id));
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         this.repositorio.modificar(usuario);
@@ -186,7 +182,7 @@ public class UsuarioController {
     }
 
     public ModelAndView crearContacto(Request request, Response response) {
-        Usuario usuario = this.repositorio.buscar(new Integer(request.params("id")));
+        Usuario usuario = this.repositorio.buscar(Integer.valueOf(request.params("id")));
         Map<String, Object> params = new HashMap<>();
         params.put("usuario", usuario);
 
@@ -207,7 +203,7 @@ public class UsuarioController {
         contacto.setEmail(email);
 
         String id = request.params("id");
-        Usuario usuario = this.repositorio.buscar(new Integer(id));
+        Usuario usuario = this.repositorio.buscar(Integer.valueOf(id));
         usuario.setContactos(contacto);
         this.repositorio.modificar(usuario);
 
@@ -218,7 +214,7 @@ public class UsuarioController {
     public ModelAndView mostrarContacto(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
 
-        Contacto contacto = this.repositorioContacto.buscar(new Integer(request.params("idContacto")));
+        Contacto contacto = this.repositorioContacto.buscar(Integer.valueOf(request.params("idContacto")));
         parametros.put("contacto", contacto);
 
         return new ModelAndView(parametros, "contacto.hbs");
@@ -226,7 +222,7 @@ public class UsuarioController {
 
     public Response modificarContacto(Request request, Response response) {
 
-        Contacto contacto = this.repositorioContacto.buscar(new Integer(request.params("idContacto")));
+        Contacto contacto = this.repositorioContacto.buscar(Integer.valueOf(request.params("idContacto")));
 
         String nombre = request.queryParams("nombre");
         String apellido = request.queryParams("apellido");
@@ -246,7 +242,7 @@ public class UsuarioController {
 
     public ModelAndView mostrarContactos(Request request, Response response) {
 
-        Usuario usuario = this.repositorio.buscar(new Integer(request.params("id")));
+        Usuario usuario = this.repositorio.buscar(Integer.valueOf(request.params("id")));
         List<Contacto> contactos = usuario.getContactos();
         Map<String, Object> params = new HashMap<>();
         params.put("usuario", usuario);

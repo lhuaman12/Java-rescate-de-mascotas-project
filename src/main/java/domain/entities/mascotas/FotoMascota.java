@@ -3,13 +3,11 @@ package domain.entities.mascotas;
 import javax.imageio.ImageIO;
 import javax.persistence.*;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 @Entity
 @Table(name = "foto_mascota")
-public class foto_mascota {
+public class FotoMascota {
 
     @Id
     @GeneratedValue
@@ -33,11 +31,9 @@ public class foto_mascota {
 
 
     // Constructor
-    public foto_mascota() {}
-
+    public FotoMascota() {}
 
     // Getters and Setters
-
 
     public int getId() {
         return id;
@@ -86,7 +82,9 @@ public class foto_mascota {
     public void setEsRutaLocal(Boolean esRutaLocal) {
         this.esRutaLocal = esRutaLocal;
     }
-    public byte[] traerBytes(){
+
+    public byte[] traerBytesDesdePath(){
+
         if(esRutaLocal==true){
             try {
                 BufferedImage foto = ImageIO.read(new File(this.getRuta()));
@@ -101,11 +99,23 @@ public class foto_mascota {
         }
         return null;
     }
-    public void guardarFoto(MascotaRegistrada mascota,Byte[] fotoBytes){
-        final String URL = "src/main/resources/mascotas_info/";
-        String customPath = URL + "mascota_" + mascota.getId() + "/fotos";
+    public void guardarFoto(MascotaRegistrada mascota,byte[] fotoBytes,Integer numeroDeFoto) throws IOException {
 
-        this.setRuta(customPath);
+        String pathMascota = "src/main/resources/mascotas_info/" + "mascota_" + String.valueOf(mascota.getId());
+        File file1 = new File(pathMascota);
+        file1.mkdir();
+
+        String pathFotosDeMascotas = pathMascota + "/fotos";
+        File file2 = new File(pathFotosDeMascotas);
+        file2.mkdir();
+
+        String pathFotosDeLaMascota = pathFotosDeMascotas +"/foto_" +String.valueOf(numeroDeFoto)+".jpg";
+
+        InputStream is = new ByteArrayInputStream(fotoBytes);
+        BufferedImage newBi = ImageIO.read(is);
+        ImageIO.write(newBi, "jpg", new File(pathFotosDeLaMascota));
+
+        this.setRuta(pathFotosDeLaMascota);
     }
 
 }

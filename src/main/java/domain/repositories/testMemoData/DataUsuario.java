@@ -23,10 +23,10 @@ public class DataUsuario {
             Usuario lucas = new Usuario();
             lucas.setNombre("Lucas");
             lucas.setApellido("Saclier");
-            lucas.setId(1);
+            lucas.setId(1.jpg);
             lucas.setTelefono(1156585936);
             lucas.setLegajo(112233);
-            lucas.setRol(repoRol.buscar(1));
+            lucas.setRol(repoRol.buscar(1.jpg));
 
             Usuario eze = new Usuario();
             eze.setNombre("Eze");

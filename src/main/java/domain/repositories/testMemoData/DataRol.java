@@ -21,7 +21,7 @@ public class DataRol {
         if(roles.size() == 0){
             Rol admin = new Rol();
             admin.setNombre("Adminsitrador");
-            admin.setId(1);
+            admin.setId(1.jpg);
 
             Rol docente = new Rol();
             docente.setNombre("Docente");

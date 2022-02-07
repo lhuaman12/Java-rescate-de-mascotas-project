@@ -36,9 +36,5 @@ public class JWTUtil {
         }
     }
 
-    public String parseURLRescate(String URL){
-        return null;
-    }
-
 }
 

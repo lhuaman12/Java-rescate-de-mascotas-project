@@ -4,9 +4,12 @@ import domain.entities.mascotas.MascotaRegistrada;
 import domain.entities.usuarios.Usuario;
 import domain.entities.utils.QR.AdapteeQR.ZXing;
 
+import java.io.File;
+
 public class GeneradorQRRescate implements GeneradorToken {
-    private final String pathFile="src/main/resources/mascotas_info/QRs";
-    private final String URLBase="https://patitas.com?rescate_id=";
+
+    private final String rootFolder ="src/main/resources/mascotas_info";
+    private final String URLBase="https://patitas.com?rescate_token=";
     private ZXing adaptee = new ZXing();
     private GeneradorToken generadorToken = new AdapterGeneradorDeToken();
 
@@ -20,10 +23,13 @@ public class GeneradorQRRescate implements GeneradorToken {
     }
 
     public String crearQR(MascotaRegistrada mascota, Usuario usuario) throws Exception{
-        String pathQR = pathFile+"usuario"+String.valueOf(usuario.getId())+".jpg";
+        String baseFolder = rootFolder +"/mascota_"+mascota.getId()+"/QR";
+        File file = new File(baseFolder);
+        file.mkdir();
+        String fullPath = baseFolder + "/qrMascota.jpg";
         String URL = generarURL(String.valueOf(mascota.getId()),mascota.getApodo());
-        adaptee.crearQR(URL,pathQR);
-        return pathQR;
+        adaptee.crearQR(URL,fullPath);
+        return fullPath;
     }
 
 }

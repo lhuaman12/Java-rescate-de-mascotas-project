@@ -1,6 +1,6 @@
 package domain.entities.utils.normalizador.Adapter.Adaptees;
 
-import domain.entities.mascotas.foto_mascota;
+import domain.entities.mascotas.FotoMascota;
 import domain.entities.organizaciones.Configuraciones.CalidadImagen;
 import domain.entities.organizaciones.Configuraciones.TamanioImagen;
 import domain.entities.utils.normalizador.Adapter.AdapterNormalizador;
@@ -16,11 +16,11 @@ import java.io.*;
 
 public class Adapter1 implements AdapterNormalizador {
 
-    public void normalizarImagen(foto_mascota fotomascota, CalidadImagen calidadImagen, TamanioImagen tamanioImagen) {
+    public void normalizarImagen(FotoMascota fotomascota, CalidadImagen calidadImagen, TamanioImagen tamanioImagen) {
 
             try{
 
-            byte[] fotoBytes = fotomascota.traerBytes();
+            byte[] fotoBytes = fotomascota.traerBytesDesdePath();
 
             ByteArrayInputStream streamImg = new ByteArrayInputStream(fotoBytes);
             // Abrir imagen en buffer desde los bytes
@@ -30,10 +30,13 @@ public class Adapter1 implements AdapterNormalizador {
             int imgAlto = img.getHeight();
 
             if (imgAncho * tamanioImagen.getAlto() < imgAlto* tamanioImagen.getAncho()) {
-              fotomascota.setAncho(imgAncho* tamanioImagen.getAlto()/imgAlto);
+                fotomascota.setAncho(imgAncho* tamanioImagen.getAlto()/imgAlto);
+                fotomascota.setAlto(tamanioImagen.getAlto()); // ?
             } else {
                 fotomascota.setAlto(imgAlto* tamanioImagen.getAncho()/imgAncho);
+                fotomascota.setAncho(tamanioImagen.getAncho());
             }
+
             //Convertirlo en clase imagen con otra escala
              Image resultingImage = img.getScaledInstance(fotomascota.getAncho(), fotomascota.getAlto(), Image.SCALE_DEFAULT);
             // crear un buffer con la imagen reescalada

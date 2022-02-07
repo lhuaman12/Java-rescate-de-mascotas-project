@@ -3,6 +3,9 @@ package database;
 import db.EntityManagerHelper;
 import domain.entities.domicilio.Domicilio;
 import domain.entities.mascotas.*;
+import domain.entities.organizaciones.Configuraciones.CalidadImagen;
+import domain.entities.organizaciones.Configuraciones.EstandarImagen;
+import domain.entities.organizaciones.Configuraciones.TamanioImagen;
 import domain.entities.organizaciones.Organizacion;
 import domain.entities.organizaciones.PreguntasONG.Atributo;
 import domain.entities.organizaciones.PreguntasONG.OpcionesDePregunta;
@@ -50,8 +53,8 @@ public class EntityManagerTest {
 
         // Contacto
         Contacto contacto = new Contacto();
-        contacto.setNombre("Nombre contacto 1");
-        contacto.setApellido("Apellido contacto 1");
+        contacto.setNombre("Nombre contacto 1.jpg");
+        contacto.setApellido("Apellido contacto 1.jpg");
         contacto.setTelefono("1234567890");
         contacto.setEmail("contacto1@mail.com");
 
@@ -72,7 +75,7 @@ public class EntityManagerTest {
 
         // Domicilio
         Domicilio domicilio = new Domicilio();
-        domicilio.setCalle("Calle Usuario 1");
+        domicilio.setCalle("Calle Usuario 1.jpg");
         domicilio.setAltura(1234);
 
         // Contacto
@@ -113,11 +116,22 @@ public class EntityManagerTest {
         domicilioOrg.setLongitud(-80.00);
         domicilioOrg.setLatitud(-80.00);
 
+
         // Organización
         Organizacion organizacion = new Organizacion();
         organizacion.setNombre("Los bichos");
         organizacion.setDescripcion("Rescatar y darles hogar a todos los animales");
         organizacion.setDomicilio(domicilioOrg);
+
+        // Config imagen
+        EstandarImagen configImagen = new EstandarImagen();
+        TamanioImagen tamanioImagen = new TamanioImagen();
+        tamanioImagen.setAncho(700);
+        tamanioImagen.setAlto(700);
+        configImagen.setCalidadImagen(CalidadImagen.ALTA);
+        configImagen.setTamanioImagen(tamanioImagen);
+        organizacion.setEstandarImagen(configImagen);
+
         // Nuevo atributo tipo registro y boolean
         Atributo atributo1 = new Atributo();
         TipoDeRegistro tipoDeRegistro = new TipoDeRegistro();
@@ -198,13 +212,13 @@ public class EntityManagerTest {
 
         // Domicilio Organización
         Domicilio domicilioOrg = new Domicilio();
-        domicilioOrg.setCalle("Calle Organización 1");
+        domicilioOrg.setCalle("Calle Organización 1.jpg");
         domicilioOrg.setAltura(1234);
 
         // Organización
         Organizacion organizacion = new Organizacion();
-        organizacion.setNombre("Organización 1");
-        organizacion.setDescripcion("Descripción Organización 1");
+        organizacion.setNombre("Organización 1.jpg");
+        organizacion.setDescripcion("Descripción Organización 1.jpg");
         organizacion.setDomicilio(domicilioOrg);
 
         // Login
@@ -214,7 +228,7 @@ public class EntityManagerTest {
 
         // Domicilio
         Domicilio domicilio = new Domicilio();
-        domicilio.setCalle("Calle Usuario 1");
+        domicilio.setCalle("Calle Usuario 1.jpg");
         domicilio.setAltura(1234);
 
         // Dueño

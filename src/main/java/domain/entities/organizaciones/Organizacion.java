@@ -37,7 +37,8 @@ public class Organizacion {
     @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL})
     private List<Atributo> preguntasRequeridas;
 
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "estandar_imagen_id")
     private EstandarImagen estandarImagen;
 
 

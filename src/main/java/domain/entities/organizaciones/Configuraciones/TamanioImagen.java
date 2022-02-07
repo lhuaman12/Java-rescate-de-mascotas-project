@@ -1,7 +1,19 @@
 package domain.entities.organizaciones.Configuraciones;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "tamanio_imagen")
 public class TamanioImagen {
+
+    @Id
+    @GeneratedValue
+    private int id;
+
+    @Column
     private int ancho;
+
+    @Column
     private int alto;
 
     public void setAncho(int ancho) {
@@ -12,9 +24,7 @@ public class TamanioImagen {
         this.alto = alto;
     }
 
-    public TamanioImagen(int ancho, int alto) {
-        this.ancho = ancho;
-        this.alto = alto;
+    public TamanioImagen() {
     }
 
     public int getAncho() {
@@ -23,5 +33,13 @@ public class TamanioImagen {
 
     public int getAlto() {
         return alto;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

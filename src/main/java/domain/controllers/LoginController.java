@@ -44,13 +44,13 @@ public class LoginController {
         Login login = (Login) EntityManagerHelper.getEntityManager().createQuery("from login where username="+nombreUsuario).getSingleResult();
         /*
         if(login != null)
-            response.redirect("/sign_up/"+id+"?user_error=1");
+            response.redirect("/sign_up/"+id+"?user_error=1.jpg");
         else {
             if(validarContrasenia(contrasenia)){
                 //crear contrasenia
             }
             else
-                response.redirect("/sign_up/"+id+"?password_error=1");
+                response.redirect("/sign_up/"+id+"?password_error=1.jpg");
         }
         */
         return response;

@@ -1,6 +1,7 @@
 package domain.entities.mascotas;
 
 import domain.entities.usuarios.Usuario;
+import domain.entities.utils.QR.QR;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -24,14 +25,14 @@ public class MascotaRegistrada extends Mascota {
     private Usuario duenio;
 
     @Column
-    private String tokenRescate;
-
-    @Column
     private Boolean estaCastrado;
 
     @OneToMany(mappedBy = "mascotaRegistrada",cascade = {CascadeType.ALL})
     private List<CaracteristicasONG> caracteristicas;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "qr_id")
+    private QR qrMascota;
 
     // Constructor
     public MascotaRegistrada() {
@@ -57,14 +58,6 @@ public class MascotaRegistrada extends Mascota {
         this.apodo = apodo;
     }
 
-    public String getTokenRescate() {
-        return tokenRescate;
-    }
-
-    public void setTokenRescate(String tokenRescate) {
-        this.tokenRescate = tokenRescate;
-    }
-
     public List<CaracteristicasONG> getCaracteristicas() {
         return caracteristicas;
     }
@@ -87,6 +80,14 @@ public class MascotaRegistrada extends Mascota {
 
     public Boolean getEstaCastrado() {
         return estaCastrado;
+    }
+
+    public QR getQrMascota() {
+        return qrMascota;
+    }
+
+    public void setQrMascota(QR qrMascota) {
+        this.qrMascota = qrMascota;
     }
 }
 
