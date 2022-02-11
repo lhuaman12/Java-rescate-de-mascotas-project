@@ -11,9 +11,7 @@ function getLocation() {
     const inputLatitud = document.getElementById("longitud");
     inputLatitud.value = position.coords.latitude;
     inputLongitud.value = position.coords.longitude;
-    
-    //x.innerHTML = "Latitude: " + position.coords.latitude + 
-    //"<br>Longitude: " + position.coords.longitude;
+
   }
 
   getLocation();

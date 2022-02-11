@@ -2,11 +2,9 @@ package domain.entities.mascotas;
 
 import domain.entities.usuarios.Usuario;
 import domain.entities.utils.QR.QR;
-import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 

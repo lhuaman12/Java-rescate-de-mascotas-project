@@ -173,6 +173,19 @@ public class MascotaController {
 
     }
 
+    public ModelAndView darEnAdopcion(Request request , Response response){
+
+        return new ModelAndView(null,"dar_en_adopcion.hbs");
+    }
+
+    public Response handleDarEnAdopcion(Request request, Response response){
+
+
+        return response;
+    }
+
+
+
     public ModelAndView mostrar(Request request, Response response) {
         Mascota mascota = this.repo.buscar(Integer.valueOf(request.params("id")));
         Map<String, Object> params = new HashMap<>();

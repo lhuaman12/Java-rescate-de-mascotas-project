@@ -9,7 +9,7 @@ import java.awt.geom.Point2D;
 import java.util.List;
 
 // No es una entidad en mi DB, es una clase que se solicita en el momento
-public class HogarDeTransito {
+public class Hogar {
 
     public String id;
 

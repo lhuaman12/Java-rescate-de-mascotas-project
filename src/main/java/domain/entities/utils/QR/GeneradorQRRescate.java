@@ -9,7 +9,7 @@ import java.io.File;
 public class GeneradorQRRescate implements GeneradorToken {
 
     private final String rootFolder ="src/main/resources/mascotas_info";
-    private final String URLBase="https://patitas.com?rescate_token=";
+    private final String URLBase="http://localhost:9002/rescate/";
     private ZXing adaptee = new ZXing();
     private GeneradorToken generadorToken = new AdapterGeneradorDeToken();
 

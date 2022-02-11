@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 @Table(name = "mascota")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo")
+@DiscriminatorColumn(name = "tipo_de_mascota")
 public abstract class Mascota {
 
     @Id

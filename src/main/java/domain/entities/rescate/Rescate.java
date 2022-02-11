@@ -1,19 +1,21 @@
 package domain.entities.rescate;
 
+import domain.entities.distancia.Distancia;
 import domain.entities.domicilio.Domicilio;
+import domain.entities.mascotas.MascotaPerdida;
 import domain.entities.organizaciones.Organizacion;
 import domain.entities.usuarios.Contacto;
 import domain.entities.usuarios.Usuario;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Entity
 @Table(name = "rescate")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "qr")
-public abstract class Rescate {
+
+public class Rescate {
 
     @Id
     @GeneratedValue
@@ -34,10 +36,32 @@ public abstract class Rescate {
     @Column
     private String descripcion;             // Descripción del estado en que se encontró la mascota.
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "mascota_perdida_id", referencedColumnName = "id")
+    MascotaPerdida mascotaPerdida;
+
     @Column(columnDefinition = "DATETIME", name="datetime")
     private LocalDateTime localDateTime;
 
 
+    // metodos
+    public Organizacion getOrganizacionMasCercana(List<Organizacion> organizaciones){
+        Organizacion organizacionMasCercana = organizaciones.get(0);
+
+        Double distancia1 = Distancia.calcularDistancia(organizaciones.get(0).getDomicilio().getLatitud()
+                ,organizaciones.get(0).getDomicilio().getLongitud(),this.getDomicilio().getLatitud(),this.getDomicilio().getLongitud());
+        Double distancia2;
+
+        for(int i=0;i< organizaciones.size();i++){
+            distancia2 = Distancia.calcularDistancia(organizaciones.get(i).getDomicilio().getLatitud()
+                    ,organizaciones.get(i).getDomicilio().getLongitud(),this.getDomicilio().getLatitud(),this.getDomicilio().getLongitud());
+            if(distancia2 < distancia1){
+                organizacionMasCercana = organizaciones.get(i);
+            }
+
+        }
+        return organizacionMasCercana;
+    }
     // Constructor
     public Rescate() {}
 
@@ -92,15 +116,14 @@ public abstract class Rescate {
         this.organizacion = organizacion;
     }
 
+    public MascotaPerdida getMascotaPerdida() {
+        return mascotaPerdida;
+    }
+
+    public void setMascotaPerdida(MascotaPerdida mascotaPerdida) {
+        this.mascotaPerdida = mascotaPerdida;
+    }
+
     // Methods
 
-    public void avisarMascotaEncontrada(Contacto contacto){ // del rescatista al duenio
-        //MensajeMascotaPerdida mensaje = new MensajeMascotaPerdida(duenio,);
-    }
-    public Usuario buscarDuenio(){
-        return null;
-    }
-    public void avisarRescatistaPublicacion(){ // cuando alguien responde a la publicacion del rescatista
-
-    }
 }

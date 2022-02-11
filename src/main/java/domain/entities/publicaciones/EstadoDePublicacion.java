@@ -2,16 +2,41 @@ package domain.entities.publicaciones;
 
 import domain.entities.usuarios.Usuario;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
-public class RegistroEstado {
-    Usuario voluntarioResponsable;
-    LocalDate fechaDeCambio;
-    EstadoPublicacion estadoPublicacion;
+@Entity
+@Table(name="estado_de_publicacion")
+public class EstadoDePublicacion {
+
+    @Id
+    @GeneratedValue
+    private int id;
+
+    @OneToOne
+    @JoinColumn(name = "voluntario_id", referencedColumnName = "id")
+    private Usuario voluntarioResponsable;
+
+    @Transient //TODO:timestamp
+    private LocalDate fechaDeCambio;
+
+    @Enumerated(EnumType.STRING)
+    private EstadoPosible estadoPosible;
 
 
-    public RegistroEstado(Usuario voluntarioResponsable, EstadoPublicacion estadoPublicacion) {
-        this.voluntarioResponsable = voluntarioResponsable;
-        this.estadoPublicacion = estadoPublicacion;
+    @ManyToOne
+    @JoinColumn(name="publicacion_id" ,referencedColumnName = "id")
+    private Publicacion publicacion;
+
+
+    public EstadoDePublicacion() {
+    }
+
+    public Publicacion getPublicacion() {
+        return publicacion;
+    }
+
+    public void setPublicacion(Publicacion publicacion) {
+        this.publicacion = publicacion;
     }
 }

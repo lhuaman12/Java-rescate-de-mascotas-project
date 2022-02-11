@@ -75,7 +75,7 @@ public class Usuario {
 
     public Usuario() {
         this.contactos = new ArrayList<>();
-
+        this.roles = new ArrayList<>();
         this.mascotasRegistradas = new ArrayList<>();
         this.rescates = new ArrayList<>();
         this.publicacionesRescate = new ArrayList<>();

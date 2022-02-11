@@ -12,36 +12,13 @@ import java.util.List;
 @DiscriminatorValue("perdida")
 public class MascotaPerdida extends Mascota {
 
-    //@Enumerated(EnumType.STRING)
-    //private EdadAproximada edadAprox;
 
-    @Transient
-    private Hogar hogarDeTransito;
-
+    @OneToOne
+    @JoinColumn(name="hogar_id",referencedColumnName = "id")
+    private HogarDeTransito hogarActual; //hogar de transito donde se encuentra (si no esta es null)
 
     // Constructor
     public MascotaPerdida() {}
-
-
-    // Getters and Setters
-    /*
-    public EdadAproximada getEdadAprox() {
-        return edadAprox;
-    }
-
-
-    public void setEdadAprox(EdadAproximada edadAprox) {
-        this.edadAprox = edadAprox;
-    }
-    */
-
-    public Hogar getHogarDeTransito() {
-        return hogarDeTransito;
-    }
-
-    public void setHogarDeTransito(Hogar hogarDeTransito) {
-        this.hogarDeTransito = hogarDeTransito;
-    }
 
 
     // Methods
@@ -49,9 +26,17 @@ public class MascotaPerdida extends Mascota {
         BuscadorDeHogaresService buscador = BuscadorDeHogaresService.getInstancia();
         return buscador.buscarHogar(this); // TODO: la consulta a la API es sincronica cambiar luego
     }
-    public void confimarHogarDeTransito(Hogar hogarDeTransito){
-        this.hogarDeTransito = hogarDeTransito;
+
+    public HogarDeTransito getHogarDeTransito() {
+        return this.hogarActual;
     }
+
+    public void setHogarDeTransito(HogarDeTransito hogar) {
+        this.hogarActual = hogar;
+    }
+
+    // metodos
+
 
 
 }

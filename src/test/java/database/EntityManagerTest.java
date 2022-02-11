@@ -11,8 +11,6 @@ import domain.entities.organizaciones.PreguntasONG.Atributo;
 import domain.entities.organizaciones.PreguntasONG.OpcionesDePregunta;
 import domain.entities.organizaciones.PreguntasONG.TipoDePregunta;
 import domain.entities.organizaciones.PreguntasONG.TipoDeRegistro;
-import domain.entities.rescate.RescateConQR;
-import domain.entities.rescate.RescateSinQR;
 import domain.entities.usuarios.Contacto;
 import domain.entities.usuarios.Login;
 import domain.entities.usuarios.TipoDocumento;
@@ -308,6 +306,7 @@ public class EntityManagerTest {
         domicilio.setAltura(1234);
 
         // Rescate con QR
+        /*
         RescateConQR rescateConQR = new RescateConQR();
         rescateConQR.setRescatista(rescatista);
         rescateConQR.setDomicilio(domicilio);
@@ -315,7 +314,7 @@ public class EntityManagerTest {
         rescateConQR.setLocalDateTime(LocalDateTime.now());
         rescateConQR.setDuenio(duenio);
         rescateConQR.setOrganizacion(organizacion);
-
+        */
         // EntityManager
         EntityManagerHelper.beginTransaction();
         EntityManagerHelper.getEntityManager().persist(domicilioOrg);
@@ -323,7 +322,7 @@ public class EntityManagerTest {
         EntityManagerHelper.getEntityManager().persist(rescatista);
         EntityManagerHelper.getEntityManager().persist(duenio);
         EntityManagerHelper.getEntityManager().persist(domicilio);
-        EntityManagerHelper.getEntityManager().persist(rescateConQR);
+        //EntityManagerHelper.getEntityManager().persist(rescateConQR);
         EntityManagerHelper.commit();
 
     }
@@ -372,6 +371,7 @@ public class EntityManagerTest {
         domicilio.setAltura(5678);
 
         // Rescate sin QR
+        /*
         RescateSinQR rescateSinQR = new RescateSinQR();
         rescateSinQR.setRescatista(rescatista);
         rescateSinQR.setDomicilio(domicilio);
@@ -379,7 +379,7 @@ public class EntityManagerTest {
         rescateSinQR.setLocalDateTime(LocalDateTime.now());
         rescateSinQR.setOrganizacion(organizacion);
         rescateSinQR.setMascotaPerdida(mascota);
-
+        */
         // EntityManager
         EntityManagerHelper.beginTransaction();
         EntityManagerHelper.getEntityManager().persist(domicilioOrg);
@@ -387,7 +387,7 @@ public class EntityManagerTest {
         EntityManagerHelper.getEntityManager().persist(mascota);
         EntityManagerHelper.getEntityManager().persist(rescatista);
         EntityManagerHelper.getEntityManager().persist(domicilio);
-        EntityManagerHelper.getEntityManager().persist(rescateSinQR);
+        //EntityManagerHelper.getEntityManager().persist(rescateSinQR);
         EntityManagerHelper.commit();
     }
 

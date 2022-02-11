@@ -43,33 +43,6 @@ public class Domicilio {
     @JoinColumn(name = "municipio_id")
     private Municipio municipio;
 
-    // Constructor
-    //public Domicilio() {}
-
-    /*
-    public Domicilio(
-            int id,
-            String calle,
-            int altura,
-            String piso,
-            String dpto,
-            String codPostal,
-            double latitud,
-            double longitud,
-            Localidad localidad) {
-
-        this.id = id;
-        this.calle = calle;
-        this.altura = altura;
-        this.piso = piso;
-        this.dpto = dpto;
-        this.codPostal = codPostal;
-        this.latitud = latitud;
-        this.longitud = longitud;
-        this.localidad = localidad;
-    }
-    */
-
     // Getters and Setters
 
     public int getId() {
@@ -135,15 +108,6 @@ public class Domicilio {
     public void setLongitud(double longitud) {
         this.longitud = longitud;
     }
-    /*
-    public Localidad getLocalidad() {
-        return localidad;
-    }
 
-    public void setLocalidad(Localidad localidad) {
-        this.localidad = localidad;
-    }
-    */
-    //
 
 }

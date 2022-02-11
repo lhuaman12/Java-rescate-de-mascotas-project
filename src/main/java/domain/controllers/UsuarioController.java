@@ -97,14 +97,19 @@ public class UsuarioController {
         switch(tipo_de_doc){
             case "DNI":
                 usuario.setTipoDocumento(TipoDocumento.DNI);
+                break;
             case "libreta_civica":
                 usuario.setTipoDocumento(TipoDocumento.LC);
+                break;
             case "cedula_de_identidad":
                 usuario.setTipoDocumento(TipoDocumento.CI);
+                break;
             case "pasaporte":
                 usuario.setTipoDocumento(TipoDocumento.PAS);
+                break;
             case "libreta_de_enrolamiento":
                 usuario.setTipoDocumento(TipoDocumento.LE);
+                break;
         }
 
 
