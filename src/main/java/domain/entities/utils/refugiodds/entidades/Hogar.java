@@ -4,22 +4,29 @@ package domain.entities.utils.refugiodds.entidades;
 import domain.entities.mascotas.MascotaPerdida;
 import domain.entities.mascotas.TamanioMascota;
 import domain.entities.mascotas.TipoMascota;
-import domain.entities.rescate.Rescate;
-import domain.entities.rescate.RescateSinQR;
 
 import java.awt.geom.Point2D;
 import java.util.List;
 
-public class Hogar {
+// No es una entidad en mi DB, es una clase que se solicita en el momento
+public class HogarDeTransito {
 
     public String id;
+
     public String nombre;
+
     public Ubicacion ubicacion;
+
     public String telefono;
+
     public Admision admisiones;
+
     public int capacidad;
+
     public int lugares_disponibles;
+
     public boolean patio;
+
     public List<String> caracteristicas;
 
     private class Admision {
@@ -55,7 +62,7 @@ public class Hogar {
     public Boolean admiteMascota(MascotaPerdida mascota){
         return this.admiteTamanioMascota(mascota.getTamanioMascota()) && this.admiteTipoMascota(mascota.getTipoMascota());
     }
-
+    /*
     public Boolean cumpleRadioDeCercania(RescateSinQR rescateSinQR,Double radioCercaniaKms){
 
         Point2D coordenadaHogar = new Point2D.Double(this.ubicacion.getLat(),this.ubicacion.getLong()); // no era necesario instancia variables Poin2D puedo usar la clase directamente
@@ -65,5 +72,7 @@ public class Hogar {
         else
             return false;
     }
+
+     */
 
 }

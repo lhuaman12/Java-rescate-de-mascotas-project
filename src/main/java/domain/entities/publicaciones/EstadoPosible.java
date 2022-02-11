@@ -1,5 +1,5 @@
 package domain.entities.publicaciones;
 
-public enum EstadoPublicacion {
+public enum EstadoPosible {
     EN_REVISION,EN_PAUSA,ACEPTADO,RECHAZADO
 }
