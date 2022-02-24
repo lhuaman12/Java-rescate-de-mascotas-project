@@ -15,6 +15,8 @@ import domain.entities.usuarios.Contacto;
 import domain.entities.usuarios.Login;
 import domain.entities.usuarios.TipoDocumento;
 import domain.entities.usuarios.Usuario;
+import domain.repositories.Repositorio;
+import domain.repositories.factories.FactoryRepositorio;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -47,19 +49,30 @@ public class EntityManagerTest {
 
     // Contacto
     @Test
-    public void persistirContactoTest() {
+    public void persistirVirtudes() {
 
-        // Contacto
-        Contacto contacto = new Contacto();
-        contacto.setNombre("Nombre contacto 1.jpg");
-        contacto.setApellido("Apellido contacto 1.jpg");
-        contacto.setTelefono("1234567890");
-        contacto.setEmail("contacto1@mail.com");
+        Repositorio<Virtud> virtudes = FactoryRepositorio.get(Virtud.class);
 
-        // EntityManager
-        EntityManagerHelper.beginTransaction();
-        EntityManagerHelper.getEntityManager().persist(contacto);
-        EntityManagerHelper.commit();
+        Virtud virtud1 = new Virtud();
+        Virtud virtud2 = new Virtud();
+        Virtud virtud3 = new Virtud();
+        Virtud virtud4 = new Virtud();
+        Virtud virtud5 = new Virtud();
+        Virtud virtud6 = new Virtud();
+
+        virtud1.setNombre("carinioso"); //CARINIOSO,MANSO,PROTECTOR,TIMIDO,ALEGRE,CARACTER_FUERTE
+        virtud2.setNombre("manso");
+        virtud3.setNombre("protector");
+        virtud4.setNombre("timido");
+        virtud5.setNombre("alegre");
+        virtud6.setNombre("caracter_fuerte");
+
+        virtudes.agregar(virtud1);
+        virtudes.agregar(virtud2);
+        virtudes.agregar(virtud3);
+        virtudes.agregar(virtud4);
+        virtudes.agregar(virtud5);
+        virtudes.agregar(virtud6);
     }
 
     // Usuario

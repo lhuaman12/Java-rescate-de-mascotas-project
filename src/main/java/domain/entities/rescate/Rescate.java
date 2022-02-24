@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "rescate")
+//@Table(name = "rescate")
 
 public class Rescate {
 
@@ -25,7 +25,7 @@ public class Rescate {
     @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
     private Organizacion organizacion;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "rescatista_id", referencedColumnName = "id")
     private Usuario rescatista;
 

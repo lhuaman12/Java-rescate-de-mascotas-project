@@ -3,20 +3,31 @@ package domain.entities.mascotas;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "caracteristica_registro_mascota")
-public class CaracteristicaRegistroDeMascota {
+@Table(name = "caracteristica_adopcion")
+public class CaracteristicaDeAdopcion {
 
     @Id
     @GeneratedValue
     private int id;
+
     @Column
     private String nombreCaracteristica;
+
     @Column
     private String respuesta;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "mascota_id", referencedColumnName = "id")
-    private MascotaRegistrada mascotaRegistrada;
+    private MascotaEnAdopcion mascotaEnAdopcion;
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNombreCaracteristica() {
         return nombreCaracteristica;
@@ -34,20 +45,11 @@ public class CaracteristicaRegistroDeMascota {
         this.respuesta = respuesta;
     }
 
-    public int getId() {
-        return id;
+    public MascotaEnAdopcion getMascotaEnAdopcion() {
+        return mascotaEnAdopcion;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setMascotaEnAdopcion(MascotaEnAdopcion mascotaEnAdopcion) {
+        this.mascotaEnAdopcion = mascotaEnAdopcion;
     }
-
-    public MascotaRegistrada getMascotaRegistrada() {
-        return mascotaRegistrada;
-    }
-
-    public void setMascotaRegistrada(MascotaRegistrada mascotaRegistrada) {
-        this.mascotaRegistrada = mascotaRegistrada;
-    }
-
 }

@@ -103,15 +103,7 @@ public abstract class Mascota {
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
-    /*
-    public String getNombre() {
-        return nombre;
-    }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    */
     public EdadAproximada getEdadAproximada() {
         return edadAproximada;
     }

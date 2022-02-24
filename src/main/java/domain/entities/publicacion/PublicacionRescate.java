@@ -1,4 +1,4 @@
-package domain.entities.publicaciones;
+package domain.entities.publicacion;
 
 import domain.entities.mascotas.MascotaPerdida;
 import domain.entities.organizaciones.Organizacion;
@@ -13,10 +13,6 @@ public class PublicacionRescate extends Publicacion {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "rescate_id")
     private Rescate rescate;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "organizacion_id")
-    private Organizacion organizacion;
 
 
     @Override
@@ -46,12 +42,14 @@ public class PublicacionRescate extends Publicacion {
     public void setRescate(Rescate rescate) {
         this.rescate = rescate;
     }
-
+    /*
     public Organizacion getOrganizacion() {
         return organizacion;
     }
 
-    public void setOrganizacion(Organizacion organizacion) {
+    //public void setOrganizacion(Organizacion organizacion) {
         this.organizacion = organizacion;
     }
+
+     */
 }

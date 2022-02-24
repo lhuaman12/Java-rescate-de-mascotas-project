@@ -26,7 +26,7 @@ public class MascotaRegistrada extends Mascota {
     private Boolean estaCastrado;
 
     @OneToMany(mappedBy = "mascotaRegistrada",cascade = {CascadeType.ALL})
-    private List<CaracteristicasONG> caracteristicas;
+    private List<CaracteristicaRegistroDeMascota> caracteristicas;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "qr_id")
@@ -56,11 +56,11 @@ public class MascotaRegistrada extends Mascota {
         this.apodo = apodo;
     }
 
-    public List<CaracteristicasONG> getCaracteristicas() {
+    public List<CaracteristicaRegistroDeMascota> getCaracteristicas() {
         return caracteristicas;
     }
 
-    public void setCaracteristicas(List<CaracteristicasONG> caracteristicas) {
+    public void setCaracteristicas(List<CaracteristicaRegistroDeMascota> caracteristicas) {
         this.caracteristicas = caracteristicas;
     }
 

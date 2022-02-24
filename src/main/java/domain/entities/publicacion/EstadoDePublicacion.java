@@ -1,4 +1,4 @@
-package domain.entities.publicaciones;
+package domain.entities.publicacion;
 
 import domain.entities.usuarios.Usuario;
 

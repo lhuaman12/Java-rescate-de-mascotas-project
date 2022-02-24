@@ -5,9 +5,9 @@ import domain.entities.distancia.Distancia;
 import domain.entities.domicilio.Domicilio;
 import domain.entities.mascotas.MascotaRegistrada;
 import domain.entities.organizaciones.Organizacion;
-import domain.entities.publicaciones.PublicacionDeAdopcion;
-import domain.entities.publicaciones.PublicacionIntencionAdopcion;
-import domain.entities.publicaciones.PublicacionRescate;
+import domain.entities.publicacion.PublicacionDarEnAdopcion;
+import domain.entities.publicacion.PublicacionIntencionAdopcion;
+import domain.entities.publicacion.PublicacionRescate;
 import domain.entities.rescate.Rescate;
 
 import javax.persistence.*;
@@ -63,10 +63,13 @@ public class Usuario {
 
     @Transient
     private List<Rescate> rescates;
+
     @Transient
     private List<PublicacionRescate> publicacionesRescate;
+
     @Transient
-    private List<PublicacionDeAdopcion> publicacionesAdopcion;
+    private List<PublicacionDarEnAdopcion> publicacionesAdopcion;
+
     @Transient
     private List<PublicacionIntencionAdopcion> publicacionesIntAdopcion;
 
@@ -233,11 +236,11 @@ public class Usuario {
         this.publicacionesRescate = publicacionesRescate;
     }
 
-    public List<PublicacionDeAdopcion> getPublicacionesAdopcion() {
+    public List<PublicacionDarEnAdopcion> getPublicacionesAdopcion() {
         return publicacionesAdopcion;
     }
 
-    public void setPublicacionesAdopcion(List<PublicacionDeAdopcion> publicacionesAdopcion) {
+    public void setPublicacionesAdopcion(List<PublicacionDarEnAdopcion> publicacionesAdopcion) {
         this.publicacionesAdopcion = publicacionesAdopcion;
     }
 

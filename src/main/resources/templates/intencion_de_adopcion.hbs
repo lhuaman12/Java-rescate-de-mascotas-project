@@ -41,10 +41,12 @@
             <div class="row card">
 
                 <div class="col s12">
-                    <h3><u class="underlined-wavy">Datos personales</u></h3>
+                    <div class="input-field col s12">
+                        <h3><u class="underlined-wavy">Datos personales</u></h3>
+                    </div>
                 </div>
                 <div class="col s12">
-                    <form action="/dar_en_adopcion" method="post" >
+                    <form action="/adoptar" method="post" >
                         <div class="row">
                             <div class="col s12">
                                 <div class="input-field col s4">
@@ -56,6 +58,10 @@
                                         name="apellido">
                                     <label for="apellido">Apellido</label>
                                 </div>
+                                <div class="input-field col s4">
+                                    <input type="date" name="fechaNacimiento" class="text-input" name="fecha_de_nacimiento">
+                                <label for="fechaNacimiento">Fecha de nacimiento</label>
+                |           </div>
                             </div>
                             <div class="col s12">
                                 <div class="input-field col s4">
@@ -105,7 +111,9 @@
                                 </div>
                             </div>
                             <div class="col s12">
-                                <h3><u class="underlined-wavy">Contactos</u></h3>
+                                <div class="input-field col s12">
+                                    <h3><u class="underlined-wavy">Contactos</u></h3>
+                                </div>
                             </div>
                             <div class="col s12">
                                 <div class="input-field col s4">
@@ -140,18 +148,8 @@
                                 </div>
                             </div>
                             <div class="col s12">
-                                <h3><u class="underlined-wavy">Datos de la mascota en adopcion</u></h3>
-                            </div>
-                            <div class="col s12">
-                                <div class="input-field col s4">
-                                    <input placeholder="Ej: Pancho" id="nombre" type="text" class="validate"
-                                        name="nombre_mascota">
-                                    <label for="nombre">Nombre de la mascota</label>
-                                </div>
-                                <div class="input-field col s4">
-                                    <input placeholder="Ej: Pancho" id="apodo" type="text" class="validate"
-                                        name="apodo">
-                                    <label for="nombre">Apodo</label>
+                                <div class="input-field col s12">
+                                    <h3><u class="underlined-wavy">Preferencias de adopcion</u></h3>
                                 </div>
                             </div>
                             <div class="col s12">
@@ -169,6 +167,13 @@
                                         <option value="joven">Joven (1 a 5 años)</option>
                                         <option value="adulto">Adulto (5 a 9 años)</option>
                                         <option value="abuelo">Abuelo (Mayor a 9 años)</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col s4">
+                                    <select class="browser-default" name="tiene_vacunas">
+                                        <option value="" disabled selected>Tiene que tener todas las vacunas?</option>
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
                                     </select>
                                 </div>
                             </div>
@@ -190,31 +195,26 @@
                                 </div>
                                 <div class="input-field col s4">
                                     <select class="browser-default" name="tiene_discapacidad">
-                                        <option value="" disabled selected>Tiene alguna discapacidad?</option>
+                                        <option value="" disabled selected>Lo adoptaria si tiene alguna discapacidad?</option>
                                         <option value="Si">Si</option>
                                         <option value="No">No</option>
                                     </select>
                                 </div>
                             </div>
+                            
                             <div class="col s12">
-                                <div class="input-field col s4">
-                                    <select class="browser-default" name="tiene_vacunas">
-                                        <option value="" disabled selected>Tiene todas las vacunas?</option>
-                                        <option value="Si">Si</option>
-                                        <option value="No">No</option>
-                                    </select>
-                                </div>
+                                    <div class="input-field col s12">
+                                        <h5>Seleccione las caracteristicas que desearia que tenga su mascota</h5>        
+                                    </div>
                             </div>
                             <div class="col s12">
-                                 <h5>Seleccione caracteristicas que definan a la mascota</h5>                                   
-                            </div>
-                            <div class="col s12">
-                                <div class="input-field col s12">
+                                <div class="input-field col s6">
                                     <p>
                                     <label>
                                     <input type="checkbox" name="virtud_1" value="carinioso"/>
                                     <span>cariñoso</span>
-                                    </label>                                    
+                                    </label>
+                                    
                                     <p>
                                     <label>
                                     <input type="checkbox" name="virtud_2" value="manso"/>
@@ -247,7 +247,8 @@
                                     </p>
                                 </div>
                             </div>
-                             <div class="col s12">
+
+                            <div class="col s12">
                                 <div class="input-field col s12">
                                     <h5>Publicacion:</h5>
                                 </div>
@@ -261,11 +262,10 @@
                             </div>
                             <div class="col s12">
                                 <div class="input-field col s12">
-                                    <textarea id="descripcion" class="materialize-textarea"></textarea>
-                                    <label for="descripcion">Describa a su mascota que va a ser adoptada</label>
+                                    <textarea id="descripcion" class="materialize-textarea" name="descripcion"></textarea>
+                                    <label for="descripcion">Describa que tipo de mascota busca</label>
                                 </div>
                             </div>
-                                
                             
                             {{#each org.preguntasRequeridas}}
                                 {{#eq tipoDeRegistro.nombre "registro_de_mascota"}}
@@ -298,8 +298,8 @@
                         {{/each}}
                         <div class="col s12">
                             <input id="token" type="hidden" name="token" value="{{token}}">
-                            <input id="latitud" type="hidden" name="mascota_latitud" value="">
-                            <input id="longitud" type="hidden" name="mascota_longitud" value="">
+                            <input id="latitud" type="hidden" name="latitud" value="">
+                            <input id="longitud" type="hidden" name="longitud" value="">
                         </div>
                             <div class="col s12">
                                 <div class="input-field col s4">
@@ -312,6 +312,7 @@
                 </div>
             </div>
         </div>
+        <!--<script type="text/javascript" src="/js/geolocation.js"></script>-->
         <script type="text/javascript" src="/js/scripts.js"></script>
         <script type="text/javascript" src="/js/geolocation.js"></script>
 </body>

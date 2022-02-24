@@ -1,15 +1,34 @@
-package domain.entities.publicaciones;
+package domain.entities.publicacion;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import java.util.List;
+import domain.entities.adopcion.Adopcion;
+import domain.entities.adopcion.PeticionDeAdopcion;
 
+import javax.persistence.*;
+
+@Entity
 @DiscriminatorValue("intencion_adopcion")
-public class PublicacionIntencionAdopcion {
 
+public class PublicacionIntencionAdopcion  extends Publicacion{
 
-    //public List<PublicacionDeAdopcion> getRecomendacionesDeMascotas();
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "peticion_adopcion_id")
+    private PeticionDeAdopcion peticionDeAdopcion;
 
+    @Override
+    public void generarTitulo() {
 
+    }
 
+    @Override
+    void generarContenido() {
+
+    }
+
+    public PeticionDeAdopcion getPeticionDeAdopcion() {
+        return peticionDeAdopcion;
+    }
+
+    public void setPeticionDeAdopcion(PeticionDeAdopcion peticionDeAdopcion) {
+        this.peticionDeAdopcion = peticionDeAdopcion;
+    }
 }

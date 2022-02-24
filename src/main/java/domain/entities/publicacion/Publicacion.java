@@ -1,7 +1,7 @@
-package domain.entities.publicaciones;
+package domain.entities.publicacion;
 
 
-import domain.entities.mascotas.Mascota;
+import domain.entities.organizaciones.Organizacion;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,6 +11,9 @@ import java.util.List;
 @Table(name = "publicacion")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_de_publicacion")
+
+// La publicacion es una herencia, para que las publicaciones puedan generar el titulo y cuerpo automaticamente segun su tipo
+
 public abstract class Publicacion {
 
     @Id
@@ -24,7 +27,11 @@ public abstract class Publicacion {
     private String contenido;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    List<EstadoDePublicacion> estadosDePublicacion;
+    private List<EstadoDePublicacion> estadosDePublicacion;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
+    private Organizacion organizacion;
 
     public Publicacion() {
         this.estadosDePublicacion = new ArrayList<>();
@@ -65,6 +72,14 @@ public abstract class Publicacion {
 
     public void setEstadoDePublicacions(List<EstadoDePublicacion> estadoDePublicacions) {
         this.estadosDePublicacion = estadoDePublicacions;
+    }
+
+    public Organizacion getOrganizacion() {
+        return organizacion;
+    }
+
+    public void setOrganizacion(Organizacion organizacion) {
+        this.organizacion = organizacion;
     }
 
 

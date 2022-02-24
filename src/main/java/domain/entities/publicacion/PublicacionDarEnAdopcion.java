@@ -6,16 +6,12 @@ import domain.entities.organizaciones.Organizacion;
 import javax.persistence.*;
 
 @Entity
-@DiscriminatorValue("adopcion")
-public class PublicacionDeAdopcion extends Publicacion{
+@DiscriminatorValue("dar_en_adopcion")
+public class PublicacionDarEnAdopcion extends Publicacion{
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "adopcion_id")
     private Adopcion adopcion;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
-    private Organizacion organizacion;
 
     // Lista de personas que estan en la lista para adoptar??
 
@@ -38,11 +34,4 @@ public class PublicacionDeAdopcion extends Publicacion{
         this.adopcion = adopcion;
     }
 
-    public Organizacion getOrganizacion() {
-        return organizacion;
-    }
-
-    public void setOrganizacion(Organizacion organizacion) {
-        this.organizacion = organizacion;
-    }
 }
