@@ -39,4 +39,36 @@ public class EstadoDePublicacion {
     public void setPublicacion(Publicacion publicacion) {
         this.publicacion = publicacion;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Usuario getVoluntarioResponsable() {
+        return voluntarioResponsable;
+    }
+
+    public void setVoluntarioResponsable(Usuario voluntarioResponsable) {
+        this.voluntarioResponsable = voluntarioResponsable;
+    }
+
+    public LocalDate getFechaDeCambio() {
+        return fechaDeCambio;
+    }
+
+    public void setFechaDeCambio(LocalDate fechaDeCambio) {
+        this.fechaDeCambio = fechaDeCambio;
+    }
+
+    public EstadoPosible getEstadoPosible() {
+        return estadoPosible;
+    }
+
+    public void setEstadoPosible(EstadoPosible estadoPosible) {
+        this.estadoPosible = estadoPosible;
+    }
 }

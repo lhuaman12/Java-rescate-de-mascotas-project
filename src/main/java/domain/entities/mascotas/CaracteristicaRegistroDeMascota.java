@@ -3,8 +3,8 @@ package domain.entities.mascotas;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "caracteristica_ong")
-public class CaracteristicasONG {
+@Table(name = "caracteristica_registro_mascota")
+public class CaracteristicasRegistroDeMascota {
 
     @Id
     @GeneratedValue

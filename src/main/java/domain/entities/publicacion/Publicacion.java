@@ -4,6 +4,7 @@ package domain.entities.publicaciones;
 import domain.entities.mascotas.Mascota;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,6 +25,10 @@ public abstract class Publicacion {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<EstadoDePublicacion> estadosDePublicacion;
+
+    public Publicacion() {
+        this.estadosDePublicacion = new ArrayList<>();
+    }
 
     abstract public void generarTitulo();
 
