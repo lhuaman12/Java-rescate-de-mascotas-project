@@ -78,6 +78,8 @@ public class Router {
         Spark.get("/mascotas", mascotaController::mostrarTodas, Router.engine);
         Spark.get("/mascota/:id", mascotaController::mostrar, Router.engine);
         Spark.post("/mascota/:id", mascotaController::modificar);
+        //
+        Spark.get("/usuario/:id/registrar_mascota/success",mascotaController::registroDeMascotaExitoso,Router.engine);
 
         // Rescates
         Spark.get("/rescate/:rescate_token", rescateController::rescateQR, Router.engine);
@@ -88,8 +90,12 @@ public class Router {
 
         // Organizaciones
 
-        Spark.get("/organizacion/:id", organizacionController::panelDeAdmnistrador, Router.engine);
-
+        Spark.get("/usuario/:id_usuario/panel", organizacionController::panelDeAdmnistrador, Router.engine);
+        Spark.get("/usuario/:id_usuario/editar_atributo/:id_atributo",organizacionController::editarAtributo,Router.engine);
+        Spark.post("/usuario/:id_usuario/editar_atributo/:id_atributo",organizacionController::handleEditarAtributo);
+        Spark.delete("/usuario/:id_usuario/eliminar_atributo/:id_atributo",organizacionController::handleEliminarAtributo);
+        Spark.get("/usuario/:id_usuario/agregar_atributo",organizacionController::agregarAtributo,Router.engine);
+        Spark.post("/usuario/:id_usuario/agregar_atributo",organizacionController::handleAgregarAtributo);
 
     }
 }

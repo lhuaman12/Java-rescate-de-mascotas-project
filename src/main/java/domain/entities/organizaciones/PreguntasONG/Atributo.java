@@ -24,11 +24,11 @@ public class Atributo {
     private List<OpcionesDePregunta> opciones;
 
     @ManyToOne
-    @JoinColumn(name="tipo_de_dato_id")
+    @JoinColumn(name="tipo_de_dato_id") //TODO tipo de registro
     private TipoDeRegistro tipoDeRegistro;
 
     @ManyToOne
-    @JoinColumn(name = "tipo_de_atributo_id",referencedColumnName = "id")
+    @JoinColumn(name = "tipo_de_atributo_id",referencedColumnName = "id") //TODO tipo de dato
     private TipoDePregunta tipoDePregunta;
 
     @ManyToOne

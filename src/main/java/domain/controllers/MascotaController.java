@@ -194,8 +194,18 @@ public class MascotaController {
             System.out.println("id de la mascota!!!"+mascota.getId());
              */
 
+        response.redirect("/usuario/"+usuario.getId()+"/registrar_mascota/success");
         return response;
 
+    }
+
+    public ModelAndView registroDeMascotaExitoso(Request request,Response response){
+
+        String idUsuario = request.params("id");
+        HashMap<String,Object> params = new HashMap<>();
+        params.put("id",idUsuario);
+
+        return new ModelAndView(params,"mascota_register_success.hbs");
     }
 
     public ModelAndView darEnAdopcion(Request request , Response response){

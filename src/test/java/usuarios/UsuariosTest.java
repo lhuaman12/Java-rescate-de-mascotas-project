@@ -1,9 +1,17 @@
 package usuarios;
 
+import db.EntityManagerHelper;
 import domain.entities.distancia.Distancia;
 import domain.entities.domicilio.Domicilio;
+import domain.entities.domicilio.Municipio;
+import domain.entities.domicilio.Provincia;
 import domain.entities.organizaciones.Organizacion;
+import domain.entities.usuarios.Contacto;
+import domain.entities.usuarios.Rol;
+import domain.entities.usuarios.TipoDocumento;
 import domain.entities.usuarios.Usuario;
+import domain.repositories.Repositorio;
+import domain.repositories.factories.FactoryRepositorio;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -15,6 +23,48 @@ public class UsuariosTest {
     public void creacionDuenio(){
         Usuario duenio = new Usuario();
     }
+
+    @Test
+    public void crearVoluntarioDeOrg(){
+        Repositorio<Organizacion> repoOrg = FactoryRepositorio.get(Organizacion.class);
+        Organizacion organizacion = repoOrg.buscar(1);
+        //Organizacion organizacion = (Organizacion) EntityManagerHelper.createQuery("from organizacion where id=1");
+
+        Usuario usuario = new Usuario();
+        Contacto contacto = new Contacto();
+        Domicilio domicilio = new Domicilio();
+        Municipio municipio = new Municipio();
+        Provincia provincia = new Provincia();
+        Rol rol = new Rol();
+
+        usuario.setNombre("Leandro");
+        usuario.setApellido("Rodriguez");
+        usuario.setTipoDocumento(TipoDocumento.DNI);
+        usuario.setNroDocumento("3000000");
+        usuario.setOrganizacion(organizacion);
+
+        domicilio.setCodPostal("1646");
+        domicilio.setCalle("Independencia");
+        domicilio.setLongitud(0.001);
+        domicilio.setLatitud(0.001);
+        domicilio.setAltura(444);
+
+        provincia.setNombre("Buenos Aires");
+
+        rol.setNombre("voluntario");
+
+        municipio.setProvincia(provincia);
+        usuario.getContactos().add(contacto);
+        usuario.setDomicilio(domicilio);
+        domicilio.setMunicipio(municipio);
+        usuario.getRoles().add(rol);
+
+        EntityManagerHelper.beginTransaction();
+        EntityManagerHelper.persist(usuario);
+        EntityManagerHelper.commit();
+
+    }
+
     @Test
     public void obtenerOrganizacionMasCercana(){
         Organizacion organizacion1 = new Organizacion();

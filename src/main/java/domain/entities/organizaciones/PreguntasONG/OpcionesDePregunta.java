@@ -33,4 +33,11 @@ public class OpcionesDePregunta {
         this.atributo = atributo;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

@@ -74,48 +74,33 @@ public class EntityManagerTest {
         virtudes.agregar(virtud5);
         virtudes.agregar(virtud6);
     }
+    /*
+    public void persistirTipoDePreguntasyRegistros(){
+        TipoDeRegistro tipoDeRegistro1 = new TipoDeRegistro();
+        TipoDeRegistro tipoDeRegistro2 = new TipoDeRegistro();
+        TipoDeRegistro tipoDeRegistro3 = new TipoDeRegistro();
+        TipoDePregunta tipoDePregunta1 = new TipoDePregunta();
+        TipoDePregunta tipoDePregunta2 = new TipoDePregunta();
+        TipoDePregunta tipoDePregunta3 = new TipoDePregunta();
 
-    // Usuario
-    @Test
-    public void persistirUsuarioTest() {
+        tipoDeRegistro1.setNombre("adopcion");
+        tipoDeRegistro2.setNombre("rescate");
+        tipoDeRegistro3.setNombre("registro_de_mascota");
+        tipoDePregunta1.setNombre("boolean");
+        tipoDePregunta2.setNombre("multiple_choice");
+        tipoDePregunta3.setNombre("pregunta");
 
-        // Login
-        Login login = new Login();
-        login.setUsername("jperez");
-        login.setPassword("123456");
-
-        // Domicilio
-        Domicilio domicilio = new Domicilio();
-        domicilio.setCalle("Calle Usuario 1.jpg");
-        domicilio.setAltura(1234);
-
-        // Contacto
-        Contacto contacto = new Contacto();
-        contacto.setNombre("Nombre contacto Juan Pérez");
-        contacto.setApellido("Apellido contacto Juan Pérez");
-        contacto.setTelefono("1144448888");
-        contacto.setEmail("contactoDeJuanPérez@mail.com");
-
-        // Usuario
-        Usuario usuario = new Usuario();
-        usuario.setNombre("Juan");
-        usuario.setApellido("Pérez");
-        usuario.setTipoDocumento(TipoDocumento.DNI);
-        usuario.setNroDocumento("123456789");
-        usuario.setFechaNacimiento(LocalDate.parse("1950-11-21"));
-        usuario.setLogin(login);
-        usuario.setDomicilio(domicilio);
-        usuario.setContactos(contacto);
-
-        // EntityManager
         EntityManagerHelper.beginTransaction();
-        EntityManagerHelper.getEntityManager().persist(login);
-        EntityManagerHelper.getEntityManager().persist(domicilio);
-        EntityManagerHelper.getEntityManager().persist(usuario);
+        EntityManagerHelper.persist(tipoDeRegistro1);
+        EntityManagerHelper.persist(tipoDeRegistro2);
+        EntityManagerHelper.persist(tipoDeRegistro3);
+        EntityManagerHelper.persist(tipoDePregunta1);
+        EntityManagerHelper.persist(tipoDePregunta2);
+        EntityManagerHelper.persist(tipoDePregunta3);
         EntityManagerHelper.commit();
+
     }
-
-
+    */
     // Organización
     @Test
     public void persistirPreguntasDeOrganizacionTest() {
@@ -401,6 +386,44 @@ public class EntityManagerTest {
         EntityManagerHelper.getEntityManager().persist(rescatista);
         EntityManagerHelper.getEntityManager().persist(domicilio);
         //EntityManagerHelper.getEntityManager().persist(rescateSinQR);
+        EntityManagerHelper.commit();
+    }
+    // Usuario
+    @Test
+    public void persistirUsuarioTest() {
+        // Login
+        Login login = new Login();
+        login.setUsername("jperez");
+        login.setPassword("123456");
+
+        // Domicilio
+        Domicilio domicilio = new Domicilio();
+        domicilio.setCalle("Calle Usuario 1.jpg");
+        domicilio.setAltura(1234);
+
+        // Contacto
+        Contacto contacto = new Contacto();
+        contacto.setNombre("Nombre contacto Juan Pérez");
+        contacto.setApellido("Apellido contacto Juan Pérez");
+        contacto.setTelefono("1144448888");
+        contacto.setEmail("contactoDeJuanPérez@mail.com");
+
+        // Usuario
+        Usuario usuario = new Usuario();
+        usuario.setNombre("Juan");
+        usuario.setApellido("Pérez");
+        usuario.setTipoDocumento(TipoDocumento.DNI);
+        usuario.setNroDocumento("123456789");
+        usuario.setFechaNacimiento(LocalDate.parse("1950-11-21"));
+        usuario.setLogin(login);
+        usuario.setDomicilio(domicilio);
+        usuario.setContactos(contacto);
+
+        // EntityManager
+        EntityManagerHelper.beginTransaction();
+        EntityManagerHelper.getEntityManager().persist(login);
+        EntityManagerHelper.getEntityManager().persist(domicilio);
+        EntityManagerHelper.getEntityManager().persist(usuario);
         EntityManagerHelper.commit();
     }
 

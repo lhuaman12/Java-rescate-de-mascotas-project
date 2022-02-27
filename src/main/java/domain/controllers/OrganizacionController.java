@@ -3,13 +3,19 @@ package domain.controllers;
 import db.EntityManagerHelper;
 import domain.entities.organizaciones.Organizacion;
 import domain.entities.organizaciones.PreguntasONG.Atributo;
+import domain.entities.organizaciones.PreguntasONG.OpcionesDePregunta;
+import domain.entities.organizaciones.PreguntasONG.TipoDePregunta;
+import domain.entities.organizaciones.PreguntasONG.TipoDeRegistro;
 import domain.entities.usuarios.Usuario;
 import domain.repositories.Repositorio;
 import domain.repositories.factories.FactoryRepositorio;
+import org.dom4j.rule.Mode;
+import org.hibernate.engine.transaction.spi.SynchronizationRegistry;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,19 +24,21 @@ import java.util.stream.Collectors;
 public class OrganizacionController {
     private Repositorio<Usuario> usuarios;
     private Repositorio<Organizacion> organizaciones;
+    private Repositorio<Atributo> atributos;
 
     public OrganizacionController() {
         this.usuarios = FactoryRepositorio.get(Usuario.class);
         this.organizaciones = FactoryRepositorio.get(Organizacion.class);
+        this.atributos = FactoryRepositorio.get(Atributo.class);
         //this.repositorioCuenta = FactoryRepositorio.get(Cuenta.class);
     }
 
     public ModelAndView panelDeAdmnistrador(Request request, Response response){
         Map<String,Object> params = new HashMap<>();
-        String idUsuario = request.params("id");
+        String idUsuario = request.params("id_usuario");
+        //String idOrganizacion = request.params("id_org");
         Usuario usuario = usuarios.buscar(Integer.valueOf(idUsuario));
-        //Organizacion organizacion = organizaciones.buscar(Integer.valueOf(idOrg));
-        Organizacion organizacion = organizaciones.buscar(3);
+        Organizacion organizacion = usuario.getOrganizacion();
 
         List<Atributo> preguntasDeRegistro = organizacion.getPreguntasRequeridas().stream()
                 .filter(p -> p.getTipoDeRegistro().getNombre().equals("registro_de_mascota") ).collect(Collectors.toList());
@@ -47,16 +55,110 @@ public class OrganizacionController {
         return new ModelAndView(params,"administrador_panel.hbs");
     }
 
-    public Response editarAtributo(Request request, Response response){
-        String idAtributo = request.params("id");
-        Atributo atributo =(Atributo)EntityManagerHelper.createQuery("from atributo where id="+idAtributo);
-        String nombreCaracteristica = request.queryParams("nombre_caracteristica");
-        //String opci
+    public ModelAndView editarAtributo(Request request, Response response){
+        HashMap<String,Object> map = new HashMap<>();
 
+        String idAtributo = request.params("id_atributo");
+        String idUsuario = request.params("id_usuario");
+
+        Usuario usuario = usuarios.buscar(Integer.valueOf(idUsuario));
+        Atributo atributo = (Atributo)EntityManagerHelper.createQuery("from Atributo where id="+idAtributo).getSingleResult();
+
+        //String tipoDeRegistro = atributo.getTipoDeRegistro().getNombre();
+
+        map.put("atributo",atributo);
+        map.put("usuario",usuario);
+        //map.put("tipoDeRegistro",tipoDeRegistro);
+
+        return new ModelAndView(map,"editar_atributo.hbs");
+    }
+
+    public Response handleEditarAtributo(Request request,Response response){
+        String idusuario = request.params("id_usuario");
+        String idAtributo = request.params("id_atributo");
+
+        Atributo atributo = atributos.buscar(Integer.valueOf(idAtributo));
+        atributo.setCaracteristicaNombre(request.queryParams("caracteristica"));
+
+        if(atributo.getTipoDePregunta().getNombre().equals("multiple_choice")){
+            int j=1;
+            for(int i = 0; i < atributo.getOpciones().size() ; i++ ){
+                atributo.getOpciones().get(i).setNombreOpcion(request.queryParams("opcion_"+ j));
+                j++;
+            }
+
+        }
+        atributos.modificar(atributo);
+        response.redirect("/usuario/"+idusuario+"/panel");
 
         return response;
     }
-    public Response agregarAtributo(Request request,Response response){
+
+    public Response handleEliminarAtributo(Request request, Response response){
+        String idAtributo = request.params("id_atributo");
+        String idUsuario = request.params("id_usuario");
+        Atributo atributo = atributos.buscar(Integer.valueOf(idAtributo));
+        atributos.eliminar(atributo);
         return response;
+    }
+
+
+    public ModelAndView agregarAtributo(Request request, Response response){
+        HashMap<String,Object> map = new HashMap<>();
+        String idUsuario = request.params("id_usuario");
+        map.put("id_usuario",idUsuario);
+        return new ModelAndView(map,"agregar_atributo.hbs");
+    }
+    public Response handleAgregarAtributo(Request request,Response response) {
+        String idUsuario = request.params("usuario_id");
+        Usuario usuario = usuarios.buscar(Integer.valueOf(idUsuario));
+
+        Atributo atributo = new Atributo();
+        TipoDePregunta tipoDePregunta = new TipoDePregunta();
+        TipoDeRegistro tipoDeRegistro = new TipoDeRegistro();
+
+        atributo.setTipoDeRegistro(tipoDeRegistro);
+        atributo.setTipoDePregunta(tipoDePregunta);
+        atributo.setAdministradorResponsable(usuario);
+        atributo.setOrganizacion(usuario.getOrganizacion());
+
+        String tipoDeRegistroValue = request.queryParams("tipo_de_registro");
+        String tipoDePreguntaValue = request.queryParams("tipo_de_pregunta");
+
+        switch(tipoDePreguntaValue){
+            case "boolean":
+                tipoDePregunta.setNombre("boolean");
+                break;
+            case "multiple_choice":
+                tipoDePregunta.setNombre("multiple_Choice");
+                for(int i=1 ; i<=3 ; i++ ){
+                    String opcion = request.queryParams("opcion_"+i);
+                    if(opcion!=null){
+                        OpcionesDePregunta opcionDePregunta = new OpcionesDePregunta();
+                        opcionDePregunta.setAtributo(atributo);
+                        opcionDePregunta.setNombreOpcion(opcion);
+                    }
+                }
+                break;
+            case "pregunta":
+                tipoDePregunta.setNombre("pregunta");
+                break;
+        }
+        switch(tipoDeRegistroValue){
+            case "rescate":
+                tipoDeRegistro.setNombre("rescate");
+                break;
+            case "adopcion":
+                tipoDeRegistro.setNombre("adopcion");
+                break;
+            case "registro_de_mascota":
+                tipoDeRegistro.setNombre("registro_de_mascota");
+                break;
+        }
+
+        atributos.agregar(atributo);
+
+        return response;
+
     }
 }

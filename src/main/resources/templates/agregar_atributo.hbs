@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!--Google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@700&display=swap"
+        rel="stylesheet">
+
+    <!-- Materialice CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!--Icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <meta charset="utf-8">
+    <title>Rescate de Patitas</title>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper purple darken-4">
+            <a href="/" class="brand-logo">Rescate de patitas</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="sass.html">Mascotas buscando dueño</a></li>
+                <li><a href="badges.html">Mascotas perdidas</a></li>
+                <li><a href="collapsible.html">Quiero adoptar</a></li>
+            </ul>
+        </div>
+    </nav>
+    <br />
+    <br />
+    <div class="container">
+        <div class="row card">
+
+            <div class="col s12">
+                <h3>Agregar atributo</h3>
+            </div>
+            <div class="col s12">
+                <form action="/usuario/{{id_usuario}}/agregar_atributo" method="post">
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="input-field col s12">
+                                <select class="browser-default" name="tipo_de_registro">
+                                    <option value="" disabled selected>Seleccione tipo de registro</option>
+                                    <option value="adopcion">adopcion</option>
+                                    <option value="rescate">rescate</option>
+                                    <option value="registro">registro</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col s12">
+                            <div class="input-field col s12">
+                                <select class="browser-default" id="tipo_de_pregunta" name="tipo_de_pregunta"
+                                    onchange="agregar_opciones()">
+                                    <option value="" disabled selected>Seleccione tipo de pregunta</option>
+                                    <option value="boolean">boolean</option>
+                                    <option value="pregunta">pregunta y respuesta libre</option>
+                                    <option value="multiple_choice">multiple choice</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col s12">
+                            <div class="input-field col s4">
+                                <input placeholder="opcion_1" id="opcion_1" type="hidden" class="validate"
+                                    name="opcion_1" disabled>
+
+                            </div>
+                            <div class="input-field col s4">
+                                <input placeholder="opcion_2" id="opcion_2" type="hidden" class="validate"
+                                    name="opcion_2" disabled>
+
+                            </div>
+                            <div class="input-field col s4">
+                                <input placeholder="opcion_3" id="opcion_3" type="hidden" class="validate"
+                                    name="opcion_3" disabled>
+                            </div>
+                        </div>
+                        <div class="col s12">
+                            <div class="input-field col s4">
+                                <button class="btn waves-effect waves-light" type="submit">Enviar
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <script src="/js/atributos.js"></script>
+</body>
+
+</html>
