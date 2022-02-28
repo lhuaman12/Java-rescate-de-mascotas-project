@@ -14,7 +14,7 @@
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-            <property name="hibernate.connection.url" value="jdbc:mariadb://rescatedepatitas.mariadb.database.azure.com:3306/rescate_de_patitas?useSSL=true"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://rescatedepatitas.mariadb.database.azure.com:3306/rescate_de_patitas?useSSL=true"/>
             <property name="hibernate.connection.username" value="master1000@rescatedepatitas"/>
             <property name="hibernate.connection.password" value=".dds2021"/>
 

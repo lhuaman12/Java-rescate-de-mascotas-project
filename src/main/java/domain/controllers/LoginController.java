@@ -1,6 +1,6 @@
 package domain.controllers;
 
-import com.mysql.jdbc.log.Log;
+//import com.mysql.jdbc.log.Log;
 import db.EntityManagerHelper;
 import domain.entities.usuarios.Login;
 import domain.repositories.Repositorio;
