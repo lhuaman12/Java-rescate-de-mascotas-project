@@ -3,8 +3,8 @@ package domain.entities.organizaciones.PreguntasONG;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "opciones_de_pregunta")
-public class OpcionesDePregunta {
+@Table(name = "opcion_de_pregunta")
+public class OpcionDePregunta {
 
     @Id
     @GeneratedValue

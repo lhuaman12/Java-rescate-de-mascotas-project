@@ -21,13 +21,13 @@ public class Atributo {
     private String caracteristicaNombre;
 
     @OneToMany(mappedBy = "atributo",cascade = {CascadeType.ALL})
-    private List<OpcionesDePregunta> opciones;
+    private List<OpcionDePregunta> opciones;
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn(name="tipo_de_dato_id") //TODO tipo de registro
     private TipoDeRegistro tipoDeRegistro;
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "tipo_de_atributo_id",referencedColumnName = "id") //TODO tipo de dato
     private TipoDePregunta tipoDePregunta;
 
@@ -71,11 +71,11 @@ public class Atributo {
         this.caracteristicaNombre = caracteristicaNombre;
     }
 
-    public List<OpcionesDePregunta> getOpciones() {
+    public List<OpcionDePregunta> getOpciones() {
         return opciones;
     }
 
-    public void setOpciones(List<OpcionesDePregunta> opciones) {
+    public void setOpciones(List<OpcionDePregunta> opciones) {
         this.opciones = opciones;
     }
 

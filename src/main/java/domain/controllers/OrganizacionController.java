@@ -3,19 +3,16 @@ package domain.controllers;
 import db.EntityManagerHelper;
 import domain.entities.organizaciones.Organizacion;
 import domain.entities.organizaciones.PreguntasONG.Atributo;
-import domain.entities.organizaciones.PreguntasONG.OpcionesDePregunta;
+import domain.entities.organizaciones.PreguntasONG.OpcionDePregunta;
 import domain.entities.organizaciones.PreguntasONG.TipoDePregunta;
 import domain.entities.organizaciones.PreguntasONG.TipoDeRegistro;
 import domain.entities.usuarios.Usuario;
 import domain.repositories.Repositorio;
 import domain.repositories.factories.FactoryRepositorio;
-import org.dom4j.rule.Mode;
-import org.hibernate.engine.transaction.spi.SynchronizationRegistry;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +43,8 @@ public class OrganizacionController {
                 .filter(p -> p.getTipoDeRegistro().getNombre().equals("rescate") ).collect(Collectors.toList());
         List<Atributo> preguntasDeAdopcion = organizacion.getPreguntasRequeridas().stream()
                 .filter(p -> p.getTipoDeRegistro().getNombre().equals("adopcion") ).collect(Collectors.toList());
+
+
 
         params.put("usuario",usuario);
         params.put("preguntas_de_registro",preguntasDeRegistro);
@@ -95,9 +94,19 @@ public class OrganizacionController {
     }
 
     public Response handleEliminarAtributo(Request request, Response response){
+        Repositorio<TipoDePregunta> tipoDePreguntaRepositorio = FactoryRepositorio.get(TipoDePregunta.class);
+        Repositorio<TipoDeRegistro> tipoDeRegistroRepositorio = FactoryRepositorio.get(TipoDeRegistro.class);
+
         String idAtributo = request.params("id_atributo");
         String idUsuario = request.params("id_usuario");
+        Usuario usuario = usuarios.buscar(Integer.valueOf(idUsuario));
+        //
         Atributo atributo = atributos.buscar(Integer.valueOf(idAtributo));
+        usuario.getOrganizacion().getPreguntasRequeridas().remove(atributo);
+
+        organizaciones.modificar(usuario.getOrganizacion());
+        tipoDePreguntaRepositorio.eliminar(atributo.getTipoDePregunta());
+        tipoDeRegistroRepositorio.eliminar(atributo.getTipoDeRegistro());
         atributos.eliminar(atributo);
         return response;
     }
@@ -110,7 +119,7 @@ public class OrganizacionController {
         return new ModelAndView(map,"agregar_atributo.hbs");
     }
     public Response handleAgregarAtributo(Request request,Response response) {
-        String idUsuario = request.params("usuario_id");
+        String idUsuario = request.params("id_usuario");
         Usuario usuario = usuarios.buscar(Integer.valueOf(idUsuario));
 
         Atributo atributo = new Atributo();
@@ -124,19 +133,23 @@ public class OrganizacionController {
 
         String tipoDeRegistroValue = request.queryParams("tipo_de_registro");
         String tipoDePreguntaValue = request.queryParams("tipo_de_pregunta");
+        String caracteristica = request.queryParams("nombre_caracteristica");
+
+        atributo.setCaracteristicaNombre(caracteristica);
 
         switch(tipoDePreguntaValue){
             case "boolean":
                 tipoDePregunta.setNombre("boolean");
                 break;
             case "multiple_choice":
-                tipoDePregunta.setNombre("multiple_Choice");
+                tipoDePregunta.setNombre("multiple_choice");
                 for(int i=1 ; i<=3 ; i++ ){
                     String opcion = request.queryParams("opcion_"+i);
                     if(opcion!=null){
-                        OpcionesDePregunta opcionDePregunta = new OpcionesDePregunta();
+                        OpcionDePregunta opcionDePregunta = new OpcionDePregunta();
                         opcionDePregunta.setAtributo(atributo);
                         opcionDePregunta.setNombreOpcion(opcion);
+                        atributo.getOpciones().add(opcionDePregunta);
                     }
                 }
                 break;
@@ -151,13 +164,15 @@ public class OrganizacionController {
             case "adopcion":
                 tipoDeRegistro.setNombre("adopcion");
                 break;
-            case "registro_de_mascota":
+            case "registro":
                 tipoDeRegistro.setNombre("registro_de_mascota");
                 break;
         }
-
+        usuario.getOrganizacion().getPreguntasRequeridas().add(atributo);
+        organizaciones.modificar(usuario.getOrganizacion());
         atributos.agregar(atributo);
 
+        response.redirect("/usuario/"+idUsuario+"/panel");
         return response;
 
     }

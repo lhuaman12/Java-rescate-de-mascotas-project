@@ -14,10 +14,18 @@
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+            <property name="hibernate.connection.url" value="jdbc:mariadb://rescatedepatitas.mariadb.database.azure.com:3306/rescate_de_patitas?useSSL=true"/>
+            <property name="hibernate.connection.username" value="master1000@rescatedepatitas"/>
+            <property name="hibernate.connection.password" value=".dds2021"/>
+
+
+            <!--
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:30306/rescate_de_patitas"/>
             <property name="hibernate.connection.username" value="root"/>
             <property name="hibernate.connection.password" value="Okx27IxW"/>
-
+            -->
             <property name="hibernate.show_sql" value="true" />
             <!-- Enable the logging of all the generated SQL statements to the console -->
 
