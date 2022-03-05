@@ -38,11 +38,20 @@ public class Router {
 
         Spark.get("/index",usuarioController::inicio,Router.engine);
 
+
+
         // Login
         Spark.get("/", loginController::inicio, Router.engine);
+        //Spark.before("/", authMiddleware::verificarSesion);
+        Spark.post("/", loginController::login);
+        Spark.get("/logout", loginController::logout);
+
+/*        Spark.get("/", loginController::inicio, Router.engine);
         Spark.before("/", authMiddleware::verificarSesion);
         Spark.post("/login", loginController::login);
-        Spark.get("/logout", loginController::logout);
+        Spark.get("/logout", loginController::logout);*/
+
+/*
 
         // Sign up
         Spark.get("/sign_up/:id",usuarioController::registrarUsuario,Router.engine);
@@ -50,6 +59,7 @@ public class Router {
 
         // Test
         Spark.get("/logins", loginController::mostrarTodos, Router.engine);
+*/
 
         // Usuarios
         //Spark.get("/usuarios", usuarioController::mostrarTodos, Router.engine);
