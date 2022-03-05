@@ -1,0 +1,228 @@
+@import url('https://fonts.googleaplis.com/css2?family=Montserrat&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ededed;
+}
+
+header {
+    background-color: #8341a2;
+    text-decoration: #ededed;
+    height: 65px;
+}
+
+form {
+    background-color: white;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 15px;
+}
+
+footer {
+    background-color: #8341a2;
+    text-decoration: #ededed;
+    height: 125px;
+}
+
+.form-control {
+    background-color: #ededed;
+    border: none;
+    border-radius: 20px;
+}
+
+.form-title-container{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .form-title-container h3, #title-login{
+    font-family: 'Poppins', sans-serif;
+    font-size:32px;
+    display:inline-block;
+    color: #8341a2;
+  }
+
+.modal-content {
+    background-color: #ededed !important;
+}
+
+#btn-submit, #btn-delete {
+    color: white;
+    background-color: #0c9db3;
+    border: none;
+    float: right;
+    border: 1px solid #0c9db3;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px 25px 10px 25px;
+}
+
+
+#btn-login {
+    color: white;
+    background-color: #0c9db3;
+    border: none;
+    float: center;
+    border: 1px solid #0c9db3;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px 25px 10px 25px;
+}
+
+#btn-registry {
+    font-family: 'Montserrat', sans-serif;
+    background-color: white;
+    border: none;
+    display:inline-block;
+    color: #0c9db3;
+    border: 1px solid #0c9db3;
+    border-radius: 20px;
+    font-size: 14px;
+    padding: 10px 25px 10px 25px;
+    background-color: #ededed;
+
+}
+#btn-cancel {
+    color: white;
+    border: none;
+    float: right;
+    border: 1px solid #6c757d;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px 25px 10px 25px;
+}
+
+#btn-edit, #btn-trash {
+    color: #616161;
+    border:none;
+    background: none;
+    padding: 0px 4px 0px;
+}
+
+#ladri {
+    border: none;
+    padding: 0px;
+}
+
+#ladrillo {
+    background: #8341a2;
+    min-height: 180px;
+    border: none;
+    padding: 0px;
+}
+.underlined-wavy, #underline-login{
+    font-family: 'Poppins', sans-serif !important;
+    font-size:32px !important;
+    display:inline-block !important;
+    color: #8341a2 !important;
+    text-decoration: underline !important;
+    text-decoration-style: wavy !important;
+    text-underline-offset: 10px !important;
+  }
+
+
+/*
+ *  Contact
+ */
+
+/*
+ *  Footer
+ */
+
+footer {
+    background: #8341a2;
+    min-height: 100px;
+}
+
+footer p {
+    color: #f3f3f3;
+    text-align: center;
+}
+
+#icons i {
+    font-size: 26px;
+    padding: 0 8px;
+    color: #f3f3f3
+}
+
+#footer-line {
+    background: #8341a2 !important;
+    background-color: #8341a2 !important;
+}
+
+.flex-container-2{
+    display: flex;
+    justify-content: center;
+}
+
+.flex-container-2 div{
+    text-align: center;
+    font-size: 1.6em;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-right: 20px;
+    margin: 10px;
+}
+
+#custom-form-title-container{
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#custom-form-title-container-h3{
+  font-family: 'Poppins', sans-serif;
+  font-size:32px;
+  display:inline-block;
+  color: #8341a2;
+}
+#custom-underlined-wavy{
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-underline-offset: 10px;
+}
+
+#custom-btn{
+  font-family: 'Montserrat', sans-serif;
+  background-color: white;
+  border: none;
+  display:inline-block;
+  color: #0c9db3;
+  border: 1px solid #0c9db3;
+  border-radius: 20px;
+  font-size: 14px;
+  padding: 10px 25px 10px 25px;
+  background-color: #ededed;
+}
+/*
+ *  Media queries ~ Small screen
+ */
+
+ @media (max-width: 768px) {
+    #form-login {
+        float: center !important;
+        width: 75% !important;
+        justify-content: center !important;
+    }
+
+}
+
+/*
+ *  Media queries ~ Extra small screen
+ */
+
+ @media (max-width: 575px) {
+    #form-login {
+        width: 90% !important;
+        flex-wrap: wrap;
+        justify-content: center !important;
+    }
+
+    #bg-contact {
+        position:relative;
+        top: -90px;
+
+    }
+ }
