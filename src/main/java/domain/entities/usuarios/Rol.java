@@ -18,7 +18,6 @@ public class Rol {
     }
     @Column
     private String nombre;
-    // permisos?
 
     //ADMINISTRADOR,
     //    DUENIO,

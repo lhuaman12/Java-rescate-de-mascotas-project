@@ -9,6 +9,7 @@ import domain.entities.usuarios.TipoDocumento;
 import domain.entities.usuarios.Usuario;
 import domain.repositories.Repositorio;
 import domain.repositories.factories.FactoryRepositorio;
+import org.dom4j.rule.Mode;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -31,11 +32,11 @@ public class UsuarioController {
         //this.repositorioCuenta = FactoryRepositorio.get(Cuenta.class);
     }
     // Vista crear usuario
-    public ModelAndView crear(Request request, Response response) {
-        return new ModelAndView(new HashMap<>(), "usuario.hbs");
+    public ModelAndView registrarDuenio(Request request, Response response) {
+        return new ModelAndView(new HashMap<>(), "registrar_duenio.hbs");
     }
     // POST guardar el usuario
-    public Response guardar(Request request, Response response) {
+    public Response guardarNuevoDuenio(Request request, Response response) {
 
         String registrarOk = request.queryParams("registrar_ok");
 
@@ -243,6 +244,10 @@ public class UsuarioController {
 
         response.redirect("/usuarios");
         return response;
+    }
+
+    public ModelAndView inicio (Request request, Response response){
+        return new  ModelAndView(null,"index.hbs");
     }
 
     public ModelAndView mostrarContactos(Request request, Response response) {

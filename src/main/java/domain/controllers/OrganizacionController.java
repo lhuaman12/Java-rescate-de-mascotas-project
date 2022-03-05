@@ -45,7 +45,6 @@ public class OrganizacionController {
                 .filter(p -> p.getTipoDeRegistro().getNombre().equals("adopcion") ).collect(Collectors.toList());
 
 
-
         params.put("usuario",usuario);
         params.put("preguntas_de_registro",preguntasDeRegistro);
         params.put("preguntas_de_rescate",preguntasDeRescate);

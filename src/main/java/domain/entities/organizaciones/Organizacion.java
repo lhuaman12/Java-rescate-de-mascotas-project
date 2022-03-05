@@ -34,7 +34,7 @@ public class Organizacion {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Rescate> rescates;
 
-    @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<Atributo> preguntasRequeridas;
 
     @OneToOne(cascade = CascadeType.ALL)

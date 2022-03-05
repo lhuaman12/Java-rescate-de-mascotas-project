@@ -36,6 +36,8 @@ public class Router {
         RescateController rescateController = new RescateController();
         OrganizacionController organizacionController = new OrganizacionController();
 
+        Spark.get("/index",usuarioController::inicio,Router.engine);
+
         // Login
         Spark.get("/", loginController::inicio, Router.engine);
         Spark.before("/", authMiddleware::verificarSesion);
@@ -51,19 +53,11 @@ public class Router {
 
         // Usuarios
         //Spark.get("/usuarios", usuarioController::mostrarTodos, Router.engine);
-        Spark.get("/usuario", usuarioController::crear, Router.engine);
-        Spark.post("/usuario", usuarioController::guardar);
+        Spark.get("/registrar_duenio", usuarioController::registrarDuenio, Router.engine);
+        Spark.post("/registrar_duenio", usuarioController::guardarNuevoDuenio);
         //Spark.get("/usuario/:id", usuarioController::mostrarUsuario, Router.engine);
         //Spark.post("/usuario/:id", usuarioController::modificar);
 
-        /*
-        // Contactos
-        Spark.get("/usuario/:id/contactos", usuarioController::mostrarContactos, Router.engine);
-        Spark.get("/usuario/:id/contacto", usuarioController::crearContacto, Router.engine);
-        Spark.post("/usuario/:id/contacto", usuarioController::guardarConctacto);
-        Spark.get("/usuario/:idUsuario/contacto/:idContacto", usuarioController::mostrarContacto, Router.engine);
-        Spark.post("/usuario/:idUsuario/contacto/:idContacto", usuarioController::modificarContacto);
-        */
         // Mascotas
         Spark.get("/usuario/:id/registrar_mascota", mascotaController::registrarMascota, Router.engine);
         Spark.post("/usuario/:id/registrar_mascota",mascotaController::guardarMascota);
@@ -96,6 +90,15 @@ public class Router {
         Spark.delete("/usuario/:id_usuario/eliminar_atributo/:id_atributo",organizacionController::handleEliminarAtributo);
         Spark.get("/usuario/:id_usuario/agregar_atributo",organizacionController::agregarAtributo,Router.engine);
         Spark.post("/usuario/:id_usuario/agregar_atributo",organizacionController::handleAgregarAtributo);
+
+        /*
+        // Contactos
+        Spark.get("/usuario/:id/contactos", usuarioController::mostrarContactos, Router.engine);
+        Spark.get("/usuario/:id/contacto", usuarioController::crearContacto, Router.engine);
+        Spark.post("/usuario/:id/contacto", usuarioController::guardarConctacto);
+        Spark.get("/usuario/:idUsuario/contacto/:idContacto", usuarioController::mostrarContacto, Router.engine);
+        Spark.post("/usuario/:idUsuario/contacto/:idContacto", usuarioController::modificarContacto);
+        */
 
     }
 }
