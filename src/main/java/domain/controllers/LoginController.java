@@ -51,7 +51,7 @@ public class LoginController {
         if (password1.equals(password2) && !password2.isEmpty()) {
             request.session(true);
             request.session().attribute("id", id);
-            response.redirect("/home/" + id);
+            response.redirect("/index/" + id);
         } else {
             response.redirect("/");
         }

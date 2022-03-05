@@ -36,8 +36,8 @@ public class Router {
         RescateController rescateController = new RescateController();
         OrganizacionController organizacionController = new OrganizacionController();
 
+        Spark.get("/index/:id",usuarioController::inicio,Router.engine);
         Spark.get("/index",usuarioController::inicio,Router.engine);
-
 
 
         // Login
@@ -91,6 +91,7 @@ public class Router {
         Spark.get("/rescate", rescateController::rescateSinQR, Router.engine);
         Spark.post("/rescate",rescateController::handleRescateSinQR);
         //Spark.get("/rescate/:id", rescateController::mostrarRescateSinQR, Router.engine);
+        Spark.post("/adoptar/eliminar/:id", mascotaController::eliminarPublicacionAdopcion);
 
         // Organizaciones
 

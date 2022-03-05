@@ -548,6 +548,7 @@ public class MascotaController {
 
 
 
+
     public ModelAndView mostrar(Request request, Response response) {
         Mascota mascota = this.repo.buscar(Integer.valueOf(request.params("id")));
         Map<String, Object> params = new HashMap<>();
@@ -580,4 +581,21 @@ public class MascotaController {
         response.redirect("/mascotas");
         return response;
     }
+
+    public Response eliminarPublicacionAdopcion(Request request, Response response) {
+        String idPublicacion = request.params("id");
+        PublicacionIntencionAdopcion publicacion = publicacionesIntencionDeAdopcion.buscar(Integer.valueOf(idPublicacion));
+
+        EstadoDePublicacion estadoDePublicacion = new EstadoDePublicacion();
+        estadoDePublicacion.setEstadoPosible(EstadoPosible.BAJA_POR_USUARIO);
+        publicacion.getEstadoDePublicacions().add(estadoDePublicacion);
+
+        publicacionesIntencionDeAdopcion.modificar(publicacion);
+
+        response.redirect("/index/" + publicacion.getPeticionDeAdopcion().getUsuario().getId());
+
+        return response;
+
+    }
+
 }

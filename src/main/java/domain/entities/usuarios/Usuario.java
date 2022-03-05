@@ -55,8 +55,8 @@ public class Usuario {
     @Column(columnDefinition = "DATE")
     private LocalDate fechaNacimiento;
 
-    //@Enumerated(EnumType.STRING)
-    @Convert(converter = TipoDeDocumentoAttributeConverter.class)
+    @Enumerated(EnumType.STRING)
+    //@Convert(converter = TipoDeDocumentoAttributeConverter.class)
     private TipoDocumento tipoDocumento;
 
     @Column

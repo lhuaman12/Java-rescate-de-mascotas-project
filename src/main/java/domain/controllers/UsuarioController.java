@@ -247,8 +247,17 @@ public class UsuarioController {
     }
 
     public ModelAndView inicio (Request request, Response response){
-        return new  ModelAndView(null,"index.hbs");
+        String idUsuario = request.params("id");
+
+        if(idUsuario!=null){
+            HashMap<String,Object> params = new HashMap<>();
+            params.put("id",idUsuario);
+
+            return new  ModelAndView(params,"index2.hbs");
+        }
+        return new  ModelAndView(null,"index1.hbs");
     }
+
 
     public ModelAndView mostrarContactos(Request request, Response response) {
 
