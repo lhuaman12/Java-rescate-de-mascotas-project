@@ -1,9 +1,6 @@
 package domain.entities.utils.QR;
 
-import jdk.jfr.Timestamp;
-
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "QR")

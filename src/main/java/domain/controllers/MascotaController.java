@@ -9,10 +9,8 @@ import domain.entities.domicilio.Provincia;
 import domain.entities.mascotas.*;
 import domain.entities.organizaciones.Organizacion;
 import domain.entities.organizaciones.PreguntasONG.Atributo;
-import domain.entities.publicacion.EstadoDePublicacion;
-import domain.entities.publicacion.EstadoPosible;
-import domain.entities.publicacion.PublicacionDarEnAdopcion;
-import domain.entities.publicacion.PublicacionIntencionAdopcion;
+import domain.entities.publicacion.*;
+import domain.entities.rescate.Rescate;
 import domain.entities.usuarios.*;
 import domain.entities.utils.QR.GeneradorQRRescate;
 import domain.entities.utils.QR.QR;
@@ -20,6 +18,7 @@ import domain.entities.utils.normalizador.NormalizadorDeImagen.NormalizarImagen;
 import domain.repositories.Repositorio;
 import domain.repositories.factories.FactoryRepositorio;
 import org.apache.commons.io.IOUtils;
+import org.dom4j.rule.Mode;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -546,12 +545,104 @@ public class MascotaController {
         return response;
     }
 
+    public ModelAndView rescateSinQrUsuario(Request request,Response response){
+        String idUsuario = request.params("id");
+        HashMap<String,Object> params = new HashMap<>();
+        params.put("id",idUsuario);
+        return new ModelAndView(params,"rescate_mascota_sin_qr.hbs");
+    }
+    public Response HandleRescateMascotaSinQRUsuario(Request request,Response response) throws ServletException, IOException {
+        String idUsuario = request.params("id");
+        Usuario rescatista = repoUsuarios.buscar(Integer.valueOf(idUsuario));
 
+        Rescate rescate = new Rescate();
+        MascotaPerdida mascotaPerdida = new MascotaPerdida();
+        Domicilio lugarMascotaEncontrada = new Domicilio();
+
+        rescate.setMascotaPerdida(mascotaPerdida);
+        rescate.setDomicilio(lugarMascotaEncontrada);
+        rescate.setRescatista(rescatista);
+
+        request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
+
+        Collection<Part> part = request.raw().getParts();
+        Iterator<Part> iterator = part.iterator();
+        Part partAux;
+        while (iterator.hasNext()) {
+            partAux = iterator.next();
+            String name = partAux.getName();
+            String value = IOUtils.toString(partAux.getInputStream(), StandardCharsets.UTF_8);
+            switch(name){
+                case "files":
+                    //normalizar o que hacer con las fotos?
+
+                    break;
+                case "descripcion_mascota":
+                    rescate.setDescripcion(value);
+                    break;
+
+                case "mascota_latitud":
+                    lugarMascotaEncontrada.setLatitud(Double.valueOf(value));
+                    break;
+                case "mascota_longitud":
+                    lugarMascotaEncontrada.setLongitud(Double.valueOf(value));
+                    break;
+                case "tipo_de_mascota":
+                    if(value.equals("gato"))
+                        mascotaPerdida.setTipoMascota(TipoMascota.GATO);
+                    if(value.equals("perro"))
+                        mascotaPerdida.setTipoMascota(TipoMascota.PERRO);
+                    break;
+                case "sexo_mascota":
+                    if(value.equals("macho"))
+                        mascotaPerdida.setSexo(Sexo.MACHO);
+                    if(value.equals("hembra"))
+                        mascotaPerdida.setSexo(Sexo.HEMBRA);
+                    break;
+                case "tamanio_mascota":
+                    if(value.equals("pequenio"))
+                        mascotaPerdida.setTamanioMascota(TamanioMascota.PEQUENIO);
+                    if(value.equals("mediano"))
+                        mascotaPerdida.setTamanioMascota(TamanioMascota.MEDIANO);
+                    if(value.equals("grande"))
+                        mascotaPerdida.setTamanioMascota(TamanioMascota.GRANDE);
+                    break;
+                case "edad_mascota":
+                    if(value.equals("cachorro"))
+                        mascotaPerdida.setEdadAproximada(EdadAproximada.CACHORRO);
+                    if(value.equals("joven"))
+                        mascotaPerdida.setEdadAproximada(EdadAproximada.JOVEN);
+                    if(value.equals("adulto"))
+                        mascotaPerdida.setEdadAproximada(EdadAproximada.ADULTO);
+                    if(value.equals("abuelo"))
+                        mascotaPerdida.setEdadAproximada(EdadAproximada.ABUELO);
+                    break;
+
+            }
+
+        }
+
+        List<Organizacion> organizaciones= this.organizaciones.buscarTodos();
+        Organizacion organizacionMasCercana = rescate.getOrganizacionMasCercana(organizaciones);
+        rescate.setOrganizacion(organizacionMasCercana);
+        PublicacionRescate publicacion = new PublicacionRescate();
+        EstadoDePublicacion estadoDePublicacion = new EstadoDePublicacion();
+        estadoDePublicacion.setEstadoPosible(EstadoPosible.EN_REVISION);
+        publicacion.getEstadoDePublicacions().add(estadoDePublicacion);
+        publicacion.setRescate(rescate);
+        publicacion.generarTitulo();
+        publicacion.generarContenido();
+
+        System.out.println(publicacion.getTitulo());
+        System.out.println(publicacion.getContenido());
+
+        return response;
+    }
 
 
     public ModelAndView mostrar(Request request, Response response) {
         Mascota mascota = this.repo.buscar(Integer.valueOf(request.params("id")));
-        Map<String, Object> params = new HashMap<>();
+        HashMap<String, Object> params = new HashMap<>();
         params.put("mascota", mascota);
 
         return new ModelAndView(new HashMap<>(), "mascota.hbs");
@@ -561,11 +652,128 @@ public class MascotaController {
         return null;
     }
 
-    public Response guardarRegistroMascota(Request request, Response response) {
+    public ModelAndView usuarioDarEnAdopcion(Request request,Response response){
+        String idUsuario = request.params("id");
+        Map<String, Object> params = new HashMap<>();
+        params.put("id",idUsuario);
+        return new ModelAndView(params,"usuario_dar_adopcion.hbs");
+    }
+    public Response handleUsuarioDarEnAdopcion(Request request,Response response) throws ServletException, IOException {
+        String idUsuario = request.params("id");
+        Usuario duenioDeAdopcion = repoUsuarios.buscar(Integer.valueOf(idUsuario));
+        request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
+        // Instanciacion
 
+        MascotaEnAdopcion mascotaEnAdopcion = new MascotaEnAdopcion();
+        Adopcion adopcion = new Adopcion();
+        Domicilio domicilio = new Domicilio();
+        PublicacionDarEnAdopcion publicacionDarEnAdopcion = new PublicacionDarEnAdopcion();
+        //
+        adopcion.setDuenioDeAdopcion(duenioDeAdopcion);
+        adopcion.setMascota(mascotaEnAdopcion);
+        publicacionDarEnAdopcion.setAdopcion(adopcion);
+
+        //
+        Collection<Part> part = request.raw().getParts();
+        Iterator<Part> iterator = part.iterator();
+        Part partAux;
+        while(iterator.hasNext()) {
+            partAux = iterator.next();
+            String name = partAux.getName();
+            String value = IOUtils.toString(partAux.getInputStream(), StandardCharsets.UTF_8);
+
+            switch(name){
+                case "tipo_de_mascota":
+                    if(value.equals("gato"))
+                        mascotaEnAdopcion.setTipoMascota(TipoMascota.GATO);
+                    if(value.equals("perro"))
+                        mascotaEnAdopcion.setTipoMascota(TipoMascota.PERRO);
+                    break;
+                case "sexo_mascota":
+                    if(value.equals("macho"))
+                        mascotaEnAdopcion.setSexo(Sexo.MACHO);
+                    if(value.equals("hembra"))
+                        mascotaEnAdopcion.setSexo(Sexo.HEMBRA);
+                    break;
+                case "tamanio_mascota":
+                    if(value.equals("pequenio"))
+                        mascotaEnAdopcion.setTamanioMascota(TamanioMascota.PEQUENIO);
+                    if(value.equals("mediano"))
+                        mascotaEnAdopcion.setTamanioMascota(TamanioMascota.MEDIANO);
+                    if(value.equals("grande"))
+                        mascotaEnAdopcion.setTamanioMascota(TamanioMascota.GRANDE);
+                    break;
+                case "edad_mascota":
+                    if(value.equals("cachorro"))
+                        mascotaEnAdopcion.setEdadAproximada(EdadAproximada.CACHORRO);
+                    if(value.equals("joven"))
+                        mascotaEnAdopcion.setEdadAproximada(EdadAproximada.JOVEN);
+                    if(value.equals("adulto"))
+                        mascotaEnAdopcion.setEdadAproximada(EdadAproximada.ADULTO);
+                    if(value.equals("abuelo"))
+                        mascotaEnAdopcion.setEdadAproximada(EdadAproximada.ABUELO);
+                    break;
+                case "tiene_vacunas":
+                    if(value.equals("si"))
+                        mascotaEnAdopcion.setTieneTodasLasVacunas(Boolean.TRUE);
+                    else
+                        mascotaEnAdopcion.setTieneTodasLasVacunas(Boolean.FALSE);
+                    break;
+                case "virtud_1":
+                case "virtud_2":
+                case "virtud_3":
+                case "virtud_4":
+                case "virtud_5":
+                case "virtud_6":
+                    if(value!=null){
+                        Virtud virtud = virtudes.stream().filter( v -> v.getNombre().equals(value)).collect(Collectors.toList()).get(0);
+                        mascotaEnAdopcion.getVirtudes().add(virtud);
+                    }
+                    break;
+                case "mascota_latitud":
+                    domicilio.setLatitud(Double.valueOf(value));
+                    break;
+                case "mascota_longitud":
+                    domicilio.setLongitud(Double.valueOf(value));
+                    break;
+                default :
+                    System.out.println(name);
+                    System.out.println(value);
+            }
+
+        }
+
+        List <Organizacion> orgs = organizaciones.buscarTodos();
+        Organizacion organizacionMasCercana = duenioDeAdopcion.getOrganizacionMasCercana(orgs);
+        mascotaEnAdopcion.setOrganizacion(organizacionMasCercana);
+        publicacionDarEnAdopcion.setOrganizacion(organizacionMasCercana);
+        //
+        EstadoDePublicacion estadoDePublicacion = new EstadoDePublicacion();
+        estadoDePublicacion.setPublicacion(publicacionDarEnAdopcion);
+        estadoDePublicacion.setEstadoPosible(EstadoPosible.EN_REVISION);
+        mascotaEnAdopcion.setFueAdoptada(Boolean.FALSE);
+        publicacionDarEnAdopcion.getEstadoDePublicacions().add(estadoDePublicacion);
+
+
+        mascotasEnAdopcion.agregar(mascotaEnAdopcion);
+
+        publicacionesDeAdopcion.agregar(publicacionDarEnAdopcion);
 
         return response;
     }
+
+    public ModelAndView usuarioAdoptar(Request request,Response response){
+        String idUsuario = request.params("id");
+        HashMap map = new HashMap();
+        map.put("id",idUsuario);
+        return new ModelAndView(map,"usuario_adoptar.hbs");
+    }
+
+    public Response handleUsuarioAdoptar(Request request,Response response){
+
+        return response;
+    }
+
 
     public Response modificar(Request request, Response response) {
 

@@ -50,7 +50,6 @@ public class Router {
         Spark.before("/", authMiddleware::verificarSesion);
         Spark.post("/login", loginController::login);
         Spark.get("/logout", loginController::logout);*/
-
 /*
 
         // Sign up
@@ -71,13 +70,18 @@ public class Router {
         // Mascotas
         Spark.get("/usuario/:id/registrar_mascota", mascotaController::registrarMascota, Router.engine);
         Spark.post("/usuario/:id/registrar_mascota",mascotaController::guardarMascota);
-        Spark.post("/mascota", mascotaController::guardarRegistroMascota);
+        //Spark.post("/mascota", mascotaController::guardarRegistroMascota);
         //
         Spark.get("/dar_en_adopcion",mascotaController::darEnAdopcion,Router.engine);
-        Spark.post("dar_en_adopcion",mascotaController::handleDarEnAdopcion);
+        Spark.post("/dar_en_adopcion",mascotaController::handleDarEnAdopcion);
+        Spark.get("/usuario/:id/dar_en_adopcion",mascotaController::usuarioDarEnAdopcion,Router.engine);
+        Spark.post("/usuario/:id/dar_en_adopcion",mascotaController::handleUsuarioDarEnAdopcion);
         //
         Spark.get("/adoptar",mascotaController::intencionDeAdopcion,Router.engine);
         Spark.post("/adoptar",mascotaController::handleIntencionDeAdopcion);
+        Spark.get("/usuario/:id/adoptar",mascotaController::usuarioAdoptar,Router.engine);
+        Spark.post("/usuario/:id/adoptar",mascotaController::handleUsuarioDarEnAdopcion);
+
         //
         Spark.get("/mascotas", mascotaController::mostrarTodas, Router.engine);
         Spark.get("/mascota/:id", mascotaController::mostrar, Router.engine);
@@ -89,6 +93,9 @@ public class Router {
         Spark.get("/rescate/:rescate_token", rescateController::rescateQR, Router.engine);
         Spark.post("/rescate/enviar_form",rescateController::handleMascotaConQR);
         Spark.get("/rescate", rescateController::rescateSinQR, Router.engine);
+        // usuario registrado rescate
+        Spark.get("/usuario/:id/rescate", mascotaController::rescateSinQrUsuario, Router.engine);
+        Spark.post("/usuario/:id/rescate",mascotaController::HandleRescateMascotaSinQRUsuario);
         Spark.post("/rescate",rescateController::handleRescateSinQR);
         //Spark.get("/rescate/:id", rescateController::mostrarRescateSinQR, Router.engine);
         Spark.get("/adoptar/eliminar/:id", mascotaController::eliminarPublicacionAdopcion);
