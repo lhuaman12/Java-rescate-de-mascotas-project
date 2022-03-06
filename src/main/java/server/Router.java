@@ -91,7 +91,7 @@ public class Router {
         Spark.get("/rescate", rescateController::rescateSinQR, Router.engine);
         Spark.post("/rescate",rescateController::handleRescateSinQR);
         //Spark.get("/rescate/:id", rescateController::mostrarRescateSinQR, Router.engine);
-        Spark.post("/adoptar/eliminar/:id", mascotaController::eliminarPublicacionAdopcion);
+        Spark.get("/adoptar/eliminar/:id", mascotaController::eliminarPublicacionAdopcion);
 
         // Organizaciones
 

@@ -8,5 +8,3 @@ function eliminarAtributo(idAtributo,idUsuario){
           }
       });
   }
-
-  
