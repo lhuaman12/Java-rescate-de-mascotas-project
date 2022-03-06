@@ -39,11 +39,13 @@ public class LoginController {
         List<Usuario> usuarios = this.usuarioRepositorio.buscarTodos();
         String password2 = "";
         int id = 0;
+        int usuarioIndex = 0;
 
         for (int i = 0; i < usuarios.size(); i++) {
             if (usuarios.get(i).getUsername().equals(username)) {
                 password2 = usuarios.get(i).getPassword();
                 id = usuarios.get(i).getId();
+                usuarioIndex = i;
                 break;
             }
         }
@@ -51,6 +53,10 @@ public class LoginController {
         if (password1.equals(password2) && !password2.isEmpty()) {
             request.session(true);
             request.session().attribute("id", id);
+            Boolean esVoluntario = usuarios.get(usuarioIndex).getRoles().stream().anyMatch(rol -> rol.getNombre().equals("voluntario"));
+            if(esVoluntario){
+                response.redirect("/usuario/" + id + "/panel");
+            }
             response.redirect("/index/" + id);
         } else {
             response.redirect("/");

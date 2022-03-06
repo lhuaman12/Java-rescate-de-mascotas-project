@@ -186,5 +186,46 @@ public class EntityManagerTest3 {
         EntityManagerHelper.commit();
 
     }
+    @Test
+    public void crearUsuarioVoluntario(){
+        Repositorio<Organizacion> organizacionRepositorio = FactoryRepositorio.get(Organizacion.class);
+        Organizacion org = organizacionRepositorio.buscar(1);
+
+        Usuario voluntario = new Usuario();
+        Contacto contacto = new Contacto();
+        Domicilio domicilio = new Domicilio();
+        Municipio municipio = new Municipio();
+        Provincia provincia = new Provincia();
+        Rol rol = new Rol();
+
+        voluntario.setNombre("Matias");
+        voluntario.setApellido("Lopez");
+        voluntario.setTipoDocumento(TipoDocumento.DNI);
+        voluntario.setNroDocumento("3000000");
+        voluntario.setOrganizacion(org);
+
+        domicilio.setCodPostal("1646");
+        domicilio.setCalle("Independencia");
+        domicilio.setLongitud(0.001);
+        domicilio.setLatitud(0.001);
+        domicilio.setAltura(444);
+
+        provincia.setNombre("Buenos Aires");
+
+        rol.setNombre("voluntario");
+
+        municipio.setProvincia(provincia);
+        voluntario.getContactos().add(contacto);
+        voluntario.setDomicilio(domicilio);
+        domicilio.setMunicipio(municipio);
+        voluntario.getRoles().add(rol);
+
+        voluntario.setUsername("voluntario2");
+        voluntario.setPassword("voluntario2");
+
+        EntityManagerHelper.beginTransaction();
+        EntityManagerHelper.persist(voluntario);
+        EntityManagerHelper.commit();
+    }
 
 }
