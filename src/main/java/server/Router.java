@@ -80,7 +80,7 @@ public class Router {
         Spark.get("/adoptar",mascotaController::intencionDeAdopcion,Router.engine);
         Spark.post("/adoptar",mascotaController::handleIntencionDeAdopcion);
         Spark.get("/usuario/:id/adoptar",mascotaController::usuarioAdoptar,Router.engine);
-        Spark.post("/usuario/:id/adoptar",mascotaController::handleUsuarioDarEnAdopcion);
+        Spark.post("/usuario/:id/adoptar",mascotaController::handleUsuarioAdoptar);
 
         //
         Spark.get("/mascotas", mascotaController::mostrarTodas, Router.engine);

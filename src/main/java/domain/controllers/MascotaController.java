@@ -45,6 +45,7 @@ public class MascotaController {
     private Repositorio<MascotaEnAdopcion> mascotasEnAdopcion;
     private Repositorio<Virtud> repoVirtudes;
     private Repositorio<PeticionDeAdopcion> repoPeticiones;
+    private Repositorio<PublicacionRescate> publicacionesRescaste;
     private List<Virtud> virtudes;
 
 
@@ -59,6 +60,7 @@ public class MascotaController {
         this.repoVirtudes = FactoryRepositorio.get(Virtud.class);
         this.publicacionesIntencionDeAdopcion=FactoryRepositorio.get(PublicacionIntencionAdopcion.class);
         this.repoPeticiones = FactoryRepositorio.get(PeticionDeAdopcion.class);
+        this.publicacionesRescaste = FactoryRepositorio.get(PublicacionRescate.class);
         virtudes = repoVirtudes.buscarTodos();
     }
 
@@ -633,6 +635,9 @@ public class MascotaController {
         publicacion.generarTitulo();
         publicacion.generarContenido();
 
+        repoMascotaPerdida.agregar(mascotaPerdida);
+        publicacionesRescaste.agregar(publicacion);
+
         System.out.println(publicacion.getTitulo());
         System.out.println(publicacion.getContenido());
 
@@ -754,9 +759,7 @@ public class MascotaController {
         mascotaEnAdopcion.setFueAdoptada(Boolean.FALSE);
         publicacionDarEnAdopcion.getEstadoDePublicacions().add(estadoDePublicacion);
 
-
         mascotasEnAdopcion.agregar(mascotaEnAdopcion);
-
         publicacionesDeAdopcion.agregar(publicacionDarEnAdopcion);
 
         return response;
@@ -770,8 +773,91 @@ public class MascotaController {
     }
 
     public Response handleUsuarioAdoptar(Request request,Response response){
+        String idUsuario = request.params("id");
+        Usuario usuario = repoUsuarios.buscar(Integer.valueOf(idUsuario));
+        MascotaEnAdopcion mascotaPreferida = new MascotaEnAdopcion();
+
+        PeticionDeAdopcion peticionDeAdopcion = new PeticionDeAdopcion();
+
+
+        String latitud = request.queryParams("latitud");
+        String longitud = request.queryParams("longitud");
+
+
+        //publicacion
+        PublicacionIntencionAdopcion publicacion = new PublicacionIntencionAdopcion();
+
+
+        // datos sobre mascota deseada
+        TipoMascota tipoDeMascota = request.queryParams("tipo_de_mascota").equals("perro") ? TipoMascota.PERRO : TipoMascota.GATO;
+        mascotaPreferida.setTipoMascota(tipoDeMascota);
+        switch (request.queryParams("edad_mascota")){
+            case "cachorro":
+                mascotaPreferida.setEdadAproximada(EdadAproximada.CACHORRO);
+                break;
+            case "joven":
+                mascotaPreferida.setEdadAproximada(EdadAproximada.JOVEN);
+                break;
+            case "adulto":
+                mascotaPreferida.setEdadAproximada(EdadAproximada.ADULTO);
+                break;
+            case "abuelo":
+                mascotaPreferida.setEdadAproximada(EdadAproximada.ABUELO);
+                break;
+        }
+
+        mascotaPreferida.setTieneTodasLasVacunas(request.queryParams("tiene_vacunas").equals("Si"));
+        Sexo sexo = request.queryParams("sexo_mascota").equals("macho") ? Sexo.MACHO : Sexo.HEMBRA;
+        mascotaPreferida.setSexo(sexo);
+
+        switch(request.queryParams("tamanio_mascota")){
+            case "pequenio":
+                mascotaPreferida.setTamanioMascota(TamanioMascota.PEQUENIO);
+                break;
+            case "mediano":
+                mascotaPreferida.setTamanioMascota(TamanioMascota.MEDIANO);
+                break;
+            case "grande":
+                mascotaPreferida.setTamanioMascota(TamanioMascota.GRANDE);
+                break;
+        }
+
+        for(int i = 1 ; i<=6 ; i++){
+            String valueVirtud = request.queryParams("virtud_"+ i);
+            if(valueVirtud!=null){
+                Virtud virtud = virtudes.stream().filter( v -> v.getNombre().equals(valueVirtud)).collect(Collectors.toList()).get(0);
+                mascotaPreferida.getVirtudes().add(virtud);
+            }
+            else break;
+        }
+
+        String titulo = request.queryParams("titulo");
+        String descripcion = request.queryParams("descripcion");
+
+        EstadoDePublicacion estado = new EstadoDePublicacion();
+        estado.setEstadoPosible(EstadoPosible.EN_REVISION);
+
+        publicacion.getEstadoDePublicacions().add(estado);
+        publicacion.setTitulo(titulo);
+        publicacion.setContenido(descripcion);
+
+        peticionDeAdopcion.setUsuario(usuario);
+        peticionDeAdopcion.setMascotaPreferida(mascotaPreferida);
+        publicacion.setPeticionDeAdopcion(peticionDeAdopcion);
+
+        //usuario.setTipoDocumento(); TODO
+
+        List<Organizacion> organizacionesActuales = organizaciones.buscarTodos();
+        Organizacion organizacionMasCercana = usuario.getOrganizacionMasCercana(organizacionesActuales);
+        publicacion.setOrganizacion(organizacionMasCercana);
+
+        // persistir
+        mascotasEnAdopcion.agregar(mascotaPreferida);
+        repoPeticiones.agregar(peticionDeAdopcion);
+        publicacionesIntencionDeAdopcion.agregar(publicacion);
 
         return response;
+
     }
 
 
