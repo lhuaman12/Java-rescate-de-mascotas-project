@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <!--Google fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@700&display=swap"
+    rel="stylesheet">
+
+  <!-- Materialice CSS-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!--Icons-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Maps-->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+  <style>
+    .leaflet-container {
+      height: 400px;
+      width: 600px;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
+
+
+  <meta charset="utf-8">
+  <title>Rescate de Patitas</title>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <div>
+    <nav>
+      <div class="nav-wrapper purple darken-4">
+        <a href="/" class="brand-logo">Rescate de patitas</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="sass.html">Mascotas buscando dueño</a></li>
+          <li><a href="badges.html">Mascotas perdidas</a></li>
+          <li><a href="collapsible.html">Quiero adoptar</a></li>
+        </ul>
+      </div>
+    </nav>
+    <br />
+    <br />
+
+    <!-- CONTENEDOR FORMULARIO -->
+
+    <div class="container">
+      <div class="row card">
+
+        <div class="col s12">
+          <h3><u class="underlined-wavy">Datos personales</u></h3>
+        </div>
+        <div class="col s12">
+          <form action="/rescate" method="post" enctype="multipart/form-data">
+            <div class="row">
+              <div class="col s12">
+                <div class="input-field col s4">
+                  <input placeholder="nombre" id="nombre" type="text" class="validate" name="nombre">
+                  <label for="nombre">Nombre</label>
+                </div>
+                <div class="input-field col s4">
+                  <input placeholder="apellido" id="apellido" type="text" class="validate" name="apellido">
+                  <label for="apellido">Apellido</label>
+                </div>
+                <div class="col s12">
+                  <div class="input-field col s4">
+                    <select class="browser-default" name="tipo_de_doc">
+                      <option value="" disabled selected>Seleccione tipo de documento</option>
+                      <option value="DNI">DNI</option>
+                      <option value="pasaporte">Pasaporte</option>
+                      <option value="libreta_civica">Libreta</option>
+                      <option value="libreta_de_enrolamiento">Libreta de enrolamiento</option>
+                    </select>
+                  </div>
+                  <div class="input-field col s4">
+                    <input placeholder="" id="documento" type="text" class="validate" name="nro_documento">
+                    <label for="numero_doc">Numero de documento</label>
+                  </div>
+                </div>
+                <div class="col s12">
+                  <div class="input-field col s4">
+                    <select class="browser-default" id="provincias" onchange="agregarMunicipios()" name="provincia">
+                      <option value="provincia" disabled selected>Seleccione la provincia</option>
+                    </select>
+                  </div>
+                  <div class="input-field col s4">
+                    <input placeholder="Ej: Centenario" id="calle" type="text" class="validate" name="calle">
+                    <label for="calle">Calle</label>
+                  </div>
+                  <div class="input-field col s4">
+                    <input placeholder="Ej: 2478" id="altura" type="text" class="validate" name="altura">
+                    <label for="altura">Altura</label>
+                  </div>
+                </div>
+
+                <div class="col s12">
+                  <div class="input-field col s4">
+                    <select class="browser-default" id="municipios" name="municipio" name="municipio">
+                      <option value="" disabled selected>Seleccione municipio</option>
+                    </select>
+                  </div>
+                  <div class="input-field col s4">
+                    <input placeholder="Ej: 2020" id="codigo_postal" type="text" class="validate" name="codigo_postal">
+                    <label for="codigo_postal">Codigo postal</label>
+                  </div>
+                </div>
+                <div class="col s12">
+                  <h3><u class="underlined-wavy">Contactos</u></h3>
+                </div>
+                <div class="col s12">
+                  <div class="input-field col s4">
+                    <input placeholder="Ej: 2020" id="nombre" type="text" class="validate" name="nombre_contacto">
+                    <label for="first_name">Nombre</label>
+                  </div>
+                  <div class="input-field col s4">
+                    <input placeholder="Ej: 2020" id="apellido" type="text" class="validate" name="apellido_contacto">
+                    <label for="first_name">Apellido</label>
+                  </div>
+                  <div class="input-field col s4">
+                    <input placeholder="Ej: 2020" id="telefono" type="text" class="validate" name="tel_contacto">
+                    <label for="telefono">Telefono</label>
+                  </div>
+                </div>
+                <div class="col s12">
+                  <div class="input-field col s4">
+                    <input placeholder="Ej: 2020" id="email" type="email" class="validate" name="email_contacto">
+                    <label for="email">Email</label>
+                  </div>
+                  <div class="input-field col s4">
+                    <select class="browser-default" name="medio_notif">
+                      <option value="" disabled selected>Seleccione medio de comunicacion</option>
+                      <option value="Whatsapp">Whatsapp</option>
+                      <option value="email">Email</option>
+                      <option value="SMS">SMS</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col s12">
+                  <h3><u class="underlined-wavy">Datos de la mascota encontrada</u></h3>
+                </div>
+                <div class="col s12">
+                  <div class="input-field col s4">
+                    <select class="browser-default" name="tipo_de_mascota">
+                      <option value="" disabled selected>Seleccione tipo de mascota</option>
+                      <option value="gato">Gato</option>
+                      <option value="perro">Perro</option>
+                    </select>
+                  </div>
+                  <div class="input-field col s4">
+                    <select class="browser-default" name="edad_mascota">
+                      <option value="" disabled selected>Edad aproximada</option>
+                      <option value="cachorro">Cachorro (45 días a 12 meses)</option>
+                      <option value="joven">Joven (1 a 5 años)</option>
+                      <option value="adulto">Adulto (5 a 9 años)</option>
+                      <option value="abuelo">Abuelo (Mayor a 9 años)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col s12">
+                  <div class="input-field col s4">
+                    <select class="browser-default" name="sexo_mascota">
+                      <option value="" disabled selected>Sexo</option>
+                      <option value="macho">Macho</option>
+                      <option value="hembra">Hembra</option>
+                    </select>
+                  </div>
+                  <div class="input-field col s4">
+                    <select class="browser-default" name="tamanio_mascota">
+                      <option value="" disabled selected>Tamaño mascota</option>
+                      <option value="pequenio">Pequeño</option>
+                      <option value="mediano">Mediano</option>
+                      <option value="grande">Grande</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col s12">
+                  <div class="input-field col s12">
+                    <label for="files">Seleccione fotos:</label>
+                    <input type="file" id="files" name="files" multiple>
+                  </div>
+                </div>
+                <div class="col s12">
+                  <div class="input-field col s12">
+                    <textarea id="descripcion_mascota" class="materialize-textarea"
+                      name="descripcion_mascota"></textarea>
+                    <label for="descripcion_mascota">Describa en que estado encontro la mascota</label>
+                  </div>
+                </div>
+                <div class="col s12">
+                  <h4>Seleccione en el mapa donde encontro a la mascota</h3>
+                    <div id="map"> </div>
+                </div>
+                <div class="col s12">
+                  <input id="token" type="hidden" name="token" value="{{token}}">
+                  <input id="mascota_latitud" type="hidden" name="mascota_latitud" value="">
+                  <input id="mascota_longitud" type="hidden" name="mascota_longitud" value="">
+
+                </div>
+                <div class="col s12">
+                  <div class="input-field col s4">
+                    <button class="btn waves-effect waves-light" type="submit">Enviar
+                      <i class="material-icons right">send</i>
+                    </button>
+                  </div>
+                </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="/js/scripts.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""></script>
+    <script>
+      var mascota_latitud = document.getElementById("mascota_latitud");
+      var mascota_longitud = document.getElementById("mascota_longitud");
+
+
+      var marker = 0;
+
+      const mapInit = () => {
+        var map = L.map('map');
+        navigator.geolocation.getCurrentPosition(pos => {
+          map.setView([pos.coords.latitude, pos.coords.longitude], 13);
+          marker = L.marker([pos.coords.latitude, pos.coords.longitude], { draggable: true }).addTo(map);
+          marker.on('dragend', function (e) {
+            mascota_latitud.value = marker.getLatLng().lat;
+            mascota_longitud.value = marker.getLatLng().lng;
+          });
+          mascota_latitud.value = pos.coords.latitude;
+          mascota_longitud.value = pos.coords.longitude;
+        });
+        return map;
+      }
+
+      var map = mapInit();
+
+      map.on('click', function (e) {
+
+        if (marker !== null) {
+          map.removeLayer(marker);
+        }
+        marker = L.marker(e.latlng).addTo(map);
+        //mascota_latitud.value = marker.getLatLng().lat;
+        //mascota_longitud.value = marker.getLatLng().lng;
+      });
+
+
+
+      L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+        maxZoom: 18
+      }).addTo(map);
+
+      L.control.scale().addTo(map);
+    </script>
+
+</body>
+
+</html>

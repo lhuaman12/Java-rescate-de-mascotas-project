@@ -1,0 +1,194 @@
+{
+    "total": 40,
+    "offset": "3",
+    "hogares": [
+        {
+            "id": "eyJpdiI6Im92QnRBc1dEbGhCZFUrbmRZdm5PVmc9PSIsInZhbHVlIjoiejJPTy9PQ0w3Zk1VNTZjZnNYSGg0QT09IiwibWFjIjoiOTE5NTFmODNmNzVmZTg2Yzc5NmE0MTFhMmY2MjYwZWRhOGVhMzZkMDJkNGQ0OTQzN2FmNzM0ZDlkZTAxMGQ1YSJ9",
+            "nombre": "Patitas de Perros\r\nPatitas de Perros",
+            "ubicacion": {
+                "direccion": "Mariano Larra 3350, X5000 Córdoba",
+                "lat": -31.38476649512739,
+                "long": -64.22706150177592
+            },
+            "telefono": "+543512758195",
+            "admisiones": {
+                "perros": true,
+                "gatos": false
+            },
+            "capacidad": 50,
+            "lugares_disponibles": 15,
+            "patio": false,
+            "caracteristicaParaRegistros": []
+        },
+        {
+            "id": "eyJpdiI6Ijk1US83VjFWbXoxQnhlUTFhOXV0YWc9PSIsInZhbHVlIjoiZkdZWDNXVGxCWVpqT29ING5kdnFydz09IiwibWFjIjoiZDI1MTAyN2QzZmMwMmJjMjRjYzVmYzRiNGJlZmNkMzkzZmM1ZTYwNzJmZTZhZTc4NWYzNjVmMTNmY2NjNzA2NiJ9",
+            "nombre": "Centro de Adopción IMUSA",
+            "ubicacion": {
+                "direccion": "Juan Pablo II 2250, Rosario, Santa Fe",
+                "lat": -32.896460385589585,
+                "long": -60.719963486399
+            },
+            "telefono": "+543415781449",
+            "admisiones": {
+                "perros": false,
+                "gatos": true
+            },
+            "capacidad": 90,
+            "lugares_disponibles": 20,
+            "patio": false,
+            "caracteristicaParaRegistros": []
+        },
+        {
+            "id": "eyJpdiI6IkNSemdUeWVHZWJUNjF2NHhYWTZmR3c9PSIsInZhbHVlIjoiZGhiS292cFdQUm4wZ09nd2hsS1pmUT09IiwibWFjIjoiMmE4ODg1MWU4OGMzOTM2ZDFmOGYxM2U0NTk5Y2YzZjdiYWJiNWNlZDFiYmUxYTNlODE0MTExZDM4ZTBkMGZmZCJ9",
+            "nombre": "Grupo Bajo El Sol",
+            "ubicacion": {
+                "direccion": "J. C. Orsetti 1482, Granadero Baigorria, Santa Fe",
+                "lat": -32.865592390184844,
+                "long": -60.725663315235515
+            },
+            "telefono": "+54341 6601752",
+            "admisiones": {
+                "perros": false,
+                "gatos": true
+            },
+            "capacidad": 30,
+            "lugares_disponibles": 10,
+            "patio": false,
+            "caracteristicaParaRegistros": [
+                "Delgado",
+                "Amistoso",
+                "Manso"
+            ]
+        },
+        {
+            "id": "eyJpdiI6Ilc0REV1ODFoaTh6N2VFQ1BvR2d1UFE9PSIsInZhbHVlIjoiNFo2bFh4Zy9KUzZlL0FQNHN4ODhRdz09IiwibWFjIjoiOTAzMjcyMGY2NDViODNjZjA4ODk4ZWFlY2FkODlhYzQ1NzM4MzczZmNmM2MxZDgwOWQ2OWRmZjNkYjVlMTcwYyJ9",
+            "nombre": "La Casa de las Mascotas",
+            "ubicacion": {
+                "direccion": "Obispo Gelabert 3691, Santa Fe",
+                "lat": -31.633451255888765,
+                "long": -60.718943486427726
+            },
+            "telefono": "+543425394576",
+            "admisiones": {
+                "perros": true,
+                "gatos": true
+            },
+            "capacidad": 40,
+            "lugares_disponibles": 10,
+            "patio": true,
+            "caracteristicaParaRegistros": []
+        },
+        {
+            "id": "eyJpdiI6Ii9TVHZRVEFZSDJNRi8yUE1senBzREE9PSIsInZhbHVlIjoiTm85RjhSOGhFVmVqTEtOajkrdTZLZz09IiwibWFjIjoiNzRjOTgyNjY1MTU2M2Q4Y2U2M2U4NzhiYTNiYjNmNDc0MGFmOTllMjBkMDI2YmE5NTIxOWEwNmE2MTMwZmNjMiJ9",
+            "nombre": "Asociacion Civil Rabitos Felices",
+            "ubicacion": {
+                "direccion": "Alta Gracia s/n, Corrientes",
+                "lat": -27.509570757488902,
+                "long": -58.823388057679864
+            },
+            "telefono": "+543794384786",
+            "admisiones": {
+                "perros": true,
+                "gatos": true
+            },
+            "capacidad": 55,
+            "lugares_disponibles": 15,
+            "patio": true,
+            "caracteristicaParaRegistros": []
+        },
+        {
+            "id": "eyJpdiI6Im4yZTBCaE82dFBWb2gvMExBb0dGRHc9PSIsInZhbHVlIjoicmhBaWxhQmhnSXBCSEFzcmlsVWVyQT09IiwibWFjIjoiMWY5NzA5ZDdmNTI3OWFjOGNiMWEwNGIzODE3YjM1ZGY2ZWQ1MGFiMGQ0NGJjOWYxNjllYjA1M2U4YTVjNTNlNCJ9",
+            "nombre": "Fundación Hocicos Curiosos",
+            "ubicacion": {
+                "direccion": "RN12, Corrientes",
+                "lat": -27.41598245845458,
+                "long": -58.68002127302439
+            },
+            "telefono": "",
+            "admisiones": {
+                "perros": false,
+                "gatos": true
+            },
+            "capacidad": 75,
+            "lugares_disponibles": 15,
+            "patio": true,
+            "caracteristicaParaRegistros": []
+        },
+        {
+            "id": "eyJpdiI6Imk2ckNLR2J4Tk1WMmw1ck1Vd3Rha1E9PSIsInZhbHVlIjoiSUVPQmtRSmgrQVllcXViMFFRZzFvQT09IiwibWFjIjoiMWU3NGQxZTI5M2NkMzlhYjVjYTkyN2U1MjkzZGJjMGI5OWY1MmFjZGY3ZmZhMmMyNzg1NTdlMzdjODNhNzViMCJ9",
+            "nombre": "El Refugio",
+            "ubicacion": {
+                "direccion": "Av. Quaranta 6085, Posadas, Misiones",
+                "lat": -27.400164929245282,
+                "long": -55.93983525953167
+            },
+            "telefono": "+543764664629",
+            "admisiones": {
+                "perros": false,
+                "gatos": true
+            },
+            "capacidad": 85,
+            "lugares_disponibles": 20,
+            "patio": true,
+            "caracteristicaParaRegistros": []
+        },
+        {
+            "id": "eyJpdiI6ImV3cVBRR1ZVYjNXcVdXcHZtUCt4RHc9PSIsInZhbHVlIjoiR2FVd3lPcTJKRDRaYlc5bDhqQ1pvUT09IiwibWFjIjoiOGQxYWRlNGMxN2QzNzRlODc5MDQzMzJjODlkYzc5MzRjZGIxMjA0NTZiMGE1NmVmYmRiYWY0MmNmZTBjZDViMSJ9",
+            "nombre": "Centro de Adopciones Matías Nicolás Mancilla",
+            "ubicacion": {
+                "direccion": "Gato y Mancha S/N, A4400 Salta",
+                "lat": -24.815193805629,
+                "long": -65.44248501643202
+            },
+            "telefono": "+543875058484",
+            "admisiones": {
+                "perros": true,
+                "gatos": false
+            },
+            "capacidad": 100,
+            "lugares_disponibles": 30,
+            "patio": false,
+            "caracteristicaParaRegistros": []
+        },
+        {
+            "id": "eyJpdiI6IlBZU2NwKy9iLy84S0NoM1hxWTBDYUE9PSIsInZhbHVlIjoiUFR5WnRySkpDd09ERzZiWnB2SmhHQT09IiwibWFjIjoiOWI4YTAwYWFjZThkZDE5NGIxZmU0ZmMwOTBmMGRkNGI2ZjY4M2FkNzdmMjdkMmNkNTQ4MDEwNTUzM2Y3ZGNiMCJ9",
+            "nombre": "Refugio de animales",
+            "ubicacion": {
+                "direccion": "Av. El Exodo 644, San Salvador de Jujuy, Jujuy",
+                "lat": -24.19500739359762,
+                "long": -65.29862185877765
+            },
+            "telefono": "",
+            "admisiones": {
+                "perros": true,
+                "gatos": false
+            },
+            "capacidad": 25,
+            "lugares_disponibles": 10,
+            "patio": true,
+            "caracteristicaParaRegistros": [
+                "Delgado",
+                "Amistoso",
+                "Manso"
+            ]
+        },
+        {
+            "id": "eyJpdiI6Imw1SDBoSDdMT1Y3eVVma0o0WTk3UkE9PSIsInZhbHVlIjoiVzhLNUtjMEtESG85aStqd3NMQVl3UT09IiwibWFjIjoiYWQyM2E4N2ZhMjViMjgwMDI3MGU3OGMwZWI1OWM1YmUwYTkxMWVlZTFhODkwNWQ2YzYxY2UwMDBkMjNmZDZlZCJ9",
+            "nombre": "Bichos",
+            "ubicacion": {
+                "direccion": "Av. Aguirre Norte, Santiago del Estero",
+                "lat": -27.78618915660711,
+                "long": -64.27867765867889
+            },
+            "telefono": "+543856770102",
+            "admisiones": {
+                "perros": true,
+                "gatos": true
+            },
+            "capacidad": 20,
+            "lugares_disponibles": 8,
+            "patio": false,
+            "caracteristicaParaRegistros": []
+        }
+    ]
+}

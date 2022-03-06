@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!--Google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@700&display=swap"
+        rel="stylesheet">
+
+    <!-- Materialice CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!--Icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <meta charset="utf-8">
+    <title>Rescate de Patitas</title>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div>
+        <nav>
+            <div class="nav-wrapper purple darken-4">
+                <a href="/index/{{id}}" class="brand-logo">Rescate de patitas</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="sass.html">Mascotas buscando dueño</a></li>
+                    <li><a href="badges.html">Mascotas perdidas</a></li>
+                    <li><a href="collapsible.html">Quiero adoptar</a></li>
+                </ul>
+            </div>
+        </nav>
+        <br />
+        <br />
+
+        <!-- CONTENEDOR FORMULARIO -->
+
+        <div class="container">
+            <div class="row card">
+                <div class="col s12">
+                    <form action="/usuario/{{id}}/dar_en_adopcion" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col s12">
+                                <h3><u class="underlined-wavy">Datos de la mascota en adopcion</u></h3>
+                            </div>
+                            <div class="col s12">
+                                <div class="input-field col s4">
+                                    <input placeholder="Ej: Pancho" id="nombre" type="text" class="validate"
+                                        name="nombre_mascota">
+                                    <label for="nombre">Nombre de la mascota</label>
+                                </div>
+                                <div class="input-field col s4">
+                                    <input placeholder="Ej: Pancho" id="apodo" type="text" class="validate"
+                                        name="apodo">
+                                    <label for="nombre">Apodo</label>
+                                </div>
+                            </div>
+                            <div class="col s12">
+                                <div class="input-field col s4">
+                                    <select class="browser-default" name="tipo_de_mascota">
+                                        <option value="" disabled selected>Seleccione tipo de mascota</option>
+                                        <option value="gato">Gato</option>
+                                        <option value="perro">Perro</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col s4">
+                                    <select class="browser-default" name="edad_mascota">
+                                        <option value="" disabled selected>Edad aproximada</option>
+                                        <option value="cachorro">Cachorro (45 días a 12 meses)</option>
+                                        <option value="joven">Joven (1 a 5 años)</option>
+                                        <option value="adulto">Adulto (5 a 9 años)</option>
+                                        <option value="abuelo">Abuelo (Mayor a 9 años)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col s12">
+                                <div class="input-field col s4">
+                                    <select class="browser-default" name="sexo_mascota">
+                                        <option value="" disabled selected>Sexo</option>
+                                        <option value="macho">Macho</option>
+                                        <option value="hembra">Hembra</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col s4">
+                                    <select class="browser-default" name="tamanio_mascota">
+                                        <option value="" disabled selected>Tamaño mascota</option>
+                                        <option value="pequenio">Pequeño</option>
+                                        <option value="mediano">Mediano</option>
+                                        <option value="grande">Grande</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col s4">
+                                    <select class="browser-default" name="tiene_discapacidad">
+                                        <option value="" disabled selected>Tiene alguna discapacidad?</option>
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col s12">
+                                <div class="input-field col s4">
+                                    <select class="browser-default" name="tiene_vacunas">
+                                        <option value="" disabled selected>Tiene todas las vacunas?</option>
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col s12">
+                                <h5>Seleccione caracteristicas que definan a la mascota</h5>
+                            </div>
+                            <div class="col s12">
+                                <div class="input-field col s12">
+                                    <p>
+                                        <label>
+                                            <input type="checkbox" name="virtud_1" value="carinioso" />
+                                            <span>cariñoso</span>
+                                        </label>
+                                    <p>
+                                        <label>
+                                            <input type="checkbox" name="virtud_2" value="manso" />
+                                            <span>manso</span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label>
+                                            <input type="checkbox" name="virtud_3" value="protector" />
+                                            <span>protector</span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label>
+                                            <input type="checkbox" name="virtud_4" value="timido" />
+                                            <span>timido</span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label>
+                                            <input type="checkbox" name="virtud_5" value="alegre" />
+                                            <span>alegre</span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label>
+                                            <input type="checkbox" name="virtud_6" value="caracter_fuerte" />
+                                            <span>caracter fuerte</span>
+                                        </label>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col s12">
+                                <div class="input-field col s12">
+                                    <h5>Publicacion:</h5>
+                                </div>
+                            </div>
+                            <div class="col s12">
+                                <div class="input-field col s4">
+                                    <input placeholder="Titulo de la publicacion" id="titulo" type="text"
+                                        class="validate" name="titulo">
+                                    <label for="titulo">Titulo</label>
+                                </div>
+                            </div>
+                            <div class="col s12">
+                                <div class="input-field col s12">
+                                    <textarea id="descripcion" class="materialize-textarea"></textarea>
+                                    <label for="descripcion">Describa a su mascota que va a ser adoptada</label>
+                                </div>
+                            </div>
+
+
+                            {{#each org.preguntasRequeridas}}
+                            {{#eq tipoDeRegistro.nombre "registro_de_mascota"}}
+                            {{#eq tipoDePregunta.nombre "boolean"}}
+                            <div class="input-field col s6">
+                                <select class="browser-default" name="pregunta_{{id}}">
+                                    <option value="" disabled selected>{{caracteristicaNombre}}</option>
+                                    <option value="Si">Si</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            {{/eq}}
+                            {{#eq tipoDePregunta.nombre "pregunta"}}
+                            <div class="input-field col s6">
+                                <input name="pregunta_{{id}}" id="pregunta_{{id}}" type="text" class="validate">
+                                <label class="active" for="first_name2">{{caracteristicaNombre}}</label>
+                            </div>
+                            {{/eq}}
+                            {{#eq tipoDePregunta.nombre "multiple_choice"}}
+                            <div class="input-field col s6">
+                                <select class="browser-default" name="pregunta_{{id}}">
+                                    <option value="" disabled selected>{{caracteristicaNombre}}</option>
+                                    {{#each opciones}}
+                                    <option value="{{nombreOpcion}}">{{nombreOpcion}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            {{/eq}}
+                            {{/eq}}
+                            {{/each}}
+                            <div class="col s12">
+                                <input id="token" type="hidden" name="token" value="{{token}}">
+                                <input id="latitud" type="hidden" name="mascota_latitud" value="">
+                                <input id="longitud" type="hidden" name="mascota_longitud" value="">
+                            </div>
+                            <div class="col s12">
+                                <div class="input-field col s4">
+                                    <button class="btn waves-effect waves-light" type="submit">Enviar
+                                        <i class="material-icons right">send</i>
+                                    </button>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="/js/scripts.js"></script>
+        <script type="text/javascript" src="/js/geolocation.js"></script>
+</body>
+
+</html>

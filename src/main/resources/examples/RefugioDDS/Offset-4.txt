@@ -1,0 +1,198 @@
+{
+    "total": 40,
+    "offset": "4",
+    "hogares": [
+        {
+            "id": "eyJpdiI6Ik83TGtDS3k3VlN0UFdJL2hGVngvSVE9PSIsInZhbHVlIjoiYm1DaDFsU3h2dElEbGgyR1NwT3R3UT09IiwibWFjIjoiMGM1MDM3MjJmODVkY2QxZTJlYzhjNDY3NmJhMzU5NGQzMDFjZmE5M2NmYjk3MWEwNzEzOTAzYTc3ODMxNDM4ZiJ9",
+            "nombre": "Refugio de Abril",
+            "ubicacion": {
+                "direccion": "Calle San Agustín 175, 5400 San Juan",
+                "lat": -31.547573215857497,
+                "long": -68.52710382972862
+            },
+            "telefono": "+542644084656",
+            "admisiones": {
+                "perros": true,
+                "gatos": true
+            },
+            "capacidad": 25,
+            "lugares_disponibles": 10,
+            "patio": true,
+            "caracteristicaParaRegistros": [
+                "Delgado",
+                "Amistoso",
+                "Manso"
+            ]
+        },
+        {
+            "id": "eyJpdiI6ImFGUEJyYmMwY05WcjRkQXNoaVBCdUE9PSIsInZhbHVlIjoiYmxLVWlJeUhSTlFndlh2QzRBcW5EZz09IiwibWFjIjoiZDc3MmUzYmM5NjYyZDc5OGM3ODRiMDkyMWNkN2ZhZjY5ZWJiNGMxNmJmMmZhNTYxYjJjNzI1NGNjZDg3ZmFlYiJ9",
+            "nombre": "El Refugio de Diego",
+            "ubicacion": {
+                "direccion": "GUAYMALLEN Mendoza AR, Calle 9 de Julio 11950, M5527 XAA",
+                "lat": -32.87018304459685,
+                "long": -68.64853276991776
+            },
+            "telefono": "+54926116796113",
+            "admisiones": {
+                "perros": true,
+                "gatos": true
+            },
+            "capacidad": 20,
+            "lugares_disponibles": 10,
+            "patio": false,
+            "caracteristicaParaRegistros": []
+        },
+        {
+            "id": "eyJpdiI6IkxQMlU2YnRWSUcreVI5NEVKVU45Nmc9PSIsInZhbHVlIjoib3pBQ0swbENKclFvRE5rR2tuaG5yUT09IiwibWFjIjoiOTdkZGJiMWNiMmM1ZTI0MjJmNmQ2MDhjMDE2NjYyNGIwOWE4MDlhYzgyNTcxOWYwYzY0MDEwZTk0MGUxY2JhMCJ9",
+            "nombre": "Colonia Canina",
+            "ubicacion": {
+                "direccion": "Ruta sin Nombre, Río Negro",
+                "lat": -38.89833538335138,
+                "long": -67.96953736015512
+            },
+            "telefono": "+542994201507",
+            "admisiones": {
+                "perros": true,
+                "gatos": true
+            },
+            "capacidad": 40,
+            "lugares_disponibles": 15,
+            "patio": true,
+            "caracteristicaParaRegistros": []
+        },
+        {
+            "id": "eyJpdiI6IjFSbFlMdDg1SWU2ZjZtWnV2Z0VZWnc9PSIsInZhbHVlIjoiVTZDQjg3U3d3QmsvakdtbVk3bHp3Zz09IiwibWFjIjoiMTkzNzBiNjQ2MmJhMGRlNzgyOWJlYWY0MzFhNzcxOWE1YTY5MjdhY2FlZWM5MjI4MTEwZjE2MzliZDk5YjJhNCJ9",
+            "nombre": "El Refugio",
+            "ubicacion": {
+                "direccion": "Río Gallegos, Santa Cruz",
+                "lat": -51.622855315759274,
+                "long": -69.21685055962318
+            },
+            "telefono": "+542966316101",
+            "admisiones": {
+                "perros": false,
+                "gatos": true
+            },
+            "capacidad": 30,
+            "lugares_disponibles": 10,
+            "patio": false,
+            "caracteristicaParaRegistros": [
+                "Amistoso"
+            ]
+        },
+        {
+            "id": "eyJpdiI6ImVDeUQ4eGh6cWhtVWxhN0NjdWxNUlE9PSIsInZhbHVlIjoieWFEdmlmQnFPbWRQVlVnVUdQOGZPUT09IiwibWFjIjoiNzFhNmIzNTU0Mjk0YzI1NDc5ZWMxNGU3ODgyMmVlNzY4MTczMmQwN2M1MWY5YzY3OWZkN2Y1ZjkxMmYyOWVkYiJ9",
+            "nombre": "Buena Pata",
+            "ubicacion": {
+                "direccion": "9 de Julio 3407, Nueva Pompeya, B7600GZW Mar del Plata, Provincia de Buenos Aires",
+                "lat": -37.99248032909926,
+                "long": -57.55329137553026
+            },
+            "telefono": "+542234759537",
+            "admisiones": {
+                "perros": false,
+                "gatos": true
+            },
+            "capacidad": 10,
+            "lugares_disponibles": 5,
+            "patio": true,
+            "caracteristicaParaRegistros": []
+        },
+        {
+            "id": "eyJpdiI6IjU2RFMxclp5QzVFQ09YdHhVWE1tYlE9PSIsInZhbHVlIjoiZDFGRWhUNFBxRFVRSzc4dlZISit6QT09IiwibWFjIjoiYjkzZGFlZGRmOWE0OTk2ODQ4YjdlODUzMjhkMDUzZjkzMmY3OWI3NDk1MjljYTlkYmEyODZkZmRiZGQ5YTAyMSJ9",
+            "nombre": "Protectora de Animales Tandil",
+            "ubicacion": {
+                "direccion": "Calle Almafuerte 2760, Tandil, Provincia de Buenos Aires",
+                "lat": -37.29680675240004,
+                "long": -59.17251877186086
+            },
+            "telefono": "+542494460745",
+            "admisiones": {
+                "perros": false,
+                "gatos": true
+            },
+            "capacidad": 20,
+            "lugares_disponibles": 8,
+            "patio": false,
+            "caracteristicaParaRegistros": []
+        },
+        {
+            "id": "eyJpdiI6IndyWDhEZmRDZGtSWnhNTDJEUEFwZHc9PSIsInZhbHVlIjoiNVVOcFhqZithakRXVDVVaXFMVzVLdz09IiwibWFjIjoiNDAwYmM5YTEzNTE0YjJkNTAzNmI4OWMxMTUyMTE5YTljMDlkYTc5M2UwMzFkMDM0ZTlhZTdkMzhhMjU2MWNlZSJ9",
+            "nombre": "Chivilcotas Ong",
+            "ubicacion": {
+                "direccion": "Paso 53, Chivilcoy, Provincia de Buenos Aires",
+                "lat": -34.89963279428334,
+                "long": -60.02066453146428
+            },
+            "telefono": "",
+            "admisiones": {
+                "perros": false,
+                "gatos": true
+            },
+            "capacidad": 30,
+            "lugares_disponibles": 12,
+            "patio": true,
+            "caracteristicaParaRegistros": [
+                "Delgado",
+                "Amistoso"
+            ]
+        },
+        {
+            "id": "eyJpdiI6IldqL0Njb3JBTFRVc0NEMFR5Y010T1E9PSIsInZhbHVlIjoiUlE0b1Z6OXB1QlNIU01SY1Nxd3lXUT09IiwibWFjIjoiODQ3OTE4OWI4MmE0ZWQ4N2FjN2ViYzA2MzcwYTE0ZDE0NTRjYjIzZDVlNTg2ZDAzODkyMDY2MTMxYmY3MTJkNSJ9",
+            "nombre": "APAC",
+            "ubicacion": {
+                "direccion": "D. Burgos 1160-1054, Campana, Provincia de Buenos Aires",
+                "lat": -34.192562067235585,
+                "long": -58.970183087311796
+            },
+            "telefono": "",
+            "admisiones": {
+                "perros": true,
+                "gatos": false
+            },
+            "capacidad": 40,
+            "lugares_disponibles": 15,
+            "patio": false,
+            "caracteristicaParaRegistros": []
+        },
+        {
+            "id": "eyJpdiI6ImNtYm93T1lmdkpqTG9hUXgvTldpZ2c9PSIsInZhbHVlIjoiUzlkVHJxSkRWS29FbmVad2JsdENsQT09IiwibWFjIjoiODk4ODMyOGUzNDBhZTA2NDBhN2UyOWYzZjZjNjNjNzllZTg1ZjVlNThkN2ZhNDBmMGU1OTc5NjYxNWM2ZDg4ZSJ9",
+            "nombre": "Refugio de contención animal municipal",
+            "ubicacion": {
+                "direccion": "Av. Mitre 1025,Villa Mercedes",
+                "lat": -33.64815223272342,
+                "long": -65.42365578860479
+            },
+            "telefono": "0800-222-5555",
+            "admisiones": {
+                "perros": true,
+                "gatos": true
+            },
+            "capacidad": 50,
+            "lugares_disponibles": 30,
+            "patio": true,
+            "caracteristicaParaRegistros": [
+                "Amistoso",
+                "Manso"
+            ]
+        },
+        {
+            "id": "eyJpdiI6Imc3dGMxOFd6dmoxdTRnUHZIRzNuYkE9PSIsInZhbHVlIjoiTStTb0tSMjhweFFpSDhLcml4T0FoUT09IiwibWFjIjoiODc5NGIwYTdhYjg1YjMyYzg2YWI4MWVlYjE1NDA3NGJkMDQwMjA2YjE5NjU5NDkxZTZkYzlmMzczMzQzM2VkNyJ9",
+            "nombre": "CeMAA",
+            "ubicacion": {
+                "direccion": "Av. Dr. Nestor Kirchner, Formosa",
+                "lat": -26.073885250905157,
+                "long": -58.24638414973704
+            },
+            "telefono": "+543704257904",
+            "admisiones": {
+                "perros": true,
+                "gatos": false
+            },
+            "capacidad": 80,
+            "lugares_disponibles": 20,
+            "patio": true,
+            "caracteristicaParaRegistros": []
+        }
+    ]
+}
